@@ -16,7 +16,8 @@ public class KhachSanAnNhien_GUI {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        // TODO code application logic here
+        JFrame_Login login = new JFrame_Login();
+        login.setVisible(true);
     }
     
 }

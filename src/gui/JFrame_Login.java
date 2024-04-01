@@ -71,7 +71,6 @@ public class JFrame_Login extends javax.swing.JFrame {
         jPanel1.add(txt_matKhau);
         txt_matKhau.setBounds(120, 410, 160, 40);
 
-        input_password.setText("jPasswordField1");
         input_password.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 input_passwordActionPerformed(evt);
@@ -79,8 +78,6 @@ public class JFrame_Login extends javax.swing.JFrame {
         });
         jPanel1.add(input_password);
         input_password.setBounds(250, 410, 220, 40);
-
-        input_tenNhanVien.setText("Tên nhân viên ......");
         jPanel1.add(input_tenNhanVien);
         input_tenNhanVien.setBounds(250, 340, 220, 40);
 
@@ -106,6 +103,7 @@ public class JFrame_Login extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void input_passwordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_input_passwordActionPerformed
