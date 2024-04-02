@@ -8,14 +8,15 @@ import java.util.Objects;
  * @author M S I
  */
 public class KhuyenMai {
-       private String maKhuyenMai;
-       private double giaTri;
-       private LocalDate ngayBatDau;
-       private LocalDate ngayKetThuc;
-       private String noiDung;
-       private boolean trangThaiKhuyenMai;
 
-    public KhuyenMai(String maKhuyenMai, double giaTri, LocalDate ngayBatDau, LocalDate ngayKetThuc, String noiDung, boolean trangThaiKhuyenMai) {
+    private String maKhuyenMai;
+    private boolean trangThaiKhuyenMai;
+    private double giaTri;
+    private LocalDate ngayBatDau;
+    private LocalDate ngayKetThuc;
+    private String noiDung;
+
+    public KhuyenMai(String maKhuyenMai,boolean trangThaiKhuyenMai, double giaTri, LocalDate ngayBatDau, LocalDate ngayKetThuc, String noiDung) {
         this.maKhuyenMai = maKhuyenMai;
         this.giaTri = giaTri;
         this.ngayBatDau = ngayBatDau;
@@ -78,8 +79,8 @@ public class KhuyenMai {
     public void setTrangThaiKhuyenMai(boolean trangThaiKhuyenMai) {
         this.trangThaiKhuyenMai = trangThaiKhuyenMai;
     }
-    
-     public boolean isHetHan() {
+
+    public boolean isHetHan() {
         return this.ngayBatDau.isBefore(ngayKetThuc);
     }
 
@@ -106,6 +107,5 @@ public class KhuyenMai {
         final KhuyenMai other = (KhuyenMai) obj;
         return Objects.equals(this.maKhuyenMai, other.maKhuyenMai);
     }
-     
-    
+
 }

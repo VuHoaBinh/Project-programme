@@ -5,16 +5,23 @@
 package gui;
 
 import connectDB.ConnectDB;
+import dao.TaiKhoan_DAO;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 
 /**
  *
  * @author ASUS
  */
-public class JFrame_Login extends javax.swing.JFrame {
+public class JFrame_Login extends javax.swing.JFrame implements ActionListener {
 
     /**
      * Creates new form JFrame_Login
+     *
      * @throws java.lang.Exception
      */
     public JFrame_Login() throws Exception {
@@ -25,6 +32,7 @@ public class JFrame_Login extends javax.swing.JFrame {
         }
         initComponents();
         setResizable(false);
+        addEvents();
     }
 
     /**
@@ -36,92 +44,96 @@ public class JFrame_Login extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel1 = new javax.swing.JPanel();
+        pn_DangNhap = new javax.swing.JPanel();
         txt_dangNhap = new javax.swing.JLabel();
-        txt_quenMatKhau = new javax.swing.JLabel();
         btn_dangNhap = new javax.swing.JButton();
-        txt_matKhau = new javax.swing.JLabel();
-        input_password = new javax.swing.JPasswordField();
-        input_tenNhanVien = new javax.swing.JTextField();
-        txt_tenNhanVien = new javax.swing.JLabel();
+        lb_matKhau = new javax.swing.JLabel();
+        txt_password = new javax.swing.JPasswordField();
+        txt_taiKhoan = new javax.swing.JTextField();
+        lb_tenNhanVien = new javax.swing.JLabel();
         UI_login = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jPanel1.setLayout(null);
+        pn_DangNhap.setLayout(null);
 
         txt_dangNhap.setFont(new java.awt.Font("Segoe UI Black", 1, 48)); // NOI18N
         txt_dangNhap.setForeground(new java.awt.Color(255, 255, 255));
         txt_dangNhap.setText("Đăng nhập");
-        jPanel1.add(txt_dangNhap);
-        txt_dangNhap.setBounds(140, 220, 290, 66);
-
-        txt_quenMatKhau.setFont(new java.awt.Font("Segoe UI Semibold", 2, 18)); // NOI18N
-        txt_quenMatKhau.setForeground(new java.awt.Color(255, 255, 255));
-        txt_quenMatKhau.setText("Quên mật khẩu?");
-        jPanel1.add(txt_quenMatKhau);
-        txt_quenMatKhau.setBounds(200, 560, 160, 40);
+        pn_DangNhap.add(txt_dangNhap);
+        txt_dangNhap.setBounds(140, 220, 290, 120);
 
         btn_dangNhap.setBackground(new java.awt.Color(51, 153, 255));
         btn_dangNhap.setFont(new java.awt.Font("Segoe UI Black", 1, 18)); // NOI18N
         btn_dangNhap.setForeground(new java.awt.Color(255, 255, 255));
         btn_dangNhap.setText("Đăng nhập");
+        btn_dangNhap.setFocusPainted(false);
         btn_dangNhap.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_dangNhapActionPerformed(evt);
             }
         });
-        jPanel1.add(btn_dangNhap);
-        btn_dangNhap.setBounds(120, 510, 300, 50);
+        pn_DangNhap.add(btn_dangNhap);
+        btn_dangNhap.setBounds(140, 530, 300, 50);
 
-        txt_matKhau.setFont(new java.awt.Font("Segoe UI Black", 1, 18)); // NOI18N
-        txt_matKhau.setForeground(new java.awt.Color(255, 255, 255));
-        txt_matKhau.setText("Mật khẩu:");
-        jPanel1.add(txt_matKhau);
-        txt_matKhau.setBounds(120, 410, 160, 40);
+        lb_matKhau.setFont(new java.awt.Font("Segoe UI Black", 1, 18)); // NOI18N
+        lb_matKhau.setForeground(new java.awt.Color(255, 255, 255));
+        lb_matKhau.setText("Mật khẩu:");
+        pn_DangNhap.add(lb_matKhau);
+        lb_matKhau.setBounds(120, 460, 110, 40);
 
-        input_password.addActionListener(new java.awt.event.ActionListener() {
+        txt_password.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                input_passwordActionPerformed(evt);
+                txt_passwordActionPerformed(evt);
             }
         });
-        jPanel1.add(input_password);
-        input_password.setBounds(250, 410, 220, 40);
-        jPanel1.add(input_tenNhanVien);
-        input_tenNhanVien.setBounds(250, 340, 220, 40);
+        pn_DangNhap.add(txt_password);
+        txt_password.setBounds(250, 460, 220, 40);
 
-        txt_tenNhanVien.setFont(new java.awt.Font("Segoe UI Black", 1, 18)); // NOI18N
-        txt_tenNhanVien.setForeground(new java.awt.Color(255, 255, 255));
-        txt_tenNhanVien.setText("Tên nhân viên:");
-        jPanel1.add(txt_tenNhanVien);
-        txt_tenNhanVien.setBounds(80, 340, 160, 40);
+        txt_taiKhoan.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txt_taiKhoanActionPerformed(evt);
+            }
+        });
+        pn_DangNhap.add(txt_taiKhoan);
+        txt_taiKhoan.setBounds(250, 380, 220, 40);
+
+        lb_tenNhanVien.setFont(new java.awt.Font("Segoe UI Black", 1, 18)); // NOI18N
+        lb_tenNhanVien.setForeground(new java.awt.Color(255, 255, 255));
+        lb_tenNhanVien.setText("Tên nhân viên:");
+        pn_DangNhap.add(lb_tenNhanVien);
+        lb_tenNhanVien.setBounds(80, 380, 160, 40);
 
         UI_login.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/screen_Login.png"))); // NOI18N
-        jPanel1.add(UI_login);
-        UI_login.setBounds(0, 0, 940, 788);
+        pn_DangNhap.add(UI_login);
+        UI_login.setBounds(0, 0, 940, 760);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 940, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(pn_DangNhap, javax.swing.GroupLayout.PREFERRED_SIZE, 940, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 794, Short.MAX_VALUE)
+            .addComponent(pn_DangNhap, javax.swing.GroupLayout.DEFAULT_SIZE, 759, Short.MAX_VALUE)
         );
 
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void input_passwordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_input_passwordActionPerformed
+    private void txt_passwordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_passwordActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_input_passwordActionPerformed
+    }//GEN-LAST:event_txt_passwordActionPerformed
 
     private void btn_dangNhapActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_dangNhapActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btn_dangNhapActionPerformed
+
+    private void txt_taiKhoanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_taiKhoanActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txt_taiKhoanActionPerformed
 
     /**
      * @param args the command line arguments
@@ -165,12 +177,33 @@ public class JFrame_Login extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel UI_login;
     private javax.swing.JButton btn_dangNhap;
-    private javax.swing.JPasswordField input_password;
-    private javax.swing.JTextField input_tenNhanVien;
-    private javax.swing.JPanel jPanel1;
+    private javax.swing.JLabel lb_matKhau;
+    private javax.swing.JLabel lb_tenNhanVien;
+    private javax.swing.JPanel pn_DangNhap;
     private javax.swing.JLabel txt_dangNhap;
-    private javax.swing.JLabel txt_matKhau;
-    private javax.swing.JLabel txt_quenMatKhau;
-    private javax.swing.JLabel txt_tenNhanVien;
+    private javax.swing.JPasswordField txt_password;
+    private javax.swing.JTextField txt_taiKhoan;
     // End of variables declaration//GEN-END:variables
+    private TaiKhoan_DAO tk_dao = new TaiKhoan_DAO();
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        Object o = e.getSource();
+        if (o.equals(btn_dangNhap)) {
+            if (txt_taiKhoan.getText().equalsIgnoreCase("")||txt_password.getPassword().equals("")) {
+                JOptionPane.showMessageDialog(this, "Tên tài khoản hoặc mật khẩu không được để trống");
+                txt_taiKhoan.requestFocus();
+            } else {
+                try {
+                    tk_dao.dNhap(txt_taiKhoan, txt_password);
+                } catch (Exception ex) {
+                    Logger.getLogger(JFrame_Login.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        }
+    }
+    
+    public void addEvents(){
+        btn_dangNhap.addActionListener(this);
+    }
 }

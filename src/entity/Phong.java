@@ -35,6 +35,10 @@ public class Phong {
         this.trangThaiPhong = trangThaiPhong;
     }
 
+    public Phong(String maPhong) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
     // Getters and Setters
     public String getMaPhong() {
         return maPhong;
