@@ -1,6 +1,6 @@
 # Booking An Nhien Hotel 
 
-## Members: 03  (Vũ Hòa Bình - Phạm Hoàng Long - Trần Quang Nhân - Nguyễn Tiến Đạt)
+Members: 03  (Vũ Hòa Bình - Phạm Hoàng Long - Trần Quang Nhân - Nguyễn Tiến Đạt)
 
 # WEBSITE LOGIC SYSTEM DESCRIPTION
 
