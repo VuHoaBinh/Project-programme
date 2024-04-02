@@ -4,6 +4,9 @@
  */
 package gui;
 
+import connectDB.ConnectDB;
+import java.sql.SQLException;
+
 /**
  *
  * @author ASUS
@@ -12,8 +15,14 @@ public class JFrame_Login extends javax.swing.JFrame {
 
     /**
      * Creates new form JFrame_Login
+     * @throws java.lang.Exception
      */
-    public JFrame_Login() {
+    public JFrame_Login() throws Exception {
+        try {
+            ConnectDB.getInstance().connect();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
         initComponents();
         setResizable(false);
     }
@@ -144,7 +153,11 @@ public class JFrame_Login extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new JFrame_Login().setVisible(true);
+                try {
+                    new JFrame_Login().setVisible(true);
+                } catch (Exception ex) {
+                    ex.printStackTrace();
+                }
             }
         });
     }
