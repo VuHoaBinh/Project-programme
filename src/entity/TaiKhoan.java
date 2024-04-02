@@ -34,6 +34,12 @@ public class TaiKhoan {
         this.matKhau = matKhau;
     }
 
+    public TaiKhoan(NhanVien nhanVien) {
+        this.nhanVien = nhanVien;
+    }
+
+    
+    
     @Override
     public String toString() {
         return "TaiKhoan{" + "nhanVien=" + nhanVien + ", matKhau=" + matKhau + '}';
