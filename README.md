@@ -1,6 +1,10 @@
 # Booking An Nhien Hotel 
 
+<<<<<<< HEAD
 Members: 03  (Vũ Hòa Bình - Phạm Hoàng Long - Trần Quang Nhân - Nguyễn Tiến Đạt)
+=======
+## Members: 03 - Vũ Hòa Bình - Phạm Hoàng Long - Trần Quang Nhân - Nguyễn Tiến Đạt
+>>>>>>> origin/Nhân
 
 # WEBSITE LOGIC SYSTEM DESCRIPTION
 
@@ -21,6 +25,10 @@ Members: 03  (Vũ Hòa Bình - Phạm Hoàng Long - Trần Quang Nhân - Nguyễ
 |                    | Tìm kiếm khách hàng (Theo số điện thoại)     |                                                                                          |
 |                    | Tìm kiếm khuyến mãi                          |                                                                                          |
 |                    | Thống kê doanh thu cá nhân                   |                                                                                          |
+<<<<<<< HEAD
+=======
+| ------------------ | -------------------------------------------- | -----------------------------------------------------------------------------------------|
+>>>>>>> origin/Nhân
 | Người quản lý      | Thêm phòng                                   |                                                                                          |
 |                    | Cập nhật trạng thái phòng                    |                                                                                          |
 |                    | Cập nhật phòng                               |                                                                                          |
@@ -42,7 +50,11 @@ Members: 03  (Vũ Hòa Bình - Phạm Hoàng Long - Trần Quang Nhân - Nguyễ
 |                    | Thống kê theo khách hàng                     |                                                                                          |
 |                    | Thống kê đồ ăn uống hết hạn                  |                                                                                          |
 |                    | Thống kê hóa đơn đặt phòng                   |                                                                                          |
+<<<<<<< HEAD
 
+=======
+| ------------------ | -------------------------------------------- | -----------------------------------------------------------------------------------------|
+>>>>>>> origin/Nhân
 
 ## 2. Tài khoản testing cho hệ thống:
 
