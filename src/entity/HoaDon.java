@@ -36,6 +36,11 @@ public class HoaDon {
         this.tongThanhTienPhaiTra = tongThanhTienPhaiTra;
     }
 
+    public HoaDon(String maHoaDon) {
+        this.maHoaDon = maHoaDon;
+
+    }
+
     public String getMaHoaDon() {
         return maHoaDon;
     }

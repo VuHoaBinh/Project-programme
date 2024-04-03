@@ -12,6 +12,7 @@ import java.util.Objects;
  * @author LENOVO
  */
 public class PhieuDatPhong {
+
     private String maPhieuDatPhong;
     private KhachHang khachHang;
     private NhanVien nhanvien;
@@ -20,9 +21,6 @@ public class PhieuDatPhong {
     private LocalDate ngayNhanPhong;
     private LocalDate ngayTraPhong;
     private double tienPhong;
-
-    public PhieuDatPhong(String maPhieuDatPhong1) {
-    }
 
     public PhieuDatPhong(String maPhieuDatPhong, KhachHang khachHang, NhanVien nhanvien, int soLuongNguoi, LocalDate ngayDatPhong, LocalDate ngayNhanPhong, LocalDate ngayTraPhong, double tienPhong) {
         this.maPhieuDatPhong = maPhieuDatPhong;
@@ -33,6 +31,11 @@ public class PhieuDatPhong {
         this.ngayNhanPhong = ngayNhanPhong;
         this.ngayTraPhong = ngayTraPhong;
         this.tienPhong = tienPhong;
+    }
+
+    public PhieuDatPhong(String maPhieuDatPhong) {
+        this.maPhieuDatPhong = maPhieuDatPhong;
+
     }
 
     public String getMaPhieuDatPhong() {
@@ -118,5 +121,5 @@ public class PhieuDatPhong {
         return Objects.equals(this.maPhieuDatPhong, other.maPhieuDatPhong);
     }
     //tinhTienPhong
-    
+
 }

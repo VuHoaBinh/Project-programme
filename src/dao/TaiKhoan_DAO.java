@@ -5,6 +5,8 @@
 package dao;
 
 import connectDB.ConnectDB;
+import entity.NhanVien;
+import entity.TaiKhoan;
 import gui.JFrame_Login;
 import gui.JFrame_ManHinhChinh;
 import java.sql.Connection;
@@ -39,16 +41,18 @@ public class TaiKhoan_DAO {
             stmt.setString(1, user);
             String pwd = new String(pass);
             stmt.setString(2, pwd);
-            try (ResultSet rs = stmt.executeQuery()) {
-                if (rs.next()) {
-                    new JFrame_ManHinhChinh().setVisible(true);
-                    new JFrame_Login().setVisible(false);
-                } else {
-                    JOptionPane.showMessageDialog(null, "Tên tài khoản hoặc mật khẩu không đúng");
-                    txtMatKhau.setText("");
-                    txtMatKhau.requestFocus();
-                }
+
+            ResultSet rs = stmt.executeQuery();
+            if (rs.next()) {
+                TaiKhoan curUser = new TaiKhoan(new NhanVien(txtTaiKhoan.getText()));
+                new JFrame_ManHinhChinh().setVisible(true);
+                new JFrame_Login().setVisible(false);
+            } else {
+                JOptionPane.showMessageDialog(null, "Tên tài khoản hoặc mật khẩu không đúng");
+                txtMatKhau.setText("");
+                txtMatKhau.requestFocus();
             }
+            rs.close();
             stmt.close();
         } catch (SQLException ex) {
             Logger.getLogger(TaiKhoan_DAO.class.getName()).log(Level.SEVERE, null, ex);
@@ -86,4 +90,5 @@ public class TaiKhoan_DAO {
         }
 
     }
+
 }

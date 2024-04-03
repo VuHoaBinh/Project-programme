@@ -6,6 +6,9 @@ package dao;
 
 import connectDB.ConnectDB;
 import entity.ChiTietHoaDon;
+import entity.DoAnUong;
+import entity.HoaDon;
+import entity.Phong;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.sql.PreparedStatement;
@@ -47,15 +50,25 @@ public class ChiTietHoaDon_DAO {
             double tongThanhTien = rs.getDouble("tongThanhTien");
             double phuPhi = rs.getDouble("phuPhi");
 
-            // Assuming you have constructors for ChiTietHoaDon that accept necessary parameters
-            ChiTietHoaDon chiTietHoaDon = new ChiTietHoaDon(maHoaDon, maDoAnUong, soLuong, maPhong,
-                    ngayNhanPhong, ngayTraPhong, soLuongNguoiO,
-                    soLuongDoUongTraVe, tongTienThuePhong,
-                    tongTienDichVu, tongThanhTien, phuPhi);
+            ChiTietHoaDon chiTietHoaDon = new ChiTietHoaDon(
+                    new HoaDon(maHoaDon), 
+                    new DoAnUong(maDoAnUong), 
+                    soLuong,
+                    new Phong(maPhong),
+                    ngayNhanPhong,
+                    ngayTraPhong,
+                    soLuongNguoiO,
+                    soLuongDoUongTraVe,
+                    tongTienThuePhong,
+                    tongTienDichVu,
+                    tongThanhTien,
+                    phuPhi
+            );
+
             dsChiTietHoaDon.add(chiTietHoaDon);
+
         }
         return dsChiTietHoaDon;
     }
 
-    
 }

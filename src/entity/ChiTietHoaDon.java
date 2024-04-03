@@ -25,7 +25,8 @@ public class ChiTietHoaDon {
     private double tongThanhTien;
     private double phuPhi;
 
-    public ChiTietHoaDon(String maHoaDon, String maDoAnUong, int soLuong1, String maPhong, LocalDate ngayNhanPhong1, LocalDate ngayTraPhong1, int soLuongNguoiO1, int soLuongDoUongTraVe1, double tongTienThuePhong1, double tongTienDichVu1, double tongThanhTien1, double phuPhi1) {
+    public ChiTietHoaDon() {
+
     }
 
     public ChiTietHoaDon(HoaDon hoaDon, DoAnUong doAnUong, int soLuong, Phong phong, LocalDate ngayNhanPhong, LocalDate ngayTraPhong, int soLuongNguoiO, int soLuongDoUongTraVe, double tongTienThuePhong, double tongTienDichVu, double tongThanhTien, double phuPhi) {
@@ -160,7 +161,5 @@ public class ChiTietHoaDon {
         }
         return Objects.equals(this.phong, other.phong);
     }
-    
-    
-    
 }
+

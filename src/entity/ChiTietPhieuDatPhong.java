@@ -11,6 +11,7 @@ import java.util.Objects;
  * @author LENOVO
  */
 public class ChiTietPhieuDatPhong {
+
     private PhieuDatPhong phieuDatPhong;
     private Phong phong;
 
@@ -59,13 +60,12 @@ public class ChiTietPhieuDatPhong {
         if (obj == null) {
             return false;
         }
-        
+
         final ChiTietPhieuDatPhong other = (ChiTietPhieuDatPhong) obj;
         if (!Objects.equals(this.phieuDatPhong, other.phieuDatPhong)) {
             return false;
         }
         return Objects.equals(this.phong, other.phong);
     }
-    
-    
+
 }
