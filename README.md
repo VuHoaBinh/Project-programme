@@ -7,42 +7,43 @@ Members: 03  (Vũ Hòa Bình - Phạm Hoàng Long - Trần Quang Nhân - Nguyễ
 
 ## 1. Tổng quan chức năng hệ thống:
 
-| Đối tượng          | Chức năng                                    | Chi tiết                                                                                 |
-| ------------------ | -------------------------------------------- | ---------------------------------------------------------------------------------------- |
-| Người lễ tân       | Đặt phòng                                    |                                                                                          |
-|                    | Thuê phòng                                   |                                                                                          |
-|                    | Trả phòng                                    |                                                                                          |
-|                    | Gia hạn phòng                                |                                                                                          |
-|                    | Cập nhật trạng thái phòng đặt phòng          |                                                                                          |
-|                    | Tìm kiếm đặt phòng                           |                                                                                          |
-|                    | Tìm kiếm hóa đơn theo phòng                  |                                                                                          |
-|                    | Thêm khách hàng                              |                                                                                          |
-|                    | Thêm vào danh sách đen                       |                                                                                          |
-|                    | Cập nhật thông tin khách hàng                |                                                                                          |
-|                    | Tìm kiếm khách hàng (Theo số điện thoại)     |                                                                                          |
-|                    | Tìm kiếm khuyến mãi                          |                                                                                          |
-|                    | Thống kê doanh thu cá nhân                   |                                                                                          |
-| Người quản lý      | Thêm phòng                                   |                                                                                          |
-|                    | Cập nhật trạng thái phòng                    |                                                                                          |
-|                    | Cập nhật phòng                               |                                                                                          |
-|                    | Tìm kiếm phòng                               |                                                                                          |
-|                    | Thêm nhân viên                               |                                                                                          |
-|                    | Cập nhật trạng thái nhân viên                |                                                                                          |
-|                    | Cập nhật thông tin nhân viên                 |                                                                                          |
-|                    | Cập nhật tài khoản nhân viên                 |                                                                                          |
-|                    | Tìm kiếm nhân viên                           |                                                                                          |
-|                    | Thêm đồ ăn uống                              |                                                                                          |
-|                    | Cập nhật trạng thái đồ ăn uống               |                                                                                          |
-|                    | Cập nhật đồ ăn uống                          |                                                                                          |
-|                    | Tìm kiếm đồ ăn uống                          |                                                                                          |
-|                    | Thêm khuyến mãi                              |                                                                                          |
-|                    | Cập nhật trạng thái khuyến mãi               |                                                                                          |
-|                    | Cập nhật thông tin khuyến mãi                |                                                                                          |
-|                    | Tìm kiếm khuyến mãi                          |                                                                                          |
-|                    | Thống kê doanh thu                           |                                                                                          |
-|                    | Thống kê theo khách hàng                     |                                                                                          |
-|                    | Thống kê đồ ăn uống hết hạn                  |                                                                                          |
-|                    | Thống kê hóa đơn đặt phòng                   |                                                                                          |
+| Đối tượng          | Chức năng                                    | Chi tiết                                                                                    |
+| ------------------ | -------------------------------------------- | ------------------------------------------------------------------------------------------- |
+| Receptionist       | Room reservation                             | Enter guest room reservation details into the system.                                       |
+|                    | Room rental                                  | Record guest room rental information.                                                       |
+|                    | Check-out                                    | Confirm guest check-out and update room status.                                             |
+|                    | Extend room stay                             | Proceed with extending the guest's stay.                                                    |
+|                    | Update room reservation status               | Change the room status from "reserved" to "rented".                                         |
+|                    | Search room reservations                     | Search for room reservation information in the system.                                      |
+|                    | Search bills by room                         | Search for bills related to a specific room.                                                |
+|                    | Add new customer                             | Add information of a new customer into the system.                                          |
+|                    | Add to blacklist                             | Note customer information in the blacklist if necessary.                                    |
+|                    | Update customer information                  | Modify or add information of a customer in the system.                                      |
+|                    | Search for customers (by phone number)       | Search for customer information based on the provided phone number.                         |
+|                    | Search promotions                            | Search for existing promotions in the system.                                               |
+|                    | Personal revenue statistics                  | Calculate and display personal revenue statistics for the receptionist.                     |
+| Manager            | Add rooms                                    | Add information and details of a new room to the system.                                    |
+|                    | Update room status                           | Adjust the status of the room, such as "vacant," "occupied," "under cleaning," etc.         |
+|                    | Update room details                          | Modify or add details of a room in the system.                                              |
+|                    | Search rooms                                 | Search for information about rooms in the system based on specific criteria.                |
+|                    | Add employees                                | Add information of a new employee into the system.                                          |
+|                    | Update employee status                       | Adjust the work status of an employee, e.g., "working," "on leave," etc.                    |
+|                    | Update employee information                  | Modify or add information about an employee in the system.                                     |
+|                    | Update employee accounts                     | Manage employee account information, including permissions and passwords.                   |
+|                    | Search employees                             | Search for employee information in the system.                                              |
+|                    | Add food and beverages                       | Add information about a new food or beverage item to the available list.                    |
+|                    | Update food and beverage status              | Adjust the status of a food or beverage item, such as "available," "out of stock," etc.     |
+|                    | Update food and beverages                    | Modify or add details of a food or beverage item in the list.                               |
+|                    | Search food and beverages                    | Search for information about food and beverage items in the list based on specific criteria.|
+|                    | Add promotions                               | Add information about a new promotion program to the system.                                |
+|                    | Update promotion status                      | Adjust the status of a promotion program, such as "ongoing," "expired," etc.                |
+|                    | Update promotion information                 | Modify or add details of a promotion program in the system.                                 |
+|                    | Search promotions                            | Search for information about promotion programs in the system based on specific criteria.   |
+|                    | Revenue statistics                           | Calculate and display the total revenue of the hotel.                                           |
+|                    | Customer-based statistics                    | Analyze and display statistics related to customers.                                        |
+|                    | Expired food and beverage statistics         | List expired food and beverage items in the inventory.                                      |
+|                    | Room reservation bill statistics             | Analyze and  display statistics related to customers.                                       |
+
 
 
 
