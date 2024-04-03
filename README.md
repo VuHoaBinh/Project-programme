@@ -2,9 +2,6 @@
 
 Members: 03  (Vũ Hòa Bình - Phạm Hoàng Long - Trần Quang Nhân - Nguyễn Tiến Đạt)
 
-
-# WEBSITE LOGIC SYSTEM DESCRIPTION
-
 ## 1. Tổng quan chức năng hệ thống:
 
 | Đối tượng          | Chức năng                                    | Chi tiết                                                                                    |
