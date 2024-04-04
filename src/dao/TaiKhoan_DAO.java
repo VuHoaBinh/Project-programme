@@ -8,7 +8,7 @@ import connectDB.ConnectDB;
 import entity.NhanVien;
 import entity.TaiKhoan;
 import gui.JFrame_Login;
-import gui.JFrame_ManHinhChinh;
+import gui.JFrame_TrangChu;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -27,9 +27,10 @@ import javax.swing.JTextField;
 public class TaiKhoan_DAO {
 
     public TaiKhoan_DAO() {
+    };
+    public static TaiKhoan_DAO getInstance(){
+        return new TaiKhoan_DAO();
     }
-
-    ;
     public void dNhap(JTextField txtTaiKhoan, JPasswordField txtMatKhau) throws Exception {
         PreparedStatement stmt = null;
         Connection con = ConnectDB.getConnection();
@@ -45,7 +46,7 @@ public class TaiKhoan_DAO {
             ResultSet rs = stmt.executeQuery();
             if (rs.next()) {
                 TaiKhoan curUser = new TaiKhoan(new NhanVien(txtTaiKhoan.getText()));
-                new JFrame_ManHinhChinh().setVisible(true);
+                new JFrame_TrangChu().setVisible(true);
                 new JFrame_Login().setVisible(false);
             } else {
                 JOptionPane.showMessageDialog(null, "Tên tài khoản hoặc mật khẩu không đúng");
@@ -90,5 +91,23 @@ public class TaiKhoan_DAO {
         }
 
     }
-
+//    public TaiKhoan selectById(String t) {
+//        TaiKhoan result = null;
+//        try {
+//            Connection con = (Connection) ConnectDB.getConnection();
+//            String sql = "SELECT * FROM TaiKhoan WHERE nhanVien=?";
+//            PreparedStatement pst = (PreparedStatement) con.prepareStatement(sql);
+//            pst.setString(1, t);
+//            ResultSet rs = (ResultSet) pst.executeQuery();
+//            while(rs.next()){
+//                String nhanVien = rs.getString("nhanVien");
+//                String matkhau = rs.getString("matkhau");
+//                TaiKhoan tk = new TaiKhoan(nhanVien, matkhau);
+//                return result;
+//            }
+//            ConnectDB.disconnect();
+//        } catch (Exception e) {
+//        }
+//        return result;
+//    }
 }
