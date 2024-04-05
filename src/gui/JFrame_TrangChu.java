@@ -4,29 +4,40 @@
  */
 package gui;
 
-import com.formdev.flatlaf.extras.FlatSVGIcon;
+import com.formdev.flatlaf.FlatIntelliJLaf;
 import entity.NhanVien;
+import java.awt.CardLayout;
+import com.formdev.flatlaf.extras.FlatSVGIcon;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 /**
  *
  * @author ADMIN
  */
-public class JFrame_TrangChu extends javax.swing.JFrame {
+public class JFrame_TrangChu extends javax.swing.JFrame implements ActionListener {
 
     /**
      * Creates new form JFrame_TrangChu
      */
     private TrangChu trangChu;
+    private JPanel_QuanLyNhanVien qlnv;
+
     public JFrame_TrangChu(NhanVien nv) {
         initComponents();
-         lbltenNhanVien.setText(nv.getHoTenNhanVien());
-        
-        if(nv.isChucVu()){
+        addEvents();
+        lbltenNhanVien.setText(nv.getHoTenNhanVien());
+
+        if (nv.isChucVu()) {
             lblChucVu.setText("Quản lý");
-        }
-        else{
+        } else {
             lblChucVu.setText("Lễ Tân");
         }
+        qlnv = new JPanel_QuanLyNhanVien();
+        CardLayout cardLayout = (CardLayout) MainContent.getLayout();
+        MainContent.add(qlnv, "qlnv");
+        FlatIntelliJLaf.registerCustomDefaultsSource("style");
+        FlatIntelliJLaf.setup();
     }
 
     /**
@@ -69,13 +80,13 @@ public class JFrame_TrangChu extends javax.swing.JFrame {
         btn_dangXuat = new javax.swing.JButton();
         bar4 = new javax.swing.JPanel();
         MainContent = new javax.swing.JPanel();
+        jTextField1 = new javax.swing.JTextField(40);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Hệ thống quản lý đặt phòng khách sạn");
         setAlwaysOnTop(true);
         setBackground(new java.awt.Color(250, 250, 250));
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        setFocusableWindowState(false);
         setForeground(java.awt.Color.white);
         setSize(new java.awt.Dimension(1400, 800));
 
@@ -138,7 +149,7 @@ public class JFrame_TrangChu extends javax.swing.JFrame {
         pnlInfo.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.CENTER, 10, 5));
 
         lbltenNhanVien.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        lbltenNhanVien.setText("Nguyễn Tiến Đạt");
+        lbltenNhanVien.setText("Chưa Xác Định");
         pnlInfo.add(lbltenNhanVien);
 
         lblChucVu.setFont(new java.awt.Font("Segoe UI", 3, 12)); // NOI18N
@@ -451,7 +462,17 @@ public class JFrame_TrangChu extends javax.swing.JFrame {
 
         MainContent.setBackground(new java.awt.Color(250, 250, 250));
         MainContent.setBorder(new javax.swing.border.MatteBorder(null));
-        MainContent.setLayout(new java.awt.BorderLayout());
+        MainContent.setLayout(new java.awt.CardLayout());
+
+        jTextField1.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        jTextField1.setText("ádaasd");
+        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField1ActionPerformed(evt);
+            }
+        });
+        MainContent.add(jTextField1, "card2");
+
         getContentPane().add(MainContent, java.awt.BorderLayout.CENTER);
         trangChu = new TrangChu();
         MainContent.add(trangChu).setVisible(true);
@@ -465,7 +486,7 @@ public class JFrame_TrangChu extends javax.swing.JFrame {
     }//GEN-LAST:event_btn_quanLyPhongActionPerformed
 
     private void btn_quanLyNhanVienActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_quanLyNhanVienActionPerformed
-        // TODO add your handling code here:
+
     }//GEN-LAST:event_btn_quanLyNhanVienActionPerformed
 
     private void btn_quanLyKhachHangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_quanLyKhachHangActionPerformed
@@ -483,6 +504,10 @@ public class JFrame_TrangChu extends javax.swing.JFrame {
     private void jButton11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton11ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton11ActionPerformed
+
+    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -543,6 +568,7 @@ public class JFrame_TrangChu extends javax.swing.JFrame {
     private javax.swing.JButton jButton11;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane;
+    private javax.swing.JTextField jTextField1;
     private javax.swing.JLabel lblChucVu;
     private javax.swing.JLabel lblIcon;
     private javax.swing.JLabel lbltenNhanVien;
@@ -552,4 +578,25 @@ public class JFrame_TrangChu extends javax.swing.JFrame {
     private javax.swing.JPanel pnlInfo;
     private javax.swing.JPanel pnlTop;
     // End of variables declaration//GEN-END:variables
+    public void addEvents() {
+        btn_quanLyNhanVien.addActionListener(this);
+        btn_dangXuat.addActionListener(this);
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        if (e.getSource() == btn_quanLyNhanVien) {
+            // Xóa bỏ tất cả các component hiện tại trong MainContent (nếu cần)
+            MainContent.removeAll();
+            // Thêm JPanel mới vào MainContent
+            MainContent.add(qlnv);
+            // Cập nhật giao diện
+            MainContent.revalidate();
+            MainContent.repaint();
+
+        }
+        if (e.getSource() == btn_dangXuat) {
+            System.out.println(jTextField1.getText());
+        }
+    }
 }

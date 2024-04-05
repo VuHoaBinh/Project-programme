@@ -91,7 +91,7 @@ public class JFrame_Login extends javax.swing.JFrame implements ActionListener {
         pn_DangNhap.add(txt_password);
         txt_password.setBounds(250, 460, 220, 40);
 
-        txt_taiKhoan.setText("NV2411001");
+        txt_taiKhoan.setText("NV2411000");
         txt_taiKhoan.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txt_taiKhoanActionPerformed(evt);
