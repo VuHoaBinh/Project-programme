@@ -1,4 +1,4 @@
-CREATE DATABASE QuanLyKhachSan
+﻿CREATE DATABASE QuanLyKhachSan
 USE QuanLyKhachSan
 GO
 
@@ -30,7 +30,7 @@ CREATE TABLE NhanVien (
     chucVu BIT,
     gioiTinh BIT,
     trangThaiLamViec BIT,
-    diaChi VARCHAR(50) NOT NULL,
+    diaChi NVARCHAR(50) NOT NULL,
     soDienThoai VARCHAR(10) NOT NULL,
     hinhAnh VARCHAR(255)
 );
@@ -115,3 +115,13 @@ CREATE TABLE ChiTietHoaDon(
     FOREIGN KEY (doAnUong) REFERENCES DoAnUong(maDoAnUong),
     FOREIGN KEY (phong) REFERENCES Phong(maPhong)
 );
+INSERT INTO NhanVien (maNhanVien, hoTenNhanVien, chucVu, gioiTinh, trangThaiLamViec, diaChi, soDienThoai, hinhAnh)
+VALUES ('NV001', N'Nguyễn Văn A', 1, 1, 1, N'Hà Nội', '0123456789', 'anh_nv1.jpg');
+
+INSERT INTO NhanVien (maNhanVien, hoTenNhanVien, chucVu, gioiTinh, trangThaiLamViec, diaChi, soDienThoai, hinhAnh)
+VALUES ('NV002', N'Trần Thị B', 0, 0, 1, N'Hồ Chí Minh', '0987654321', 'anh_nv2.jpg');
+
+INSERT INTO NhanVien (maNhanVien, hoTenNhanVien, chucVu, gioiTinh, trangThaiLamViec, diaChi, soDienThoai, hinhAnh)
+VALUES ('NV003', N'Lê Văn C', 0, 1, 0, N'Đà Nẵng', '0369852147', 'anh_nv3.jpg');
+
+

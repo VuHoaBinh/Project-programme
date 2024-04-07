@@ -10,6 +10,13 @@ import java.awt.CardLayout;
 import com.formdev.flatlaf.extras.FlatSVGIcon;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.SQLException;
+import javax.swing.AbstractAction;
+import javax.swing.JComponent;
+import javax.swing.KeyStroke;
+import java.awt.event.ActionEvent;
+import java.awt.event.KeyEvent;
+import javax.swing.InputMap;
 
 /**
  *
@@ -23,7 +30,7 @@ public class JFrame_TrangChu extends javax.swing.JFrame implements ActionListene
     private TrangChu trangChu;
     private JPanel_QuanLyNhanVien qlnv;
 
-    public JFrame_TrangChu(NhanVien nv) {
+    public JFrame_TrangChu(NhanVien nv) throws SQLException {
         initComponents();
         addEvents();
         lbltenNhanVien.setText(nv.getHoTenNhanVien());
@@ -36,8 +43,24 @@ public class JFrame_TrangChu extends javax.swing.JFrame implements ActionListene
         qlnv = new JPanel_QuanLyNhanVien();
         CardLayout cardLayout = (CardLayout) MainContent.getLayout();
         MainContent.add(qlnv, "qlnv");
+        InputMap im = this.getRootPane().getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW);
+        KeyStroke ctrlRKeyStroke = KeyStroke.getKeyStroke(KeyEvent.VK_R, KeyEvent.CTRL_DOWN_MASK);
+        im.put(ctrlRKeyStroke, "reloadPanel");
+        this.getRootPane().getActionMap().put("reloadPanel", new AbstractAction() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                loadQuanLyNhanVien();
+            }
+        });
         FlatIntelliJLaf.registerCustomDefaultsSource("style");
         FlatIntelliJLaf.setup();
+    }
+
+    private void loadQuanLyNhanVien() {
+        MainContent.removeAll();
+        MainContent.add(qlnv, "qlnv");
+        MainContent.revalidate();
+        MainContent.repaint();
     }
 
     /**
@@ -74,19 +97,20 @@ public class JFrame_TrangChu extends javax.swing.JFrame implements ActionListene
         btn_quanLyDoAnUong = new javax.swing.JButton();
         Content11 = new javax.swing.JPanel();
         jButton11 = new javax.swing.JButton();
+        Content12 = new javax.swing.JPanel();
         bar3 = new javax.swing.JPanel();
         pnlBottom = new javax.swing.JPanel();
         DangXuat = new javax.swing.JPanel();
         btn_dangXuat = new javax.swing.JButton();
         bar4 = new javax.swing.JPanel();
         MainContent = new javax.swing.JPanel();
-        jTextField1 = new javax.swing.JTextField(40);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Hệ thống quản lý đặt phòng khách sạn");
-        setAlwaysOnTop(true);
+        setAutoRequestFocus(false);
         setBackground(new java.awt.Color(250, 250, 250));
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        setFocusable(false);
         setForeground(java.awt.Color.white);
         setSize(new java.awt.Dimension(1400, 800));
 
@@ -395,6 +419,23 @@ public class JFrame_TrangChu extends javax.swing.JFrame implements ActionListene
 
         jPanel1.add(Content11);
 
+        Content12.setBackground(new java.awt.Color(255, 255, 255));
+        Content12.setForeground(new java.awt.Color(255, 255, 255));
+        Content12.setPreferredSize(new java.awt.Dimension(300, 50));
+
+        javax.swing.GroupLayout Content12Layout = new javax.swing.GroupLayout(Content12);
+        Content12.setLayout(Content12Layout);
+        Content12Layout.setHorizontalGroup(
+            Content12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 300, Short.MAX_VALUE)
+        );
+        Content12Layout.setVerticalGroup(
+            Content12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 50, Short.MAX_VALUE)
+        );
+
+        jPanel1.add(Content12);
+
         jScrollPane.setViewportView(jPanel1);
 
         pnlCenter.add(jScrollPane, java.awt.BorderLayout.CENTER);
@@ -463,16 +504,6 @@ public class JFrame_TrangChu extends javax.swing.JFrame implements ActionListene
         MainContent.setBackground(new java.awt.Color(250, 250, 250));
         MainContent.setBorder(new javax.swing.border.MatteBorder(null));
         MainContent.setLayout(new java.awt.CardLayout());
-
-        jTextField1.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        jTextField1.setText("ádaasd");
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
-            }
-        });
-        MainContent.add(jTextField1, "card2");
-
         getContentPane().add(MainContent, java.awt.BorderLayout.CENTER);
         trangChu = new TrangChu();
         MainContent.add(trangChu).setVisible(true);
@@ -504,10 +535,6 @@ public class JFrame_TrangChu extends javax.swing.JFrame implements ActionListene
     private void jButton11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton11ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton11ActionPerformed
-
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -547,6 +574,7 @@ public class JFrame_TrangChu extends javax.swing.JFrame implements ActionListene
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel Content10;
     private javax.swing.JPanel Content11;
+    private javax.swing.JPanel Content12;
     private javax.swing.JPanel Content2;
     private javax.swing.JPanel Content7;
     private javax.swing.JPanel Content8;
@@ -568,7 +596,6 @@ public class JFrame_TrangChu extends javax.swing.JFrame implements ActionListene
     private javax.swing.JButton jButton11;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane;
-    private javax.swing.JTextField jTextField1;
     private javax.swing.JLabel lblChucVu;
     private javax.swing.JLabel lblIcon;
     private javax.swing.JLabel lbltenNhanVien;
@@ -596,7 +623,8 @@ public class JFrame_TrangChu extends javax.swing.JFrame implements ActionListene
 
         }
         if (e.getSource() == btn_dangXuat) {
-            System.out.println(jTextField1.getText());
+
         }
     }
+
 }
