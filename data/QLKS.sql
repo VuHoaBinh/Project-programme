@@ -1,4 +1,4 @@
-CREATE DATABASE QuanLyKhachSan
+﻿CREATE DATABASE QuanLyKhachSan
 USE QuanLyKhachSan
 GO
 
@@ -14,6 +14,14 @@ CREATE TABLE Phong (
     hutThuoc BIT,
     hinhAnhPhong VARCHAR(255)
 );
+INSERT INTO Phong (maPhong, tenPhong, loaiPhong, trangThaiPhong, dienTichPhong, soGiuong, giuongPhu, view_, hutThuoc, hinhAnhPhong)
+VALUES 
+('0101', 'P101', N'BASIC', 'AVAILABLE', 25.5, 1, 0, 'City view', 0, null),
+('0102', 'P102', N'STANDARD', 'BOOKED', 30.0, 2, 1, 'Ocean view', 1, null),
+('0103', 'P103', N'BUSINESS', 'AVAILABLE', 40.0, 3, 1, 'Mountain view', 0, null),
+('0104', 'P103', N'VIP', 'AVAILABLE', 40.0, 3, 1, 'Mountain view', 0, null),
+('0105', 'P103', N'DOUBLE', 'AVAILABLE ', 40.0, 3, 1, 'Mountain view', 0, null);
+
 
 CREATE TABLE KhachHang(
     maKhachHang VARCHAR(10) PRIMARY KEY,
@@ -23,6 +31,10 @@ CREATE TABLE KhachHang(
     ngaySinh DATE,
     trangThaiKhachHang BIT
 );
+
+INSERT INTO KhachHang (maKhachHang, hoTenKhachHang, gioiTinh, CCCD, ngaySinh, trangThaiKhachHang)
+VALUES ('0123456789', N'Nguyễn Văn A', 1, '123456789012', '1990-05-15', 0);
+
 
 CREATE TABLE NhanVien (
     maNhanVien VARCHAR(9) PRIMARY KEY,
@@ -34,12 +46,16 @@ CREATE TABLE NhanVien (
     soDienThoai VARCHAR(10) NOT NULL,
     hinhAnh VARCHAR(255)
 );
+INSERT INTO NhanVien (maNhanVien, hoTenNhanVien, chucVu, gioiTinh, trangThaiLamViec, diaChi, soDienThoai, hinhAnh)
+VALUES ('NV2411000', N'Bình đẹp trai', 1, 1, 1, '123 Đường ABC', '0987654321', null);
 
 CREATE TABLE TaiKhoan (
     nhanVien VARCHAR(9),
     matKhau VARCHAR(30),
     FOREIGN KEY (nhanVien) REFERENCES NhanVien(maNhanVien)
 );
+INSERT INTO TaiKhoan (nhanVien, matKhau)
+VALUES ('NV2411000', '123');
 
 CREATE TABLE DoAnUong (
     maDoAnUong VARCHAR(12) PRIMARY KEY,
@@ -55,6 +71,10 @@ CREATE TABLE DoAnUong (
     trangThaiSuDung VARCHAR(30)
 );
 
+INSERT INTO DoAnUong (maDoAnUong, tenDoAnUong, loai, giaNhap, giaBan, hoanTra, soLuong, ngaySanXuat, hanSuDung, moTa, trangThaiSuDung)
+VALUES ('DV0104202401', N'Bánh mì chảo', 1, 15000, 25000, 0, 50, '2024-04-01', '2024-04-15', 'Bánh mì chảo thơm ngon', 'AVAILABLE');
+
+
 CREATE TABLE KhuyenMai(
     maKhuyenMai VARCHAR(12) PRIMARY KEY,
     trangThaiKhuyenMai BIT,
@@ -63,6 +83,10 @@ CREATE TABLE KhuyenMai(
     ngayKetThuc DATE,
     noiDung NVARCHAR(255)
 );
+
+
+INSERT INTO KhuyenMai (maKhuyenMai, trangThaiKhuyenMai, giaTri, ngayBatDau, ngayKetThuc, noiDung)
+VALUES ('KM1504202401', 0, 0.2, '2024-04-15', '2024-05-15', N'Giảm giá 20% cho đơn hàng trong tháng 4');
 
 CREATE TABLE HoaDon(
     maHoaDon VARCHAR(18) PRIMARY KEY,
@@ -78,6 +102,9 @@ CREATE TABLE HoaDon(
     FOREIGN KEY (khuyenMai) REFERENCES KhuyenMai(maKhuyenMai)
 );
 
+INSERT INTO HoaDon (maHoaDon, khachHang, khuyenMai, nhanVien, ngayLapHoaDon, thue, tongThanhTienBanDau, tongThanhTienPhaiTra)
+VALUES ('MHD203022042024001', '0123456789', 'KM1504202401', 'NV2411000', '2024-04-07', 0.1, 1000000.0, 900000.0);
+
 CREATE TABLE PhieuDatPhong (
     maPhieuDatPhong VARCHAR(19) PRIMARY KEY,
     khachHang VARCHAR(10),
@@ -91,12 +118,19 @@ CREATE TABLE PhieuDatPhong (
     FOREIGN KEY (nhanVien) REFERENCES NhanVien(maNhanVien)
 );
 
+INSERT INTO PhieuDatPhong (maPhieuDatPhong, khachHang, nhanVien, soLuongNguoi, ngayDatPhong, ngayNhanPhong, ngayTraPhong, tienPhong)
+VALUES ('MPDP232001042024001', 'KH001', 'NV2411000', 2, '2024-04-07', '2024-04-10', '2024-04-14', 1500000.0);
+
+
 CREATE TABLE ChiTietPhieuDatPhong (
     phieuDatPhong VARCHAR(19),
     phong VARCHAR(4),
     FOREIGN KEY (phieuDatPhong) REFERENCES PhieuDatPhong(maPhieuDatPhong),
     FOREIGN KEY (phong) REFERENCES Phong(maPhong)
 );
+
+INSERT INTO ChiTietPhieuDatPhong (phieuDatPhong, phong)
+VALUES ('MPDP232001042024001', '0104');
 
 CREATE TABLE ChiTietHoaDon(
     hoaDon VARCHAR(18),
@@ -115,3 +149,6 @@ CREATE TABLE ChiTietHoaDon(
     FOREIGN KEY (doAnUong) REFERENCES DoAnUong(maDoAnUong),
     FOREIGN KEY (phong) REFERENCES Phong(maPhong)
 );
+
+INSERT INTO ChiTietHoaDon (hoaDon, doAnUong, phong, soLuong, ngayNhanPhong, ngayTraPhong, soLuongNguoiO, soLuongDoUongTraVe, tongTienThuePhong, tongTienDichVu, tongThanhTien, phuPhi)
+VALUES ('MHD203022042024001', 'DV0104202401', '0102', 2, '2024-04-10', '2024-04-14', 2, 0, 600000.0, 50000.0, 650000.0, 20000.0);

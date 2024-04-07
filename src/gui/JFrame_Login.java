@@ -27,6 +27,7 @@ public class JFrame_Login extends javax.swing.JFrame implements ActionListener {
     public JFrame_Login() throws Exception {
         try {
             ConnectDB.getInstance().connect();
+            System.out.println("okeoek");
         } catch (SQLException e) {
             e.printStackTrace();
         }
