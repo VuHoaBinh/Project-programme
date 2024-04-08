@@ -29,6 +29,7 @@ public class JFrame_TrangChu extends javax.swing.JFrame implements ActionListene
      */
     private TrangChu trangChu;
     private JPanel_QuanLyNhanVien qlnv;
+    private final JPanel_QuanLyPhong qlp;
 
     public JFrame_TrangChu(NhanVien nv) throws SQLException {
         initComponents();
@@ -41,17 +42,10 @@ public class JFrame_TrangChu extends javax.swing.JFrame implements ActionListene
             lblChucVu.setText("Lễ Tân");
         }
         qlnv = new JPanel_QuanLyNhanVien();
+        qlp = new JPanel_QuanLyPhong();
         CardLayout cardLayout = (CardLayout) MainContent.getLayout();
         MainContent.add(qlnv, "qlnv");
-        InputMap im = this.getRootPane().getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW);
-        KeyStroke ctrlRKeyStroke = KeyStroke.getKeyStroke(KeyEvent.VK_R, KeyEvent.CTRL_DOWN_MASK);
-        im.put(ctrlRKeyStroke, "reloadPanel");
-        this.getRootPane().getActionMap().put("reloadPanel", new AbstractAction() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                loadQuanLyNhanVien();
-            }
-        });
+        MainContent.add(qlp, "qlp");
         FlatIntelliJLaf.registerCustomDefaultsSource("style");
         FlatIntelliJLaf.setup();
     }
@@ -512,10 +506,6 @@ public class JFrame_TrangChu extends javax.swing.JFrame implements ActionListene
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btn_quanLyPhongActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_quanLyPhongActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btn_quanLyPhongActionPerformed
-
     private void btn_quanLyNhanVienActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_quanLyNhanVienActionPerformed
 
     }//GEN-LAST:event_btn_quanLyNhanVienActionPerformed
@@ -528,13 +518,17 @@ public class JFrame_TrangChu extends javax.swing.JFrame implements ActionListene
         // TODO add your handling code here:
     }//GEN-LAST:event_btn_quanLyDoAnUongActionPerformed
 
+    private void jButton11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton11ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton11ActionPerformed
+
     private void btn_trangChuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_trangChuActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btn_trangChuActionPerformed
 
-    private void jButton11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton11ActionPerformed
+    private void btn_quanLyPhongActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_quanLyPhongActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton11ActionPerformed
+    }//GEN-LAST:event_btn_quanLyPhongActionPerformed
 
     /**
      * @param args the command line arguments
@@ -607,6 +601,7 @@ public class JFrame_TrangChu extends javax.swing.JFrame implements ActionListene
     // End of variables declaration//GEN-END:variables
     public void addEvents() {
         btn_quanLyNhanVien.addActionListener(this);
+        btn_quanLyPhong.addActionListener(this);
         btn_dangXuat.addActionListener(this);
     }
 
@@ -621,6 +616,14 @@ public class JFrame_TrangChu extends javax.swing.JFrame implements ActionListene
             MainContent.revalidate();
             MainContent.repaint();
 
+        }
+        if(e.getSource() == btn_quanLyPhong){
+            MainContent.removeAll();
+            // Thêm JPanel mới vào MainContent
+            MainContent.add(qlp);
+            // Cập nhật giao diện
+            MainContent.revalidate();
+            MainContent.repaint();
         }
         if (e.getSource() == btn_dangXuat) {
 
