@@ -103,8 +103,38 @@ public class Phong_DAO {
         }
         return dsPhong;
     }
-    
-    
+
+    public ArrayList<Phong> getPhongTheoTenPhong(String tenPhong) throws IOException, java.sql.SQLException {
+        ArrayList<Phong> dsPhong = new ArrayList<>();
+
+        ConnectDB.getInstance();
+        java.sql.Connection con = ConnectDB.getConnection();
+        PreparedStatement statement = null;
+
+        String sql = "SELECT * FROM Phong WHERE tenPhong = ?";
+        statement = con.prepareStatement(sql);
+        statement.setString(1, tenPhong);
+        ResultSet rs = statement.executeQuery();
+        while (rs.next()) {
+            String maPhong = rs.getString("maPhong");
+            String loaiPhong = rs.getString("loaiPhong");
+            String trangThaiPhong = rs.getString("trangThaiPhong");
+            double dienTichPhong = rs.getDouble("dienTichPhong");
+            int soGiuong = rs.getInt("soGiuong");
+            boolean giuongPhu = rs.getBoolean("giuongPhu");
+            String view_ = rs.getString("view_");
+            boolean hutThuoc = rs.getBoolean("hutThuoc");
+            String hinhAnhPhong = rs.getString("hinhAnhPhong");
+
+            // Assuming LoaiPhong and TrangThaiPhong are enums
+            LoaiPhong loai = LoaiPhong.valueOf(loaiPhong);
+            TrangThaiPhong trangThai = TrangThaiPhong.valueOf(trangThaiPhong);
+
+            Phong phong = new Phong(maPhong, tenPhong, dienTichPhong, soGiuong, giuongPhu, view_, hutThuoc, hinhAnhPhong, loai, trangThai);
+            dsPhong.add(phong);
+        }
+        return dsPhong;
+    }
 
     public boolean createPhong(Phong p) throws SQLException {
         ConnectDB.getInstance();
@@ -158,14 +188,14 @@ public class Phong_DAO {
             statement.setBoolean(9, p.isHutThuoc());
             statement.setString(10, p.getHinhAnhPhong());
             statement.setString(11, p.getMaPhong());
-            
+
             statement.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
         }
     }
 
-    public void deletePhong (Phong p) {
+    public void deletePhong(Phong p) {
         ConnectDB.getInstance();
         java.sql.Connection con = ConnectDB.getConnection();
         PreparedStatement stmt = null;
