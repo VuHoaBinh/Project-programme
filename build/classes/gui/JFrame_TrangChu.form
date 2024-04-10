@@ -516,30 +516,76 @@
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="102" alignment="0" attributes="0">
                                   <EmptySpace min="-2" pref="35" max="-2" attributes="0"/>
-                                  <Component id="jButton11" min="-2" pref="229" max="-2" attributes="0"/>
+                                  <Component id="btn_quanlyKhuyenMai" min="-2" pref="229" max="-2" attributes="0"/>
                                   <EmptySpace pref="36" max="32767" attributes="0"/>
                               </Group>
                           </Group>
                         </DimensionLayout>
                         <DimensionLayout dim="1">
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="jButton11" alignment="1" pref="50" max="32767" attributes="0"/>
+                              <Component id="btn_quanlyKhuyenMai" alignment="1" pref="50" max="32767" attributes="0"/>
                           </Group>
                         </DimensionLayout>
                       </Layout>
                       <SubComponents>
-                        <Component class="javax.swing.JButton" name="jButton11">
+                        <Component class="javax.swing.JButton" name="btn_quanlyKhuyenMai">
                           <Properties>
-                            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor" postCode="jButton11.setIcon(new FlatSVGIcon(&quot;./icon/statistics.svg&quot;));">
+                            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor" postCode="btn_quanlyKhuyenMai.setIcon(new FlatSVGIcon(&quot;./icon/statistics.svg&quot;));">
                               <Color blue="fa" green="fa" red="fa" type="rgb"/>
                             </Property>
-                            <Property name="text" type="java.lang.String" value="Th&#x1ed1;ng K&#xea;" postCode="// &#x110;&#x1eb7;t c&#x103;n l&#x1ec1; tr&#xe1;i cho icon&#xa;jButton11.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);&#xa;jButton11.setIconTextGap(10); // Kho&#x1ea3;ng c&#xe1;ch gi&#x1eef;a icon v&#xe0; v&#x103;n b&#x1ea3;n&#xa;&#xa;// &#x110;&#x1eb7;t c&#x103;n l&#x1ec1; ph&#x1ea3;i cho v&#x103;n b&#x1ea3;n&#xa;jButton11.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);&#xa;jButton11.setVerticalAlignment(javax.swing.SwingConstants.CENTER);"/>
+                            <Property name="text" type="java.lang.String" value="Qu&#x1ea3;n L&#xfd; Khuy&#x1ebf;n M&#xe3;i" postCode="// &#x110;&#x1eb7;t c&#x103;n l&#x1ec1; tr&#xe1;i cho icon&#xa;btn_quanlyKhuyenMai.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);&#xa;btn_quanlyKhuyenMai.setIconTextGap(10); // Kho&#x1ea3;ng c&#xe1;ch gi&#x1eef;a icon v&#xe0; v&#x103;n b&#x1ea3;n&#xa;&#xa;// &#x110;&#x1eb7;t c&#x103;n l&#x1ec1; ph&#x1ea3;i cho v&#x103;n b&#x1ea3;n&#xa;btn_quanlyKhuyenMai.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);&#xa;btn_quanlyKhuyenMai.setVerticalAlignment(javax.swing.SwingConstants.CENTER);"/>
                             <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                               <Dimension value="[250, 23]"/>
                             </Property>
                           </Properties>
                           <Events>
-                            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton11ActionPerformed"/>
+                            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_quanlyKhuyenMaiActionPerformed"/>
+                          </Events>
+                        </Component>
+                      </SubComponents>
+                    </Container>
+                    <Container class="javax.swing.JPanel" name="Content12">
+                      <Properties>
+                        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                          <Color blue="ff" green="ff" red="ff" type="rgb"/>
+                        </Property>
+                        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                          <Color blue="ff" green="ff" red="ff" type="rgb"/>
+                        </Property>
+                        <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+                          <Dimension value="[300, 50]"/>
+                        </Property>
+                      </Properties>
+
+                      <Layout>
+                        <DimensionLayout dim="0">
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Group type="102" alignment="0" attributes="0">
+                                  <EmptySpace min="-2" pref="35" max="-2" attributes="0"/>
+                                  <Component id="btn_ThongKe" min="-2" pref="229" max="-2" attributes="0"/>
+                                  <EmptySpace pref="36" max="32767" attributes="0"/>
+                              </Group>
+                          </Group>
+                        </DimensionLayout>
+                        <DimensionLayout dim="1">
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="btn_ThongKe" alignment="1" pref="50" max="32767" attributes="0"/>
+                          </Group>
+                        </DimensionLayout>
+                      </Layout>
+                      <SubComponents>
+                        <Component class="javax.swing.JButton" name="btn_ThongKe">
+                          <Properties>
+                            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                              <Color blue="fa" green="fa" red="fa" type="rgb"/>
+                            </Property>
+                            <Property name="text" type="java.lang.String" value="Th&#x1ed1;ng K&#xea;"/>
+                            <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+                              <Dimension value="[250, 23]"/>
+                            </Property>
+                          </Properties>
+                          <Events>
+                            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_ThongKeActionPerformed"/>
                           </Events>
                         </Component>
                       </SubComponents>

@@ -37,7 +37,7 @@ public class TaiKhoan_DAO {
         try (Statement statement = con.createStatement()) {
             String user = txtTaiKhoan.getText();
             char[] pass = txtMatKhau.getPassword();
-            String sql = "SELECT * FROM TaiKhoan WHERE nhanVien = ? AND matkhau = ?";
+            String sql = "SELECT * FROM TaiKhoan WHERE nhanVien = ? AND matKhau = ?";
             stmt = con.prepareStatement(sql);
             stmt.setString(1, user);
             String pwd = new String(pass);

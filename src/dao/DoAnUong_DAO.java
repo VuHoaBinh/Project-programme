@@ -4,7 +4,6 @@
  */
 package dao;
 
-import com.sun.jdi.connect.spi.Connection;
 import connectDB.ConnectDB;
 import entity.DoAnUong;
 import entity.TrangThaiSuDung;
@@ -23,7 +22,7 @@ public class DoAnUong_DAO {
 
     /**
      *
-     * @param getAllTablePhong
+     * @param getAllTableDoAnUong
      * @return
      * @throws java.sql.SQLException
      */
@@ -46,18 +45,26 @@ public class DoAnUong_DAO {
             LocalDate ngaySanXuat = rs.getDate("ngaySanXuat").toLocalDate();
             LocalDate hanSuDung = rs.getDate("HanSuDung").toLocalDate();
             String moTa = rs.getString("moTa");
-            TrangThaiSuDung trangThaiSuDung = TrangThaiSuDung.valueOf(rs.getString("trangThaiSuDung"));
+            TrangThaiSuDung trangThaiSuDung;
+            String trangThaiSuDungString = rs.getString("trangThaiSuDung");
+
+            if (trangThaiSuDungString.equals("1")) {
+                trangThaiSuDung = TrangThaiSuDung.AVAILABLE;
+            } else if (trangThaiSuDungString.equals("2")) {
+                trangThaiSuDung = TrangThaiSuDung.UNAVAILABLE;
+            } else {
+                trangThaiSuDung = TrangThaiSuDung.EXPIRED;
+            }
 
             DoAnUong doAnUong = new DoAnUong(maDoAnUong, tenDoAnUong, loai, giaNhap, giaBan, hoanTra, soLuong, ngaySanXuat, hanSuDung, moTa, trangThaiSuDung);
             dsDoAnUong.add(doAnUong);
         }
-
         return dsDoAnUong;
     }
 
     /**
      *
-     * @param getPhongTheoMaPhong
+     * @param getPhongTheoMaDoAnUong
      * @return
      * @throws IOException
      * @throws java.sql.SQLException
@@ -84,7 +91,63 @@ public class DoAnUong_DAO {
                 LocalDate ngaySanXuat = rs.getDate("ngaySanXuat").toLocalDate();
                 LocalDate hanSuDung = rs.getDate("HanSuDung").toLocalDate();
                 String moTa = rs.getString("moTa");
-                TrangThaiSuDung trangThaiSuDung = TrangThaiSuDung.valueOf(rs.getString("trangThaiSuDung"));
+                TrangThaiSuDung trangThaiSuDung;
+                String trangThaiSuDungString = rs.getString("trangThaiSuDung");
+
+                if (trangThaiSuDungString.equals("1")) {
+                    trangThaiSuDung = TrangThaiSuDung.AVAILABLE;
+                } else if (trangThaiSuDungString.equals("2")) {
+                    trangThaiSuDung = TrangThaiSuDung.UNAVAILABLE;
+                } else {
+                    trangThaiSuDung = TrangThaiSuDung.EXPIRED;
+                }
+
+                DoAnUong doAnUong = new DoAnUong(maDoAnUong, tenDoAnUong, loai, giaNhap, giaBan, hoanTra, soLuong, ngaySanXuat, hanSuDung, moTa, trangThaiSuDung);
+                dsDoAnUong.add(doAnUong);
+            }
+        } finally {
+            if (statement != null) {
+                statement.close();
+            }
+            if (con != null) {
+                con.close();
+            }
+        }
+        return dsDoAnUong;
+    }
+
+    public ArrayList<DoAnUong> getPhongTheoTenDoAnUong(String maDoAnUong) throws IOException, java.sql.SQLException {
+        ArrayList<DoAnUong> dsDoAnUong = new ArrayList<>();
+
+        ConnectDB.getInstance();
+        java.sql.Connection con = ConnectDB.getConnection();
+        PreparedStatement statement = null;
+
+        try {
+            String sql = "SELECT * FROM DoAnUong WHERE tenDoAnUong = ?";
+            statement = con.prepareStatement(sql);
+            statement.setString(1, maDoAnUong);
+            ResultSet rs = statement.executeQuery();
+            while (rs.next()) {
+                String tenDoAnUong = rs.getString("maDoAnUong");
+                boolean loai = rs.getBoolean("loai");
+                double giaNhap = rs.getDouble("giaNhap");
+                double giaBan = rs.getDouble("giaBan");
+                boolean hoanTra = rs.getBoolean("hoanTra");
+                int soLuong = rs.getInt("soLuong");
+                LocalDate ngaySanXuat = rs.getDate("ngaySanXuat").toLocalDate();
+                LocalDate hanSuDung = rs.getDate("HanSuDung").toLocalDate();
+                String moTa = rs.getString("moTa");
+                TrangThaiSuDung trangThaiSuDung;
+                String trangThaiSuDungString = rs.getString("trangThaiSuDung");
+
+                if (trangThaiSuDungString.equals("1")) {
+                    trangThaiSuDung = TrangThaiSuDung.AVAILABLE;
+                } else if (trangThaiSuDungString.equals("2")) {
+                    trangThaiSuDung = TrangThaiSuDung.UNAVAILABLE;
+                } else {
+                    trangThaiSuDung = TrangThaiSuDung.EXPIRED;
+                }
 
                 DoAnUong doAnUong = new DoAnUong(maDoAnUong, tenDoAnUong, loai, giaNhap, giaBan, hoanTra, soLuong, ngaySanXuat, hanSuDung, moTa, trangThaiSuDung);
                 dsDoAnUong.add(doAnUong);
@@ -139,8 +202,9 @@ public class DoAnUong_DAO {
         ConnectDB.getInstance();
         java.sql.Connection con = ConnectDB.getConnection();
         String sql = "UPDATE DoAnUong SET maDoAnUong = ?, tenDoAnUong = ?, loai=?, giaNhap=?,"
-                + " giaBan = ?, hoanTra = ?, soLuong=?, ngaySanXuat=? "
-                + "hanSuDung = ?, moTa = ?,trangThaiSuDung = ? WHERE maDoAnUong=?";
+                + " giaBan = ?, hoanTra = ?, soLuong=?, ngaySanXuat=?, "
+                + "hanSuDung = ?, moTa = ?, trangThaiSuDung = ? WHERE maDoAnUong=?";
+
         try (PreparedStatement statement = con.prepareStatement(sql)) {
             statement.setString(1, sp.getMaDoAnUong());
             statement.setString(2, sp.getTenDoAnUong());
@@ -153,10 +217,10 @@ public class DoAnUong_DAO {
             statement.setDate(9, java.sql.Date.valueOf(sp.getHanSuDung()));
             statement.setString(10, sp.getMoTa());
             statement.setInt(11, sp.getTrangThaiSuDung().getTentrangThaiSuDung());
-
             statement.setString(12, sp.getMaDoAnUong());
 
             statement.executeUpdate();
+            System.out.println("update oke!!!");
         } catch (SQLException e) {
             e.printStackTrace();
         }

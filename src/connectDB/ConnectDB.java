@@ -16,11 +16,17 @@ public class ConnectDB {
     public void connect() throws SQLException {
         String url = "jdbc:sqlserver://localhost:1433;databaseName=QuanLyKhachSan";
         String user = "sa";
-        String password = "sapassword";
+        String password = "123";
         con = DriverManager.getConnection(url, user, password);
+       
         System.out.println("connect database!!");
 
     }
+//    public void connect() throws SQLException {
+//        String url = "jdbc:sqlserver://localhost:1433;databaseName=QuanLyKhachSan;integratedSecurity=true;";
+//        con = DriverManager.getConnection(url);
+//        System.out.println("Connected to the database!!");
+//    }
 
     public static void disconnect() {
         if (con != null) {

@@ -72,7 +72,7 @@ CREATE TABLE DoAnUong (
 );
 
 INSERT INTO DoAnUong (maDoAnUong, tenDoAnUong, loai, giaNhap, giaBan, hoanTra, soLuong, ngaySanXuat, hanSuDung, moTa, trangThaiSuDung)
-VALUES ('DV0104202401', N'Bánh mì chảo', 1, 15000, 25000, 0, 50, '2024-04-01', '2024-04-15', 'Bánh mì chảo thơm ngon', 'AVAILABLE');
+VALUES ('DV0104202401', N'Bánh mì chảo', 1, 15000, 25000, 0, 50, '2024-04-01', '2024-04-15', N'Bánh mì chảo thơm ngon', 'AVAILABLE');
 
 
 CREATE TABLE KhuyenMai(
