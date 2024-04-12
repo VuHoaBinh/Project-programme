@@ -28,6 +28,7 @@ import javax.swing.table.DefaultTableModel;
 public class JPanel_QuanLyKhuyenMai extends javax.swing.JPanel implements ActionListener {
 
     private KhuyenMai_DAO km_DAO;
+
     /**
      * Creates new form JPanel_QuanLyNhanVien
      */
@@ -55,6 +56,19 @@ public class JPanel_QuanLyKhuyenMai extends javax.swing.JPanel implements Action
         });
     }
 
+    public void DeleteForm() {
+        txt_maKhuyenMai.setText("");
+        txt_maKhuyenMai.setEnabled(true);
+        txt_maKhuyenMai.requestFocus();
+
+        txt_giaTri.setText("");
+        txt_ngayBatDau.setText("");
+        txt_ngayKetThuc.setText("");
+        txt_noiDung.setText("");
+        cb_trangThai.setSelected(false);
+
+    }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -76,19 +90,19 @@ public class JPanel_QuanLyKhuyenMai extends javax.swing.JPanel implements Action
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
-        jTextField3 = new javax.swing.JTextField();
-        jTextField4 = new javax.swing.JTextField();
-        jTextField5 = new javax.swing.JTextField();
-        jTextField9 = new javax.swing.JTextField();
+        txt_ngayBatDau = new javax.swing.JTextField();
+        txt_maKhuyenMai = new javax.swing.JTextField();
+        txt_giaTri = new javax.swing.JTextField();
+        txt_ngayKetThuc = new javax.swing.JTextField();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
+        txt_noiDung = new javax.swing.JTextArea();
         jLabel2 = new javax.swing.JLabel();
-        jCheckBox1 = new javax.swing.JCheckBox();
+        cb_trangThai = new javax.swing.JCheckBox();
         jPanel2 = new javax.swing.JPanel();
         btnThem = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
         jButton5 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
+        btnHuy = new javax.swing.JButton();
         search_Engine = new javax.swing.JPanel();
         jPanel6 = new javax.swing.JPanel();
         jTextField2 = new javax.swing.JTextField();
@@ -119,11 +133,16 @@ public class JPanel_QuanLyKhuyenMai extends javax.swing.JPanel implements Action
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.Double.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Boolean.class
+                java.lang.String.class, java.lang.Double.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
 
             public Class getColumnClass(int columnIndex) {
                 return types [columnIndex];
+            }
+        });
+        tbl_khuyenMai.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tbl_khuyenMaiMouseClicked(evt);
             }
         });
         jScrollPane1.setViewportView(tbl_khuyenMai);
@@ -159,21 +178,15 @@ public class JPanel_QuanLyKhuyenMai extends javax.swing.JPanel implements Action
 
         jLabel9.setText("Nội dung:");
 
-        jTextField3.setText("jTextField3");
-
-        jTextField5.setText("jTextField3");
-
-        jTextField9.setText("jTextField3");
-
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
-        jScrollPane2.setViewportView(jTextArea1);
+        txt_noiDung.setColumns(20);
+        txt_noiDung.setRows(5);
+        jScrollPane2.setViewportView(txt_noiDung);
 
         jLabel2.setText("Trạng thái: ");
 
-        jCheckBox1.addActionListener(new java.awt.event.ActionListener() {
+        cb_trangThai.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jCheckBox1ActionPerformed(evt);
+                cb_trangThaiActionPerformed(evt);
             }
         });
 
@@ -202,16 +215,16 @@ public class JPanel_QuanLyKhuyenMai extends javax.swing.JPanel implements Action
                             .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(frm_ThongTinLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jTextField3, javax.swing.GroupLayout.DEFAULT_SIZE, 235, Short.MAX_VALUE)
-                            .addComponent(jTextField4)
-                            .addComponent(jTextField9, javax.swing.GroupLayout.PREFERRED_SIZE, 234, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txt_ngayBatDau, javax.swing.GroupLayout.DEFAULT_SIZE, 235, Short.MAX_VALUE)
+                            .addComponent(txt_maKhuyenMai)
+                            .addComponent(txt_ngayKetThuc, javax.swing.GroupLayout.PREFERRED_SIZE, 234, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, frm_ThongTinLayout.createSequentialGroup()
-                                .addComponent(jTextField5)
+                                .addComponent(txt_giaTri)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(jLabel2)
-                                .addGap(12, 12, 12)
-                                .addComponent(jCheckBox1)
-                                .addGap(12, 12, 12)))))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(cb_trangThai)
+                                .addGap(18, 18, 18)))))
                 .addGap(12, 12, 12))
         );
         frm_ThongTinLayout.setVerticalGroup(
@@ -219,23 +232,25 @@ public class JPanel_QuanLyKhuyenMai extends javax.swing.JPanel implements Action
             .addGroup(frm_ThongTinLayout.createSequentialGroup()
                 .addGap(31, 31, 31)
                 .addGroup(frm_ThongTinLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txt_maKhuyenMai, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(frm_ThongTinLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(frm_ThongTinLayout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addGroup(frm_ThongTinLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(txt_giaTri, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel2)
+                            .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(frm_ThongTinLayout.createSequentialGroup()
+                        .addGap(27, 27, 27)
+                        .addComponent(cb_trangThai)))
                 .addGap(18, 18, 18)
                 .addGroup(frm_ThongTinLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel2)
-                    .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(frm_ThongTinLayout.createSequentialGroup()
-                        .addGap(8, 8, 8)
-                        .addComponent(jCheckBox1)))
-                .addGap(18, 18, 18)
-                .addGroup(frm_ThongTinLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txt_ngayBatDau, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(frm_ThongTinLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField9, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txt_ngayKetThuc, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGroup(frm_ThongTinLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(frm_ThongTinLayout.createSequentialGroup()
@@ -266,10 +281,14 @@ public class JPanel_QuanLyKhuyenMai extends javax.swing.JPanel implements Action
 
         jButton5.setText("jButton2");
 
-        jButton3.setText("jButton2");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        btnHuy.setText("Hủy");
+        btnHuy.setToolTipText("");
+        btnHuy.setBackground(new Color(255, 102, 102));
+        btnHuy.setForeground(Color.WHITE);
+        btnHuy.setFont(new Font("Roboto Mono Medium", Font.PLAIN, 16));
+        btnHuy.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                btnHuyActionPerformed(evt);
             }
         });
 
@@ -284,7 +303,7 @@ public class JPanel_QuanLyKhuyenMai extends javax.swing.JPanel implements Action
                     .addComponent(jButton5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(30, 30, 30)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, 163, Short.MAX_VALUE)
+                    .addComponent(btnHuy, javax.swing.GroupLayout.DEFAULT_SIZE, 163, Short.MAX_VALUE)
                     .addComponent(jButton4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
@@ -298,7 +317,7 @@ public class JPanel_QuanLyKhuyenMai extends javax.swing.JPanel implements Action
                 .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnHuy, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(27, 27, 27))
         );
 
@@ -443,19 +462,46 @@ public class JPanel_QuanLyKhuyenMai extends javax.swing.JPanel implements Action
         // TODO add your handling code here:
     }//GEN-LAST:event_jComboBox3ActionPerformed
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+    private void btnHuyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHuyActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton3ActionPerformed
+        DeleteForm();
+    }//GEN-LAST:event_btnHuyActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton4ActionPerformed
 
-    private void jCheckBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox1ActionPerformed
+    private void cb_trangThaiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cb_trangThaiActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jCheckBox1ActionPerformed
-    
-    private void AllListKhuyenMai()throws SQLException {
+    }//GEN-LAST:event_cb_trangThaiActionPerformed
+
+    private void tbl_khuyenMaiMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbl_khuyenMaiMouseClicked
+        // TODO add your handling code here:
+        int rowSelection = tbl_khuyenMai.getSelectedRow();
+
+        if (rowSelection >= 0 && rowSelection < tbl_khuyenMai.getRowCount()) {
+            txt_maKhuyenMai.setText(tbl_khuyenMai.getValueAt(rowSelection, 0).toString());
+            txt_maKhuyenMai.setEnabled(false);
+            txt_giaTri.setText(tbl_khuyenMai.getValueAt(rowSelection, 1).toString());
+            txt_ngayBatDau.setText(tbl_khuyenMai.getValueAt(rowSelection, 2).toString());
+            txt_ngayKetThuc.setText(tbl_khuyenMai.getValueAt(rowSelection, 3).toString());
+            txt_noiDung.setText(tbl_khuyenMai.getValueAt(rowSelection, 4).toString());
+            
+
+            String trangThaiKhuyenMai= tbl_khuyenMai.getValueAt(rowSelection, 5).toString();
+            
+            if(trangThaiKhuyenMai.equals("Hết Hạn")){
+                cb_trangThai.setSelected(true);
+            }else{
+            cb_trangThai.setSelected(false);
+            }
+            System.out.println("gui.JPanel_QuanLyDoAnUong.tbl_DoAnUongMouseClicked()");
+        } else {
+            System.out.println("Lỗi nè! tbl_DoAnUongMouseClicked()");
+        }
+    }//GEN-LAST:event_tbl_khuyenMaiMouseClicked
+
+    private void AllListKhuyenMai() throws SQLException {
         tbl_khuyenMai.removeAll();
         try {
             ConnectDB.getInstance().connect();
@@ -467,7 +513,6 @@ public class JPanel_QuanLyKhuyenMai extends javax.swing.JPanel implements Action
         km_DAO = new KhuyenMai_DAO();
         ArrayList<KhuyenMai> listKM = km_DAO.getAllTableKhuyenMai();
 
-        
         if (tbl_khuyenMai.getModel() == null) {
             String[] arr = {"Mã khuyến mãi", "Giá trị", "Ngày bắt đầu", "Ngày kết thúc", "Nội dung", "Trạng thái khuyến mãi"};
             DefaultTableModel modelKhuyenMai = new DefaultTableModel(arr, 0);
@@ -477,27 +522,27 @@ public class JPanel_QuanLyKhuyenMai extends javax.swing.JPanel implements Action
         model.setRowCount(0);
 
         for (KhuyenMai km : listKM) {
-            
+
             Boolean isTrangThaiKhuyenMai = km.isTrangThaiKhuyenMai();
             String trangThaiKhuyenMai;
-            if (isTrangThaiKhuyenMai == true){
+            if (isTrangThaiKhuyenMai == true) {
                 trangThaiKhuyenMai = "Hết Hạn";
-            }else{
+            } else {
                 trangThaiKhuyenMai = "Còn Hạn";
             }
             model.addRow(new Object[]{km.getMaKhuyenMai(), km.getGiaTri(), km.getNgayBatDau(), km.getNgayKetThuc(),
-                km.getNoiDung(), trangThaiKhuyenMai });
+                km.getNoiDung(), trangThaiKhuyenMai});
         }
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnHuy;
     private javax.swing.JButton btnThem;
+    private javax.swing.JCheckBox cb_trangThai;
     private javax.swing.JPanel frm_ThongTin;
     public javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
-    private javax.swing.JCheckBox jCheckBox1;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JComboBox<String> jComboBox2;
     private javax.swing.JComboBox<String> jComboBox3;
@@ -520,14 +565,14 @@ public class JPanel_QuanLyKhuyenMai extends javax.swing.JPanel implements Action
     private javax.swing.JPanel jPanel8;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTextArea jTextArea1;
     private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
-    public javax.swing.JTextField jTextField4;
-    private javax.swing.JTextField jTextField5;
-    private javax.swing.JTextField jTextField9;
     private javax.swing.JPanel search_Engine;
     private javax.swing.JTable tbl_khuyenMai;
+    private javax.swing.JTextField txt_giaTri;
+    public javax.swing.JTextField txt_maKhuyenMai;
+    private javax.swing.JTextField txt_ngayBatDau;
+    private javax.swing.JTextField txt_ngayKetThuc;
+    private javax.swing.JTextArea txt_noiDung;
     // End of variables declaration//GEN-END:variables
 
     @Override

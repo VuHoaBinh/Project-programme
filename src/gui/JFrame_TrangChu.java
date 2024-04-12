@@ -32,8 +32,8 @@ public class JFrame_TrangChu extends javax.swing.JFrame implements ActionListene
     private final JPanel_QuanLyPhong qlp;
     private final JPanel_QuanLyDoAnUong qlsp;
     private JPanel_QuanLyKhachHang qlkh;
-private JPanel_QuanLyKhuyenMai qlkm;
-    
+    private JPanel_QuanLyKhuyenMai qlkm;
+
     public JFrame_TrangChu(NhanVien nv) throws SQLException {
         initComponents();
         addEvents();
@@ -49,15 +49,14 @@ private JPanel_QuanLyKhuyenMai qlkm;
         qlsp = new JPanel_QuanLyDoAnUong();
         qlkh = new JPanel_QuanLyKhachHang();
         qlkm = new JPanel_QuanLyKhuyenMai();
-        
+
         CardLayout cardLayout = (CardLayout) MainContent.getLayout();
         MainContent.add(qlnv, "qlnv");
         MainContent.add(qlp, "qlp");
         MainContent.add(qlsp, "qlsp");
         MainContent.add(qlkh, "qlkh");
         MainContent.add(qlkm, "qlkm");
-        
-        
+
         FlatIntelliJLaf.registerCustomDefaultsSource("style");
         FlatIntelliJLaf.setup();
     }
@@ -75,21 +74,21 @@ private JPanel_QuanLyKhuyenMai qlkm;
         MainContent.revalidate();
         MainContent.repaint();
     }
-    
+
     private void loadQuanLyPhong() {
         MainContent.removeAll();
         MainContent.add(qlp, "qlp");
         MainContent.revalidate();
         MainContent.repaint();
     }
-    
+
     private void loadQuanLyDoAnUong() {
         MainContent.removeAll();
         MainContent.add(qlsp, "qlsp");
         MainContent.revalidate();
         MainContent.repaint();
     }
-    
+
     private void loadQuanLyKhuyenMai() {
         MainContent.removeAll();
         MainContent.add(qlkm, "qlkm");
@@ -678,7 +677,7 @@ private JPanel_QuanLyKhuyenMai qlkm;
             MainContent.repaint();
 
         }
-        if(e.getSource() == btn_quanLyPhong){
+        if (e.getSource() == btn_quanLyPhong) {
             MainContent.removeAll();
             // Thêm JPanel mới vào MainContent
             MainContent.add(qlp);
@@ -692,21 +691,21 @@ private JPanel_QuanLyKhuyenMai qlkm;
             MainContent.revalidate();
             MainContent.repaint();
         }
-        
+
         if (e.getSource() == btn_quanLyDoAnUong) {
             MainContent.removeAll();
             MainContent.add(qlsp, "qlsp");
             MainContent.revalidate();
             MainContent.repaint();
         }
-        
+
         if (e.getSource() == btn_khuyenMai) {
             MainContent.removeAll();
             MainContent.add(qlkm, "qlkm");
             MainContent.revalidate();
             MainContent.repaint();
         }
-        
+
         if (e.getSource() == btn_dangXuat) {
 
         }

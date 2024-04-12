@@ -61,7 +61,7 @@ public class Phong_DAO {
             }
 
             TrangThaiPhong trangPhongSuDung = null;
-            String trangThaiPhongString = rs.getString("trangThaiSuDung");
+            String trangThaiPhongString = rs.getString("trangThaiPhong");
 
             if (trangThaiPhongString.equals("1")) {
                 trangPhongSuDung = TrangThaiPhong.BOOKED;
@@ -69,7 +69,7 @@ public class Phong_DAO {
                 trangPhongSuDung = TrangThaiPhong.OCCUPIED;
             } else if (trangThaiPhongString.equals("3")) {
                 trangPhongSuDung = TrangThaiPhong.AVAILABLE;
-            } else if (trangThaiPhongString.equals("4")) {
+            } else if (trangThaiPhongString.equals("4")){
                 trangPhongSuDung = TrangThaiPhong.UNAVAILABLE;
             }
             
