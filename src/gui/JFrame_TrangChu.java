@@ -18,7 +18,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
 import javax.swing.InputMap;
 
-
 /**
  *
  * @author ADMIN
@@ -30,12 +29,11 @@ public class JFrame_TrangChu extends javax.swing.JFrame implements ActionListene
      */
     private TrangChu trangChu;
     private JPanel_QuanLyNhanVien qlnv;
-
-    private JPanel_QuanLyDoAnUong qlsp;
-
     private final JPanel_QuanLyPhong qlp;
-
-
+    private final JPanel_QuanLyDoAnUong qlsp;
+    private JPanel_QuanLyKhachHang qlkh;
+private JPanel_QuanLyKhuyenMai qlkm;
+    
     public JFrame_TrangChu(NhanVien nv) throws SQLException {
         initComponents();
         addEvents();
@@ -49,13 +47,17 @@ public class JFrame_TrangChu extends javax.swing.JFrame implements ActionListene
         qlnv = new JPanel_QuanLyNhanVien();
         qlp = new JPanel_QuanLyPhong();
         qlsp = new JPanel_QuanLyDoAnUong();
-
+        qlkh = new JPanel_QuanLyKhachHang();
+        qlkm = new JPanel_QuanLyKhuyenMai();
+        
         CardLayout cardLayout = (CardLayout) MainContent.getLayout();
         MainContent.add(qlnv, "qlnv");
-        MainContent.add(qlsp, "qlsp");
-
         MainContent.add(qlp, "qlp");
-
+        MainContent.add(qlsp, "qlsp");
+        MainContent.add(qlkh, "qlkh");
+        MainContent.add(qlkm, "qlkm");
+        
+        
         FlatIntelliJLaf.registerCustomDefaultsSource("style");
         FlatIntelliJLaf.setup();
     }
@@ -63,6 +65,34 @@ public class JFrame_TrangChu extends javax.swing.JFrame implements ActionListene
     private void loadQuanLyNhanVien() {
         MainContent.removeAll();
         MainContent.add(qlnv, "qlnv");
+        MainContent.revalidate();
+        MainContent.repaint();
+    }
+
+    private void loadQuanLyKhachHang() {
+        MainContent.removeAll();
+        MainContent.add(qlkh, "qlkh");
+        MainContent.revalidate();
+        MainContent.repaint();
+    }
+    
+    private void loadQuanLyPhong() {
+        MainContent.removeAll();
+        MainContent.add(qlp, "qlp");
+        MainContent.revalidate();
+        MainContent.repaint();
+    }
+    
+    private void loadQuanLyDoAnUong() {
+        MainContent.removeAll();
+        MainContent.add(qlsp, "qlsp");
+        MainContent.revalidate();
+        MainContent.repaint();
+    }
+    
+    private void loadQuanLyKhuyenMai() {
+        MainContent.removeAll();
+        MainContent.add(qlkm, "qlkm");
         MainContent.revalidate();
         MainContent.repaint();
     }
@@ -90,7 +120,7 @@ public class JFrame_TrangChu extends javax.swing.JFrame implements ActionListene
         jScrollPane = new javax.swing.JScrollPane();
         jPanel1 = new javax.swing.JPanel();
         Content10 = new javax.swing.JPanel();
-        btn_TrangChu = new javax.swing.JButton();
+        btn_trangChu = new javax.swing.JButton();
         Content2 = new javax.swing.JPanel();
         btn_quanLyPhong = new javax.swing.JButton();
         Content7 = new javax.swing.JPanel();
@@ -100,10 +130,9 @@ public class JFrame_TrangChu extends javax.swing.JFrame implements ActionListene
         Content9 = new javax.swing.JPanel();
         btn_quanLyDoAnUong = new javax.swing.JButton();
         Content11 = new javax.swing.JPanel();
-        btn_quanlyKhuyenMai = new javax.swing.JButton();
+        btn_khuyenMai = new javax.swing.JButton();
         Content12 = new javax.swing.JPanel();
-        btn_ThongKe = new javax.swing.JButton();
-        Content13 = new javax.swing.JPanel();
+        btn_thongKe = new javax.swing.JButton();
         bar3 = new javax.swing.JPanel();
         pnlBottom = new javax.swing.JPanel();
         DangXuat = new javax.swing.JPanel();
@@ -207,20 +236,20 @@ public class JFrame_TrangChu extends javax.swing.JFrame implements ActionListene
         Content10.setForeground(new java.awt.Color(255, 255, 255));
         Content10.setPreferredSize(new java.awt.Dimension(300, 50));
 
-        btn_TrangChu.setBackground(new java.awt.Color(250, 250, 250));
-        btn_TrangChu.setIcon(new FlatSVGIcon("./icon/home.svg"));
-        btn_TrangChu.setText("Trang Chủ");
+        btn_trangChu.setBackground(new java.awt.Color(250, 250, 250));
+        btn_trangChu.setIcon(new FlatSVGIcon("./icon/home.svg"));
+        btn_trangChu.setText("Trang Chủ");
         // Đặt căn lề trái cho icon
-        btn_TrangChu.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
-        btn_TrangChu.setIconTextGap(10); // Khoảng cách giữa icon và văn bản
+        btn_trangChu.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        btn_trangChu.setIconTextGap(10); // Khoảng cách giữa icon và văn bản
 
         // Đặt căn lề phải cho văn bản
-        btn_TrangChu.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        btn_TrangChu.setVerticalAlignment(javax.swing.SwingConstants.CENTER);
-        btn_TrangChu.setPreferredSize(new java.awt.Dimension(250, 23));
-        btn_TrangChu.addActionListener(new java.awt.event.ActionListener() {
+        btn_trangChu.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        btn_trangChu.setVerticalAlignment(javax.swing.SwingConstants.CENTER);
+        btn_trangChu.setPreferredSize(new java.awt.Dimension(250, 23));
+        btn_trangChu.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_TrangChuActionPerformed(evt);
+                btn_trangChuActionPerformed(evt);
             }
         });
 
@@ -230,12 +259,12 @@ public class JFrame_TrangChu extends javax.swing.JFrame implements ActionListene
             Content10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(Content10Layout.createSequentialGroup()
                 .addGap(35, 35, 35)
-                .addComponent(btn_TrangChu, javax.swing.GroupLayout.PREFERRED_SIZE, 229, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btn_trangChu, javax.swing.GroupLayout.PREFERRED_SIZE, 229, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(36, Short.MAX_VALUE))
         );
         Content10Layout.setVerticalGroup(
             Content10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(btn_TrangChu, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 50, Short.MAX_VALUE)
+            .addComponent(btn_trangChu, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 50, Short.MAX_VALUE)
         );
 
         jPanel1.add(Content10);
@@ -319,7 +348,7 @@ public class JFrame_TrangChu extends javax.swing.JFrame implements ActionListene
         Content8.setPreferredSize(new java.awt.Dimension(300, 50));
 
         btn_quanLyKhachHang.setBackground(new java.awt.Color(250, 250, 250));
-        btn_quanLyKhachHang.setText("Quản lý Khách Hàng");
+        btn_quanLyKhachHang.setText("Quản Lý Khách Hàng");
         btn_quanLyKhachHang.setPreferredSize(new java.awt.Dimension(250, 23));
         btn_quanLyKhachHang.setIcon(new FlatSVGIcon("./icon/customer_1.svg"));
         // Đặt căn lề trái cho icon
@@ -392,20 +421,20 @@ public class JFrame_TrangChu extends javax.swing.JFrame implements ActionListene
         Content11.setForeground(new java.awt.Color(255, 255, 255));
         Content11.setPreferredSize(new java.awt.Dimension(300, 50));
 
-        btn_quanlyKhuyenMai.setBackground(new java.awt.Color(250, 250, 250));
-        btn_quanlyKhuyenMai.setIcon(new FlatSVGIcon("./icon/statistics.svg"));
-        btn_quanlyKhuyenMai.setText("Quản Lý Khuyến Mãi");
+        btn_khuyenMai.setBackground(new java.awt.Color(250, 250, 250));
+        btn_khuyenMai.setIcon(new FlatSVGIcon("./icon/statistics.svg"));
+        btn_khuyenMai.setText("Quản Lý Khuyến Mãi");
         // Đặt căn lề trái cho icon
-        btn_quanlyKhuyenMai.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
-        btn_quanlyKhuyenMai.setIconTextGap(10); // Khoảng cách giữa icon và văn bản
+        btn_khuyenMai.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        btn_khuyenMai.setIconTextGap(10); // Khoảng cách giữa icon và văn bản
 
         // Đặt căn lề phải cho văn bản
-        btn_quanlyKhuyenMai.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        btn_quanlyKhuyenMai.setVerticalAlignment(javax.swing.SwingConstants.CENTER);
-        btn_quanlyKhuyenMai.setPreferredSize(new java.awt.Dimension(250, 23));
-        btn_quanlyKhuyenMai.addActionListener(new java.awt.event.ActionListener() {
+        btn_khuyenMai.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        btn_khuyenMai.setVerticalAlignment(javax.swing.SwingConstants.CENTER);
+        btn_khuyenMai.setPreferredSize(new java.awt.Dimension(250, 23));
+        btn_khuyenMai.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_quanlyKhuyenMaiActionPerformed(evt);
+                btn_khuyenMaiActionPerformed(evt);
             }
         });
 
@@ -415,12 +444,12 @@ public class JFrame_TrangChu extends javax.swing.JFrame implements ActionListene
             Content11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(Content11Layout.createSequentialGroup()
                 .addGap(35, 35, 35)
-                .addComponent(btn_quanlyKhuyenMai, javax.swing.GroupLayout.PREFERRED_SIZE, 229, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btn_khuyenMai, javax.swing.GroupLayout.PREFERRED_SIZE, 229, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(36, Short.MAX_VALUE))
         );
         Content11Layout.setVerticalGroup(
             Content11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(btn_quanlyKhuyenMai, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 50, Short.MAX_VALUE)
+            .addComponent(btn_khuyenMai, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 50, Short.MAX_VALUE)
         );
 
         jPanel1.add(Content11);
@@ -429,12 +458,12 @@ public class JFrame_TrangChu extends javax.swing.JFrame implements ActionListene
         Content12.setForeground(new java.awt.Color(255, 255, 255));
         Content12.setPreferredSize(new java.awt.Dimension(300, 50));
 
-        btn_ThongKe.setBackground(new java.awt.Color(250, 250, 250));
-        btn_ThongKe.setText("Thống Kê");
-        btn_ThongKe.setPreferredSize(new java.awt.Dimension(250, 23));
-        btn_ThongKe.addActionListener(new java.awt.event.ActionListener() {
+        btn_thongKe.setBackground(new java.awt.Color(250, 250, 250));
+        btn_thongKe.setText("Thống Kê");
+        btn_thongKe.setPreferredSize(new java.awt.Dimension(250, 23));
+        btn_thongKe.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_ThongKeActionPerformed(evt);
+                btn_thongKeActionPerformed(evt);
             }
         });
 
@@ -443,33 +472,16 @@ public class JFrame_TrangChu extends javax.swing.JFrame implements ActionListene
         Content12Layout.setHorizontalGroup(
             Content12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(Content12Layout.createSequentialGroup()
-                .addGap(35, 35, 35)
-                .addComponent(btn_ThongKe, javax.swing.GroupLayout.PREFERRED_SIZE, 229, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(36, Short.MAX_VALUE))
+                .addGap(34, 34, 34)
+                .addComponent(btn_thongKe, javax.swing.GroupLayout.PREFERRED_SIZE, 228, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(38, Short.MAX_VALUE))
         );
         Content12Layout.setVerticalGroup(
             Content12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(btn_ThongKe, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 50, Short.MAX_VALUE)
+            .addComponent(btn_thongKe, javax.swing.GroupLayout.DEFAULT_SIZE, 50, Short.MAX_VALUE)
         );
 
         jPanel1.add(Content12);
-
-        Content13.setBackground(new java.awt.Color(255, 255, 255));
-        Content13.setForeground(new java.awt.Color(255, 255, 255));
-        Content13.setPreferredSize(new java.awt.Dimension(300, 50));
-
-        javax.swing.GroupLayout Content13Layout = new javax.swing.GroupLayout(Content13);
-        Content13.setLayout(Content13Layout);
-        Content13Layout.setHorizontalGroup(
-            Content13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
-        );
-        Content13Layout.setVerticalGroup(
-            Content13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 50, Short.MAX_VALUE)
-        );
-
-        jPanel1.add(Content13);
 
         jScrollPane.setViewportView(jPanel1);
 
@@ -558,28 +570,22 @@ public class JFrame_TrangChu extends javax.swing.JFrame implements ActionListene
     private void btn_quanLyDoAnUongActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_quanLyDoAnUongActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btn_quanLyDoAnUongActionPerformed
-    // TODO add your handling code here:
 
-
-    private void btn_trangChuActionPerformed(java.awt.event.ActionEvent evt) {                                             
+    private void btn_khuyenMaiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_khuyenMaiActionPerformed
         // TODO add your handling code here:
-    }                                            
+    }//GEN-LAST:event_btn_khuyenMaiActionPerformed
 
-    private void btn_quanlyKhuyenMaiActionPerformed(java.awt.event.ActionEvent evt) {                                                    
+    private void btn_trangChuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_trangChuActionPerformed
         // TODO add your handling code here:
-    }                                                   
-
-    private void btn_TrangChuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_TrangChuActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btn_TrangChuActionPerformed
+    }//GEN-LAST:event_btn_trangChuActionPerformed
 
     private void btn_quanLyPhongActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_quanLyPhongActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btn_quanLyPhongActionPerformed
 
-    private void btn_ThongKeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_ThongKeActionPerformed
+    private void btn_thongKeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_thongKeActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_btn_ThongKeActionPerformed
+    }//GEN-LAST:event_btn_thongKeActionPerformed
 
     /**
      * @param args the command line arguments
@@ -620,7 +626,6 @@ public class JFrame_TrangChu extends javax.swing.JFrame implements ActionListene
     private javax.swing.JPanel Content10;
     private javax.swing.JPanel Content11;
     private javax.swing.JPanel Content12;
-    private javax.swing.JPanel Content13;
     private javax.swing.JPanel Content2;
     private javax.swing.JPanel Content7;
     private javax.swing.JPanel Content8;
@@ -632,14 +637,14 @@ public class JFrame_TrangChu extends javax.swing.JFrame implements ActionListene
     private javax.swing.JPanel bar2;
     private javax.swing.JPanel bar3;
     private javax.swing.JPanel bar4;
-    private javax.swing.JButton btn_ThongKe;
-    private javax.swing.JButton btn_TrangChu;
     private javax.swing.JButton btn_dangXuat;
+    private javax.swing.JButton btn_khuyenMai;
     private javax.swing.JButton btn_quanLyDoAnUong;
     private javax.swing.JButton btn_quanLyKhachHang;
     private javax.swing.JButton btn_quanLyNhanVien;
     private javax.swing.JButton btn_quanLyPhong;
-    private javax.swing.JButton btn_quanlyKhuyenMai;
+    private javax.swing.JButton btn_thongKe;
+    private javax.swing.JButton btn_trangChu;
     private javax.swing.JPanel info;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane;
@@ -654,12 +659,11 @@ public class JFrame_TrangChu extends javax.swing.JFrame implements ActionListene
     // End of variables declaration//GEN-END:variables
     public void addEvents() {
         btn_quanLyNhanVien.addActionListener(this);
-
-        btn_quanLyDoAnUong.addActionListener(this);
-
         btn_quanLyPhong.addActionListener(this);
-
+        btn_quanLyKhachHang.addActionListener(this);
         btn_dangXuat.addActionListener(this);
+        btn_quanLyDoAnUong.addActionListener(this);
+        btn_khuyenMai.addActionListener(this);
     }
 
     @Override
@@ -674,19 +678,6 @@ public class JFrame_TrangChu extends javax.swing.JFrame implements ActionListene
             MainContent.repaint();
 
         }
-
-        if (e.getSource() == btn_quanLyDoAnUong) {
-            // Xóa bỏ tất cả các component hiện tại trong MainContent (nếu cần)
-            MainContent.removeAll();
-            // Thêm JPanel mới vào MainContent
-            MainContent.add(qlsp);
-            // Cập nhật giao diện
-            MainContent.revalidate();
-            MainContent.repaint();
-
-        }
-        
-
         if(e.getSource() == btn_quanLyPhong){
             MainContent.removeAll();
             // Thêm JPanel mới vào MainContent
@@ -695,7 +686,27 @@ public class JFrame_TrangChu extends javax.swing.JFrame implements ActionListene
             MainContent.revalidate();
             MainContent.repaint();
         }
-
+        if (e.getSource() == btn_quanLyKhachHang) {
+            MainContent.removeAll();
+            MainContent.add(qlkh, "qlkh");
+            MainContent.revalidate();
+            MainContent.repaint();
+        }
+        
+        if (e.getSource() == btn_quanLyDoAnUong) {
+            MainContent.removeAll();
+            MainContent.add(qlsp, "qlsp");
+            MainContent.revalidate();
+            MainContent.repaint();
+        }
+        
+        if (e.getSource() == btn_khuyenMai) {
+            MainContent.removeAll();
+            MainContent.add(qlkm, "qlkm");
+            MainContent.revalidate();
+            MainContent.repaint();
+        }
+        
         if (e.getSource() == btn_dangXuat) {
 
         }

@@ -36,8 +36,7 @@ public class KhachHang_DAO {
         while (rs.next()) {
             String maKhachHang = rs.getString("maKhachHang");
             String hoTenKhachHang = rs.getString("hoTenKhachHang");
-            String gioiTinhStr = rs.getString("gioiTinh");
-            boolean gioiTinh = gioiTinhStr.equals("Nam");
+            boolean gioiTinh = rs.getBoolean("gioiTinh");
             String CCCD = rs.getString("CCCD");
             LocalDate ngaySinh = rs.getDate("ngaySinh").toLocalDate();
             boolean trangThaiKhachHang = rs.getInt("trangThaiKhachHang") == 1;
@@ -91,7 +90,28 @@ public class KhachHang_DAO {
         }
         return dsKhachHang;
     }
+    public ArrayList<KhachHang> getKhachHangTheoMa(String maKhachHang) throws IOException, SQLException {
+        ArrayList<KhachHang> dsKhachHang = new ArrayList<>();
+        ConnectDB.getInstance();
+        java.sql.Connection con = ConnectDB.getConnection();
+        PreparedStatement statement = null;
 
+        String sql = "SELECT * FROM KhachHang WHERE maKhachHang = ?";
+        statement = con.prepareStatement(sql);
+        statement.setString(1, maKhachHang);
+        ResultSet rs = statement.executeQuery();
+        while (rs.next()) {
+            String hoTenKhachHang = rs.getString("hoTenKhachHang");
+            boolean gioiTinh = rs.getBoolean("gioiTinh");
+            String CCCD = rs.getString("CCCD");
+            java.sql.Date ngaySinh = rs.getDate("ngaySinh");
+            LocalDate ngaySinhLocalDate = ngaySinh.toLocalDate();
+            boolean trangThaiKhachHang = rs.getBoolean("trangThaiKhachHang");
+            KhachHang kh = new KhachHang(maKhachHang, hoTenKhachHang, gioiTinh, CCCD, ngaySinhLocalDate, trangThaiKhachHang);
+            dsKhachHang.add(kh);
+        }
+        return dsKhachHang;
+    }
     public boolean createKhachHang(KhachHang kh) throws SQLException {
         ConnectDB.getInstance();
         java.sql.Connection con = ConnectDB.getConnection();
@@ -102,10 +122,10 @@ public class KhachHang_DAO {
             statement = con.prepareStatement("INSERT INTO KhachHang VALUES (?,?,?,?,?,?)");
             statement.setString(1, kh.getMaKhachHang());
             statement.setString(2, kh.getHoTenKhachHang());
-            statement.setString(3, kh.isGioiTinh() ? "Nam" : "Nữ");
+            statement.setBoolean(3, kh.isGioiTinh());
             statement.setString(4, kh.getCCCD());
             statement.setDate(5, java.sql.Date.valueOf(kh.getNgaySinh()));
-            statement.setInt(6, kh.isTrangThaiKhachHang() ? 1 : 0);
+            statement.setBoolean(6, kh.isTrangThaiKhachHang());
 
             n = statement.executeUpdate();
         } catch (SQLException e) {
@@ -130,10 +150,10 @@ public class KhachHang_DAO {
         try (PreparedStatement statement = con.prepareStatement(sql)) {
             statement.setString(1, kh.getMaKhachHang());
             statement.setString(2, kh.getHoTenKhachHang());
-            statement.setString(3, kh.isGioiTinh() ? "Nam" : "Nữ");
+            statement.setBoolean(3, kh.isGioiTinh());
             statement.setString(4, kh.getCCCD());
             statement.setDate(5, java.sql.Date.valueOf(kh.getNgaySinh()));
-            statement.setInt(6, kh.isTrangThaiKhachHang() ? 1 : 0);
+            statement.setBoolean(6, kh.isTrangThaiKhachHang());
             statement.setString(7, kh.getMaKhachHang());
 
             statement.executeUpdate();
@@ -141,7 +161,18 @@ public class KhachHang_DAO {
             e.printStackTrace();
         }
     }
-
+    public void updateTrangThaiKhachHang(String ma) {
+        ConnectDB.getInstance();
+        java.sql.Connection con = ConnectDB.getConnection();
+        String sql = "UPDATE KhachHang SET trangThaiKhachHang = ? WHERE maKhachHang=?";
+        try (PreparedStatement statement = con.prepareStatement(sql)) {
+            statement.setBoolean(1,false);
+            statement.setString(2,ma);
+            statement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
     public void deleteKhachHang(KhachHang p) {
         ConnectDB.getInstance();
         java.sql.Connection con = ConnectDB.getConnection();

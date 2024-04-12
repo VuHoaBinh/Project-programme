@@ -8,7 +8,8 @@ public enum LoaiPhong {
     BASIC(1),
     STANDARD(2),
     BUSINESS(3),
-    VIP(4),DOUBLE(5);
+    VIP(4),
+    DOUBLE(5);
 
     private final int tenLoai;
 
@@ -19,6 +20,5 @@ public enum LoaiPhong {
     public int getTenLoai() {
         return tenLoai;
     }
-    
-    
+
 }

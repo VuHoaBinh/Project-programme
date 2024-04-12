@@ -81,8 +81,15 @@ public class JPanel_QuanLyPhong extends javax.swing.JPanel implements ActionList
         // Tạo menu ngữ cảnh cho phòng
         roomPopupMenu = new JPopupMenu();
         JMenuItem viewDetailsItem = new JMenuItem("Xem chi tiết");
+        JMenuItem datPhong = new JMenuItem("Đặt phòng");
+        
+        
+        datPhong.addActionListener(this);
         viewDetailsItem.addActionListener(this);
+        
+        
         roomPopupMenu.add(viewDetailsItem);
+        roomPopupMenu.add(datPhong);
     }
 
     public void loadData() throws SQLException {

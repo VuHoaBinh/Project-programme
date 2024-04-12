@@ -84,7 +84,6 @@ CREATE TABLE KhuyenMai(
     noiDung NVARCHAR(255)
 );
 
-
 INSERT INTO KhuyenMai (maKhuyenMai, trangThaiKhuyenMai, giaTri, ngayBatDau, ngayKetThuc, noiDung)
 VALUES ('KM1504202401', 0, 0.2, '2024-04-15', '2024-05-15', N'Giảm giá 20% cho đơn hàng trong tháng 4');
 

@@ -18,7 +18,7 @@ public class KhachHang {
     private String CCCD;
     private LocalDate ngaySinh;
     private boolean trangThaiKhachHang;
-
+    
     public KhachHang(String maKhachHang, String hoTenKhachHang, boolean gioiTinh, String CCCD, LocalDate ngaySinh, boolean trangThaiKhachHang) {
         this.maKhachHang = maKhachHang;
         this.hoTenKhachHang = hoTenKhachHang;

@@ -27,7 +27,6 @@ public class JFrame_Login extends javax.swing.JFrame implements ActionListener {
     public JFrame_Login() throws Exception {
         try {
             ConnectDB.getInstance().connect();
-            System.out.println("oke oke");
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -193,22 +192,20 @@ public class JFrame_Login extends javax.swing.JFrame implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         Object o = e.getSource();
         if (o.equals(btn_dangNhap)) {
-            if (txt_taiKhoan.getText().equalsIgnoreCase("") || txt_password.getPassword().equals("")) {
+            if (txt_taiKhoan.getText().equalsIgnoreCase("")||txt_password.getPassword().equals("")) {
                 JOptionPane.showMessageDialog(this, "Tên tài khoản hoặc mật khẩu không được để trống");
                 txt_taiKhoan.requestFocus();
-                
             } else {
                 try {
                     tk_dao.dNhap(txt_taiKhoan, txt_password);
-                    System.out.println("haha1");
                 } catch (Exception ex) {
                     Logger.getLogger(JFrame_Login.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
         }
     }
-
-    public void addEvents() {
+    
+    public void addEvents(){
         btn_dangNhap.addActionListener(this);
     }
 }

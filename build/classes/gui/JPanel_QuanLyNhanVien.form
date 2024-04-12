@@ -58,22 +58,8 @@
               <SubComponents>
                 <Component class="javax.swing.JTable" name="tbl_NhanVien">
                   <Properties>
-<<<<<<< HEAD
-                    <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-                      <Table columnCount="8" rowCount="4">
-                        <Column editable="true" title="M&#xe3; nh&#xe2;n vi&#xea;n" type="java.lang.String"/>
-                        <Column editable="true" title="&#x1ea2;nh &#x110;&#x1ea1;i Di&#x1ec7;n" type="java.lang.String"/>
-                        <Column editable="true" title="H&#x1ecd; v&#xe0; T&#xea;n" type="java.lang.String"/>
-                        <Column editable="true" title="Gi&#x1edb;i t&#xed;nh" type="java.lang.String"/>
-                        <Column editable="true" title="&#x110;&#x1ecb;a ch&#x1ec9;" type="java.lang.String"/>
-                        <Column editable="true" title="Tr&#x1ea1;ng Th&#xe1;i L&#xe0;m Vi&#x1ec7;c" type="java.lang.String"/>
-                        <Column editable="true" title="S&#x1ed1; &#x110;i&#x1ec7;n Tho&#x1ea1;i" type="java.lang.String"/>
-                        <Column editable="true" title="Ch&#x1ee9;c V&#x1ee5;" type="java.lang.String"/>
-                      </Table>
-=======
                     <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
                       <Connection code="modelNhanVien" type="code"/>
->>>>>>> origin/TrangChu_ver1
                     </Property>
                     <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor" postCode="DefaultTableCellRenderer leftRenderer = new DefaultTableCellRenderer();&#xa;leftRenderer.setHorizontalAlignment(SwingConstants.LEFT);&#xa;tbl_NhanVien.getColumnModel().getColumn(1).setCellRenderer(leftRenderer);&#xa;&#xa;// T&#x1ea1;o renderer &#x111;&#x1ec3; c&#x103;n tr&#xe1;i cho c&#x1ed9;t th&#x1ee9; 6&#xa;DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();&#xa;centerRenderer.setHorizontalAlignment(SwingConstants.CENTER);&#xa;// C&#x103;n gi&#x1eef;a c&#xe1;c c&#x1ed9;t c&#x1ee5; th&#x1ec3;&#xa;tbl_NhanVien.getColumnModel().getColumn(0).setCellRenderer(centerRenderer);&#xa;tbl_NhanVien.getColumnModel().getColumn(2).setCellRenderer(centerRenderer);&#xa;tbl_NhanVien.getColumnModel().getColumn(3).setCellRenderer(centerRenderer);&#xa;tbl_NhanVien.getColumnModel().getColumn(4).setCellRenderer(centerRenderer);&#xa;tbl_NhanVien.getColumnModel().getColumn(6).setCellRenderer(centerRenderer);&#xa;tbl_NhanVien.getColumnModel().getColumn(5).setCellRenderer(centerRenderer);">
                       <TableColumnModel selectionModel="0">
@@ -193,58 +179,7 @@
               <Layout>
                 <DimensionLayout dim="0">
                   <Group type="103" groupAlignment="0" attributes="0">
-<<<<<<< HEAD
                       <Group type="102" alignment="1" attributes="0">
-                          <Group type="103" groupAlignment="1" attributes="0">
-                              <Group type="102" alignment="1" attributes="0">
-                                  <Group type="103" groupAlignment="0" attributes="0">
-                                      <Group type="102" attributes="0">
-                                          <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                                          <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
-                                      </Group>
-                                      <Group type="102" attributes="0">
-                                          <EmptySpace max="-2" attributes="0"/>
-                                          <Group type="103" groupAlignment="0" attributes="0">
-                                              <Component id="jLabel6" alignment="0" min="-2" max="-2" attributes="0"/>
-                                              <Component id="jLabel7" alignment="0" min="-2" pref="48" max="-2" attributes="0"/>
-                                          </Group>
-                                          <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                                      </Group>
-                                  </Group>
-                                  <EmptySpace type="separate" max="-2" attributes="0"/>
-                                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                      <Component id="jTextField3" alignment="0" pref="235" max="32767" attributes="0"/>
-                                      <Component id="jTextField5" alignment="0" max="32767" attributes="0"/>
-                                      <Component id="jTextField4" alignment="0" max="32767" attributes="0"/>
-                                  </Group>
-                              </Group>
-                              <Group type="102" attributes="0">
-                                  <EmptySpace max="-2" attributes="0"/>
-                                  <Group type="103" groupAlignment="1" attributes="0">
-                                      <Group type="102" alignment="0" attributes="0">
-                                          <Component id="jLabel9" min="-2" pref="113" max="-2" attributes="0"/>
-                                          <EmptySpace max="-2" attributes="0"/>
-                                          <Component id="jTextField6" max="32767" attributes="0"/>
-                                      </Group>
-                                      <Group type="102" alignment="1" attributes="0">
-                                          <Component id="jLabel2" min="-2" pref="57" max="-2" attributes="0"/>
-                                          <EmptySpace max="32767" attributes="0"/>
-                                          <Component id="jRadioButton3" min="-2" pref="61" max="-2" attributes="0"/>
-                                          <EmptySpace type="separate" max="-2" attributes="0"/>
-                                          <Component id="jRadioButton2" min="-2" pref="54" max="-2" attributes="0"/>
-                                      </Group>
-                                      <Group type="102" attributes="0">
-                                          <EmptySpace min="0" pref="3" max="32767" attributes="0"/>
-                                          <Component id="jLabel8" min="-2" pref="79" max="-2" attributes="0"/>
-                                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                          <Component id="jTextField9" min="-2" pref="234" max="-2" attributes="0"/>
-                                      </Group>
-                                      <Group type="102" alignment="1" attributes="0">
-                                          <Component id="jLabel10" min="-2" pref="60" max="-2" attributes="0"/>
-                                          <EmptySpace max="32767" attributes="0"/>
-                                          <Component id="jTextField8" min="-2" pref="234" max="-2" attributes="0"/>
-=======
-                      <Group type="102" attributes="0">
                           <EmptySpace pref="24" max="32767" attributes="0"/>
                           <Group type="103" groupAlignment="0" max="-2" attributes="0">
                               <Group type="102" attributes="0">
@@ -281,7 +216,6 @@
                                           <Component id="rd_lt" min="-2" pref="108" max="-2" attributes="0"/>
                                           <EmptySpace type="separate" max="-2" attributes="0"/>
                                           <Component id="rd_ql" min="-2" pref="108" max="-2" attributes="0"/>
->>>>>>> origin/TrangChu_ver1
                                       </Group>
                                   </Group>
                               </Group>
@@ -301,11 +235,7 @@
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
-<<<<<<< HEAD
-                              <Component id="jTextField4" alignment="3" min="-2" pref="36" max="-2" attributes="0"/>
-=======
                               <Component id="txtMaNV" alignment="3" min="-2" pref="36" max="-2" attributes="0"/>
->>>>>>> origin/TrangChu_ver1
                               <Component id="jLabel1" alignment="3" min="-2" pref="36" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
@@ -315,21 +245,6 @@
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
-<<<<<<< HEAD
-                              <Component id="jLabel2" alignment="3" min="-2" pref="36" max="-2" attributes="0"/>
-                              <Component id="jRadioButton3" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="jRadioButton2" alignment="3" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="1" attributes="0">
-                              <Component id="jLabel7" min="-2" pref="36" max="-2" attributes="0"/>
-                              <Component id="jTextField3" min="-2" pref="36" max="-2" attributes="0"/>
-                          </Group>
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="jLabel9" alignment="3" min="-2" pref="36" max="-2" attributes="0"/>
-                              <Component id="jTextField6" alignment="3" min="-2" pref="36" max="-2" attributes="0"/>
-=======
                               <Component id="rd_nu" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="jLabel2" alignment="3" min="-2" pref="36" max="-2" attributes="0"/>
                               <Component id="rd_nam" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -344,21 +259,9 @@
                               <Component id="rd_nghi" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="rd_lam" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="jLabel9" alignment="3" min="-2" pref="36" max="-2" attributes="0"/>
->>>>>>> origin/TrangChu_ver1
                           </Group>
                           <EmptySpace min="-2" pref="14" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
-<<<<<<< HEAD
-                              <Component id="jTextField9" alignment="3" min="-2" pref="36" max="-2" attributes="0"/>
-                              <Component id="jLabel8" alignment="3" min="-2" pref="36" max="-2" attributes="0"/>
-                          </Group>
-                          <EmptySpace type="separate" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="jTextField8" alignment="3" min="-2" pref="36" max="-2" attributes="0"/>
-                              <Component id="jLabel10" alignment="3" min="-2" pref="36" max="-2" attributes="0"/>
-                          </Group>
-                          <EmptySpace pref="65" max="32767" attributes="0"/>
-=======
                               <Component id="jLabel8" alignment="3" min="-2" pref="36" max="-2" attributes="0"/>
                               <Component id="txt_SDT" alignment="3" min="-2" pref="36" max="-2" attributes="0"/>
                           </Group>
@@ -369,7 +272,6 @@
                               <Component id="rd_ql" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace pref="198" max="32767" attributes="0"/>
->>>>>>> origin/TrangChu_ver1
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -377,11 +279,7 @@
               <SubComponents>
                 <Component class="javax.swing.JLabel" name="jLabel1">
                   <Properties>
-<<<<<<< HEAD
-                    <Property name="text" type="java.lang.String" value="M&#xe3; nh&#xe2;n vi&#xea;n:"/>
-=======
                     <Property name="text" type="java.lang.String" value="M&#xe3;:"/>
->>>>>>> origin/TrangChu_ver1
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JLabel" name="jLabel2">
@@ -391,11 +289,7 @@
                 </Component>
                 <Component class="javax.swing.JLabel" name="jLabel6">
                   <Properties>
-<<<<<<< HEAD
-                    <Property name="text" type="java.lang.String" value="H&#x1ecd; v&#xe0; t&#xea;n: "/>
-=======
                     <Property name="text" type="java.lang.String" value="T&#xea;n:"/>
->>>>>>> origin/TrangChu_ver1
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JLabel" name="jLabel7">
@@ -405,29 +299,17 @@
                 </Component>
                 <Component class="javax.swing.JLabel" name="jLabel8">
                   <Properties>
-<<<<<<< HEAD
-                    <Property name="text" type="java.lang.String" value="S&#x1ed1; &#x111;i&#x1ec7;n tho&#x1ea1;i:"/>
-=======
                     <Property name="text" type="java.lang.String" value="S&#x110;T:"/>
->>>>>>> origin/TrangChu_ver1
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JLabel" name="jLabel9">
                   <Properties>
-<<<<<<< HEAD
-                    <Property name="text" type="java.lang.String" value="Tr&#x1ea1;ng th&#xe1;i l&#xe0;m vi&#x1ec7;c:"/>
-=======
                     <Property name="text" type="java.lang.String" value="Tr&#x1ea1;ng Th&#xe1;i:"/>
->>>>>>> origin/TrangChu_ver1
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JLabel" name="jLabel10">
                   <Properties>
-<<<<<<< HEAD
-                    <Property name="text" type="java.lang.String" value="Ch&#x1ee9;c v&#x1ee5;: "/>
-=======
                     <Property name="text" type="java.lang.String" value="Ch&#x1ee9;c v&#x1ee5;:"/>
->>>>>>> origin/TrangChu_ver1
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JTextField" name="txt_DiaChi">
@@ -436,6 +318,9 @@
                   <Properties>
                     <Property name="editable" type="boolean" value="false"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtMaNVActionPerformed"/>
+                  </Events>
                   <AuxValues>
                     <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
                   </AuxValues>
@@ -451,37 +336,12 @@
                 </Component>
                 <Component class="javax.swing.JRadioButton" name="rd_nam">
                   <Properties>
-<<<<<<< HEAD
-                    <Property name="text" type="java.lang.String" value="jTextField3"/>
-                  </Properties>
-                </Component>
-                <Component class="javax.swing.JTextField" name="jTextField9">
-                  <Properties>
-                    <Property name="text" type="java.lang.String" value="jTextField3"/>
-                  </Properties>
-                </Component>
-                <Component class="javax.swing.JRadioButton" name="jRadioButton2">
-                  <Properties>
-                    <Property name="text" type="java.lang.String" value="N&#x1eef;"/>
-                  </Properties>
-                </Component>
-                <Component class="javax.swing.JRadioButton" name="jRadioButton3">
-                  <Properties>
-=======
->>>>>>> origin/TrangChu_ver1
                     <Property name="text" type="java.lang.String" value="Nam"/>
                   </Properties>
                   <Events>
                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="rd_namActionPerformed"/>
                   </Events>
                 </Component>
-<<<<<<< HEAD
-                <Component class="javax.swing.JTextField" name="jTextField6">
-                  <Properties>
-                    <Property name="text" type="java.lang.String" value="jTextField3"/>
-                  </Properties>
-                </Component>
-=======
                 <Component class="javax.swing.JRadioButton" name="rd_nghi">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="&#x110;&#xe3; ngh&#x1ec9;"/>
@@ -511,7 +371,6 @@
                     <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="gr_gt.add(rd_nam);gr_gt.add(rd_nu);&#xa;gr_tt.add(rd_lam);gr_tt.add(rd_nghi);&#xa;gr_cv.add(rd_lt);gr_cv.add(rd_ql);"/>
                   </AuxValues>
                 </Component>
->>>>>>> origin/TrangChu_ver1
               </SubComponents>
             </Container>
             <Container class="javax.swing.JPanel" name="jPanel2">
@@ -577,7 +436,7 @@
                 <Component class="javax.swing.JButton" name="btn_Xoa">
                   <Properties>
                     <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-                      <Connection code="&quot;Th&#xf4;i Vi&#x1ec7;c&quot;" type="code"/>
+                      <Connection code="&quot;Danh S&#xe1;ch &#x110;en&quot;" type="code"/>
                     </Property>
                   </Properties>
                   <AuxValues>

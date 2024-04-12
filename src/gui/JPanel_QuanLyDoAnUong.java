@@ -39,7 +39,6 @@ public class JPanel_QuanLyDoAnUong extends javax.swing.JPanel implements ActionL
      */
     public JPanel_QuanLyDoAnUong() throws SQLException {
         initComponents();
-
         addEvents();
         AllListDoAnUong();
     }
@@ -686,8 +685,7 @@ public class JPanel_QuanLyDoAnUong extends javax.swing.JPanel implements ActionL
         sp_DAO = new DoAnUong_DAO();
         ArrayList<DoAnUong> listSP = sp_DAO.getAllTableDoAnUong();
 
-        System.out.println(listSP);
-        System.out.println(tbl_DoAnUong.getModel());
+        
         if (tbl_DoAnUong.getModel() == null) {
             String[] arr = {"Mã đồ ăn uống", "Tên đồ ăn uống", "Loại đồ ăn uống", "Giá nhập", "Giá Bán", "Hoàn trả", "Số lượng", "Ngày sản xuất",
                 "Hạn sử dụng", "Mô tả", "Trạng thái sử dụng"};
