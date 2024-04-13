@@ -596,7 +596,7 @@ public class JPanel_QuanLyDoAnUong extends javax.swing.JPanel implements ActionL
 
         search_Engine.add(jPanel7);
 
-        btn_search.setText("Tìm kiếm ");
+        btn_search.setText("Lọc");
         btnThem.setBackground(new Color(0,0,255));
         btnThem.setForeground(Color.WHITE);
         btnThem.setFont(new Font("Roboto Mono Medium", Font.PLAIN, 16));

@@ -850,7 +850,7 @@
             <Component class="javax.swing.JButton" name="btn_search">
               <Properties>
                 <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-                  <Connection code="&quot;T&#xec;m ki&#x1ebf;m &quot;" type="code"/>
+                  <Connection code="&quot;L&#x1ecd;c&quot;" type="code"/>
                 </Property>
               </Properties>
               <Events>

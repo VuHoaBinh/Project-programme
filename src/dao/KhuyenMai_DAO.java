@@ -55,7 +55,7 @@ public class KhuyenMai_DAO {
      * @throws IOException
      * @throws java.sql.SQLException
      */
-    public ArrayList<KhuyenMai> getPhongTheoMaKhuyenMai(String maKhuyenMai) throws IOException, java.sql.SQLException {
+    public ArrayList<KhuyenMai> getMaKhuyenMai(String maKhuyenMai) throws IOException, java.sql.SQLException {
         ArrayList<KhuyenMai> dsKhuyenMai = new ArrayList<>();
 
         ConnectDB.getInstance();
@@ -96,7 +96,7 @@ public class KhuyenMai_DAO {
         int n = 0;
 
         try {
-            statement = con.prepareStatement("INSERT INTO KhuyenMai VALUES (?,?,?,?,?,?,?,?,?,?)");
+            statement = con.prepareStatement("INSERT INTO KhuyenMai VALUES (?,?,?,?,?,?)");
             statement.setString(1, km.getMaKhuyenMai());
             statement.setBoolean(2, km.isTrangThaiKhuyenMai());
             statement.setDouble(3, km.getGiaTri());
