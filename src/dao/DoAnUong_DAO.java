@@ -69,50 +69,31 @@ public class DoAnUong_DAO {
      * @throws IOException
      * @throws java.sql.SQLException
      */
-    public ArrayList<DoAnUong> getPhongTheoMaDoAnUong(String maDoAnUong) throws IOException, java.sql.SQLException {
+    public ArrayList<DoAnUong> getDAUTheoMaDoAnUong(String maDoAnUong) throws IOException, java.sql.SQLException {
         ArrayList<DoAnUong> dsDoAnUong = new ArrayList<>();
 
         ConnectDB.getInstance();
         java.sql.Connection con = ConnectDB.getConnection();
         PreparedStatement statement = null;
 
-        try {
-            String sql = "SELECT * FROM DoAnUong WHERE maDoAnUong = ?";
-            statement = con.prepareStatement(sql);
-            statement.setString(1, maDoAnUong);
-            ResultSet rs = statement.executeQuery();
-            while (rs.next()) {
-                String tenDoAnUong = rs.getString("tenDoAnUong");
-                boolean loai = rs.getBoolean("loai");
-                double giaNhap = rs.getDouble("giaNhap");
-                double giaBan = rs.getDouble("giaBan");
-                boolean hoanTra = rs.getBoolean("hoanTra");
-                int soLuong = rs.getInt("soLuong");
-                LocalDate ngaySanXuat = rs.getDate("ngaySanXuat").toLocalDate();
-                LocalDate hanSuDung = rs.getDate("HanSuDung").toLocalDate();
-                String moTa = rs.getString("moTa");
-                TrangThaiSuDung trangThaiSuDung;
-                String trangThaiSuDungString = rs.getString("trangThaiSuDung");
+         String sql = "SELECT * FROM DoAnUong WHERE maDoAnUong = ?";
+        statement = con.prepareStatement(sql);
+        statement.setString(1, maDoAnUong);
+        ResultSet rs = statement.executeQuery();
+        while (rs.next()) {
+            String tenDoAnUong = rs.getString("tenDoAnUong");
+            boolean loai = rs.getBoolean("loai");
+            double giaNhap = rs.getDouble("giaNhap");
+            double giaBan = rs.getDouble("giaBan");
+            boolean hoanTra = rs.getBoolean("hoanTra");
+            int soLuong = rs.getInt("soLuong");
+            LocalDate ngaySanXuat = rs.getDate("ngaySanXuat").toLocalDate();
+            LocalDate hanSuDung = rs.getDate("HanSuDung").toLocalDate();
+            String moTa = rs.getString("moTa");
+            TrangThaiSuDung trangThaiSuDung = TrangThaiSuDung.valueOf(rs.getString("trangThaiSuDung"));
 
-                if (trangThaiSuDungString.equals("1")) {
-                    trangThaiSuDung = TrangThaiSuDung.AVAILABLE;
-                } else if (trangThaiSuDungString.equals("2")) {
-                    trangThaiSuDung = TrangThaiSuDung.UNAVAILABLE;
-                } else {
-                    trangThaiSuDung = TrangThaiSuDung.EXPIRED;
-                }
-
-                DoAnUong doAnUong = new DoAnUong(maDoAnUong, tenDoAnUong, loai, giaNhap, giaBan, hoanTra, soLuong, ngaySanXuat, hanSuDung, moTa, trangThaiSuDung);
-                dsDoAnUong.add(doAnUong);
-            }
-        } finally {
-            if (statement != null) {
-                statement.close();
-            }
-            if (con != null) {
-                con.close();
-            }
-        }
+            DoAnUong doAnUong = new DoAnUong(maDoAnUong, tenDoAnUong, loai, giaNhap, giaBan, hoanTra, soLuong, ngaySanXuat, hanSuDung, moTa, trangThaiSuDung);
+            dsDoAnUong.add(doAnUong);
         return dsDoAnUong;
     }
 
@@ -202,7 +183,7 @@ public class DoAnUong_DAO {
         ConnectDB.getInstance();
         java.sql.Connection con = ConnectDB.getConnection();
         String sql = "UPDATE DoAnUong SET maDoAnUong = ?, tenDoAnUong = ?, loai=?, giaNhap=?,"
-                + " giaBan = ?, hoanTra = ?, soLuong=?, ngaySanXuat=?, "
+                + " giaBan = ?, hoanTra = ?, soLuong=?, ngaySanXuat=? ,"
                 + "hanSuDung = ?, moTa = ?, trangThaiSuDung = ? WHERE maDoAnUong=?";
 
         try (PreparedStatement statement = con.prepareStatement(sql)) {
@@ -216,7 +197,7 @@ public class DoAnUong_DAO {
             statement.setDate(8, java.sql.Date.valueOf(sp.getNgaySanXuat()));
             statement.setDate(9, java.sql.Date.valueOf(sp.getHanSuDung()));
             statement.setString(10, sp.getMoTa());
-            statement.setInt(11, sp.getTrangThaiSuDung().getTentrangThaiSuDung());
+            statement.setString(11, sp.getTrangThaiSuDung().name());
             statement.setString(12, sp.getMaDoAnUong());
 
             statement.executeUpdate();

@@ -95,61 +95,27 @@ public class Phong_DAO {
         java.sql.Connection con = ConnectDB.getConnection();
         PreparedStatement statement = null;
 
-        try {
-            String sql = "SELECT * FROM Phong WHERE maPhong = ?";
-            statement = con.prepareStatement(sql);
-            statement.setString(1, maPhong);
-            ResultSet rs = statement.executeQuery();
-            while (rs.next()) {
-                String tenPhong = rs.getString("tenPhong");
-                String loaiPhong = rs.getString("loaiPhong");
-                String trangThaiPhong = rs.getString("trangThaiPhong");
-                double dienTichPhong = rs.getDouble("dienTichPhong");
-                int soGiuong = rs.getInt("soGiuong");
-                boolean giuongPhu = rs.getBoolean("giuongPhu");
-                String view_ = rs.getString("view_");
-                boolean hutThuoc = rs.getBoolean("hutThuoc");
-                String hinhAnhPhong = rs.getString("hinhAnhPhong");
+         String sql = "SELECT * FROM Phong WHERE maPhong = ?";
+        statement = con.prepareStatement(sql);
+        statement.setString(1, maPhong);
+        ResultSet rs = statement.executeQuery();
+        while (rs.next()) {
+            String tenPhong = rs.getString("tenPhong");
+            String loaiPhong = rs.getString("loaiPhong");
+            String trangThaiPhong = rs.getString("trangThaiPhong");
+            double dienTichPhong = rs.getDouble("dienTichPhong");
+            int soGiuong = rs.getInt("soGiuong");
+            boolean giuongPhu = rs.getBoolean("giuongPhu");
+            String view_ = rs.getString("view_");
+            boolean hutThuoc = rs.getBoolean("hutThuoc");
+            String hinhAnhPhong = rs.getString("hinhAnhPhong");
 
-                // Assuming LoaiPhong and TrangThaiPhong are enums
-                LoaiPhong trangLoaiPhongSuDung;
-                String trangThaiLoaiPhongString = rs.getString("loaiPhong");
+            // Assuming LoaiPhong and TrangThaiPhong are enums
+            LoaiPhong loai = LoaiPhong.valueOf(loaiPhong);
+            TrangThaiPhong trangThai = TrangThaiPhong.valueOf(trangThaiPhong);
 
-                if (trangThaiLoaiPhongString.equals("1")) {
-                    trangLoaiPhongSuDung = LoaiPhong.BASIC;
-                } else if (trangThaiLoaiPhongString.equals("2")) {
-                    trangLoaiPhongSuDung = LoaiPhong.STANDARD;
-                } else if (trangThaiLoaiPhongString.equals("3")) {
-                    trangLoaiPhongSuDung = LoaiPhong.BUSINESS;
-                } else if (trangThaiLoaiPhongString.equals("4")) {
-                    trangLoaiPhongSuDung = LoaiPhong.VIP;
-                } else {
-                    trangLoaiPhongSuDung = LoaiPhong.DOUBLE;
-                }
-
-                TrangThaiPhong trangPhongSuDung = null;
-                String trangThaiPhongString = rs.getString("trangThaiPhong");
-
-                if (trangThaiPhongString.equals("1")) {
-                    trangPhongSuDung = TrangThaiPhong.BOOKED;
-                } else if (trangThaiPhongString.equals("2")) {
-                    trangPhongSuDung = TrangThaiPhong.OCCUPIED;
-                } else if (trangThaiPhongString.equals("3")) {
-                    trangPhongSuDung = TrangThaiPhong.AVAILABLE;
-                } else if (trangThaiPhongString.equals("4")) {
-                    trangPhongSuDung = TrangThaiPhong.UNAVAILABLE;
-                }
-
-                Phong phong = new Phong(maPhong, tenPhong, dienTichPhong, soGiuong, giuongPhu, view_, hutThuoc, hinhAnhPhong, trangLoaiPhongSuDung, trangPhongSuDung);
-                dsPhong.add(phong);
-            }
-        } finally {
-            if (statement != null) {
-                statement.close();
-            }
-            if (con != null) {
-                con.close();
-            }
+            Phong phong = new Phong(maPhong, tenPhong, dienTichPhong, soGiuong, giuongPhu, view_, hutThuoc, hinhAnhPhong, loai, trangThai);
+            dsPhong.add(phong);
         }
         return dsPhong;
     }
@@ -249,7 +215,7 @@ public class Phong_DAO {
         ConnectDB.getInstance();
         java.sql.Connection con = ConnectDB.getConnection();
         String sql = "UPDATE Phong SET maPhong = ?, tenPhong = ?, loaiPhong=?, trangThaiPhong=?,"
-                + " dienTichPhong = ?, soGiuong = ?, giuongPhu=?, view_=? "
+                + " dienTichPhong = ?, soGiuong = ?, giuongPhu=?, view_=?,"
                 + "hutThuoc = ?, hinhAnhPhong = ? WHERE maPhong=?";
         try (PreparedStatement statement = con.prepareStatement(sql)) {
             statement.setString(1, p.getMaPhong());

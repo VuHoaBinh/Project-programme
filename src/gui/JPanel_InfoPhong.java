@@ -38,12 +38,12 @@ public class JPanel_InfoPhong extends javax.swing.JPanel {
         if (phong.isGiuongPhu()) {
             rdCoGiuong.setSelected(true);
         } else {
-            rdCoGiuong.setSelected(false);
+            rdKhongGiuong.setSelected(true);
         }
         if (phong.isHutThuoc()) {
             rdCoHut.setSelected(true);
         } else {
-            rdKhongHut.setSelected(false);
+            rdKhongHut.setSelected(true);
         }
     }
 
