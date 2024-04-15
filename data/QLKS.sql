@@ -37,8 +37,6 @@ VALUES
 ('0305', 'P305', N'STANDARD', 'AVAILABLE ', 30.0, 2, 0, 'Gardeb view', 1, null),
 ('0401', 'P401', N'BUSINESS', 'OCCUPIED', 35.0, 2, 0, 'Garden view', 0, null),
 ('0402', 'P402', N'STANDARD', 'AVAILABLE', 30.0, 2, 1, 'Beach view', 1, null);
-
-
 CREATE TABLE KhachHang(
     maKhachHang VARCHAR(10) PRIMARY KEY,
     hoTenKhachHang NVARCHAR(30) NOT NULL,
@@ -49,24 +47,24 @@ CREATE TABLE KhachHang(
 );
 
 INSERT INTO KhachHang (maKhachHang, hoTenKhachHang, gioiTinh, CCCD, ngaySinh, trangThaiKhachHang)
-VALUES ('0123456789', N'Nguyễn Văn An', 1, '034290567890', '1990-05-15', 0),
-	   ('0349249240', N'Nguyễn Quốc Đạt', 1, '079203789012', '2003-04-19', 0),
-	   ('0745303329', N'Hà Thị Thu', 0, '079398292933', '1998-12-13', 0),
-	   ('0692493912', N'Trần Thanh Văn', 1, '034200789910', '2000-04-20', 0),
-	   ('0523923923', N'Huỳnh Hoàng Trinh', 0, '012397428922', '1997-05-02', 1),
-	   ('0789889112', N'Nguyễn Dũng', 1, '079202443267', '2002-07-08', 0),
-	   ('0332567242', N'Thân Thụy Thương', 0, '079391003241', '1991-05-13', 0),
-	   ('0824571334', N'Lâm Trường Quân', 1, '083290780744', '1990-11-01', 0),
-	   ('0755221354', N'Lâm Duy Luân', 1, '054287667535', '1987-12-22', 0),
+VALUES ('0123456789', N'Nguyễn Văn An', 1, '034290567890', '1990-05-15', 1),
+	   ('0349249242', N'Nguyễn Quốc Đạt', 1, '079203789012', '2003-04-19', 1),
+	   ('0745303329', N'Hà Thị Thu', 0, '079398292933', '1998-12-13', 1),
+	   ('0692493912', N'Trần Thanh Văn', 1, '034200789910', '2000-04-20', 1),
+	   ('0523923923', N'Huỳnh Hoàng Trinh', 0, '012397428922', '1997-05-02', 0),
+	   ('0789889112', N'Nguyễn Dũng', 1, '079202443267', '2002-07-08', 1),
+	   ('0332567242', N'Thân Thụy Thương', 0, '079391003241', '1991-05-13', 1),
+	   ('0824571334', N'Lâm Trường Quân', 1, '083290780744', '1990-11-01', 1),
+	   ('0755221354', N'Lâm Duy Luân', 1, '054287667535', '1987-12-22', 1),
 	   ('0934024006', N'Nguyễn Viết Xuân', 0, '034388667391', '1988-01-27', 0),
-	   ('0456620041', N'Phạm Vũ Quyên', 0, '079385777583', '1985-08-29', 1),
-	   ('0904126785', N'Dương Minh Huy', 1, '056295260539', '1995-09-04', 1),
-	   ('0456620040', N'Trần Ngọc Uyên Linh', 0, '079394543367', '1994-06-07', 0),
-	   ('0886424139', N'Vũ Thị Nương', 0, '079301769383', '2001-02-11', 0),
-	   ('0924566203', N'Trương Quỳnh Như', 0, '079303660481', '2003-11-23', 0),
-	   ('0772831339', N'Lê Thị Lan', 0, '032300432121', '2000-01-01', 0),
-	   ('0933818313', N'Trần Văn Minh', 1, '012295678902', '1995-03-05', 0),
-       ('0123849232', N'Phạm Thị Hoa', 0, '034302567801', '2002-07-12', 0);
+	   ('0456620041', N'Phạm Vũ Quyên', 0, '079385777583', '1985-08-29', 0),
+	   ('0904126785', N'Dương Minh Huy', 1, '056295260539', '1995-09-04', 0),
+	   ('0456630041', N'Trần Ngọc Uyên Linh', 0, '079394543367', '1994-06-07', 1),
+	   ('0886424139', N'Vũ Thị Nương', 0, '079301769383', '2001-02-11', 1),
+	   ('0924566203', N'Trương Quỳnh Như', 0, '079303660481', '2003-11-23', 1),
+	   ('0772831339', N'Lê Thị Lan', 0, '032300432121', '2000-01-01', 1),
+	   ('0933818313', N'Trần Văn Minh', 1, '012295678929', '1995-03-05', 1),
+       ('0123849232', N'Phạm Thị Hoa', 0, '034302567801', '2002-07-12', 1);
 
 CREATE TABLE NhanVien (
     maNhanVien VARCHAR(9) PRIMARY KEY,
@@ -112,8 +110,6 @@ VALUES ('NV2411001', '123'),
 	   ('NV2402004', '123'),
 	   ('NV2412011', '123'),
 	   ('NV2402005', '123');
-
-
 CREATE TABLE DoAnUong (
     maDoAnUong VARCHAR(12) PRIMARY KEY,
     tenDoAnUong NVARCHAR(50) NOT NULL,
@@ -190,16 +186,16 @@ VALUES ('MHD203002042024001', '0123456789', 'KM1504202401', 'NV2412002', '2024-0
 	   ('MHD193701042024003', '0933818313', 'KM1504202401', 'NV2402002', '2024-04-01', 0.1, 3800000.0, 3800000.0),
 	   ('MHD194501042024004', '0824571334', 'KM1504202401', 'NV2402002', '2024-04-01', 0.1, 1400000.0, 1400000.0),
 	   ('MHD150202042024002', '0772831339', 'KM1504202401', 'NV2411001', '2024-04-02', 0.1, 1800000.0, 1800000.0),
-	   ('MHD181302042024003', '0349249240', 'KM1504202401', 'NV2411001', '2024-04-02', 0.1, 2000000.0, 2000000.0),
+	   ('MHD181302042024003', '0349249242', 'KM1504202401', 'NV2411001', '2024-04-02', 0.1, 2000000.0, 2000000.0),
 	   ('MHD195623012024001', '0523923923', null, 'NV2412009', '2024-01-23', 0.1, 2100000.0, 2120000.0),
 	   ('MHD084301012024001', '0755221354', 'KM0101202401', 'NV2401001', '2024-01-01', 0.1, 2200000.0, 1500000.0),
 	   ('MHD100901012024002', '0934024006', 'KM0101202401', 'NV2401001', '2024-01-01', 0.1, 7200000.0, 7000000.0),
 	   ('MHD092514032024001', '0904126785', 'KM1103202401', 'NV2412010', '2024-03-14', 0.1, 144000000.0, 14000000.0),
 	   ('MHD100314032024002', '0886424139', 'KM1103202401', 'NV2412010', '2024-03-14', 0.1, 1500000.0, 1140000.0),
-	   ('MHD112014032024003', '0456620040', 'KM1103202401', 'NV2412010', '2024-03-14', 0.1, 1400000.0, 1040000.0),
+	   ('MHD112014032024003', '0456620041', 'KM1103202401', 'NV2412010', '2024-03-14', 0.1, 1400000.0, 1040000.0),
 	   ('MHD133123022024001', '0692493912', 'KM0102202301', 'NV2412004', '2024-02-23', 0.1, 5500000.0, 5500000.0),
 	   ('MHD120415032024001', '0123849232', 'KM1103202401', 'NV2412008', '2024-03-15', 0.1, 1500000.0, 1140000.0),
-	   ('MHD213302042024004', '0332567242', 'KM1504202401', 'NV2412002', '2024-04-02', 0.1, 2100000.0, 2100000.0);	
+	   ('MHD213302042024004', '0332567242', 'KM1504202401', 'NV2412002', '2024-04-02', 0.1, 2100000.0, 2100000.0);
 	   
 CREATE TABLE PhieuDatPhong (
     maPhieuDatPhong VARCHAR(19) PRIMARY KEY,
@@ -215,11 +211,11 @@ CREATE TABLE PhieuDatPhong (
 );
  
 INSERT INTO PhieuDatPhong (maPhieuDatPhong, khachHang, nhanVien, soLuongNguoi, ngayDatPhong, ngayNhanPhong, ngayTraPhong, tienPhong)
-VALUES ('MPDP073227032024001', '0123456789', 'NV2411001', 2, '2024-03-27', '2024-03-30', '2024-04-02', 18000000.0),
-	   ('MPDP061429032024001', '0924566203', 'NV2411001', 2, '2024-03-29', '2024-03-31', '2024-04-01', 9000000.0),
-	   ('MPDP202430122023001', '0934024006', 'NV2411001', 2, '2023-12-30', '2023-12-31', '2024-01-01', 7200000.0),
-	   ('MPDP195020022024001', '0692493912', 'NV2411001', 4, '2024-02-20', '2024-02-22', '2024-02-23', 1080000.0),
-	   ('MPDP183511032024001', '0904126785', 'NV2411001', 2, '2024-03-11', '2024-03-12', '2024-03-14', 14400000.0);
+VALUES ('MPDP073227032024001', '0123456789', 'NV2412002', 1, '2024-03-27', '2024-03-30', '2024-04-02', 18000000.0),
+	   ('MPDP061429032024001', '0924566203', 'NV2412003', 2, '2024-03-29', '2024-03-31', '2024-04-01', 9000000.0),
+	   ('MPDP202430122023001', '0934024006', 'NV2401001', 3, '2023-12-30', '2023-12-31', '2024-01-01', 7200000.0),
+	   ('MPDP195020022024001', '0692493912', 'NV2412004', 4, '2024-02-20', '2024-02-22', '2024-02-23', 1080000.0),
+	   ('MPDP183511032024001', '0904126785', 'NV2412010', 2, '2024-03-11', '2024-03-12', '2024-03-14', 14400000.0);
 
 CREATE TABLE ChiTietPhieuDatPhong (
     phieuDatPhong VARCHAR(19),
@@ -252,8 +248,34 @@ CREATE TABLE ChiTietHoaDon(
     FOREIGN KEY (doAnUong) REFERENCES DoAnUong(maDoAnUong),
     FOREIGN KEY (phong) REFERENCES Phong(maPhong)
 );
+<<<<<<< HEAD
 
+INSERT INTO ChiTietHoaDon (hoaDon, doAnUong, phong, soLuong, ngayNhanPhong, ngayTraPhong, soLuongNguoiO, soLuongDoUongTraVe, tongTienThuePhong, tongTienDichVu, tongThanhTien, phuPhi)
+VALUES ('MHD203022042024001', 'DV0104202401', '0102', 2, '2024-04-10', '2024-04-14', 2, 0, 600000.0, 50000.0, 650000.0, 20000.0);
+=======
+INSERT INTO NhanVien (maNhanVien, hoTenNhanVien, chucVu, gioiTinh, trangThaiLamViec, diaChi, soDienThoai, hinhAnh)
+VALUES ('NV001', N'Nguyễn Văn A', 1, 1, 1, N'Hà Nội', '0123456789', 'anh_nv1.jpg');
 
+INSERT INTO NhanVien (maNhanVien, hoTenNhanVien, chucVu, gioiTinh, trangThaiLamViec, diaChi, soDienThoai, hinhAnh)
+VALUES ('NV002', N'Trần Thị B', 0, 0, 1, N'Hồ Chí Minh', '0987654321', 'anh_nv2.jpg');
 
+INSERT INTO NhanVien (maNhanVien, hoTenNhanVien, chucVu, gioiTinh, trangThaiLamViec, diaChi, soDienThoai, hinhAnh)
+VALUES ('NV003', N'Lê Văn C', 0, 1, 0, N'Đà Nẵng', '0369852147', 'anh_nv3.jpg');
 
+-- Thêm 5 phòng ngẫu nhiên vào bảng Phong
+INSERT INTO Phong (maPhong, tenPhong, loaiPhong, trangThaiPhong, dienTichPhong, soGiuong, giuongPhu, view_, hutThuoc, hinhAnhPhong)
+VALUES ('P001', '101', 'Phòng Đơn', 'Trống', 25.5, 1, 0, 'City View', 0, 'phong101.jpg');
+
+INSERT INTO Phong (maPhong, tenPhong, loaiPhong, trangThaiPhong, dienTichPhong, soGiuong, giuongPhu, view_, hutThuoc, hinhAnhPhong)
+VALUES ('P002', '102', 'Phòng Đôi', 'Đã Đặt', 35.0, 1, 1, 'Ocean View', 1, 'phong102.jpg');
+
+INSERT INTO Phong (maPhong, tenPhong, loaiPhong, trangThaiPhong, dienTichPhong, soGiuong, giuongPhu, view_, hutThuoc, hinhAnhPhong)
+VALUES ('P003', '103', 'Phòng Suite', 'Trống', 45.5, 2, 1, 'Mountain View', 0, 'phong103.jpg');
+
+INSERT INTO Phong (maPhong, tenPhong, loaiPhong, trangThaiPhong, dienTichPhong, soGiuong, giuongPhu, view_, hutThuoc, hinhAnhPhong)
+VALUES ('P004', '104', 'Phòng Đôi', 'Đã Đặt', 35.0, 1, 1, 'City View', 1, 'phong104.jpg');
+
+INSERT INTO Phong (maPhong, tenPhong, loaiPhong, trangThaiPhong, dienTichPhong, soGiuong, giuongPhu, view_, hutThuoc, hinhAnhPhong)
+VALUES ('P005', '105', 'Phòng Đơn', 'Trống', 25.5, 1, 0, 'City View', 0, 'phong105.jpg');
+>>>>>>> origin/TrangChu_ver1
 
