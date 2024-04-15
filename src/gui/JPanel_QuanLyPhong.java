@@ -4,15 +4,9 @@
  */
 package gui;
 
-import dao.ChiTietHoaDon_DAO;
-import dao.HoaDon_DAO;
-import entity.ChiTietHoaDon;
-import entity.HoaDon;
-import java.awt.GridLayout;
-import java.time.LocalDate;
-import java.util.Date;
 import javax.swing.JFrame;
 import javax.swing.SwingUtilities;
+import java.awt.Color;
 import java.awt.Font;
 import com.formdev.flatlaf.FlatClientProperties;
 import com.formdev.flatlaf.extras.FlatSVGIcon;
@@ -38,7 +32,15 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.awt.geom.Ellipse2D;
+import java.awt.image.BufferedImage;
+import java.io.File;
 import java.io.IOException;
+import java.nio.file.FileSystems;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -46,12 +48,19 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
+import javax.swing.JFileChooser;
 import javax.swing.JLabel;
 import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JPopupMenu;
+import javax.swing.JTable;
 import javax.swing.SwingConstants;
+import javax.swing.border.Border;
+import javax.swing.border.EtchedBorder;
+import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -61,7 +70,6 @@ import javax.swing.table.DefaultTableModel;
 public class JPanel_QuanLyPhong extends javax.swing.JPanel implements ActionListener, MouseListener {
 
     private Phong_DAO p_dao;
-
     private final JPopupMenu roomPopupMenu;
     private boolean isRoomSelected = false;
     private NhanVien nhanVien;
@@ -69,39 +77,22 @@ public class JPanel_QuanLyPhong extends javax.swing.JPanel implements ActionList
     private HoaDon_DAO hd_dao;
     private ChiTietHoaDon_DAO cthd_dao;
     private ChiTietHoaDon cthd;
-    private NhanVien nv;
 
     /**
      * Creates new form JPanel_QuanLyNhanVien
      */
-
     public JPanel_QuanLyPhong(NhanVien nv) throws SQLException {
-         >>> >>> > origin / verGanCuoi
         try {
             ConnectDB.getInstance().connect();
         } catch (SQLException e) {
         }
-         << << << < HEAD
         nhanVien = nv;
-         == == ==
-                = nhanVien = nv;
-         >>> >>> > origin / verGanCuoi
         initComponents();
         loadData();
 
         // Tạo menu ngữ cảnh cho phòng
         roomPopupMenu = new JPopupMenu();
-         << << << < HEAD
-                << << << < HEAD
-
-        JMenuItem datPhong = new JMenuItem("Đặt phòng");
-
-        datPhong.addActionListener(this);
-
         JMenuItem mn_xemChiTiet = new JMenuItem("Xem thông tin phòng");
-         == == ==
-                = JMenuItem mn_xemChiTiet = new JMenuItem("Xem thông tin phòng");
-         >>> >>> > origin / verGanCuoi
         JMenuItem mn_ThuePhong = new JMenuItem("Thuê phòng cho khách");
         JMenuItem mn_loadThongTinThue = new JMenuItem("Xem chi tiết phòng");
         mn_xemChiTiet.addActionListener(this);
@@ -110,21 +101,6 @@ public class JPanel_QuanLyPhong extends javax.swing.JPanel implements ActionList
         roomPopupMenu.add(mn_xemChiTiet);
         roomPopupMenu.add(mn_ThuePhong);
         roomPopupMenu.add(mn_loadThongTinThue);
-         << << << < HEAD
-
-        roomPopupMenu.add(datPhong);
-         == == ==
-                =  >>> >>> > origin / verGanCuoi
-                == == ==
-                = JMenuItem viewDetailsItem = new JMenuItem("Xem chi tiết");
-        JMenuItem datPhong = new JMenuItem("Đặt phòng");
-
-        datPhong.addActionListener(this);
-        viewDetailsItem.addActionListener(this);
-
-        roomPopupMenu.add(viewDetailsItem);
-        roomPopupMenu.add(datPhong);
-         >>> >>> > origin / dat_ver1
     }
 
     public void loadData() throws SQLException {
@@ -137,7 +113,6 @@ public class JPanel_QuanLyPhong extends javax.swing.JPanel implements ActionList
             // Lấy danh sách các phòng từ cơ sở dữ liệu
             p_dao = new Phong_DAO();
             ArrayList<Phong> dsPhong = p_dao.getAllTablePhong(); // Lấy danh sách phòng của tầng 1
-            System.out.println("dsPhong" + dsPhong);
 
             for (Phong ph : dsPhong) {
                 if (Integer.parseInt(ph.getMaPhong().substring(0, 2)) == 1) {
@@ -161,6 +136,7 @@ public class JPanel_QuanLyPhong extends javax.swing.JPanel implements ActionList
                     pn_Tang5.add(roomPanel);
                 }
             }
+
             // Cập nhật lại hiển thị của pn_Tang1
             pn_Tang1.revalidate();
             pn_Tang1.repaint();
@@ -171,11 +147,9 @@ public class JPanel_QuanLyPhong extends javax.swing.JPanel implements ActionList
     }
 
     private JPanel createRoomPanel(Phong phong) {
-         << << << < HEAD
         JPanel roomPanel = new JPanel(new GridLayout(4, 1)); // Sử dụng GridLayout để chia panel thành 3 hàng
-         == == ==
-                = JPanel roomPanel = new JPanel(new GridLayout(4, 1)); // Sử dụng GridLayout để chia panel thành 3 hàng
-         >>> >>> > origin / verGanCuoi // Label chứa thông tin mã phòng
+
+        // Label chứa thông tin mã phòng
         JLabel lblMaPhong = new JLabel("Tên Phòng: " + phong.getTenPhong());
         lblMaPhong.setFont(new Font("Segoe UI", Font.BOLD, 18)); // Đặt font in đậm và kích thước là 18
         lblMaPhong.setHorizontalAlignment(SwingConstants.CENTER);
@@ -191,11 +165,7 @@ public class JPanel_QuanLyPhong extends javax.swing.JPanel implements ActionList
             lblTrangThai.setHorizontalAlignment(SwingConstants.CENTER);
         }
 
-         << << << < HEAD
-       // Thêm các label vào panel
- == == ==
-                = // Thêm các label vào panel
-                 >>> >>> > origin / verGanCuoi
+        // Thêm các label vào panel
         roomPanel.add(lblMaPhong);
         roomPanel.add(lblTrangThai);
 
@@ -491,6 +461,7 @@ public class JPanel_QuanLyPhong extends javax.swing.JPanel implements ActionList
     private javax.swing.JTextField txt_maCanTim;
     // End of variables declaration//GEN-END:variables
     private NhanVien_DAO nv_dao = new NhanVien_DAO();
+    private DefaultTableModel modelNhanVien;
     javax.swing.ButtonGroup gr_gt = new javax.swing.ButtonGroup();
     javax.swing.ButtonGroup gr_tt = new javax.swing.ButtonGroup();
     javax.swing.ButtonGroup gr_cv = new javax.swing.ButtonGroup();
@@ -502,16 +473,6 @@ public class JPanel_QuanLyPhong extends javax.swing.JPanel implements ActionList
         pn_Tang4.removeAll();
         pn_Tang5.removeAll();
 
-         << << << < HEAD
-                == == == =
-
-    private void removeAllRooms() {
-        pn_Tang1.removeAll();
-        pn_Tang2.removeAll();
-        pn_Tang3.removeAll();
-        pn_Tang4.removeAll();
-        pn_Tang5.removeAll();
-         >>> >>> > origin / verGanCuoi
         pn_Tang1.revalidate();
         pn_Tang1.repaint();
         pn_Tang2.revalidate();
@@ -534,23 +495,14 @@ public class JPanel_QuanLyPhong extends javax.swing.JPanel implements ActionList
             Logger.getLogger(JPanel_QuanLyPhong.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    <<<<<<< HEAD
-=======
 
->>>>>>> origin
-    /verGanCuoi
     @Override
-
     public void actionPerformed(ActionEvent e) {
         // Xử lý các sự kiện từ menu ngữ cảnh
         if (e.getActionCommand().equals("Xem thông tin phòng")) {
             // Lấy tên phòng từ JPanel chứa thông tin phòng
             JPanel roomPanelClicked = (JPanel) roomPopupMenu.getInvoker(); // JPanel chứa thông tin phòng
-             << << << < HEAD
             JLabel roomInfoLabel = (JLabel) roomPanelClicked.getComponent(0); // Component thứ 1 là JLabel chứa tên phòng
-             == == ==
-                    = JLabel roomInfoLabel = (JLabel) roomPanelClicked.getComponent(0); // Component thứ 1 là JLabel chứa tên phòng
-             >>> >>> > origin / verGanCuoi
             String tenPhong = roomInfoLabel.getText().substring(11); // Lấy tên phòng từ JLabel, bỏ đi "Tên Phòng: "
 
             // Tạo cửa sổ mới để hiển thị thông tin chi tiết về phòng
@@ -563,7 +515,6 @@ public class JPanel_QuanLyPhong extends javax.swing.JPanel implements ActionList
                 infoPhongFrame.pack();
                 infoPhongFrame.setLocationRelativeTo(null);
                 infoPhongFrame.setVisible(true);
-                refreshData();
 
                 refreshData();
 
@@ -573,7 +524,6 @@ public class JPanel_QuanLyPhong extends javax.swing.JPanel implements ActionList
                 Logger.getLogger(JPanel_QuanLyPhong.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
-         << << << < HEAD
 
         if (e.getActionCommand().equals("Thuê phòng cho khách")) {
             // Lấy tên phòng từ JPanel chứa thông tin phòng
@@ -593,129 +543,84 @@ public class JPanel_QuanLyPhong extends javax.swing.JPanel implements ActionList
                 thuePhongFrame.setLocationRelativeTo(null);
                 thuePhongFrame.setVisible(true);
                 refreshData();
-                 == == == =
-                if (e.getActionCommand().equals("Đặt phòng")) {
-                    JPanel roomPanelClicked = (JPanel) roomPopupMenu.getInvoker();
-                    JLabel roomInfoLabel = (JLabel) roomPanelClicked.getComponent(1); // Component thứ 2 là JLabel chứa tên phòng
-                    String tenPhong = roomInfoLabel.getText();
+            } catch (IOException ex) {
+                Logger.getLogger(JPanel_QuanLyPhong.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (SQLException ex) {
+                Logger.getLogger(JPanel_QuanLyPhong.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        if (e.getActionCommand().equals("Xem chi tiết phòng")) {
+            try {
+                // Lấy tên phòng từ JPanel chứa thông tin phòng
+                JPanel roomPanelClicked = (JPanel) roomPopupMenu.getInvoker(); // JPanel chứa thông tin phòng
+                JLabel roomInfoLabel = (JLabel) roomPanelClicked.getComponent(0); // Component thứ 1 là JLabel chứa tên phòng
+                String tenPhong = roomInfoLabel.getText().substring(11); // Lấy tên phòng từ JLabel, bỏ đi "Tên Phòng: "
+                Phong phong = p_dao.getPhongTheoTenPhong(tenPhong).getFirst();
+                cthd_dao = new ChiTietHoaDon_DAO();
 
-                    JPanel_DatPhong datPhongPanel;
-                    try {
-                        datPhongPanel = new JPanel_DatPhong(tenPhong);
-                        JFrame datPhongFrame = new JFrame("Đặt Phòng");
-                        datPhongFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-                        datPhongFrame.add(datPhongPanel);
-                        datPhongFrame.pack();
-                        datPhongFrame.setLocationRelativeTo(null);
-                        datPhongFrame.setVisible(true);
-                         >>> >>> > origin / dat_ver1
-                    } catch (IOException ex) {
-                        Logger.getLogger(JPanel_QuanLyPhong.class.getName()).log(Level.SEVERE, null, ex);
-                    } catch (SQLException ex) {
-                        Logger.getLogger(JPanel_QuanLyPhong.class.getName()).log(Level.SEVERE, null, ex);
-                    }
-                }
-                 << << << < HEAD
-                        << << << < HEAD
-                if (e.getActionCommand().equals("Xem chi tiết phòng")) {
-                     == == == =
-                    if (e.getActionCommand().equals("Xem chi tiết phòng")) {
-                         >>> >>> > origin / verGanCuoi
-                        try {
-                            // Lấy tên phòng từ JPanel chứa thông tin phòng
-                            JPanel roomPanelClicked = (JPanel) roomPopupMenu.getInvoker(); // JPanel chứa thông tin phòng
-                            JLabel roomInfoLabel = (JLabel) roomPanelClicked.getComponent(0); // Component thứ 1 là JLabel chứa tên phòng
-                            String tenPhong = roomInfoLabel.getText().substring(11); // Lấy tên phòng từ JLabel, bỏ đi "Tên Phòng: "
-                            Phong phong = p_dao.getPhongTheoTenPhong(tenPhong).getFirst();
-                            cthd_dao = new ChiTietHoaDon_DAO();
+                cthd = cthd_dao.getChiTietHoaDontheoPhong(phong.getMaPhong()).getFirst();
 
-                            cthd = cthd_dao.getChiTietHoaDontheoPhong(phong.getMaPhong()).getFirst();
+                System.out.println(cthd);
+                JPanel_loadThongTinThue thongTinThue;
 
-                            System.out.println(cthd);
-                            JPanel_loadThongTinThue thongTinThue;
+                thongTinThue = new JPanel_loadThongTinThue(tenPhong, nhanVien, cthd);
+                JFrame thongTinThueJFrame = new JFrame("Thông tin thuê phòng");
+                thongTinThueJFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+                thongTinThueJFrame.add(thongTinThue);
+                thongTinThueJFrame.pack();
+                thongTinThueJFrame.setExtendedState(JFrame.MAXIMIZED_BOTH);
+                thongTinThueJFrame.setLocationRelativeTo(null);
+                thongTinThueJFrame.setVisible(true);
+                refreshData();
 
-                            thongTinThue = new JPanel_loadThongTinThue(tenPhong, nhanVien, cthd);
-                            JFrame thongTinThueJFrame = new JFrame("Thông tin thuê phòng");
-                            thongTinThueJFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-                            thongTinThueJFrame.add(thongTinThue);
-                            thongTinThueJFrame.pack();
-                            thongTinThueJFrame.setExtendedState(JFrame.MAXIMIZED_BOTH);
-                            thongTinThueJFrame.setLocationRelativeTo(null);
-                            thongTinThueJFrame.setVisible(true);
-                            refreshData();
+            } catch (IOException ex) {
+                Logger.getLogger(JPanel_QuanLyPhong.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (SQLException ex) {
+                Logger.getLogger(JPanel_QuanLyPhong.class.getName()).log(Level.SEVERE, null, ex);
+            }
 
-                        } catch (IOException ex) {
-                            Logger.getLogger(JPanel_QuanLyPhong.class.getName()).log(Level.SEVERE, null, ex);
-                        } catch (SQLException ex) {
-                            Logger.getLogger(JPanel_QuanLyPhong.class.getName()).log(Level.SEVERE, null, ex);
-                        }
+        }
+    }
 
-                    }
-                     == == ==
-                            =  >>> >>> > origin / dat_ver1
-                }
-
-                @Override
-                public void mouseClicked
-                (MouseEvent e
-                
-                    ) {
+    @Override
+    public void mouseClicked(MouseEvent e) {
         JPanel roomPanelClicked = (JPanel) e.getSource();
 
-                    if (SwingUtilities.isRightMouseButton(e)) {
-                        // Nếu click chuột phải, hiển thị menu ngữ cảnh tại vị trí chuột
-                        roomPopupMenu.show(roomPanelClicked, e.getX(), e.getY());
-                    } else {
-                        if (!isRoomSelected) {
-                            // Xử lý khi click vào một phòng
-                            Component[] components = roomPanelClicked.getComponents();
-                            for (Component component : components) {
-                                if (component instanceof JLabel) {
-                                    JLabel roomInfoLabel = (JLabel) component;
-                                    isRoomSelected = true; // Đánh dấu là đã chọn phòng
-                                    break;
-                                }
-                            }
-                        }
+        if (SwingUtilities.isRightMouseButton(e)) {
+            // Nếu click chuột phải, hiển thị menu ngữ cảnh tại vị trí chuột
+            roomPopupMenu.show(roomPanelClicked, e.getX(), e.getY());
+        } else {
+            if (!isRoomSelected) {
+                // Xử lý khi click vào một phòng
+                Component[] components = roomPanelClicked.getComponents();
+                for (Component component : components) {
+                    if (component instanceof JLabel) {
+                        JLabel roomInfoLabel = (JLabel) component;
+                        isRoomSelected = true; // Đánh dấu là đã chọn phòng
+                        break;
                     }
                 }
+            }
+        }
+    }
 
-                @Override
-                public void mousePressed
-                (MouseEvent e
-                
-                
-                ) {
+    @Override
+    public void mousePressed(MouseEvent e) {
 
     }
 
     @Override
-                public void mouseReleased
-                (MouseEvent e
-                
-                
-                ) {
+    public void mouseReleased(MouseEvent e) {
 
     }
 
     @Override
-                public void mouseEntered
-                (MouseEvent e
-                
-                
-                ) {
+    public void mouseEntered(MouseEvent e) {
 
     }
 
     @Override
-                public void mouseExited
-                (MouseEvent e
-                
-                
-            
-        
-    
-) {
+    public void mouseExited(MouseEvent e) {
 
     }
 }

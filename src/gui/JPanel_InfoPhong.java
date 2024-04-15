@@ -38,16 +38,12 @@ public class JPanel_InfoPhong extends javax.swing.JPanel {
         if (phong.isGiuongPhu()) {
             rdCoGiuong.setSelected(true);
         } else {
-            rdKhongGiuong.setSelected(true);
+            rdCoGiuong.setSelected(false);
         }
         if (phong.isHutThuoc()) {
             rdCoHut.setSelected(true);
-<<<<<<< HEAD
         } else {
-=======
-        } else  {
->>>>>>> origin/verGanCuoi
-            rdKhongHut.setSelected(true);
+            rdKhongHut.setSelected(false);
         }
     }
 
@@ -193,7 +189,7 @@ public class JPanel_InfoPhong extends javax.swing.JPanel {
                                 .addComponent(rdCoGiuong)
                                 .addGap(18, 18, 18)
                                 .addComponent(rdKhongGiuong)
-                                .addGap(0, 114, Short.MAX_VALUE))
+                                .addGap(0, 115, Short.MAX_VALUE))
                             .addComponent(txtDienTich)
                             .addComponent(txtTen))))
                 .addGap(18, 18, 18)
@@ -203,12 +199,12 @@ public class JPanel_InfoPhong extends javax.swing.JPanel {
                         .addGap(28, 28, 28)
                         .addComponent(txtTrangThai))
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
+                        .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(34, 34, 34)
                         .addComponent(rdCoHut)
                         .addGap(18, 18, 18)
                         .addComponent(rdKhongHut)
-                        .addGap(0, 170, Short.MAX_VALUE))
+                        .addGap(0, 172, Short.MAX_VALUE))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)

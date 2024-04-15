@@ -304,7 +304,7 @@ public class JPanel_QuanLyHoaDon extends javax.swing.JPanel implements ActionLis
             model.setRowCount(0);
 
             hd_DAO = new HoaDon_DAO();
-            ArrayList<HoaDon> listHD = hd_DAO.getPhongTheoMaHoaDon(timkiem);
+            ArrayList<HoaDon> listHD = hd_DAO.getHoaDonTheoMaHoaDon(timkiem);
 
             if (model.getColumnCount() == 0) {
                 String[] arr = {"Mã hóa đơn", "Khách hàng", "Khuyến mãi", "Nhân viên", "Ngày lập hóa đơn", "Thuế", "Tổng số tiền ban đầu", "Tổng số tiền phải trả"};

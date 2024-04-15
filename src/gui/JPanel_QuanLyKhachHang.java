@@ -4,8 +4,6 @@
  */
 package gui;
 
-import javax.swing.JFrame;
-import javax.swing.SwingUtilities;
 import java.awt.Color;
 import java.awt.Font;
 import com.formdev.flatlaf.FlatClientProperties;
@@ -17,32 +15,16 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
-import java.io.File;
 import java.io.IOException;
-import java.nio.file.FileSystems;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.nio.file.StandardCopyOption;
 import java.sql.SQLException;
 import java.time.LocalDate;
-import static java.time.LocalDate.now;
-import static java.time.LocalDateTime.now;
-import static java.time.Year.now;
 import java.time.ZoneId;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.BorderFactory;
-import javax.swing.ImageIcon;
-import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.SwingConstants;
-import javax.swing.border.Border;
-import javax.swing.border.EtchedBorder;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 
@@ -322,11 +304,7 @@ public class JPanel_QuanLyKhachHang extends javax.swing.JPanel implements Action
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-<<<<<<< HEAD
                 .addContainerGap(30, Short.MAX_VALUE)
-=======
-                .addContainerGap(33, Short.MAX_VALUE)
->>>>>>> origin/dat_ver1
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btn_Xoa, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnThem, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -369,11 +347,7 @@ public class JPanel_QuanLyKhachHang extends javax.swing.JPanel implements Action
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
                 .addComponent(txt_maCanTim, javax.swing.GroupLayout.PREFERRED_SIZE, 374, javax.swing.GroupLayout.PREFERRED_SIZE)
-<<<<<<< HEAD
                 .addGap(0, 12, Short.MAX_VALUE))
-=======
-                .addGap(0, 0, Short.MAX_VALUE))
->>>>>>> origin/dat_ver1
         );
         jPanel6Layout.setVerticalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -429,11 +403,7 @@ public class JPanel_QuanLyKhachHang extends javax.swing.JPanel implements Action
                 .addGap(18, 18, 18)
                 .addComponent(cb_tt, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(175, 175, 175)
-<<<<<<< HEAD
                 .addComponent(btn_Loc, javax.swing.GroupLayout.DEFAULT_SIZE, 214, Short.MAX_VALUE)
-=======
-                .addComponent(btn_Loc, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
->>>>>>> origin/dat_ver1
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btn_refresh, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
@@ -694,7 +664,6 @@ public class JPanel_QuanLyKhachHang extends javax.swing.JPanel implements Action
     }
 
     public boolean kiemTraCuPhap() {
-<<<<<<< HEAD
         if (txt_Ten.getText().isEmpty() || !txt_Ten.getText().matches("^([\\p{L}\\s']{2,})+([\\p{L}\\s']{2,})$")) {
             JOptionPane.showMessageDialog(this, "Nhập tên sai cú pháp");
             return false;
@@ -709,38 +678,6 @@ public class JPanel_QuanLyKhachHang extends javax.swing.JPanel implements Action
 //			JOptionPane.showMessageDialog(this, "Tuổi phải trên 18");
 //			return false;
 //		}
-=======
-        LocalDate now = LocalDate.now();
-        LocalDate ngaySinh = convertToLocalDate(btn_ngaySinh.getDate());
-        String sdt = txt_MaKH.getText().trim();
-        if (txt_Ten.getText().isEmpty() || !txt_Ten.getText().matches("^([\\p{L}\\s']{2,})+([\\p{L}\\s']{2,})$")) {
-            JOptionPane.showMessageDialog(this, "\"Tên phải viết hoa với mỗi kí tự đầu tiên và không chứa số hoặc kí tự đặc biệt\"");
-            return false;
-        }
-        if(txt_CCCD.getText().trim().isEmpty()){
-            JOptionPane.showMessageDialog(this, "CCCD Không được để trống");
-        } else if(!txt_CCCD.getText().trim().matches("^\\d{12}$")){
-            JOptionPane.showMessageDialog(this, "CCCD chỉ có 12 kí tự số");
-			txt_CCCD.requestFocus();
-			return false;
-        }
-        if(btn_ngaySinh.getDateFormatString().isEmpty()){
-            JOptionPane.showMessageDialog(this, "Không được để ngày sinh trống");
-            return false;
-        } else if (now.getYear() - ngaySinh.getYear() <= 17){
-            JOptionPane.showMessageDialog(this, "Tuổi phải trên 18");
-            return false;
-        }
-        if (sdt.isEmpty()) {
-            JOptionPane.showMessageDialog(this, "Không được để số điện thoại trống");
-            txt_MaKH.requestFocus();
-            return false;
-        } else if (!sdt.matches("^0\\d{9}$")) {
-            JOptionPane.showMessageDialog(this, "Số điện thoại chỉ có 10 kí tự số và bắt đầu bằng số 0");
-            txt_MaKH.requestFocus();
-            return false;
-        }
->>>>>>> origin/dat_ver1
         return true;
     }
 
