@@ -81,7 +81,11 @@
                                       <Component id="rdCoGiuong" min="-2" max="-2" attributes="0"/>
                                       <EmptySpace type="separate" max="-2" attributes="0"/>
                                       <Component id="rdKhongGiuong" min="-2" max="-2" attributes="0"/>
+<<<<<<< HEAD
+                                       <EmptySpace min="0" pref="114" max="32767" attributes="0"/>
+=======
                                       <EmptySpace min="0" pref="114" max="32767" attributes="0"/>
+>>>>>>> origin/dat_ver1
                                   </Group>
                                   <Component id="txtDienTich" max="32767" attributes="0"/>
                                   <Component id="txtTen" max="32767" attributes="0"/>
@@ -96,8 +100,14 @@
                               <Component id="txtTrangThai" max="32767" attributes="0"/>
                           </Group>
                           <Group type="102" attributes="0">
+<<<<<<< HEAD
+                             <Component id="jLabel7" min="-2" pref="74" max="-2" attributes="0"/>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
+
+=======
                               <Component id="jLabel7" min="-2" pref="74" max="-2" attributes="0"/>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
+>>>>>>> origin/dat_ver1
                               <Component id="rdCoHut" min="-2" max="-2" attributes="0"/>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
                               <Component id="rdKhongHut" min="-2" max="-2" attributes="0"/>
@@ -108,7 +118,8 @@
                                   <Component id="jLabel5" min="-2" pref="58" max="-2" attributes="0"/>
                                   <Component id="jLabel3" min="-2" pref="58" max="-2" attributes="0"/>
                               </Group>
-                              <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
+                              
+
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Component id="txtView" max="32767" attributes="0"/>
                                   <Component id="txtSoGiuong" max="32767" attributes="0"/>

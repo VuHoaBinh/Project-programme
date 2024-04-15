@@ -11,13 +11,10 @@ import com.formdev.flatlaf.extras.FlatSVGIcon;
 import java.awt.event.ActionListener;
 import java.sql.SQLException;
 import java.awt.event.ActionEvent;
-<<<<<<< HEAD
-import java.time.LocalDate;
-=======
+
 import java.awt.event.KeyEvent;
 import java.time.LocalDate;
 import javax.swing.InputMap;
->>>>>>> origin/verGanCuoi
 
 /**
  *
@@ -31,15 +28,11 @@ public class JFrame_TrangChu extends javax.swing.JFrame implements ActionListene
     private TrangChu trangChu;
     private JPanel_QuanLyNhanVien qlnv;
     private final JPanel_QuanLyPhong qlp;
-<<<<<<< HEAD
-    private final JPanel_QuanLyDoAnUong qlsp;
-    private JPanel_QuanLyKhachHang qlkh;
-    private JPanel_QuanLyKhuyenMai qlkm;
-    private JPanel_QuanLyHoaDon qlhd;
-=======
+
     private JPanel_QuanLyKhachHang qlkh;
     private JPanel_DatPhong datPhong;
->>>>>>> origin/dat_ver1
+    private final JPanel_QuanLyHoaDon qlhd;
+    private final JPanel_QuanLyHoaDon qlhd;
 
     public JFrame_TrangChu(NhanVien nv) throws SQLException {
         initComponents();
@@ -52,16 +45,12 @@ public class JFrame_TrangChu extends javax.swing.JFrame implements ActionListene
             lblChucVu.setText("Lễ Tân");
         }
         qlnv = new JPanel_QuanLyNhanVien();
-<<<<<<< HEAD
         qlp = new JPanel_QuanLyPhong(nv);
-<<<<<<< HEAD
         qlsp = new JPanel_QuanLyDoAnUong();
         qlkh = new JPanel_QuanLyKhachHang();
         qlkm = new JPanel_QuanLyKhuyenMai();
         qlhd = new JPanel_QuanLyHoaDon();
 
-=======
->>>>>>> origin/verGanCuoi
         CardLayout cardLayout = (CardLayout) MainContent.getLayout();
         MainContent.add(qlnv, "qlnv");
         MainContent.add(qlp, "qlp");
@@ -70,22 +59,11 @@ public class JFrame_TrangChu extends javax.swing.JFrame implements ActionListene
         MainContent.add(qlkm, "qlkm");
         MainContent.add(qlhd, "qlhd");
 
-=======
-        qlp = new JPanel_QuanLyPhong();
-        qlkh = new JPanel_QuanLyKhachHang();
-//        datPhong = new JPanel_DatPhong();
-        
-        CardLayout cardLayout = (CardLayout) MainContent.getLayout();
-        MainContent.add(qlnv, "qlnv");
-        MainContent.add(qlp, "qlp");
-        MainContent.add(qlkh, "qlkh");
-//        MainContent.add(datPhong,"datPhong");
->>>>>>> origin/dat_ver1
         FlatIntelliJLaf.registerCustomDefaultsSource("style");
         FlatIntelliJLaf.setup();
     }
 
-<<<<<<< HEAD
+    <<<<<<< HEAD
     private void loadQuanLyNhanVien() {
         MainContent.removeAll();
         MainContent.add(qlnv, "qlnv");
@@ -128,7 +106,7 @@ public class JFrame_TrangChu extends javax.swing.JFrame implements ActionListene
         MainContent.repaint();
     }
 
-=======
+    =======
 //    private void loadQuanLyNhanVien() {
 //        MainContent.removeAll();
 //        MainContent.add(qlnv, "qlnv");
@@ -141,7 +119,8 @@ public class JFrame_TrangChu extends javax.swing.JFrame implements ActionListene
 //        MainContent.revalidate();
 //        MainContent.repaint();
 //    }
->>>>>>> origin/dat_ver1
+>>>>>>> origin
+    /dat_ver1
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -707,58 +686,59 @@ public class JFrame_TrangChu extends javax.swing.JFrame implements ActionListene
         // TODO add your handling code here:
     }//GEN-LAST:event_btn_quanLyPhongActionPerformed
 
-<<<<<<< HEAD
+    <<<<<<< HEAD
     private void btn_thongKeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_thongKeActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btn_thongKeActionPerformed
 
-=======
->>>>>>> origin/dat_ver1
+    =======
+>>>>>>> origin
+    /dat_ver1
     private void btn_datPhongActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_datPhongActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btn_datPhongActionPerformed
 
-<<<<<<< HEAD
+    <<<<<<< HEAD
     private void btn_hoaDonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_hoaDonActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btn_hoaDonActionPerformed
 
-=======
->>>>>>> origin/dat_ver1
-    /**
-     * @param args the command line arguments
-     */
-//    public static void main(String args[]) {
-//        /* Set the Nimbus look and feel */
-//        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-//        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-//         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-//         */
-//        try {
-//            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-//                if ("Nimbus".equals(info.getName())) {
-//                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-//                    break;
-//                }
-//            }
-//        } catch (ClassNotFoundException ex) {
-//            java.util.logging.Logger.getLogger(JFrame_TrangChu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-//        } catch (InstantiationException ex) {
-//            java.util.logging.Logger.getLogger(JFrame_TrangChu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-//        } catch (IllegalAccessException ex) {
-//            java.util.logging.Logger.getLogger(JFrame_TrangChu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-//        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-//            java.util.logging.Logger.getLogger(JFrame_TrangChu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-//        }
-//        //</editor-fold>
-//
-//        /* Create and display the form */
-//        java.awt.EventQueue.invokeLater(new Runnable() {
-//            public void run() {
-//                new JFrame_TrangChu(new NhanVien()).setVisible(true);
-//            }
-//        });
-//    }
+    =======
+>>>>>>> origin
+    /dat_ver1 /**
+             * @param args the command line arguments
+             */
+            //    public static void main(String args[]) {
+            //        /* Set the Nimbus look and feel */
+            //        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+            //        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+            //         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+            //         */
+            //        try {
+            //            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+            //                if ("Nimbus".equals(info.getName())) {
+            //                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+            //                    break;
+            //                }
+            //            }
+            //        } catch (ClassNotFoundException ex) {
+            //            java.util.logging.Logger.getLogger(JFrame_TrangChu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            //        } catch (InstantiationException ex) {
+            //            java.util.logging.Logger.getLogger(JFrame_TrangChu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            //        } catch (IllegalAccessException ex) {
+            //            java.util.logging.Logger.getLogger(JFrame_TrangChu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            //        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+            //            java.util.logging.Logger.getLogger(JFrame_TrangChu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            //        }
+            //        //</editor-fold>
+            //
+            //        /* Create and display the form */
+            //        java.awt.EventQueue.invokeLater(new Runnable() {
+            //            public void run() {
+            //                new JFrame_TrangChu(new NhanVien()).setVisible(true);
+            //            }
+            //        });
+            //    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel Content10;
@@ -806,10 +786,10 @@ public class JFrame_TrangChu extends javax.swing.JFrame implements ActionListene
         btn_quanLyNhanVien.addActionListener(this);
         btn_quanLyPhong.addActionListener(this);
         btn_quanLyKhachHang.addActionListener(this);
-<<<<<<< HEAD
-=======
-        btn_datPhong.addActionListener(this);
->>>>>>> origin/dat_ver1
+         << << << < HEAD
+                == == ==
+                = btn_datPhong.addActionListener(this);
+         >>> >>> > origin / dat_ver1
         btn_dangXuat.addActionListener(this);
         btn_quanLyDoAnUong.addActionListener(this);
         btn_khuyenMai.addActionListener(this);
@@ -836,7 +816,7 @@ public class JFrame_TrangChu extends javax.swing.JFrame implements ActionListene
             MainContent.revalidate();
             MainContent.repaint();
         }
-<<<<<<< HEAD
+         << << << < HEAD
         if (e.getSource() == btn_quanLyKhachHang) {
             MainContent.removeAll();
             MainContent.add(qlkh, "qlkh");
@@ -865,21 +845,20 @@ public class JFrame_TrangChu extends javax.swing.JFrame implements ActionListene
             MainContent.repaint();
         }
 
-=======
-        if(e.getSource() == btn_quanLyKhachHang){
+         == == == =
+        if (e.getSource() == btn_quanLyKhachHang) {
             MainContent.removeAll();
             MainContent.add(qlkh);
             MainContent.revalidate();
             MainContent.repaint();
         }
-        if(e.getSource() == btn_datPhong){
+        if (e.getSource() == btn_datPhong) {
             MainContent.removeAll();
             MainContent.add(datPhong);
             MainContent.revalidate();
             MainContent.repaint();
         }
-        
->>>>>>> origin/dat_ver1
+         >>> >>> > origin / dat_ver1
         if (e.getSource() == btn_dangXuat) {
 
         }

@@ -3,10 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package dao;
-<<<<<<< HEAD
-=======
 
->>>>>>> origin/verGanCuoi
 import com.itextpdf.text.log.Logger;
 import connectDB.ConnectDB;
 import entity.HoaDon;
@@ -21,7 +18,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.lang.System.Logger.Level;
-
 
 /**
  *
@@ -99,24 +95,18 @@ public class HoaDon_DAO {
 
             HoaDon hoaDon = new HoaDon(maHoaDon, khachHang, khuyenMai, nhanVien, ngayLapHoaDon, thue, tongThanhTienBanDau, tongThanhTienPhaiTra);
             dsHoaDon.add(hoaDon);
-<<<<<<< HEAD
-=======
+
         }
->>>>>>> origin/verGanCuoi
+
         return dsHoaDon;
     }
 
     public boolean createHoaDon(HoaDon hd) throws SQLException {
-         ConnectDB.getInstance();
+        ConnectDB.getInstance();
         java.sql.Connection con = ConnectDB.getConnection();
         PreparedStatement statement = null;
         int n = 0;
-
-<<<<<<< HEAD
-         statement = con.prepareStatement("INSERT INTO HoaDon VALUES (?,?,?,?,?,?,?,?)");
-=======
         statement = con.prepareStatement("INSERT INTO HoaDon VALUES (?,?,?,?,?,?,?,?)");
->>>>>>> origin/verGanCuoi
         statement.setString(1, hd.getMaHoaDon());
         statement.setString(2, hd.getKhachHang().getMaKhachHang());
         statement.setString(3, hd.getKhuyenMai().getMaKhuyenMai());
@@ -125,10 +115,6 @@ public class HoaDon_DAO {
         statement.setDouble(6, hd.getThue());
         statement.setDouble(7, hd.getTongThanhTienBanDau());
         statement.setDouble(8, hd.getTongThanhTienPhaiTra());
-<<<<<<< HEAD
-
-        n = statement.executeUpdate();
-=======
 
         n = statement.executeUpdate();
         return n > 0;
@@ -155,7 +141,6 @@ public class HoaDon_DAO {
         } catch (SQLException e) {
             e.printStackTrace();
         }
->>>>>>> origin/verGanCuoi
         return n > 0;
     }
 
@@ -200,12 +185,8 @@ public class HoaDon_DAO {
             }
         }
     }
-<<<<<<< HEAD
-public int demSoLuongHoaDonTheoMaMau(String time) {
-=======
 
     public int demSoLuongHoaDonTheoMaMau(String time) {
->>>>>>> origin/verGanCuoi
         int soLuong = 0;
         ConnectDB.getInstance();
         java.sql.Connection con = ConnectDB.getConnection();

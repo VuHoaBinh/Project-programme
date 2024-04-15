@@ -95,11 +95,8 @@ public class Phong_DAO {
         java.sql.Connection con = ConnectDB.getConnection();
         PreparedStatement statement = null;
 
-<<<<<<< HEAD
-         String sql = "SELECT * FROM Phong WHERE maPhong = ?";
-=======
         String sql = "SELECT * FROM Phong WHERE maPhong = ?";
->>>>>>> origin/verGanCuoi
+
         statement = con.prepareStatement(sql);
         statement.setString(1, maPhong);
         ResultSet rs = statement.executeQuery();
@@ -148,32 +145,32 @@ public class Phong_DAO {
 
             // Assuming LoaiPhong and TrangThaiPhong are enums
             LoaiPhong trangLoaiPhongSuDung;
-                String trangThaiLoaiPhongString = rs.getString("loaiPhong");
+            String trangThaiLoaiPhongString = rs.getString("loaiPhong");
 
-                if (trangThaiLoaiPhongString.equals("1")) {
-                    trangLoaiPhongSuDung = LoaiPhong.BASIC;
-                } else if (trangThaiLoaiPhongString.equals("2")) {
-                    trangLoaiPhongSuDung = LoaiPhong.STANDARD;
-                } else if (trangThaiLoaiPhongString.equals("3")) {
-                    trangLoaiPhongSuDung = LoaiPhong.BUSINESS;
-                } else if (trangThaiLoaiPhongString.equals("4")) {
-                    trangLoaiPhongSuDung = LoaiPhong.VIP;
-                } else {
-                    trangLoaiPhongSuDung = LoaiPhong.DOUBLE;
-                }
+            if (trangThaiLoaiPhongString.equals("1")) {
+                trangLoaiPhongSuDung = LoaiPhong.BASIC;
+            } else if (trangThaiLoaiPhongString.equals("2")) {
+                trangLoaiPhongSuDung = LoaiPhong.STANDARD;
+            } else if (trangThaiLoaiPhongString.equals("3")) {
+                trangLoaiPhongSuDung = LoaiPhong.BUSINESS;
+            } else if (trangThaiLoaiPhongString.equals("4")) {
+                trangLoaiPhongSuDung = LoaiPhong.VIP;
+            } else {
+                trangLoaiPhongSuDung = LoaiPhong.DOUBLE;
+            }
 
-                TrangThaiPhong trangPhongSuDung = null;
-                String trangThaiPhongString = rs.getString("trangThaiPhong");
+            TrangThaiPhong trangPhongSuDung = null;
+            String trangThaiPhongString = rs.getString("trangThaiPhong");
 
-                if (trangThaiPhongString.equals("1")) {
-                    trangPhongSuDung = TrangThaiPhong.BOOKED;
-                } else if (trangThaiPhongString.equals("2")) {
-                    trangPhongSuDung = TrangThaiPhong.OCCUPIED;
-                } else if (trangThaiPhongString.equals("3")) {
-                    trangPhongSuDung = TrangThaiPhong.AVAILABLE;
-                } else if (trangThaiPhongString.equals("4")) {
-                    trangPhongSuDung = TrangThaiPhong.UNAVAILABLE;
-                }
+            if (trangThaiPhongString.equals("1")) {
+                trangPhongSuDung = TrangThaiPhong.BOOKED;
+            } else if (trangThaiPhongString.equals("2")) {
+                trangPhongSuDung = TrangThaiPhong.OCCUPIED;
+            } else if (trangThaiPhongString.equals("3")) {
+                trangPhongSuDung = TrangThaiPhong.AVAILABLE;
+            } else if (trangThaiPhongString.equals("4")) {
+                trangPhongSuDung = TrangThaiPhong.UNAVAILABLE;
+            }
 
             Phong phong = new Phong(maPhong, tenPhong, dienTichPhong, soGiuong, giuongPhu, view_, hutThuoc, hinhAnhPhong, trangLoaiPhongSuDung, trangPhongSuDung);
             dsPhong.add(phong);
@@ -239,12 +236,8 @@ public class Phong_DAO {
             e.printStackTrace();
         }
     }
-<<<<<<< HEAD
 
     public boolean capNhatTrangThaiPhong(String maPhong, String trangThai) {
-=======
-    public boolean capNhatTrangThaiPhong(String maPhong, String trangThai){
->>>>>>> origin/dat_ver1
         ConnectDB.getInstance();
         java.sql.Connection con = ConnectDB.getConnection();
         PreparedStatement stmt = null;
@@ -254,17 +247,11 @@ public class Phong_DAO {
             stmt.setString(1, trangThai);
             stmt.setString(2, maPhong);
             n += stmt.executeUpdate();
-<<<<<<< HEAD
 
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
-=======
-            
-        } catch (SQLException e) {
-            e.printStackTrace();
-        } finally{
->>>>>>> origin/dat_ver1
+
             try {
                 stmt.close();
             } catch (SQLException e) {
@@ -273,10 +260,7 @@ public class Phong_DAO {
         }
         return n > 0;
     }
-<<<<<<< HEAD
 
-=======
->>>>>>> origin/dat_ver1
     public void deletePhong(Phong p) {
         ConnectDB.getInstance();
         java.sql.Connection con = ConnectDB.getConnection();

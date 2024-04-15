@@ -21,13 +21,9 @@ import java.time.LocalDate;
  * @author ASUS
  */
 public class ChiTietHoaDon_DAO {
-<<<<<<< HEAD
-	private Phong_DAO p_dao;
-=======
 
     private Phong_DAO p_dao;
 
->>>>>>> origin/verGanCuoi
     /**
      *
      * @param getAllTablePhong
@@ -58,11 +54,7 @@ public class ChiTietHoaDon_DAO {
 
             ChiTietHoaDon chiTietHoaDon = new ChiTietHoaDon(
                     new HoaDon(maHoaDon),
-<<<<<<< HEAD
-                    new DoAnUong(maDoAnUong), 
-=======
                     new DoAnUong(maDoAnUong),
->>>>>>> origin/verGanCuoi
                     soLuong,
                     new Phong(maPhong),
                     ngayNhanPhong,
@@ -80,11 +72,7 @@ public class ChiTietHoaDon_DAO {
         return dsChiTietHoaDon;
     }
 
-<<<<<<< HEAD
-public ArrayList<ChiTietHoaDon> getChiTietHoaDontheoPhong(String maPhong) throws java.sql.SQLException, IOException {
-=======
     public ArrayList<ChiTietHoaDon> getChiTietHoaDontheoPhong(String maPhong) throws java.sql.SQLException, IOException {
->>>>>>> origin/verGanCuoi
         ArrayList<ChiTietHoaDon> dsChiTietHoaDon = new ArrayList<>();
 
         ConnectDB.getInstance();
@@ -282,8 +270,4 @@ public ArrayList<ChiTietHoaDon> getChiTietHoaDontheoPhong(String maPhong) throws
 
         return n > 0;
     }
-<<<<<<< HEAD
-
-=======
->>>>>>> origin/verGanCuoi
 }

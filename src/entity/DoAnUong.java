@@ -8,6 +8,7 @@ import java.util.Objects;
  * @author M S I
  */
 public class DoAnUong {
+
     private String maDoAnUong;
     private String tenDoAnUong;
     private boolean loai;
@@ -84,13 +85,6 @@ public class DoAnUong {
     public void setTrangThaiSuDung(TrangThaiSuDung trangThaiSuDung) {
         this.trangThaiSuDung = trangThaiSuDung;
     }
-    
-<<<<<<< HEAD
-    public void setGiaBan(double giaBan) {
-        this.giaBan = giaBan;
-    }
-=======
->>>>>>> origin/verGanCuoi
 
     public String getMaDoAnUong() {
         return maDoAnUong;
@@ -159,5 +153,5 @@ public class DoAnUong {
         final DoAnUong other = (DoAnUong) obj;
         return Objects.equals(this.maDoAnUong, other.maDoAnUong);
     }
-    
+
 }

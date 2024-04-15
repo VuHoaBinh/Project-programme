@@ -89,33 +89,30 @@ public class ChiTietPhieuDatPhong_DAO {
         }
         return dsChiTietPhieuDatPhong;
     }
-<<<<<<< HEAD
-   public boolean create(ChiTietPhieuDatPhong ctpdp) {
-=======
+
     public boolean create(ChiTietPhieuDatPhong ctpdp) {
->>>>>>> origin/dat_ver1
-		ConnectDB.getInstance();
-		java.sql.Connection con = ConnectDB.getConnection();
-		PreparedStatement stmt = null;
-		int n = 0;
-		try {
-			stmt = con.prepareStatement("insert into ChiTietPhieuDatPhong values(?,?)");
-			stmt.setString(1, ctpdp.getPhieuDatPhong().getMaPhieuDatPhong());
-			stmt.setString(2, ctpdp.getPhong().getMaPhong());
-			n += stmt.executeUpdate();
-		} catch (SQLException e) {
-			// TODO: handle exception
-			e.printStackTrace();
-		} finally {
-			try {
-				stmt.close();
-			} catch (SQLException e) {
-				// TODO: handle exception
-				e.printStackTrace();
-			}
-		}
-		return n > 0;
-	}
-    
+
+        ConnectDB.getInstance();
+        java.sql.Connection con = ConnectDB.getConnection();
+        PreparedStatement stmt = null;
+        int n = 0;
+        try {
+            stmt = con.prepareStatement("insert into ChiTietPhieuDatPhong values(?,?)");
+            stmt.setString(1, ctpdp.getPhieuDatPhong().getMaPhieuDatPhong());
+            stmt.setString(2, ctpdp.getPhong().getMaPhong());
+            n += stmt.executeUpdate();
+        } catch (SQLException e) {
+            // TODO: handle exception
+            e.printStackTrace();
+        } finally {
+            try {
+                stmt.close();
+            } catch (SQLException e) {
+                // TODO: handle exception
+                e.printStackTrace();
+            }
+        }
+        return n > 0;
+    }
 
 }

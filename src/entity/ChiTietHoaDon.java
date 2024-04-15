@@ -3,6 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package entity;
+
 import java.time.temporal.ChronoUnit;
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
@@ -30,11 +31,8 @@ public class ChiTietHoaDon {
 
     }
 
-<<<<<<< HEAD
-     public ChiTietHoaDon(HoaDon hoaDon, DoAnUong doAnUong, int soLuong, Phong phong, LocalDate ngayNhanPhong, LocalDate ngayTraPhong, int soLuongNguoiO, int soLuongDoUongTraVe, double tongTienThuePhong, double tongTienDichVu, double phuPhi) {
-=======
     public ChiTietHoaDon(HoaDon hoaDon, DoAnUong doAnUong, int soLuong, Phong phong, LocalDate ngayNhanPhong, LocalDate ngayTraPhong, int soLuongNguoiO, int soLuongDoUongTraVe, double tongTienThuePhong, double tongTienDichVu, double phuPhi) {
->>>>>>> origin/verGanCuoi
+
         this.hoaDon = hoaDon;
         this.doAnUong = doAnUong;
         this.soLuong = soLuong;
@@ -119,17 +117,12 @@ public class ChiTietHoaDon {
     public void setSoLuongNguoiO(int soLuongNguoiO) {
         this.soLuongNguoiO = soLuongNguoiO;
     }
-<<<<<<< HEAD
-public void tinhTongTienDichVu() {
-=======
 
     public void tinhTongTienDichVu() {
->>>>>>> origin/verGanCuoi
         if (doAnUong != null) {
             this.tongTienDichVu = soLuong * doAnUong.getGiaBan();
-        }
-        else{
-            this.tongTienDichVu =0;
+        } else {
+            this.tongTienDichVu = 0;
         }
 
     }
@@ -161,19 +154,14 @@ public void tinhTongTienDichVu() {
             // Trả về 0 hoặc giá trị mặc định khi thông tin không hợp lệ
             this.tongTienThuePhong = 0;
         }
-<<<<<<< HEAD
-}
-    @Override
-    public String toString() {
-       return "ChiTietHoaDon{" + "hoaDon=" + hoaDon + ", doAnUong=" + doAnUong + ", soLuong=" + soLuong + ", phong=" + phong + ", ngayNhanPhong=" + ngayNhanPhong + ", ngayTraPhong=" + ngayTraPhong + ", soLuongNguoiO=" + soLuongNguoiO + ", soLuongDoUongTraVe=" + soLuongDoUongTraVe + ", tongTienThuePhong=" + tongTienThuePhong + ", tongTienDichVu=" + tongTienDichVu + ", phuPhi=" + phuPhi + '}';
-=======
+
     }
 
     //tinhTongPhuPhi (tl4 thiếu cái này)
     @Override
     public String toString() {
         return "ChiTietHoaDon{" + "hoaDon=" + hoaDon + ", doAnUong=" + doAnUong + ", soLuong=" + soLuong + ", phong=" + phong + ", ngayNhanPhong=" + ngayNhanPhong + ", ngayTraPhong=" + ngayTraPhong + ", soLuongNguoiO=" + soLuongNguoiO + ", soLuongDoUongTraVe=" + soLuongDoUongTraVe + ", tongTienThuePhong=" + tongTienThuePhong + ", tongTienDichVu=" + tongTienDichVu + ", phuPhi=" + phuPhi + '}';
->>>>>>> origin/verGanCuoi
+
     }
 
     @Override
