@@ -103,7 +103,7 @@ public class HoaDon {
         tongThanhTienBanDau = hd_dao.tinhthanhTienBanDau(maHoaDon);
     }
     public void tinhTongThanhTienPhaiTra(){
-       tongThanhTienPhaiTra = tongThanhTienBanDau * (1.0 + thue) * this.khuyenMai.getGiaTri();
+       tongThanhTienPhaiTra = tongThanhTienBanDau * (1.0 + thue) - (tongThanhTienBanDau * this.khuyenMai.getGiaTri());
        
     }
 

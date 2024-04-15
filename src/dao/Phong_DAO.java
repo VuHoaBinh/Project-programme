@@ -205,4 +205,26 @@ public class Phong_DAO {
             }
         }
     }
+    public boolean capNhatTrangThaiPhong(String tenPhong, String trangThai){
+        ConnectDB.getInstance();
+        java.sql.Connection con = ConnectDB.getConnection();
+        PreparedStatement stmt = null;
+        int n = 0;
+        try {
+            stmt = con.prepareStatement("update Phong set trangThaiPhong = ? where tenPhong = ?");
+            stmt.setString(1, trangThai);
+            stmt.setString(2, tenPhong);
+            n += stmt.executeUpdate();
+            
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally{
+            try {
+                stmt.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+        return n > 0;
+    }
 }

@@ -95,12 +95,15 @@ public class JPanel_QuanLyPhong extends javax.swing.JPanel implements ActionList
         JMenuItem mn_xemChiTiet = new JMenuItem("Xem thông tin phòng");
         JMenuItem mn_ThuePhong = new JMenuItem("Thuê phòng cho khách");
         JMenuItem mn_loadThongTinThue = new JMenuItem("Xem chi tiết phòng");
+        JMenuItem datPhong = new JMenuItem("Đặt phòng");
+        datPhong.addActionListener(this);
         mn_xemChiTiet.addActionListener(this);
         mn_ThuePhong.addActionListener(this);
         mn_loadThongTinThue.addActionListener(this);
         roomPopupMenu.add(mn_xemChiTiet);
         roomPopupMenu.add(mn_ThuePhong);
         roomPopupMenu.add(mn_loadThongTinThue);
+        roomPopupMenu.add(datPhong);
     }
 
     public void loadData() throws SQLException {
@@ -466,7 +469,7 @@ public class JPanel_QuanLyPhong extends javax.swing.JPanel implements ActionList
     javax.swing.ButtonGroup gr_tt = new javax.swing.ButtonGroup();
     javax.swing.ButtonGroup gr_cv = new javax.swing.ButtonGroup();
 
-    private void removeAllRooms() {
+    public void removeAllRooms() {
         pn_Tang1.removeAll();
         pn_Tang2.removeAll();
         pn_Tang3.removeAll();
@@ -579,6 +582,27 @@ public class JPanel_QuanLyPhong extends javax.swing.JPanel implements ActionList
                 Logger.getLogger(JPanel_QuanLyPhong.class.getName()).log(Level.SEVERE, null, ex);
             }
 
+        }
+        if(e.getActionCommand().equals("Đặt phòng")){
+            JPanel roomPanelClicked = (JPanel) roomPopupMenu.getInvoker(); // JPanel chứa thông tin phòng
+            JLabel roomInfoLabel = (JLabel) roomPanelClicked.getComponent(0); // Component thứ 1 là JLabel chứa tên phòng
+            String tenPhong = roomInfoLabel.getText().substring(11); // Lấy tên phòng từ JLabel, bỏ đi "Tên Phòng: "
+            
+            JPanel_DatPhong datPhongPanel;
+            try {
+                datPhongPanel = new JPanel_DatPhong(tenPhong);
+                JFrame datPhongFrame = new JFrame("Đặt Phòng");
+                datPhongFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+                datPhongFrame.add(datPhongPanel);
+                datPhongFrame.pack();
+                datPhongFrame.setLocationRelativeTo(null);
+                datPhongFrame.setVisible(true);
+                
+            } catch (IOException ex) {
+                Logger.getLogger(JPanel_QuanLyPhong.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (SQLException ex) {
+                Logger.getLogger(JPanel_QuanLyPhong.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
     }
 

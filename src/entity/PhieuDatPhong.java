@@ -20,9 +20,9 @@ public class PhieuDatPhong {
     private LocalDate ngayDatPhong;
     private LocalDate ngayNhanPhong;
     private LocalDate ngayTraPhong;
-    private double tienPhong;
+//    private double tienPhong;
 
-    public PhieuDatPhong(String maPhieuDatPhong, KhachHang khachHang, NhanVien nhanvien, int soLuongNguoi, LocalDate ngayDatPhong, LocalDate ngayNhanPhong, LocalDate ngayTraPhong, double tienPhong) {
+    public PhieuDatPhong(String maPhieuDatPhong, KhachHang khachHang, NhanVien nhanvien, int soLuongNguoi, LocalDate ngayDatPhong, LocalDate ngayNhanPhong, LocalDate ngayTraPhong) {
         this.maPhieuDatPhong = maPhieuDatPhong;
         this.khachHang = khachHang;
         this.nhanvien = nhanvien;
@@ -30,7 +30,7 @@ public class PhieuDatPhong {
         this.ngayDatPhong = ngayDatPhong;
         this.ngayNhanPhong = ngayNhanPhong;
         this.ngayTraPhong = ngayTraPhong;
-        this.tienPhong = tienPhong;
+//        this.tienPhong = tienPhong;
     }
 
     public PhieuDatPhong(String maPhieuDatPhong) {
@@ -66,9 +66,9 @@ public class PhieuDatPhong {
         return ngayTraPhong;
     }
 
-    public double getTienPhong() {
-        return tienPhong;
-    }
+//    public double getTienPhong() {
+//        return tienPhong;
+//    }
 
     public void setMaPhieuDatPhong(String maPhieuDatPhong) {
         this.maPhieuDatPhong = maPhieuDatPhong;
@@ -100,7 +100,7 @@ public class PhieuDatPhong {
 
     @Override
     public String toString() {
-        return "PhieuDatPhong{" + "maPhieuDatPhong=" + maPhieuDatPhong + ", khachHang=" + khachHang + ", nhanvien=" + nhanvien + ", soLuongNguoi=" + soLuongNguoi + ", ngayDatPhong=" + ngayDatPhong + ", ngayNhanPhong=" + ngayNhanPhong + ", ngayTraPhong=" + ngayTraPhong + ", tienPhong=" + tienPhong + '}';
+        return "PhieuDatPhong{" + "maPhieuDatPhong=" + maPhieuDatPhong + ", khachHang=" + khachHang + ", nhanvien=" + nhanvien + ", soLuongNguoi=" + soLuongNguoi + ", ngayDatPhong=" + ngayDatPhong + ", ngayNhanPhong=" + ngayNhanPhong + ", ngayTraPhong=" + ngayTraPhong +  '}';
     }
 
     @Override

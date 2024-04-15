@@ -52,7 +52,51 @@ public class NhanVien_DAO {
 
         return dsNhanVien;
     }
+    public String getNhanVienDangNhap(){
+        String tenNhanVien = TaiKhoan_DAO.getTenNhanVien();
+        
+        return tenNhanVien;
+    }
+    public String getHoTenNhanVienTheoMa(String maNhanVien) throws IOException, SQLException {
+        String hoTenNhanVien = null;
+        ConnectDB.getInstance();
+        java.sql.Connection con = ConnectDB.getConnection();
+        PreparedStatement statement = null;
 
+        String sql = "SELECT * FROM NhanVien WHERE maNhanVien = ?";
+        statement = con.prepareStatement(sql);
+        statement.setString(1, maNhanVien);
+        ResultSet rs = statement.executeQuery();
+        while (rs.next()) {
+            hoTenNhanVien = rs.getString("hoTenNhanVien");
+            
+        }
+        return hoTenNhanVien;
+    }
+    public NhanVien getNhanVienTheoTen(String ten) throws IOException, SQLException {
+        NhanVien nv = new NhanVien();
+        ConnectDB.getInstance();
+        java.sql.Connection con = ConnectDB.getConnection();
+        PreparedStatement statement = null;
+
+        String sql = "SELECT * FROM NhanVien WHERE hoTenNhanVien = ?";
+        statement = con.prepareStatement(sql);
+        statement.setString(1, ten);
+        ResultSet rs = statement.executeQuery();
+        while (rs.next()) {
+            String maNhanVien = rs.getString("maNhanVien");
+            String hoTenNhanVien = rs.getString("hoTenNhanVien");
+            boolean gioiTinh = rs.getBoolean("gioiTinh");
+            String diaChi = rs.getString("diaChi");
+            boolean trangThaiLamViec = rs.getBoolean("trangThaiLamViec");
+            String soDienThoai = rs.getString("soDienThoai");
+            String hinhAnh = rs.getString("hinhAnh");
+            boolean chucVu = rs.getBoolean("chucVu");
+            nv = new NhanVien(maNhanVien, hoTenNhanVien, gioiTinh, diaChi, trangThaiLamViec, soDienThoai, hinhAnh, chucVu);
+            
+        }
+        return nv;
+    }
     /**
      *
      * @param getNhanVienTheoMa

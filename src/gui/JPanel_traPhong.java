@@ -42,6 +42,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -86,17 +87,23 @@ public class JPanel_traPhong extends javax.swing.JPanel implements ActionListene
     public void loadThongTin(String tenPhong, ChiTietHoaDon cthd) throws IOException, SQLException {
         km_dao = new KhuyenMai_DAO();
         ArrayList<KhuyenMai> list = km_dao.getKhuyenMaiByDate(LocalDate.now());
-        
-        for (KhuyenMai khuyenMai : list) {
-            cb_listKM.addItem(khuyenMai.getMaKhuyenMai());
-        }
 
-        txt_maKM.setText(cb_listKM.getSelectedItem().toString());
+        double max = 0;
+        int index = 0;
+        for (int i=0 ;i<list.size();i++) {
+            if(max<list.get(i).getGiaTri()){
+                max = list.get(i).getGiaTri();
+                index = i;
+            }
+        }
+        
+
+        txt_maKM.setText(list.get(index).getMaKhuyenMai());
         KhuyenMai km = km_dao.getPhongTheoMaKhuyenMai(txt_maKM.getText().toString()).getFirst();
         txta_ND.setText(km.getNoiDung());
         txt_ngayBD.setText(km.getNgayBatDau().toString());
         txt_ngayKetThuc.setText(km.getNgayKetThuc().toString());
-        
+
         rd_theoNgay.setSelected(true);
         p_dao = new Phong_DAO();
         HoaDon hd;
@@ -134,7 +141,7 @@ public class JPanel_traPhong extends javax.swing.JPanel implements ActionListene
         txt_tienDV.setText(currencyFormat.format(hd_dao.tinhTongTienDichVu(hd.getMaHoaDon())));
         txt_thanhTienBanDau.setText(currencyFormat.format(hd_dao.tinhthanhTienBanDau(hd.getMaHoaDon())));
         hd.tinhTongThanhTienBanDau();
-        hd.getKhuyenMai().setGiaTri(1);
+        hd.getKhuyenMai().setGiaTri(km.getGiaTri());
         hd.tinhTongThanhTienPhaiTra();
         txt_thanhTien.setText(currencyFormat.format(hd.getTongThanhTienPhaiTra()));
 
@@ -164,7 +171,7 @@ public class JPanel_traPhong extends javax.swing.JPanel implements ActionListene
     }
 
     public void addEvents() {
-        ////
+        btn_XacNhan.addActionListener(this);
     }
 
     public void load_DataDV(String maHD) throws SQLException, IOException {
@@ -187,7 +194,7 @@ public class JPanel_traPhong extends javax.swing.JPanel implements ActionListene
 
     @Override
     public void actionPerformed(ActionEvent e) {
-
+        
     }
 
     public double tinhTongTienDV() {
@@ -200,6 +207,7 @@ public class JPanel_traPhong extends javax.swing.JPanel implements ActionListene
         }
         return tongTienDV;
     }
+    
 
 //    public void capNhatGia() {
 //        NumberFormat currencyFormat = NumberFormat.getCurrencyInstance();
@@ -280,7 +288,6 @@ public class JPanel_traPhong extends javax.swing.JPanel implements ActionListene
         jLabel24 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
         txta_ND = new javax.swing.JTextArea();
-        cb_listKM = new javax.swing.JComboBox<>();
         jPanel7 = new javax.swing.JPanel();
         btn_Huy = new javax.swing.JButton();
         btn_XacNhan = new javax.swing.JButton();
@@ -671,8 +678,6 @@ public class JPanel_traPhong extends javax.swing.JPanel implements ActionListene
         txta_ND.setRows(5);
         jScrollPane2.setViewportView(txta_ND);
 
-        cb_listKM.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] {}));
-
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -685,14 +690,11 @@ public class JPanel_traPhong extends javax.swing.JPanel implements ActionListene
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane2)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(cb_listKM, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(txt_maKM, javax.swing.GroupLayout.DEFAULT_SIZE, 127, Short.MAX_VALUE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jLabel23)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(txt_ngayBD, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(txt_maKM, javax.swing.GroupLayout.DEFAULT_SIZE, 127, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel23)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txt_ngayBD, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel21, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -701,9 +703,7 @@ public class JPanel_traPhong extends javax.swing.JPanel implements ActionListene
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(12, Short.MAX_VALUE)
-                .addComponent(cb_listKM, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addContainerGap(40, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel22, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel23, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -835,7 +835,6 @@ public class JPanel_traPhong extends javax.swing.JPanel implements ActionListene
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btn_Huy;
     private javax.swing.JButton btn_XacNhan;
-    private javax.swing.JComboBox<String> cb_listKM;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel12;
