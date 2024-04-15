@@ -27,6 +27,8 @@ import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import static java.awt.image.ImageObserver.HEIGHT;
+import static java.awt.image.ImageObserver.WIDTH;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.io.IOException;
@@ -42,6 +44,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -71,6 +74,7 @@ public class JPanel_traPhong extends javax.swing.JPanel implements ActionListene
     private KhuyenMai_DAO km_dao;
     private final ChiTietHoaDon chiTietHoaDon;
     private KhachHang_DAO kh_dao;
+    private KhuyenMai km;
 
     /**
      * Creates new form JPanel_thuePhong
@@ -86,17 +90,22 @@ public class JPanel_traPhong extends javax.swing.JPanel implements ActionListene
     public void loadThongTin(String tenPhong, ChiTietHoaDon cthd) throws IOException, SQLException {
         km_dao = new KhuyenMai_DAO();
         ArrayList<KhuyenMai> list = km_dao.getKhuyenMaiByDate(LocalDate.now());
-        
-        for (KhuyenMai khuyenMai : list) {
-            cb_listKM.addItem(khuyenMai.getMaKhuyenMai());
+        txt_maHD.setText("Mã Hóa Đơn:" + cthd.getHoaDon().getMaHoaDon());
+        double max = 0;
+        int index = 0;
+        for (int i = 0; i < list.size(); i++) {
+            if (max < list.get(i).getGiaTri()) {
+                max = list.get(i).getGiaTri();
+                index = i;
+            }
         }
 
-        txt_maKM.setText(cb_listKM.getSelectedItem().toString());
-        KhuyenMai km = km_dao.getPhongTheoMaKhuyenMai(txt_maKM.getText().toString()).getFirst();
+        txt_maKM.setText(list.get(index).getMaKhuyenMai());
+        km = km_dao.getPhongTheoMaKhuyenMai(txt_maKM.getText().toString()).getFirst();
         txta_ND.setText(km.getNoiDung());
         txt_ngayBD.setText(km.getNgayBatDau().toString());
         txt_ngayKetThuc.setText(km.getNgayKetThuc().toString());
-        
+
         rd_theoNgay.setSelected(true);
         p_dao = new Phong_DAO();
         HoaDon hd;
@@ -134,7 +143,7 @@ public class JPanel_traPhong extends javax.swing.JPanel implements ActionListene
         txt_tienDV.setText(currencyFormat.format(hd_dao.tinhTongTienDichVu(hd.getMaHoaDon())));
         txt_thanhTienBanDau.setText(currencyFormat.format(hd_dao.tinhthanhTienBanDau(hd.getMaHoaDon())));
         hd.tinhTongThanhTienBanDau();
-        hd.getKhuyenMai().setGiaTri(1);
+        hd.getKhuyenMai().setGiaTri(km.getGiaTri());
         hd.tinhTongThanhTienPhaiTra();
         txt_thanhTien.setText(currencyFormat.format(hd.getTongThanhTienPhaiTra()));
 
@@ -164,7 +173,7 @@ public class JPanel_traPhong extends javax.swing.JPanel implements ActionListene
     }
 
     public void addEvents() {
-        ////
+        btn_XacNhan.addActionListener(this);
     }
 
     public void load_DataDV(String maHD) throws SQLException, IOException {
@@ -187,18 +196,25 @@ public class JPanel_traPhong extends javax.swing.JPanel implements ActionListene
 
     @Override
     public void actionPerformed(ActionEvent e) {
+        if (e.getSource().equals(btn_XacNhan)) {
+            HoaDon hd;
+            try {
+                hd = hd_dao.getHoaDonTheoMaHoaDon(chiTietHoaDon.getHoaDon().getMaHoaDon()).getFirst();
+                hd.tinhTongThanhTienBanDau();
+                hd.setKhuyenMai(km);
+                hd.tinhTongThanhTienPhaiTra();
+                hd_dao.updateHoaDon(hd);
+                p_dao = new Phong_DAO();
+                Phong p = p_dao.getPhongTheoMaPhong(chiTietHoaDon.getPhong().getMaPhong()).getFirst();
+                p.setTrangThaiPhong(TrangThaiPhong.AVAILABLE);
+                p_dao.updatePhong(p);
+            } catch (IOException ex) {
+                Logger.getLogger(JPanel_traPhong.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (SQLException ex) {
+                Logger.getLogger(JPanel_traPhong.class.getName()).log(Level.SEVERE, null, ex);
+            }
 
-    }
-
-    public double tinhTongTienDV() {
-        double tongTienDV = 0;
-        for (int i = 0; i < modelDichVu.getRowCount(); i++) {
-            int soLuong = (int) modelDichVu.getValueAt(i, 2);
-            double giaBan = Double.parseDouble(modelDichVu.getValueAt(i, 3).toString().replace(" VNĐ", "").replace(",", ""));
-            double tongTien = soLuong * giaBan;
-            tongTienDV += tongTien;
         }
-        return tongTienDV;
     }
 
 //    public void capNhatGia() {
@@ -280,13 +296,12 @@ public class JPanel_traPhong extends javax.swing.JPanel implements ActionListene
         jLabel24 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
         txta_ND = new javax.swing.JTextArea();
-        cb_listKM = new javax.swing.JComboBox<>();
         jPanel7 = new javax.swing.JPanel();
         btn_Huy = new javax.swing.JButton();
         btn_XacNhan = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
+        txt_maHD = new javax.swing.JLabel();
 
         setPreferredSize(new java.awt.Dimension(800, 800));
         setLayout(new java.awt.BorderLayout());
@@ -303,12 +318,14 @@ public class JPanel_traPhong extends javax.swing.JPanel implements ActionListene
 
         jLabel4.setText("Loại Phòng:");
 
+        txt_tenPhong.setEditable(false);
         txt_tenPhong.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txt_tenPhongActionPerformed(evt);
             }
         });
 
+        txt_loaiPhong.setEditable(false);
         txt_loaiPhong.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txt_loaiPhongActionPerformed(evt);
@@ -328,6 +345,8 @@ public class JPanel_traPhong extends javax.swing.JPanel implements ActionListene
         sp_time.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
         jLabel20.setText("Số người:");
+
+        txt_soLuongNguoiO.setEditable(false);
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -403,12 +422,14 @@ public class JPanel_traPhong extends javax.swing.JPanel implements ActionListene
 
         jLabel6.setText("Họ và Tên:");
 
+        txt_SDT.setEditable(false);
         txt_SDT.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txt_SDTActionPerformed(evt);
             }
         });
 
+        txt_HvT.setEditable(false);
         txt_HvT.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txt_HvTActionPerformed(evt);
@@ -421,6 +442,7 @@ public class JPanel_traPhong extends javax.swing.JPanel implements ActionListene
 
         jLabel17.setText("CCCD:");
 
+        txt_CCCD.setEditable(false);
         txt_CCCD.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txt_CCCDActionPerformed(evt);
@@ -429,6 +451,7 @@ public class JPanel_traPhong extends javax.swing.JPanel implements ActionListene
 
         jLabel18.setText("Ngày Sinh:");
 
+        txt_ngaySinh.setEditable(false);
         txt_ngaySinh.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txt_ngaySinhActionPerformed(evt);
@@ -647,18 +670,21 @@ public class JPanel_traPhong extends javax.swing.JPanel implements ActionListene
 
         jLabel23.setText("Ngày Bắt Đầu:");
 
+        txt_maKM.setEditable(false);
         txt_maKM.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txt_maKMActionPerformed(evt);
             }
         });
 
+        txt_ngayBD.setEditable(false);
         txt_ngayBD.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txt_ngayBDActionPerformed(evt);
             }
         });
 
+        txt_ngayKetThuc.setEditable(false);
         txt_ngayKetThuc.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txt_ngayKetThucActionPerformed(evt);
@@ -667,11 +693,10 @@ public class JPanel_traPhong extends javax.swing.JPanel implements ActionListene
 
         jLabel24.setText("Nội Dung Khuyến Mãi:");
 
+        txta_ND.setEditable(false);
         txta_ND.setColumns(20);
         txta_ND.setRows(5);
         jScrollPane2.setViewportView(txta_ND);
-
-        cb_listKM.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] {}));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -685,14 +710,11 @@ public class JPanel_traPhong extends javax.swing.JPanel implements ActionListene
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane2)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(cb_listKM, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(txt_maKM, javax.swing.GroupLayout.DEFAULT_SIZE, 127, Short.MAX_VALUE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jLabel23)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(txt_ngayBD, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(txt_maKM, javax.swing.GroupLayout.DEFAULT_SIZE, 127, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel23)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txt_ngayBD, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel21, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -701,9 +723,7 @@ public class JPanel_traPhong extends javax.swing.JPanel implements ActionListene
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(12, Short.MAX_VALUE)
-                .addComponent(cb_listKM, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addContainerGap(40, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel22, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel23, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -763,10 +783,10 @@ public class JPanel_traPhong extends javax.swing.JPanel implements ActionListene
         jLabel2.setText("Hóa Đơn ");
         jPanel2.add(jLabel2, java.awt.BorderLayout.CENTER);
 
-        jLabel3.setFont(new java.awt.Font("Segoe UI", 2, 24)); // NOI18N
-        jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel3.setText("Mã Hóa Đơn:");
-        jPanel2.add(jLabel3, java.awt.BorderLayout.SOUTH);
+        txt_maHD.setFont(new java.awt.Font("Segoe UI", 2, 24)); // NOI18N
+        txt_maHD.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        txt_maHD.setText("Mã Hóa Đơn:");
+        jPanel2.add(txt_maHD, java.awt.BorderLayout.SOUTH);
 
         add(jPanel2, java.awt.BorderLayout.NORTH);
     }// </editor-fold>//GEN-END:initComponents
@@ -835,7 +855,6 @@ public class JPanel_traPhong extends javax.swing.JPanel implements ActionListene
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btn_Huy;
     private javax.swing.JButton btn_XacNhan;
-    private javax.swing.JComboBox<String> cb_listKM;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel12;
@@ -852,7 +871,6 @@ public class JPanel_traPhong extends javax.swing.JPanel implements ActionListene
     private javax.swing.JLabel jLabel22;
     private javax.swing.JLabel jLabel23;
     private javax.swing.JLabel jLabel24;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
@@ -882,6 +900,7 @@ public class JPanel_traPhong extends javax.swing.JPanel implements ActionListene
     private javax.swing.JTextField txt_HvT;
     private javax.swing.JTextField txt_SDT;
     private javax.swing.JTextField txt_loaiPhong;
+    private javax.swing.JLabel txt_maHD;
     private javax.swing.JTextField txt_maKM;
     private javax.swing.JTextField txt_ngayBD;
     private javax.swing.JTextField txt_ngayKetThuc;

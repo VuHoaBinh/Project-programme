@@ -101,7 +101,7 @@ public class JPanel_loadThongTinThue extends javax.swing.JPanel implements Actio
         txt_ngayTra.setDate(tra);
         hd_dao = new HoaDon_DAO();
         kh_dao = new KhachHang_DAO();
-        hd = hd_dao.getHoaDonTheoMaHoaDon(cthd.getHoaDon().getMaHoaDon()).getFirst();
+        hd = hd_dao.getHoaDonTheoMaHoaDon(cthd.getHoaDon().getMaHoaDon()).getLast();
         load_DataDV(hd.getMaHoaDon());
         KhachHang kh = kh_dao.getKHTheoMaKhachHang(hd.getKhachHang().getMaKhachHang()).getFirst();
         txt_SDT.setText(kh.getMaKhachHang());

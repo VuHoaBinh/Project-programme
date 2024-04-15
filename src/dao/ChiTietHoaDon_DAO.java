@@ -87,33 +87,38 @@ public class ChiTietHoaDon_DAO {
             p_dao = new Phong_DAO();
             Phong phong = p_dao.getPhongTheoMaPhong(maPhong).getFirst();
             if (phong.getTrangThaiPhong().name() == "OCCUPIED") {
-                String maHoaDon = rs.getString("hoaDon");
-                String maDoAnUong = rs.getString("doAnUong");
-                int soLuong = rs.getInt("soLuong");
                 LocalDate ngayNhanPhong = rs.getDate("ngayNhanPhong").toLocalDate();
                 LocalDate ngayTraPhong = rs.getDate("ngayTraPhong").toLocalDate();
-                int soLuongNguoiO = rs.getInt("soLuongNguoiO");
-                int soLuongDoUongTraVe = rs.getInt("soLuongDoUongTraVe");
-                double tongTienThuePhong = rs.getDouble("tongTienThuePhong");
-                double tongTienDichVu = rs.getDouble("tongTienDichVu");
-                double tongThanhTien = rs.getDouble("tongThanhTien");
-                double phuPhi = rs.getDouble("phuPhi");
 
-                ChiTietHoaDon chiTietHoaDon = new ChiTietHoaDon(
-                        new HoaDon(maHoaDon),
-                        new DoAnUong(maDoAnUong),
-                        soLuong,
-                        new Phong(maPhong),
-                        ngayNhanPhong,
-                        ngayTraPhong,
-                        soLuongNguoiO,
-                        soLuongDoUongTraVe,
-                        tongTienThuePhong,
-                        tongTienDichVu,
-                        phuPhi
-                );
+                // Kiểm tra xem ngày hiện tại có nằm giữa ngày thuê và ngày trả hay không
+                LocalDate currentDate = LocalDate.now();
+                if (currentDate.isAfter(ngayNhanPhong) && currentDate.isBefore(ngayTraPhong)) {
+                    String maHoaDon = rs.getString("hoaDon");
+                    String maDoAnUong = rs.getString("doAnUong");
+                    int soLuong = rs.getInt("soLuong");
+                    int soLuongNguoiO = rs.getInt("soLuongNguoiO");
+                    int soLuongDoUongTraVe = rs.getInt("soLuongDoUongTraVe");
+                    double tongTienThuePhong = rs.getDouble("tongTienThuePhong");
+                    double tongTienDichVu = rs.getDouble("tongTienDichVu");
+                    double tongThanhTien = rs.getDouble("tongThanhTien");
+                    double phuPhi = rs.getDouble("phuPhi");
 
-                dsChiTietHoaDon.add(chiTietHoaDon);
+                    ChiTietHoaDon chiTietHoaDon = new ChiTietHoaDon(
+                            new HoaDon(maHoaDon),
+                            new DoAnUong(maDoAnUong),
+                            soLuong,
+                            new Phong(maPhong),
+                            ngayNhanPhong,
+                            ngayTraPhong,
+                            soLuongNguoiO,
+                            soLuongDoUongTraVe,
+                            tongTienThuePhong,
+                            tongTienDichVu,
+                            phuPhi
+                    );
+
+                    dsChiTietHoaDon.add(chiTietHoaDon);
+                }
             }
         }
         return dsChiTietHoaDon;

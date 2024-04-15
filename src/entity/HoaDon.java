@@ -74,7 +74,7 @@ public class HoaDon {
         return tongThanhTienBanDau;
     }
 
-    public double getTongThanhTienPhaiTra() {
+        public double getTongThanhTienPhaiTra() {
         return tongThanhTienPhaiTra;
     }
 
@@ -108,7 +108,7 @@ public class HoaDon {
     }
 
     public void tinhTongThanhTienPhaiTra() {
-        tongThanhTienPhaiTra = tongThanhTienBanDau * (1.0 + thue) * this.khuyenMai.getGiaTri();
+        tongThanhTienPhaiTra = (tongThanhTienBanDau * (1.0 + thue)) - (tongThanhTienBanDau * this.khuyenMai.getGiaTri());
 
     }
 
