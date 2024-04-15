@@ -239,8 +239,12 @@ public class Phong_DAO {
             e.printStackTrace();
         }
     }
+<<<<<<< HEAD
 
     public boolean capNhatTrangThaiPhong(String maPhong, String trangThai) {
+=======
+    public boolean capNhatTrangThaiPhong(String maPhong, String trangThai){
+>>>>>>> origin/dat_ver1
         ConnectDB.getInstance();
         java.sql.Connection con = ConnectDB.getConnection();
         PreparedStatement stmt = null;
@@ -250,10 +254,17 @@ public class Phong_DAO {
             stmt.setString(1, trangThai);
             stmt.setString(2, maPhong);
             n += stmt.executeUpdate();
+<<<<<<< HEAD
 
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
+=======
+            
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally{
+>>>>>>> origin/dat_ver1
             try {
                 stmt.close();
             } catch (SQLException e) {
@@ -262,7 +273,10 @@ public class Phong_DAO {
         }
         return n > 0;
     }
+<<<<<<< HEAD
 
+=======
+>>>>>>> origin/dat_ver1
     public void deletePhong(Phong p) {
         ConnectDB.getInstance();
         java.sql.Connection con = ConnectDB.getConnection();

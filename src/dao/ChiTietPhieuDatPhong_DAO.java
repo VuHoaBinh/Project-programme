@@ -89,7 +89,11 @@ public class ChiTietPhieuDatPhong_DAO {
         }
         return dsChiTietPhieuDatPhong;
     }
+<<<<<<< HEAD
    public boolean create(ChiTietPhieuDatPhong ctpdp) {
+=======
+    public boolean create(ChiTietPhieuDatPhong ctpdp) {
+>>>>>>> origin/dat_ver1
 		ConnectDB.getInstance();
 		java.sql.Connection con = ConnectDB.getConnection();
 		PreparedStatement stmt = null;

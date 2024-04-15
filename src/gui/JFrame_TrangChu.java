@@ -31,10 +31,15 @@ public class JFrame_TrangChu extends javax.swing.JFrame implements ActionListene
     private TrangChu trangChu;
     private JPanel_QuanLyNhanVien qlnv;
     private final JPanel_QuanLyPhong qlp;
+<<<<<<< HEAD
     private final JPanel_QuanLyDoAnUong qlsp;
     private JPanel_QuanLyKhachHang qlkh;
     private JPanel_QuanLyKhuyenMai qlkm;
     private JPanel_QuanLyHoaDon qlhd;
+=======
+    private JPanel_QuanLyKhachHang qlkh;
+    private JPanel_DatPhong datPhong;
+>>>>>>> origin/dat_ver1
 
     public JFrame_TrangChu(NhanVien nv) throws SQLException {
         initComponents();
@@ -47,6 +52,7 @@ public class JFrame_TrangChu extends javax.swing.JFrame implements ActionListene
             lblChucVu.setText("Lễ Tân");
         }
         qlnv = new JPanel_QuanLyNhanVien();
+<<<<<<< HEAD
         qlp = new JPanel_QuanLyPhong(nv);
 <<<<<<< HEAD
         qlsp = new JPanel_QuanLyDoAnUong();
@@ -64,10 +70,22 @@ public class JFrame_TrangChu extends javax.swing.JFrame implements ActionListene
         MainContent.add(qlkm, "qlkm");
         MainContent.add(qlhd, "qlhd");
 
+=======
+        qlp = new JPanel_QuanLyPhong();
+        qlkh = new JPanel_QuanLyKhachHang();
+//        datPhong = new JPanel_DatPhong();
+        
+        CardLayout cardLayout = (CardLayout) MainContent.getLayout();
+        MainContent.add(qlnv, "qlnv");
+        MainContent.add(qlp, "qlp");
+        MainContent.add(qlkh, "qlkh");
+//        MainContent.add(datPhong,"datPhong");
+>>>>>>> origin/dat_ver1
         FlatIntelliJLaf.registerCustomDefaultsSource("style");
         FlatIntelliJLaf.setup();
     }
 
+<<<<<<< HEAD
     private void loadQuanLyNhanVien() {
         MainContent.removeAll();
         MainContent.add(qlnv, "qlnv");
@@ -110,6 +128,20 @@ public class JFrame_TrangChu extends javax.swing.JFrame implements ActionListene
         MainContent.repaint();
     }
 
+=======
+//    private void loadQuanLyNhanVien() {
+//        MainContent.removeAll();
+//        MainContent.add(qlnv, "qlnv");
+//        MainContent.revalidate();
+//        MainContent.repaint();
+//    }
+//    private void loadQuanLyKhachHang(){
+//        MainContent.removeAll();
+//        MainContent.add(qlkh, "qlkh");
+//        MainContent.revalidate();
+//        MainContent.repaint();
+//    }
+>>>>>>> origin/dat_ver1
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -146,10 +178,13 @@ public class JFrame_TrangChu extends javax.swing.JFrame implements ActionListene
         btn_khuyenMai = new javax.swing.JButton();
         Content12 = new javax.swing.JPanel();
         btn_datPhong = new javax.swing.JButton();
+<<<<<<< HEAD
         Content13 = new javax.swing.JPanel();
         btn_hoaDon = new javax.swing.JButton();
         Content14 = new javax.swing.JPanel();
         btn_thongKe = new javax.swing.JButton();
+=======
+>>>>>>> origin/dat_ver1
         bar3 = new javax.swing.JPanel();
         pnlBottom = new javax.swing.JPanel();
         DangXuat = new javax.swing.JPanel();
@@ -476,7 +511,11 @@ public class JFrame_TrangChu extends javax.swing.JFrame implements ActionListene
         Content12.setPreferredSize(new java.awt.Dimension(300, 50));
 
         btn_datPhong.setBackground(new java.awt.Color(250, 250, 250));
+<<<<<<< HEAD
         btn_datPhong.setText("Quản Lý Đặt Phòng");
+=======
+        btn_datPhong.setText("Đặt Phòng");
+>>>>>>> origin/dat_ver1
         btn_datPhong.setPreferredSize(new java.awt.Dimension(250, 23));
         btn_datPhong.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -489,6 +528,7 @@ public class JFrame_TrangChu extends javax.swing.JFrame implements ActionListene
         Content12Layout.setHorizontalGroup(
             Content12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(Content12Layout.createSequentialGroup()
+<<<<<<< HEAD
                 .addGap(36, 36, 36)
                 .addComponent(btn_datPhong, javax.swing.GroupLayout.PREFERRED_SIZE, 226, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(38, Short.MAX_VALUE))
@@ -496,6 +536,15 @@ public class JFrame_TrangChu extends javax.swing.JFrame implements ActionListene
         Content12Layout.setVerticalGroup(
             Content12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(btn_datPhong, javax.swing.GroupLayout.DEFAULT_SIZE, 50, Short.MAX_VALUE)
+=======
+                .addGap(35, 35, 35)
+                .addComponent(btn_datPhong, javax.swing.GroupLayout.PREFERRED_SIZE, 229, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(36, Short.MAX_VALUE))
+        );
+        Content12Layout.setVerticalGroup(
+            Content12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(btn_datPhong, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 50, Short.MAX_VALUE)
+>>>>>>> origin/dat_ver1
         );
 
         jPanel1.add(Content12);
@@ -658,18 +707,24 @@ public class JFrame_TrangChu extends javax.swing.JFrame implements ActionListene
         // TODO add your handling code here:
     }//GEN-LAST:event_btn_quanLyPhongActionPerformed
 
+<<<<<<< HEAD
     private void btn_thongKeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_thongKeActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btn_thongKeActionPerformed
 
+=======
+>>>>>>> origin/dat_ver1
     private void btn_datPhongActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_datPhongActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btn_datPhongActionPerformed
 
+<<<<<<< HEAD
     private void btn_hoaDonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_hoaDonActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btn_hoaDonActionPerformed
 
+=======
+>>>>>>> origin/dat_ver1
     /**
      * @param args the command line arguments
      */
@@ -724,8 +779,11 @@ public class JFrame_TrangChu extends javax.swing.JFrame implements ActionListene
     private javax.swing.JPanel bar4;
     private javax.swing.JButton btn_dangXuat;
     private javax.swing.JButton btn_datPhong;
+<<<<<<< HEAD
     private javax.swing.JButton btn_hoaDon;
     private javax.swing.JButton btn_khuyenMai;
+=======
+>>>>>>> origin/dat_ver1
     private javax.swing.JButton btn_quanLyDoAnUong;
     private javax.swing.JButton btn_quanLyKhachHang;
     private javax.swing.JButton btn_quanLyNhanVien;
@@ -748,6 +806,10 @@ public class JFrame_TrangChu extends javax.swing.JFrame implements ActionListene
         btn_quanLyNhanVien.addActionListener(this);
         btn_quanLyPhong.addActionListener(this);
         btn_quanLyKhachHang.addActionListener(this);
+<<<<<<< HEAD
+=======
+        btn_datPhong.addActionListener(this);
+>>>>>>> origin/dat_ver1
         btn_dangXuat.addActionListener(this);
         btn_quanLyDoAnUong.addActionListener(this);
         btn_khuyenMai.addActionListener(this);
@@ -774,6 +836,7 @@ public class JFrame_TrangChu extends javax.swing.JFrame implements ActionListene
             MainContent.revalidate();
             MainContent.repaint();
         }
+<<<<<<< HEAD
         if (e.getSource() == btn_quanLyKhachHang) {
             MainContent.removeAll();
             MainContent.add(qlkh, "qlkh");
@@ -802,6 +865,21 @@ public class JFrame_TrangChu extends javax.swing.JFrame implements ActionListene
             MainContent.repaint();
         }
 
+=======
+        if(e.getSource() == btn_quanLyKhachHang){
+            MainContent.removeAll();
+            MainContent.add(qlkh);
+            MainContent.revalidate();
+            MainContent.repaint();
+        }
+        if(e.getSource() == btn_datPhong){
+            MainContent.removeAll();
+            MainContent.add(datPhong);
+            MainContent.revalidate();
+            MainContent.repaint();
+        }
+        
+>>>>>>> origin/dat_ver1
         if (e.getSource() == btn_dangXuat) {
 
         }

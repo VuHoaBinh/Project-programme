@@ -30,7 +30,6 @@ public class NhanVien {
         this.hinhAnh = hinhAnh;
         this.ChucVu = ChucVu;
     }
-    
 
     public NhanVien() {
     }

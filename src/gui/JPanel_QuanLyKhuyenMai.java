@@ -10,6 +10,7 @@ import java.awt.Color;
 import java.awt.Font;
 import com.formdev.flatlaf.FlatClientProperties;
 import com.formdev.flatlaf.extras.FlatSVGIcon;
+<<<<<<< HEAD
 import connectDB.ConnectDB;
 import dao.KhuyenMai_DAO;
 import entity.KhuyenMai;
@@ -25,22 +26,36 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+=======
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+>>>>>>> origin/dat_ver1
 
 /**
  *
  * @author M S I
  */
+<<<<<<< HEAD
 public class JPanel_QuanLyKhuyenMai extends javax.swing.JPanel implements ActionListener {
 
     private KhuyenMai_DAO km_DAO;
+=======
+public class JPanel_QuanLyKhuyenMai extends javax.swing.JPanel implements ActionListener{
+>>>>>>> origin/dat_ver1
 
     /**
      * Creates new form JPanel_QuanLyNhanVien
      */
+<<<<<<< HEAD
     public JPanel_QuanLyKhuyenMai() throws SQLException {
         initComponents();
         addEvents();
         AllListKhuyenMai();
+=======
+    public JPanel_QuanLyKhuyenMai() {
+        initComponents();
+        addEvents();
+>>>>>>> origin/dat_ver1
     }
 
     public static void main(String[] args) {
@@ -48,12 +63,16 @@ public class JPanel_QuanLyKhuyenMai extends javax.swing.JPanel implements Action
             public void run() {
                 JFrame frame = new JFrame("Quản Lý Nhân Viên");
                 frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+<<<<<<< HEAD
                 JPanel_QuanLyKhuyenMai panel = null;
                 try {
                     panel = new JPanel_QuanLyKhuyenMai();
                 } catch (SQLException ex) {
                     Logger.getLogger(JPanel_QuanLyKhuyenMai.class.getName()).log(Level.SEVERE, null, ex);
                 }
+=======
+                JPanel_QuanLyKhuyenMai panel = new JPanel_QuanLyKhuyenMai();
+>>>>>>> origin/dat_ver1
                 frame.add(panel);
                 frame.pack();
                 frame.setVisible(true);
@@ -61,6 +80,7 @@ public class JPanel_QuanLyKhuyenMai extends javax.swing.JPanel implements Action
         });
     }
 
+<<<<<<< HEAD
     public void DeleteForm() {
         txt_maKhuyenMai.setText("");
         txt_maKhuyenMai.setEnabled(true);
@@ -74,6 +94,8 @@ public class JPanel_QuanLyKhuyenMai extends javax.swing.JPanel implements Action
 
     }
 
+=======
+>>>>>>> origin/dat_ver1
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -86,7 +108,11 @@ public class JPanel_QuanLyKhuyenMai extends javax.swing.JPanel implements Action
         jPanel1 = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
+<<<<<<< HEAD
         tbl_khuyenMai = new javax.swing.JTable();
+=======
+        jTable1 = new javax.swing.JTable();
+>>>>>>> origin/dat_ver1
         jLabel11 = new javax.swing.JLabel();
         jPanel4 = new javax.swing.JPanel();
         frm_ThongTin = new javax.swing.JPanel();
@@ -95,6 +121,7 @@ public class JPanel_QuanLyKhuyenMai extends javax.swing.JPanel implements Action
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
+<<<<<<< HEAD
         txt_ngayBatDau = new javax.swing.JTextField();
         txt_maKhuyenMai = new javax.swing.JTextField();
         txt_giaTri = new javax.swing.JTextField();
@@ -113,13 +140,37 @@ public class JPanel_QuanLyKhuyenMai extends javax.swing.JPanel implements Action
         txt_search = new javax.swing.JTextField();
         jPanel7 = new javax.swing.JPanel();
         cb_tt = new javax.swing.JComboBox<>();
+=======
+        jTextField3 = new javax.swing.JTextField();
+        jTextField4 = new javax.swing.JTextField();
+        jTextField5 = new javax.swing.JTextField();
+        jTextField9 = new javax.swing.JTextField();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jTextArea1 = new javax.swing.JTextArea();
+        jLabel2 = new javax.swing.JLabel();
+        jCheckBox1 = new javax.swing.JCheckBox();
+        jPanel2 = new javax.swing.JPanel();
+        btnThem = new javax.swing.JButton();
+        jButton4 = new javax.swing.JButton();
+        jButton5 = new javax.swing.JButton();
+        jButton3 = new javax.swing.JButton();
+        search_Engine = new javax.swing.JPanel();
+        jPanel6 = new javax.swing.JPanel();
+        jTextField2 = new javax.swing.JTextField();
+        jPanel7 = new javax.swing.JPanel();
+        jComboBox1 = new javax.swing.JComboBox<>();
+>>>>>>> origin/dat_ver1
         jLabel4 = new javax.swing.JLabel();
         jComboBox2 = new javax.swing.JComboBox<>();
         jLabel5 = new javax.swing.JLabel();
         jComboBox3 = new javax.swing.JComboBox<>();
         jLabel3 = new javax.swing.JLabel();
         jPanel8 = new javax.swing.JPanel();
+<<<<<<< HEAD
         btn_search = new javax.swing.JButton();
+=======
+        jButton1 = new javax.swing.JButton();
+>>>>>>> origin/dat_ver1
 
         setPreferredSize(new java.awt.Dimension(931, 800));
         setLayout(new java.awt.BorderLayout());
@@ -129,7 +180,11 @@ public class JPanel_QuanLyKhuyenMai extends javax.swing.JPanel implements Action
         jPanel3.setBackground(new java.awt.Color(0, 102, 102));
         jPanel3.setLayout(new java.awt.BorderLayout());
 
+<<<<<<< HEAD
         tbl_khuyenMai.setModel(new javax.swing.table.DefaultTableModel(
+=======
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+>>>>>>> origin/dat_ver1
             new Object [][] {
 
             },
@@ -138,19 +193,27 @@ public class JPanel_QuanLyKhuyenMai extends javax.swing.JPanel implements Action
             }
         ) {
             Class[] types = new Class [] {
+<<<<<<< HEAD
                 java.lang.String.class, java.lang.Double.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+=======
+                java.lang.String.class, java.lang.Double.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Boolean.class
+>>>>>>> origin/dat_ver1
             };
 
             public Class getColumnClass(int columnIndex) {
                 return types [columnIndex];
             }
         });
+<<<<<<< HEAD
         tbl_khuyenMai.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tbl_khuyenMaiMouseClicked(evt);
             }
         });
         jScrollPane1.setViewportView(tbl_khuyenMai);
+=======
+        jScrollPane1.setViewportView(jTable1);
+>>>>>>> origin/dat_ver1
 
         jPanel3.add(jScrollPane1, java.awt.BorderLayout.CENTER);
 
@@ -183,6 +246,7 @@ public class JPanel_QuanLyKhuyenMai extends javax.swing.JPanel implements Action
 
         jLabel9.setText("Nội dung:");
 
+<<<<<<< HEAD
         txt_noiDung.setColumns(20);
         txt_noiDung.setRows(5);
         jScrollPane2.setViewportView(txt_noiDung);
@@ -192,6 +256,23 @@ public class JPanel_QuanLyKhuyenMai extends javax.swing.JPanel implements Action
         cb_trangThai.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cb_trangThaiActionPerformed(evt);
+=======
+        jTextField3.setText("jTextField3");
+
+        jTextField5.setText("jTextField3");
+
+        jTextField9.setText("jTextField3");
+
+        jTextArea1.setColumns(20);
+        jTextArea1.setRows(5);
+        jScrollPane2.setViewportView(jTextArea1);
+
+        jLabel2.setText("Trạng thái: ");
+
+        jCheckBox1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jCheckBox1ActionPerformed(evt);
+>>>>>>> origin/dat_ver1
             }
         });
 
@@ -220,6 +301,7 @@ public class JPanel_QuanLyKhuyenMai extends javax.swing.JPanel implements Action
                             .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(frm_ThongTinLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+<<<<<<< HEAD
                             .addComponent(txt_ngayBatDau, javax.swing.GroupLayout.DEFAULT_SIZE, 235, Short.MAX_VALUE)
                             .addComponent(txt_maKhuyenMai)
                             .addComponent(txt_ngayKetThuc, javax.swing.GroupLayout.PREFERRED_SIZE, 234, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -230,6 +312,18 @@ public class JPanel_QuanLyKhuyenMai extends javax.swing.JPanel implements Action
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(cb_trangThai)
                                 .addGap(18, 18, 18)))))
+=======
+                            .addComponent(jTextField3, javax.swing.GroupLayout.DEFAULT_SIZE, 235, Short.MAX_VALUE)
+                            .addComponent(jTextField4)
+                            .addComponent(jTextField9, javax.swing.GroupLayout.PREFERRED_SIZE, 234, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, frm_ThongTinLayout.createSequentialGroup()
+                                .addComponent(jTextField5)
+                                .addGap(18, 18, 18)
+                                .addComponent(jLabel2)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jCheckBox1)
+                                .addGap(12, 12, 12)))))
+>>>>>>> origin/dat_ver1
                 .addGap(12, 12, 12))
         );
         frm_ThongTinLayout.setVerticalGroup(
@@ -237,6 +331,7 @@ public class JPanel_QuanLyKhuyenMai extends javax.swing.JPanel implements Action
             .addGroup(frm_ThongTinLayout.createSequentialGroup()
                 .addGap(31, 31, 31)
                 .addGroup(frm_ThongTinLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+<<<<<<< HEAD
                     .addComponent(txt_maKhuyenMai, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGroup(frm_ThongTinLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -256,6 +351,25 @@ public class JPanel_QuanLyKhuyenMai extends javax.swing.JPanel implements Action
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(frm_ThongTinLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txt_ngayKetThuc, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+=======
+                    .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(frm_ThongTinLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel2)
+                    .addGroup(frm_ThongTinLayout.createSequentialGroup()
+                        .addGap(9, 9, 9)
+                        .addComponent(jCheckBox1)))
+                .addGap(18, 18, 18)
+                .addGroup(frm_ThongTinLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(frm_ThongTinLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jTextField9, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+>>>>>>> origin/dat_ver1
                     .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGroup(frm_ThongTinLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(frm_ThongTinLayout.createSequentialGroup()
@@ -263,8 +377,13 @@ public class JPanel_QuanLyKhuyenMai extends javax.swing.JPanel implements Action
                         .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(frm_ThongTinLayout.createSequentialGroup()
                         .addGap(18, 18, 18)
+<<<<<<< HEAD
                         .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(212, Short.MAX_VALUE))
+=======
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(237, Short.MAX_VALUE))
+>>>>>>> origin/dat_ver1
         );
 
         jPanel4.add(frm_ThongTin, java.awt.BorderLayout.CENTER);
@@ -276,6 +395,7 @@ public class JPanel_QuanLyKhuyenMai extends javax.swing.JPanel implements Action
         btnThem.setBackground(new Color(255, 102, 102));
         btnThem.setForeground(Color.WHITE);
         btnThem.setFont(new Font("Roboto Mono Medium", Font.PLAIN, 16));
+<<<<<<< HEAD
         btnThem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnThemActionPerformed(evt);
@@ -307,6 +427,22 @@ public class JPanel_QuanLyKhuyenMai extends javax.swing.JPanel implements Action
         btnHuy.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnHuyActionPerformed(evt);
+=======
+
+        jButton4.setText("jButton2");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
+
+        jButton5.setText("jButton2");
+
+        jButton3.setText("jButton2");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+>>>>>>> origin/dat_ver1
             }
         });
 
@@ -318,11 +454,19 @@ public class JPanel_QuanLyKhuyenMai extends javax.swing.JPanel implements Action
                 .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(btnThem, javax.swing.GroupLayout.DEFAULT_SIZE, 145, Short.MAX_VALUE)
+<<<<<<< HEAD
                     .addComponent(btnXoa, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(30, 30, 30)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btnHuy, javax.swing.GroupLayout.DEFAULT_SIZE, 163, Short.MAX_VALUE)
                     .addComponent(btnCapNhat, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+=======
+                    .addComponent(jButton5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(30, 30, 30)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, 163, Short.MAX_VALUE)
+                    .addComponent(jButton4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+>>>>>>> origin/dat_ver1
                 .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
@@ -331,11 +475,19 @@ public class JPanel_QuanLyKhuyenMai extends javax.swing.JPanel implements Action
                 .addContainerGap(35, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnThem, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+<<<<<<< HEAD
                     .addComponent(btnCapNhat, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnXoa, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnHuy, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+=======
+                    .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+>>>>>>> origin/dat_ver1
                 .addGap(27, 27, 27))
         );
 
@@ -350,9 +502,15 @@ public class JPanel_QuanLyKhuyenMai extends javax.swing.JPanel implements Action
 
         jPanel6.setPreferredSize(new java.awt.Dimension(386, 50));
 
+<<<<<<< HEAD
         txt_search.setText("Mã khuyến mãi ....");
         txt_search.putClientProperty(FlatClientProperties.PLACEHOLDER_TEXT, "Mã nhân viên...");
         txt_search.putClientProperty(FlatClientProperties.TEXT_FIELD_LEADING_ICON, new FlatSVGIcon("./icon/home.svg"));
+=======
+        jTextField2.setText("Mã nhân viên ....");
+        jTextField2.putClientProperty(FlatClientProperties.PLACEHOLDER_TEXT, "Mã nhân viên...");
+        jTextField2.putClientProperty(FlatClientProperties.TEXT_FIELD_LEADING_ICON, new FlatSVGIcon("./icon/home.svg"));
+>>>>>>> origin/dat_ver1
 
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
         jPanel6.setLayout(jPanel6Layout);
@@ -360,23 +518,38 @@ public class JPanel_QuanLyKhuyenMai extends javax.swing.JPanel implements Action
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel6Layout.createSequentialGroup()
                 .addContainerGap()
+<<<<<<< HEAD
                 .addComponent(txt_search, javax.swing.GroupLayout.PREFERRED_SIZE, 374, javax.swing.GroupLayout.PREFERRED_SIZE)
+=======
+                .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 374, javax.swing.GroupLayout.PREFERRED_SIZE)
+>>>>>>> origin/dat_ver1
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel6Layout.setVerticalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel6Layout.createSequentialGroup()
                 .addContainerGap()
+<<<<<<< HEAD
                 .addComponent(txt_search, javax.swing.GroupLayout.DEFAULT_SIZE, 38, Short.MAX_VALUE)
+=======
+                .addComponent(jTextField2, javax.swing.GroupLayout.DEFAULT_SIZE, 38, Short.MAX_VALUE)
+>>>>>>> origin/dat_ver1
                 .addContainerGap())
         );
 
         search_Engine.add(jPanel6);
 
+<<<<<<< HEAD
         cb_tt.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         cb_tt.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cb_ttActionPerformed(evt);
+=======
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBox1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBox1ActionPerformed(evt);
+>>>>>>> origin/dat_ver1
             }
         });
 
@@ -412,7 +585,11 @@ public class JPanel_QuanLyKhuyenMai extends javax.swing.JPanel implements Action
                 .addContainerGap()
                 .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
+<<<<<<< HEAD
                 .addComponent(cb_tt, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
+=======
+                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
+>>>>>>> origin/dat_ver1
                 .addGap(18, 18, 18)
                 .addComponent(jLabel4)
                 .addGap(18, 18, 18)
@@ -437,13 +614,18 @@ public class JPanel_QuanLyKhuyenMai extends javax.swing.JPanel implements Action
                         .addGap(6, 6, 6))
                     .addGroup(jPanel7Layout.createSequentialGroup()
                         .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+<<<<<<< HEAD
                             .addComponent(cb_tt, javax.swing.GroupLayout.Alignment.LEADING)
+=======
+                            .addComponent(jComboBox1, javax.swing.GroupLayout.Alignment.LEADING)
+>>>>>>> origin/dat_ver1
                             .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addContainerGap())))
         );
 
         search_Engine.add(jPanel7);
 
+<<<<<<< HEAD
         btn_search.setText("Lọc");
         btnThem.setBackground(new Color(0,0,255));
         btnThem.setForeground(Color.WHITE);
@@ -458,6 +640,9 @@ public class JPanel_QuanLyKhuyenMai extends javax.swing.JPanel implements Action
                 btn_searchActionPerformed(evt);
             }
         });
+=======
+        jButton1.setText("jButton1");
+>>>>>>> origin/dat_ver1
 
         javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
         jPanel8.setLayout(jPanel8Layout);
@@ -465,14 +650,22 @@ public class JPanel_QuanLyKhuyenMai extends javax.swing.JPanel implements Action
             jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel8Layout.createSequentialGroup()
                 .addContainerGap()
+<<<<<<< HEAD
                 .addComponent(btn_search, javax.swing.GroupLayout.PREFERRED_SIZE, 263, javax.swing.GroupLayout.PREFERRED_SIZE)
+=======
+                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 263, javax.swing.GroupLayout.PREFERRED_SIZE)
+>>>>>>> origin/dat_ver1
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel8Layout.setVerticalGroup(
             jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel8Layout.createSequentialGroup()
                 .addContainerGap()
+<<<<<<< HEAD
                 .addComponent(btn_search, javax.swing.GroupLayout.DEFAULT_SIZE, 38, Short.MAX_VALUE)
+=======
+                .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, 38, Short.MAX_VALUE)
+>>>>>>> origin/dat_ver1
                 .addContainerGap())
         );
 
@@ -485,14 +678,21 @@ public class JPanel_QuanLyKhuyenMai extends javax.swing.JPanel implements Action
         // TODO add your handling code here:
     }//GEN-LAST:event_jComboBox2ActionPerformed
 
+<<<<<<< HEAD
     private void cb_ttActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cb_ttActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_cb_ttActionPerformed
+=======
+    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jComboBox1ActionPerformed
+>>>>>>> origin/dat_ver1
 
     private void jComboBox3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox3ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jComboBox3ActionPerformed
 
+<<<<<<< HEAD
     private void btnHuyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHuyActionPerformed
         // TODO add your handling code here:
         DeleteForm();
@@ -745,6 +945,30 @@ public class JPanel_QuanLyKhuyenMai extends javax.swing.JPanel implements Action
     private javax.swing.JCheckBox cb_trangThai;
     private javax.swing.JComboBox<String> cb_tt;
     private javax.swing.JPanel frm_ThongTin;
+=======
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void jCheckBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jCheckBox1ActionPerformed
+
+
+    // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnThem;
+    private javax.swing.JPanel frm_ThongTin;
+    public javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButton4;
+    private javax.swing.JButton jButton5;
+    private javax.swing.JCheckBox jCheckBox1;
+    private javax.swing.JComboBox<String> jComboBox1;
+>>>>>>> origin/dat_ver1
     private javax.swing.JComboBox<String> jComboBox2;
     private javax.swing.JComboBox<String> jComboBox3;
     private javax.swing.JLabel jLabel1;
@@ -766,6 +990,7 @@ public class JPanel_QuanLyKhuyenMai extends javax.swing.JPanel implements Action
     private javax.swing.JPanel jPanel8;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+<<<<<<< HEAD
     private javax.swing.JPanel search_Engine;
     private javax.swing.JTable tbl_khuyenMai;
     private javax.swing.JTextField txt_giaTri;
@@ -774,11 +999,22 @@ public class JPanel_QuanLyKhuyenMai extends javax.swing.JPanel implements Action
     private javax.swing.JTextField txt_ngayKetThuc;
     private javax.swing.JTextArea txt_noiDung;
     private javax.swing.JTextField txt_search;
+=======
+    private javax.swing.JTable jTable1;
+    private javax.swing.JTextArea jTextArea1;
+    private javax.swing.JTextField jTextField2;
+    private javax.swing.JTextField jTextField3;
+    public javax.swing.JTextField jTextField4;
+    private javax.swing.JTextField jTextField5;
+    private javax.swing.JTextField jTextField9;
+    private javax.swing.JPanel search_Engine;
+>>>>>>> origin/dat_ver1
     // End of variables declaration//GEN-END:variables
 
     @Override
     public void actionPerformed(ActionEvent e) {
         Object o = e.getSource();
+<<<<<<< HEAD
         if (o.equals(btn_search)) {
             System.out.println("gui.JPanel_QuanLyNhanVien.actionPerformed()");
         }
@@ -786,5 +1022,13 @@ public class JPanel_QuanLyKhuyenMai extends javax.swing.JPanel implements Action
 
     public void addEvents() {
         btn_search.addActionListener(this);
+=======
+        if(o.equals(jButton1)){
+            System.out.println("gui.JPanel_QuanLyNhanVien.actionPerformed()");
+        }
+    }
+    public void addEvents(){
+        jButton1.addActionListener(this);
+>>>>>>> origin/dat_ver1
     }
 }
