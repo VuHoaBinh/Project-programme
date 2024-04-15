@@ -3,6 +3,10 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package entity;
+<<<<<<< HEAD
+=======
+
+>>>>>>> origin/verGanCuoi
 import dao.HoaDon_DAO;
 import java.sql.SQLException;
 import java.time.LocalDate;
@@ -19,7 +23,11 @@ public class HoaDon {
     private KhuyenMai khuyenMai;
     private NhanVien nhanVien;
     private LocalDate ngayLapHoaDon;
+<<<<<<< HEAD
    private double thue = 0.08;
+=======
+    private double thue = 0.08;
+>>>>>>> origin/verGanCuoi
     private double tongThanhTienBanDau;
     private double tongThanhTienPhaiTra;
 
@@ -97,13 +105,21 @@ public class HoaDon {
     public void setThue(double thue) {
         this.thue = thue;
     }
+<<<<<<< HEAD
 public void tinhTongThanhTienBanDau() throws SQLException{
+=======
+    public void tinhTongThanhTienBanDau() throws SQLException{
+>>>>>>> origin/verGanCuoi
         HoaDon_DAO hd_dao = new HoaDon_DAO();
         tongThanhTienBanDau = hd_dao.tinhthanhTienBanDau(maHoaDon);
     }
     public void tinhTongThanhTienPhaiTra(){
        tongThanhTienPhaiTra = tongThanhTienBanDau * (1.0 + thue) * this.khuyenMai.getGiaTri();
+<<<<<<< HEAD
 
+=======
+       
+>>>>>>> origin/verGanCuoi
     }
 
     @Override

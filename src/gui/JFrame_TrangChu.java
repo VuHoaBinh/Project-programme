@@ -11,7 +11,13 @@ import com.formdev.flatlaf.extras.FlatSVGIcon;
 import java.awt.event.ActionListener;
 import java.sql.SQLException;
 import java.awt.event.ActionEvent;
+<<<<<<< HEAD
 import java.time.LocalDate;
+=======
+import java.awt.event.KeyEvent;
+import java.time.LocalDate;
+import javax.swing.InputMap;
+>>>>>>> origin/verGanCuoi
 
 /**
  *
@@ -42,11 +48,14 @@ public class JFrame_TrangChu extends javax.swing.JFrame implements ActionListene
         }
         qlnv = new JPanel_QuanLyNhanVien();
         qlp = new JPanel_QuanLyPhong(nv);
+<<<<<<< HEAD
         qlsp = new JPanel_QuanLyDoAnUong();
         qlkh = new JPanel_QuanLyKhachHang();
         qlkm = new JPanel_QuanLyKhuyenMai();
         qlhd = new JPanel_QuanLyHoaDon();
 
+=======
+>>>>>>> origin/verGanCuoi
         CardLayout cardLayout = (CardLayout) MainContent.getLayout();
         MainContent.add(qlnv, "qlnv");
         MainContent.add(qlp, "qlp");

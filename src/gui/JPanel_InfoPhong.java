@@ -42,7 +42,11 @@ public class JPanel_InfoPhong extends javax.swing.JPanel {
         }
         if (phong.isHutThuoc()) {
             rdCoHut.setSelected(true);
+<<<<<<< HEAD
         } else {
+=======
+        } else  {
+>>>>>>> origin/verGanCuoi
             rdKhongHut.setSelected(true);
         }
     }

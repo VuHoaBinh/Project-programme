@@ -41,6 +41,10 @@ public class DoAnUong {
         this.trangThaiSuDung = trangThaiSuDung;
     }
 
+    public void setGiaBan() {
+        this.giaBan = this.giaNhap * 1.5;
+    }
+
     public void setMaDoAnUong(String maDoAnUong) {
         this.maDoAnUong = maDoAnUong;
     }
@@ -81,9 +85,12 @@ public class DoAnUong {
         this.trangThaiSuDung = trangThaiSuDung;
     }
     
+<<<<<<< HEAD
     public void setGiaBan(double giaBan) {
         this.giaBan = giaBan;
     }
+=======
+>>>>>>> origin/verGanCuoi
 
     public String getMaDoAnUong() {
         return maDoAnUong;

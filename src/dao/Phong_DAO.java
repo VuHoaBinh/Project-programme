@@ -95,7 +95,11 @@ public class Phong_DAO {
         java.sql.Connection con = ConnectDB.getConnection();
         PreparedStatement statement = null;
 
+<<<<<<< HEAD
          String sql = "SELECT * FROM Phong WHERE maPhong = ?";
+=======
+        String sql = "SELECT * FROM Phong WHERE maPhong = ?";
+>>>>>>> origin/verGanCuoi
         statement = con.prepareStatement(sql);
         statement.setString(1, maPhong);
         ResultSet rs = statement.executeQuery();

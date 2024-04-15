@@ -76,6 +76,10 @@ public class KhuyenMai_DAO {
             KhuyenMai km = new KhuyenMai(maKhuyenMai, trangThaiKhuyenMai,
                     giaTri, ngayBatDau, ngayKetThuc, noiDung);
             dsKhuyenMai.add(km);
+<<<<<<< HEAD
+=======
+        }
+>>>>>>> origin/verGanCuoi
         return dsKhuyenMai;
     }
 
@@ -147,7 +151,12 @@ public class KhuyenMai_DAO {
             }
         }
     }
+<<<<<<< HEAD
  public ArrayList<KhuyenMai> getKhuyenMaiByDate(LocalDate ngay) throws SQLException {
+=======
+
+    public ArrayList<KhuyenMai> getKhuyenMaiByDate(LocalDate ngay) throws SQLException {
+>>>>>>> origin/verGanCuoi
         ArrayList<KhuyenMai> dsKhuyenMai = new ArrayList<>();
 
         ConnectDB.getInstance();
