@@ -18,7 +18,7 @@ import javax.swing.JOptionPane;
  * @author ASUS
  */
 public class JFrame_Login extends javax.swing.JFrame implements ActionListener {
-
+    
     /**
      * Creates new form JFrame_Login
      *
@@ -34,7 +34,6 @@ public class JFrame_Login extends javax.swing.JFrame implements ActionListener {
         setResizable(false);
         addEvents();
     }
-
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -91,7 +90,7 @@ public class JFrame_Login extends javax.swing.JFrame implements ActionListener {
         pn_DangNhap.add(txt_password);
         txt_password.setBounds(250, 460, 220, 40);
 
-        txt_taiKhoan.setText("NV2411000");
+        txt_taiKhoan.setText("NV2411001");
         txt_taiKhoan.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txt_taiKhoanActionPerformed(evt);

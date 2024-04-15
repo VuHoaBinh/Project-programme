@@ -6,54 +6,31 @@ package gui;
 
 import javax.swing.JFrame;
 import javax.swing.SwingUtilities;
-import java.awt.Color;
 import java.awt.Font;
 import com.formdev.flatlaf.FlatClientProperties;
 import com.formdev.flatlaf.extras.FlatSVGIcon;
 import connectDB.ConnectDB;
 import dao.NhanVien_DAO;
 import dao.Phong_DAO;
-import entity.NhanVien;
 import entity.Phong;
 import java.awt.BorderLayout;
 import java.awt.Component;
 import java.awt.Dimension;
-import java.awt.Graphics2D;
-import java.awt.GridBagConstraints;
-import java.awt.Image;
-import java.awt.Insets;
-import java.awt.RenderingHints;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
-import java.awt.geom.Ellipse2D;
-import java.awt.image.BufferedImage;
-import java.io.File;
 import java.io.IOException;
-import java.nio.file.FileSystems;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.nio.file.StandardCopyOption;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
-import javax.swing.JFileChooser;
 import javax.swing.JLabel;
 import javax.swing.JMenuItem;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JPopupMenu;
-import javax.swing.JTable;
 import javax.swing.SwingConstants;
-import javax.swing.border.Border;
-import javax.swing.border.EtchedBorder;
-import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -82,12 +59,10 @@ public class JPanel_QuanLyPhong extends javax.swing.JPanel implements ActionList
         roomPopupMenu = new JPopupMenu();
         JMenuItem viewDetailsItem = new JMenuItem("Xem chi tiết");
         JMenuItem datPhong = new JMenuItem("Đặt phòng");
-        
-        
+
         datPhong.addActionListener(this);
         viewDetailsItem.addActionListener(this);
-        
-        
+
         roomPopupMenu.add(viewDetailsItem);
         roomPopupMenu.add(datPhong);
     }
@@ -102,18 +77,26 @@ public class JPanel_QuanLyPhong extends javax.swing.JPanel implements ActionList
             // Lấy danh sách các phòng từ cơ sở dữ liệu
             p_dao = new Phong_DAO();
             ArrayList<Phong> dsPhong = p_dao.getAllTablePhong(); // Lấy danh sách phòng của tầng 1
+            System.out.println("dsPhong" + dsPhong);
 
+//            for (Phong ph : dsPhong) {
+//                int a = Integer.parseInt(ph.getMaPhong().substring(0, 2));
+//                if (Integer.parseInt(ph.getMaPhong().substring(0, 2)) == 1) {
+//                    JPanel roomPanel = createRoomPanel(ph);
+//                    System.out.println("roomPanel" + roomPanel);
+//                    pn_Tang1.add(roomPanel);
+//                }
+//                if (Integer.parseInt(ph.getMaPhong().substring(0, 2)) == 2) {
+//                    JPanel roomPanel = createRoomPanel(ph);
+//                    pn_Tang2.add(roomPanel);
+//                } else {
+//                    System.out.println("MaPhong khong hop le: " + ph.getMaPhong());
+//                }
+//            }
             for (Phong ph : dsPhong) {
-                if (Integer.parseInt(ph.getMaPhong().substring(0, 2)) == 1) {
-                    JPanel roomPanel = createRoomPanel(ph);
-                    pn_Tang1.add(roomPanel);
-                }
-                if (Integer.parseInt(ph.getMaPhong().substring(0, 2)) == 2) {
-                    JPanel roomPanel = createRoomPanel(ph);
-                    pn_Tang2.add(roomPanel);
-                }
+                JPanel roomPanel = createRoomPanel(ph);
+                pn_Tang1.add(roomPanel);
             }
-
             // Cập nhật lại hiển thị của pn_Tang1
             pn_Tang1.revalidate();
             pn_Tang1.repaint();

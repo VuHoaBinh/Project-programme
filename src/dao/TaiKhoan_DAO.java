@@ -25,6 +25,7 @@ import javax.swing.JTextField;
  * @author M S I
  */
 public class TaiKhoan_DAO {
+    private static String tenNhanVien;
     NhanVien_DAO nv_dao = new NhanVien_DAO();
     public TaiKhoan_DAO() {
     };
@@ -47,6 +48,7 @@ public class TaiKhoan_DAO {
             if (rs.next()) {
                 new JFrame_TrangChu(nv_dao.getNhanVienTheoMa(txtTaiKhoan.getText()).getFirst()).setVisible(true);
                 new JFrame_Login().setVisible(false);
+                tenNhanVien = nv_dao.getHoTenNhanVienTheoMa(txtTaiKhoan.getText());
             } else {
                 JOptionPane.showMessageDialog(null, "Tên tài khoản hoặc mật khẩu không đúng");
                 txtMatKhau.setText("");
@@ -90,6 +92,10 @@ public class TaiKhoan_DAO {
         }
 
     }
+    public static String getTenNhanVien(){
+        return tenNhanVien;
+    }
+    
 //    public TaiKhoan selectById(String t) {
 //        TaiKhoan result = null;
 //        try {
