@@ -47,35 +47,10 @@ public class Phong_DAO {
             String hinhAnhPhong = rs.getString("hinhAnhPhong");
 
             // Assuming LoaiPhong and TrangThaiPhong are enums
-            LoaiPhong trangLoaiPhongSuDung;
-            String trangThaiLoaiPhongString = rs.getString("loaiPhong");
+            LoaiPhong loai = LoaiPhong.valueOf(loaiPhong);
+            TrangThaiPhong trangThai = TrangThaiPhong.valueOf(trangThaiPhong);
 
-            if (trangThaiLoaiPhongString.equals("1")) {
-                trangLoaiPhongSuDung = LoaiPhong.BASIC;
-            } else if (trangThaiLoaiPhongString.equals("2")) {
-                trangLoaiPhongSuDung = LoaiPhong.STANDARD;
-            } else if (trangThaiLoaiPhongString.equals("3")) {
-                trangLoaiPhongSuDung = LoaiPhong.BUSINESS;
-            } else if (trangThaiLoaiPhongString.equals("4")) {
-                trangLoaiPhongSuDung = LoaiPhong.VIP;
-            } else {
-                trangLoaiPhongSuDung = LoaiPhong.DOUBLE;
-            }
-
-            TrangThaiPhong trangPhongSuDung = null;
-            String trangThaiPhongString = rs.getString("trangThaiPhong");
-
-            if (trangThaiPhongString.equals("1")) {
-                trangPhongSuDung = TrangThaiPhong.BOOKED;
-            } else if (trangThaiPhongString.equals("2")) {
-                trangPhongSuDung = TrangThaiPhong.OCCUPIED;
-            } else if (trangThaiPhongString.equals("3")) {
-                trangPhongSuDung = TrangThaiPhong.AVAILABLE;
-            } else if (trangThaiPhongString.equals("4")) {
-                trangPhongSuDung = TrangThaiPhong.UNAVAILABLE;
-            }
-
-            Phong phong = new Phong(maPhong, tenPhong, dienTichPhong, soGiuong, giuongPhu, view_, hutThuoc, hinhAnhPhong, trangLoaiPhongSuDung, trangPhongSuDung);
+            Phong phong = new Phong(maPhong, tenPhong, dienTichPhong, soGiuong, giuongPhu, view_, hutThuoc, hinhAnhPhong, loai, trangThai);
             dsPhong.add(phong);
         }
         return dsPhong;
@@ -96,7 +71,6 @@ public class Phong_DAO {
         PreparedStatement statement = null;
 
         String sql = "SELECT * FROM Phong WHERE maPhong = ?";
-
         statement = con.prepareStatement(sql);
         statement.setString(1, maPhong);
         ResultSet rs = statement.executeQuery();
@@ -144,35 +118,10 @@ public class Phong_DAO {
             String hinhAnhPhong = rs.getString("hinhAnhPhong");
 
             // Assuming LoaiPhong and TrangThaiPhong are enums
-            LoaiPhong trangLoaiPhongSuDung;
-            String trangThaiLoaiPhongString = rs.getString("loaiPhong");
+            LoaiPhong loai = LoaiPhong.valueOf(loaiPhong);
+            TrangThaiPhong trangThai = TrangThaiPhong.valueOf(trangThaiPhong);
 
-            if (trangThaiLoaiPhongString.equals("1")) {
-                trangLoaiPhongSuDung = LoaiPhong.BASIC;
-            } else if (trangThaiLoaiPhongString.equals("2")) {
-                trangLoaiPhongSuDung = LoaiPhong.STANDARD;
-            } else if (trangThaiLoaiPhongString.equals("3")) {
-                trangLoaiPhongSuDung = LoaiPhong.BUSINESS;
-            } else if (trangThaiLoaiPhongString.equals("4")) {
-                trangLoaiPhongSuDung = LoaiPhong.VIP;
-            } else {
-                trangLoaiPhongSuDung = LoaiPhong.DOUBLE;
-            }
-
-            TrangThaiPhong trangPhongSuDung = null;
-            String trangThaiPhongString = rs.getString("trangThaiPhong");
-
-            if (trangThaiPhongString.equals("1")) {
-                trangPhongSuDung = TrangThaiPhong.BOOKED;
-            } else if (trangThaiPhongString.equals("2")) {
-                trangPhongSuDung = TrangThaiPhong.OCCUPIED;
-            } else if (trangThaiPhongString.equals("3")) {
-                trangPhongSuDung = TrangThaiPhong.AVAILABLE;
-            } else if (trangThaiPhongString.equals("4")) {
-                trangPhongSuDung = TrangThaiPhong.UNAVAILABLE;
-            }
-
-            Phong phong = new Phong(maPhong, tenPhong, dienTichPhong, soGiuong, giuongPhu, view_, hutThuoc, hinhAnhPhong, trangLoaiPhongSuDung, trangPhongSuDung);
+            Phong phong = new Phong(maPhong, tenPhong, dienTichPhong, soGiuong, giuongPhu, view_, hutThuoc, hinhAnhPhong, loai, trangThai);
             dsPhong.add(phong);
         }
         return dsPhong;
@@ -235,30 +184,6 @@ public class Phong_DAO {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-    }
-
-    public boolean capNhatTrangThaiPhong(String maPhong, String trangThai) {
-        ConnectDB.getInstance();
-        java.sql.Connection con = ConnectDB.getConnection();
-        PreparedStatement stmt = null;
-        int n = 0;
-        try {
-            stmt = con.prepareStatement("update Phong set trangThaiPhong = ? where maPhong = ?");
-            stmt.setString(1, trangThai);
-            stmt.setString(2, maPhong);
-            n += stmt.executeUpdate();
-
-        } catch (SQLException e) {
-            e.printStackTrace();
-        } finally {
-
-            try {
-                stmt.close();
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
-        }
-        return n > 0;
     }
 
     public void deletePhong(Phong p) {

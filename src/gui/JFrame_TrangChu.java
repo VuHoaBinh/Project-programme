@@ -27,7 +27,7 @@ public class JFrame_TrangChu extends javax.swing.JFrame implements ActionListene
     private JPanel_QuanLyDoAnUong qlsp;
     private JPanel_QuanLyKhuyenMai qlkm;
     private JPanel_QuanLyKhachHang qlkh;
-    private JPanel_DatPhong datPhong;
+//    private JPanel_DatPhong datPhong;
     private JPanel_QuanLyHoaDon qlhd;
 
     public JFrame_TrangChu(NhanVien nv) throws SQLException {
@@ -826,7 +826,7 @@ public class JFrame_TrangChu extends javax.swing.JFrame implements ActionListene
         }
         if (e.getSource() == btn_datPhong) {
             MainContent.removeAll();
-            MainContent.add(datPhong);
+//            MainContent.add(datPhong);
             MainContent.revalidate();
             MainContent.repaint();
         }

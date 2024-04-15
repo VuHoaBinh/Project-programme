@@ -115,6 +115,7 @@ public class JPanel_QuanLyPhong extends javax.swing.JPanel implements ActionList
             ArrayList<Phong> dsPhong = p_dao.getAllTablePhong(); // Lấy danh sách phòng của tầng 1
 
             for (Phong ph : dsPhong) {
+                System.out.println(ph);
                 if (Integer.parseInt(ph.getMaPhong().substring(0, 2)) == 1) {
                     JPanel roomPanel = createRoomPanel(ph);
                     pn_Tang1.add(roomPanel);
