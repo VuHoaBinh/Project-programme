@@ -11,6 +11,7 @@ import com.formdev.flatlaf.extras.FlatSVGIcon;
 import java.awt.event.ActionListener;
 import java.sql.SQLException;
 import java.awt.event.ActionEvent;
+import java.time.LocalDate;
 
 /**
  *
@@ -40,7 +41,7 @@ public class JFrame_TrangChu extends javax.swing.JFrame implements ActionListene
             lblChucVu.setText("Lễ Tân");
         }
         qlnv = new JPanel_QuanLyNhanVien();
-        qlp = new JPanel_QuanLyPhong();
+        qlp = new JPanel_QuanLyPhong(nv);
         qlsp = new JPanel_QuanLyDoAnUong();
         qlkh = new JPanel_QuanLyKhachHang();
         qlkm = new JPanel_QuanLyKhuyenMai();

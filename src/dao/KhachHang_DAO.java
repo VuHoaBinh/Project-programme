@@ -55,40 +55,30 @@ public class KhachHang_DAO {
      * @throws IOException
      * @throws java.sql.SQLException
      */
-    public ArrayList<KhachHang> getPhongTheoMaKhachHang(String maPhong) throws IOException, java.sql.SQLException {
+    public ArrayList<KhachHang> getKHTheoMaKhachHang(String maKH) throws IOException, java.sql.SQLException {
         ArrayList<KhachHang> dsKhachHang = new ArrayList<>();
 
         ConnectDB.getInstance();
         java.sql.Connection con = ConnectDB.getConnection();
         PreparedStatement statement = null;
-
-        try {
-            String sql = "SELECT * FROM KhachHang WHERE maKhachHang = ?";
-            statement = con.prepareStatement(sql);
-            statement.setString(1, maPhong);
-            ResultSet rs = statement.executeQuery();
-            while (rs.next()) {
-                String maKhachHang = rs.getString("maKhachHang");
-                String hoTenKhachHang = rs.getString("hoTenKhachHang");
-                String gioiTinhStr = rs.getString("gioiTinh");
-                boolean gioiTinh = gioiTinhStr.equals("Nam");
-                String CCCD = rs.getString("CCCD");
-                LocalDate ngaySinh = rs.getDate("ngaySinh").toLocalDate();
-                boolean trangThaiKhachHang = rs.getInt("trangThaiKhachHang") == 1;
-
-                KhachHang kh = new KhachHang(maKhachHang, hoTenKhachHang, gioiTinh,
-                        CCCD, ngaySinh, trangThaiKhachHang);
-                dsKhachHang.add(kh);
-            }
-        } finally {
-            if (statement != null) {
-                statement.close();
-            }
-            if (con != null) {
-                con.close();
-            }
+String sql = "SELECT * FROM KhachHang WHERE maKhachHang = ?";
+        statement = con.prepareStatement(sql);
+        statement.setString(1, maKH);
+        ResultSet rs = statement.executeQuery();
+        while (rs.next()) {
+            String maKhachHang = rs.getString("maKhachHang");
+            String hoTenKhachHang = rs.getString("hoTenKhachHang");
+            String gioiTinhStr = rs.getString("gioiTinh");
+            boolean gioiTinh = gioiTinhStr.equals("Nam");
+            String CCCD = rs.getString("CCCD");
+            LocalDate ngaySinh = rs.getDate("ngaySinh").toLocalDate();
+            boolean trangThaiKhachHang = rs.getInt("trangThaiKhachHang") == 1;
+KhachHang kh = new KhachHang(maKhachHang, hoTenKhachHang, gioiTinh,
+                    CCCD, ngaySinh, trangThaiKhachHang);
+            dsKhachHang.add(kh);
         }
-        return dsKhachHang;
+
+                return dsKhachHang;
     }
     public ArrayList<KhachHang> getDsKhachHangTheoMa(String maKhachHang) throws IOException, SQLException {
         ArrayList<KhachHang> dsKhachHang = new ArrayList<>();

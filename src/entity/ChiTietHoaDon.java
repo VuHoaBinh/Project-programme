@@ -3,7 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package entity;
-
+import java.time.temporal.ChronoUnit;
 import java.time.LocalDate;
 import java.util.Objects;
 
@@ -22,14 +22,13 @@ public class ChiTietHoaDon {
     private int soLuongDoUongTraVe;
     private double tongTienThuePhong;
     private double tongTienDichVu;
-    private double tongThanhTien;
     private double phuPhi;
 
     public ChiTietHoaDon() {
 
     }
 
-    public ChiTietHoaDon(HoaDon hoaDon, DoAnUong doAnUong, int soLuong, Phong phong, LocalDate ngayNhanPhong, LocalDate ngayTraPhong, int soLuongNguoiO, int soLuongDoUongTraVe, double tongTienThuePhong, double tongTienDichVu, double tongThanhTien, double phuPhi) {
+     public ChiTietHoaDon(HoaDon hoaDon, DoAnUong doAnUong, int soLuong, Phong phong, LocalDate ngayNhanPhong, LocalDate ngayTraPhong, int soLuongNguoiO, int soLuongDoUongTraVe, double tongTienThuePhong, double tongTienDichVu, double phuPhi) {
         this.hoaDon = hoaDon;
         this.doAnUong = doAnUong;
         this.soLuong = soLuong;
@@ -40,7 +39,6 @@ public class ChiTietHoaDon {
         this.soLuongDoUongTraVe = soLuongDoUongTraVe;
         this.tongTienThuePhong = tongTienThuePhong;
         this.tongTienDichVu = tongTienDichVu;
-        this.tongThanhTien = tongThanhTien;
         this.phuPhi = phuPhi;
     }
 
@@ -84,10 +82,6 @@ public class ChiTietHoaDon {
         return tongTienDichVu;
     }
 
-    public double getTongThanhTien() {
-        return tongThanhTien;
-    }
-
     public double getPhuPhi() {
         return phuPhi;
     }
@@ -119,20 +113,47 @@ public class ChiTietHoaDon {
     public void setSoLuongNguoiO(int soLuongNguoiO) {
         this.soLuongNguoiO = soLuongNguoiO;
     }
-    public double tinhTongTienDichVu(){
-        return soLuong * doAnUong.getGiaNhap();
+public void tinhTongTienDichVu() {
+        if (doAnUong != null) {
+            this.tongTienDichVu = soLuong * doAnUong.getGiaBan();
+        }
+        else{
+            this.tongTienDichVu =0;
+        }
+
     }
-//    public double tinhTienThuePhong(){
-//        
-//    }
-//    public double tinhTongThanhTien(){
-//        return 
-//    }
-//    
-    //tinhTongPhuPhi (tl4 thiếu cái này)
+
+    public void tinhTienThuePhong() {
+        int soTien1n = 0;
+        if (phong.getLoaiPhong().getTenLoai() == 1) {
+            soTien1n = 500000;
+        } else if (phong.getLoaiPhong().getTenLoai() == 2) {
+            soTien1n = 600000;
+        } else if (phong.getLoaiPhong().getTenLoai() == 3) {
+            soTien1n = 750000;
+        } else if (phong.getLoaiPhong().getTenLoai() == 4) {
+            soTien1n = 900000;
+        } else if (phong.getLoaiPhong().getTenLoai() == 5) {
+            soTien1n = 420000;
+        }
+
+        // Kiểm tra nếu ngày nhận và trả không null và ngày trả phải sau ngày nhận
+        if (ngayNhanPhong != null && ngayTraPhong != null && ngayTraPhong.isAfter(ngayNhanPhong)) {
+            // Tính số ngày giữa ngày nhận và ngày trả phòng
+            long soNgayThue = ChronoUnit.DAYS.between(ngayNhanPhong, ngayTraPhong);
+
+            // Tính tổng tiền thuê phòng dựa trên số ngày và giá thuê mỗi ngày
+            double tongTienThue = soTien1n * soNgayThue;
+            System.out.println(soTien1n);
+            this.tongTienThuePhong = tongTienThue;
+        } else {
+            // Trả về 0 hoặc giá trị mặc định khi thông tin không hợp lệ
+            this.tongTienThuePhong = 0;
+        }
+}
     @Override
     public String toString() {
-        return "ChiTietHoaDon{" + "hoaDon=" + hoaDon + ", doAnUong=" + doAnUong + ", soLuong=" + soLuong + ", phong=" + phong + ", ngayNhanPhong=" + ngayNhanPhong + ", ngayTraPhong=" + ngayTraPhong + ", soLuongNguoiO=" + soLuongNguoiO + ", soLuongDoUongTraVe=" + soLuongDoUongTraVe + ", tongTienThuePhong=" + tongTienThuePhong + ", tongTienDichVu=" + tongTienDichVu + ", tongThanhTien=" + tongThanhTien + ", phuPhi=" + phuPhi + '}';
+       return "ChiTietHoaDon{" + "hoaDon=" + hoaDon + ", doAnUong=" + doAnUong + ", soLuong=" + soLuong + ", phong=" + phong + ", ngayNhanPhong=" + ngayNhanPhong + ", ngayTraPhong=" + ngayTraPhong + ", soLuongNguoiO=" + soLuongNguoiO + ", soLuongDoUongTraVe=" + soLuongDoUongTraVe + ", tongTienThuePhong=" + tongTienThuePhong + ", tongTienDichVu=" + tongTienDichVu + ", phuPhi=" + phuPhi + '}';
     }
 
     @Override
