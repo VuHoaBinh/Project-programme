@@ -77,7 +77,6 @@ CREATE TABLE HoaDon(
     FOREIGN KEY (nhanVien) REFERENCES NhanVien(maNhanVien),
     FOREIGN KEY (khuyenMai) REFERENCES KhuyenMai(maKhuyenMai)
 );
-
 CREATE TABLE PhieuDatPhong (
     maPhieuDatPhong VARCHAR(19) PRIMARY KEY,
     khachHang VARCHAR(10),

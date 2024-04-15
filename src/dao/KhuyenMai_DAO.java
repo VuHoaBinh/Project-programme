@@ -62,29 +62,20 @@ public class KhuyenMai_DAO {
         java.sql.Connection con = ConnectDB.getConnection();
         PreparedStatement statement = null;
 
-        try {
-            String sql = "SELECT * FROM KhuyenMai WHERE maKhuyenMai = ?";
-            statement = con.prepareStatement(sql);
-            statement.setString(1, maKhuyenMai);
-            ResultSet rs = statement.executeQuery();
-            while (rs.next()) {
-                boolean trangThaiKhuyenMai = rs.getBoolean("trangThaiKhuyenMai");
-                double giaTri = rs.getDouble("giaTri");
-                LocalDate ngayBatDau = rs.getDate("ngayBatDau").toLocalDate();
-                LocalDate ngayKetThuc = rs.getDate("ngayKetThuc").toLocalDate();
-                String noiDung = rs.getString("noiDung");
+        String sql = "SELECT * FROM KhuyenMai WHERE maKhuyenMai = ?";
+        statement = con.prepareStatement(sql);
+        statement.setString(1, maKhuyenMai);
+        ResultSet rs = statement.executeQuery();
+        while (rs.next()) {
+            boolean trangThaiKhuyenMai = rs.getBoolean("trangThaiKhuyenMai");
+            double giaTri = rs.getDouble("giaTri");
+            LocalDate ngayBatDau = rs.getDate("ngayBatDau").toLocalDate();
+            LocalDate ngayKetThuc = rs.getDate("ngayKetThuc").toLocalDate();
+            String noiDung = rs.getString("noiDung");
 
-                KhuyenMai km = new KhuyenMai(maKhuyenMai, trangThaiKhuyenMai,
-                        giaTri, ngayBatDau, ngayKetThuc, noiDung);
-                dsKhuyenMai.add(km);
-            }
-        } finally {
-            if (statement != null) {
-                statement.close();
-            }
-            if (con != null) {
-                con.close();
-            }
+            KhuyenMai km = new KhuyenMai(maKhuyenMai, trangThaiKhuyenMai,
+                    giaTri, ngayBatDau, ngayKetThuc, noiDung);
+            dsKhuyenMai.add(km);
         }
         return dsKhuyenMai;
     }
@@ -156,5 +147,32 @@ public class KhuyenMai_DAO {
                 e.printStackTrace();
             }
         }
+    }
+
+    public ArrayList<KhuyenMai> getKhuyenMaiByDate(LocalDate ngay) throws SQLException {
+        ArrayList<KhuyenMai> dsKhuyenMai = new ArrayList<>();
+
+        ConnectDB.getInstance();
+        java.sql.Connection con = ConnectDB.getConnection();
+        PreparedStatement statement = null;
+
+        String sql = "SELECT * FROM KhuyenMai WHERE ? BETWEEN ngayBatDau AND ngayKetThuc AND trangThaiKhuyenMai = ?";
+        statement = con.prepareStatement(sql);
+        statement.setDate(1, java.sql.Date.valueOf(ngay));
+        statement.setBoolean(2, true);
+        ResultSet rs = statement.executeQuery();
+        while (rs.next()) {
+            String maKhuyenMai = rs.getString("maKhuyenMai");
+            boolean trangThaiKhuyenMai = rs.getBoolean("trangThaiKhuyenMai");
+            double giaTri = rs.getDouble("giaTri");
+            LocalDate ngayBatDauKM = rs.getDate("ngayBatDau").toLocalDate();
+            LocalDate ngayKetThucKM = rs.getDate("ngayKetThuc").toLocalDate();
+            String noiDung = rs.getString("noiDung");
+
+            KhuyenMai km = new KhuyenMai(maKhuyenMai, trangThaiKhuyenMai,
+                    giaTri, ngayBatDauKM, ngayKetThucKM, noiDung);
+            dsKhuyenMai.add(km);
+        }
+        return dsKhuyenMai;
     }
 }

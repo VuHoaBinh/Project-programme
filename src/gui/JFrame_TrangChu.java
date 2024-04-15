@@ -16,6 +16,7 @@ import javax.swing.JComponent;
 import javax.swing.KeyStroke;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
+import java.time.LocalDate;
 import javax.swing.InputMap;
 
 /**
@@ -42,7 +43,7 @@ public class JFrame_TrangChu extends javax.swing.JFrame implements ActionListene
             lblChucVu.setText("Lễ Tân");
         }
         qlnv = new JPanel_QuanLyNhanVien();
-        qlp = new JPanel_QuanLyPhong();
+        qlp = new JPanel_QuanLyPhong(nv);
         CardLayout cardLayout = (CardLayout) MainContent.getLayout();
         MainContent.add(qlnv, "qlnv");
         MainContent.add(qlp, "qlp");

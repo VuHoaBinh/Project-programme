@@ -32,13 +32,17 @@ public class DoAnUong {
         this.tenDoAnUong = tenDoAnUong;
         this.loai = loai;
         this.giaNhap = giaNhap;
-        this.giaBan = tinhGiaban();
+        this.giaBan = giaBan;
         this.hoanTra = hoanTra;
         this.soLuong = soLuong;
         this.ngaySanXuat = ngaySanXuat;
         this.HanSuDung = HanSuDung;
         this.moTa = moTa;
         this.trangThaiSuDung = trangThaiSuDung;
+    }
+
+    public void setGiaBan() {
+        this.giaBan = this.giaNhap * 1.5;
     }
 
     public void setMaDoAnUong(String maDoAnUong) {
@@ -81,9 +85,6 @@ public class DoAnUong {
         this.trangThaiSuDung = trangThaiSuDung;
     }
     
-    public double  tinhGiaban() {
-        return this.giaNhap * 1.5;
-    }
 
     public String getMaDoAnUong() {
         return maDoAnUong;
