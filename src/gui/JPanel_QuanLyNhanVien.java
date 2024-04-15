@@ -30,8 +30,12 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
 import java.sql.SQLException;
+import java.time.LocalDate;
+import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.BorderFactory;
@@ -181,6 +185,11 @@ public class JPanel_QuanLyNhanVien extends javax.swing.JPanel implements ActionL
         jLabel10.setText("Chức vụ:");
 
         txtMaNV.setEditable(false);
+        txtMaNV.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtMaNVActionPerformed(evt);
+            }
+        });
 
         rd_nu.setText("Nữ");
 
@@ -213,7 +222,7 @@ public class JPanel_QuanLyNhanVien extends javax.swing.JPanel implements ActionL
         frm_ThongTin.setLayout(frm_ThongTinLayout);
         frm_ThongTinLayout.setHorizontalGroup(
             frm_ThongTinLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(frm_ThongTinLayout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, frm_ThongTinLayout.createSequentialGroup()
                 .addContainerGap(24, Short.MAX_VALUE)
                 .addGroup(frm_ThongTinLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(frm_ThongTinLayout.createSequentialGroup()
@@ -302,7 +311,7 @@ public class JPanel_QuanLyNhanVien extends javax.swing.JPanel implements ActionL
         btnThem.setForeground(Color.WHITE);
         btnThem.setFont(new Font("Roboto Mono Medium", Font.PLAIN, 16));
 
-        btn_Xoa.setText("Thôi Việc");
+        btn_Xoa.setText("Danh Sách Đen");
         btn_Xoa.setBackground(new Color(0, 102, 102));
         btn_Xoa.setForeground(Color.WHITE);
         btn_Xoa.setFont(new Font("Roboto Mono Medium", Font.PLAIN, 16));
@@ -507,6 +516,10 @@ public class JPanel_QuanLyNhanVien extends javax.swing.JPanel implements ActionL
     private void btn_refreshActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_refreshActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btn_refreshActionPerformed
+
+    private void txtMaNVActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtMaNVActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtMaNVActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

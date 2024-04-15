@@ -30,6 +30,8 @@ public class JFrame_TrangChu extends javax.swing.JFrame implements ActionListene
     private TrangChu trangChu;
     private JPanel_QuanLyNhanVien qlnv;
     private final JPanel_QuanLyPhong qlp;
+    private JPanel_QuanLyKhachHang qlkh;
+    private JPanel_DatPhong datPhong;
 
     public JFrame_TrangChu(NhanVien nv) throws SQLException {
         initComponents();
@@ -43,20 +45,30 @@ public class JFrame_TrangChu extends javax.swing.JFrame implements ActionListene
         }
         qlnv = new JPanel_QuanLyNhanVien();
         qlp = new JPanel_QuanLyPhong();
+        qlkh = new JPanel_QuanLyKhachHang();
+//        datPhong = new JPanel_DatPhong();
+        
         CardLayout cardLayout = (CardLayout) MainContent.getLayout();
         MainContent.add(qlnv, "qlnv");
         MainContent.add(qlp, "qlp");
+        MainContent.add(qlkh, "qlkh");
+//        MainContent.add(datPhong,"datPhong");
         FlatIntelliJLaf.registerCustomDefaultsSource("style");
         FlatIntelliJLaf.setup();
     }
 
-    private void loadQuanLyNhanVien() {
-        MainContent.removeAll();
-        MainContent.add(qlnv, "qlnv");
-        MainContent.revalidate();
-        MainContent.repaint();
-    }
-
+//    private void loadQuanLyNhanVien() {
+//        MainContent.removeAll();
+//        MainContent.add(qlnv, "qlnv");
+//        MainContent.revalidate();
+//        MainContent.repaint();
+//    }
+//    private void loadQuanLyKhachHang(){
+//        MainContent.removeAll();
+//        MainContent.add(qlkh, "qlkh");
+//        MainContent.revalidate();
+//        MainContent.repaint();
+//    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -92,6 +104,7 @@ public class JFrame_TrangChu extends javax.swing.JFrame implements ActionListene
         Content11 = new javax.swing.JPanel();
         jButton11 = new javax.swing.JButton();
         Content12 = new javax.swing.JPanel();
+        btn_datPhong = new javax.swing.JButton();
         bar3 = new javax.swing.JPanel();
         pnlBottom = new javax.swing.JPanel();
         DangXuat = new javax.swing.JPanel();
@@ -417,15 +430,27 @@ public class JFrame_TrangChu extends javax.swing.JFrame implements ActionListene
         Content12.setForeground(new java.awt.Color(255, 255, 255));
         Content12.setPreferredSize(new java.awt.Dimension(300, 50));
 
+        btn_datPhong.setBackground(new java.awt.Color(250, 250, 250));
+        btn_datPhong.setText("Đặt Phòng");
+        btn_datPhong.setPreferredSize(new java.awt.Dimension(250, 23));
+        btn_datPhong.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_datPhongActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout Content12Layout = new javax.swing.GroupLayout(Content12);
         Content12.setLayout(Content12Layout);
         Content12Layout.setHorizontalGroup(
             Content12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(Content12Layout.createSequentialGroup()
+                .addGap(35, 35, 35)
+                .addComponent(btn_datPhong, javax.swing.GroupLayout.PREFERRED_SIZE, 229, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(36, Short.MAX_VALUE))
         );
         Content12Layout.setVerticalGroup(
             Content12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 50, Short.MAX_VALUE)
+            .addComponent(btn_datPhong, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 50, Short.MAX_VALUE)
         );
 
         jPanel1.add(Content12);
@@ -530,6 +555,10 @@ public class JFrame_TrangChu extends javax.swing.JFrame implements ActionListene
         // TODO add your handling code here:
     }//GEN-LAST:event_btn_quanLyPhongActionPerformed
 
+    private void btn_datPhongActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_datPhongActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btn_datPhongActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -581,6 +610,7 @@ public class JFrame_TrangChu extends javax.swing.JFrame implements ActionListene
     private javax.swing.JPanel bar3;
     private javax.swing.JPanel bar4;
     private javax.swing.JButton btn_dangXuat;
+    private javax.swing.JButton btn_datPhong;
     private javax.swing.JButton btn_quanLyDoAnUong;
     private javax.swing.JButton btn_quanLyKhachHang;
     private javax.swing.JButton btn_quanLyNhanVien;
@@ -602,6 +632,8 @@ public class JFrame_TrangChu extends javax.swing.JFrame implements ActionListene
     public void addEvents() {
         btn_quanLyNhanVien.addActionListener(this);
         btn_quanLyPhong.addActionListener(this);
+        btn_quanLyKhachHang.addActionListener(this);
+        btn_datPhong.addActionListener(this);
         btn_dangXuat.addActionListener(this);
     }
 
@@ -625,6 +657,19 @@ public class JFrame_TrangChu extends javax.swing.JFrame implements ActionListene
             MainContent.revalidate();
             MainContent.repaint();
         }
+        if(e.getSource() == btn_quanLyKhachHang){
+            MainContent.removeAll();
+            MainContent.add(qlkh);
+            MainContent.revalidate();
+            MainContent.repaint();
+        }
+        if(e.getSource() == btn_datPhong){
+            MainContent.removeAll();
+            MainContent.add(datPhong);
+            MainContent.revalidate();
+            MainContent.repaint();
+        }
+        
         if (e.getSource() == btn_dangXuat) {
 
         }

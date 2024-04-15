@@ -63,10 +63,9 @@ import javax.swing.table.DefaultTableModel;
 public class JPanel_QuanLyPhong extends javax.swing.JPanel implements ActionListener, MouseListener {
 
     private Phong_DAO p_dao;
-    private DefaultTableModel modelTang1;
     private final JPopupMenu roomPopupMenu;
     private boolean isRoomSelected = false;
-
+    private NhanVien nv;
     /**
      * Creates new form JPanel_QuanLyNhanVien
      */
@@ -81,8 +80,15 @@ public class JPanel_QuanLyPhong extends javax.swing.JPanel implements ActionList
         // Tạo menu ngữ cảnh cho phòng
         roomPopupMenu = new JPopupMenu();
         JMenuItem viewDetailsItem = new JMenuItem("Xem chi tiết");
+        JMenuItem datPhong = new JMenuItem("Đặt phòng");
+        
+        
+        datPhong.addActionListener(this);
         viewDetailsItem.addActionListener(this);
+        
+        
         roomPopupMenu.add(viewDetailsItem);
+        roomPopupMenu.add(datPhong);
     }
 
     public void loadData() throws SQLException {
@@ -403,7 +409,6 @@ public class JPanel_QuanLyPhong extends javax.swing.JPanel implements ActionList
     private javax.swing.JTextField txt_maCanTim;
     // End of variables declaration//GEN-END:variables
     private NhanVien_DAO nv_dao = new NhanVien_DAO();
-    private DefaultTableModel modelNhanVien;
     javax.swing.ButtonGroup gr_gt = new javax.swing.ButtonGroup();
     javax.swing.ButtonGroup gr_tt = new javax.swing.ButtonGroup();
     javax.swing.ButtonGroup gr_cv = new javax.swing.ButtonGroup();
@@ -434,6 +439,28 @@ public class JPanel_QuanLyPhong extends javax.swing.JPanel implements ActionList
                 Logger.getLogger(JPanel_QuanLyPhong.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
+        if(e.getActionCommand().equals("Đặt phòng")){
+            JPanel roomPanelClicked = (JPanel) roomPopupMenu.getInvoker();
+            JLabel roomInfoLabel = (JLabel) roomPanelClicked.getComponent(1); // Component thứ 2 là JLabel chứa tên phòng
+            String tenPhong = roomInfoLabel.getText();
+            
+            JPanel_DatPhong datPhongPanel;
+            try {
+                datPhongPanel = new JPanel_DatPhong(tenPhong);
+                JFrame datPhongFrame = new JFrame("Đặt Phòng");
+                datPhongFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+                datPhongFrame.add(datPhongPanel);
+                datPhongFrame.pack();
+                datPhongFrame.setLocationRelativeTo(null);
+                datPhongFrame.setVisible(true);
+                
+            } catch (IOException ex) {
+                Logger.getLogger(JPanel_QuanLyPhong.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (SQLException ex) {
+                Logger.getLogger(JPanel_QuanLyPhong.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        
     }
 
     @Override

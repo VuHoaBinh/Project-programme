@@ -23,4 +23,12 @@ public enum TrangThaiPhong {
     public int getTenTrangThai() {
         return tenTrangThai;
     }
+    public static TrangThaiPhong fromInt(int value) {
+        for (TrangThaiPhong trangThai : TrangThaiPhong.values()) {
+            if (trangThai.getTenTrangThai() == value) {
+                return trangThai;
+            }
+        }
+        throw new IllegalArgumentException("Giá trị không hợp lệ: " + value);
+    }
 }
