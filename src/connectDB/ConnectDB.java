@@ -19,7 +19,7 @@ public class ConnectDB {
         String password = "123";
         con = DriverManager.getConnection(url, user, password);
         System.out.println("connect database!!");
-
+        System.out.println("connect database!!");
     }
 
     public static void disconnect() {
