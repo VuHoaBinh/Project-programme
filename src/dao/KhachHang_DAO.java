@@ -90,7 +90,7 @@ public class KhachHang_DAO {
         }
         return dsKhachHang;
     }
-    public ArrayList<KhachHang> getKhachHangTheoMa(String maKhachHang) throws IOException, SQLException {
+    public ArrayList<KhachHang> getDsKhachHangTheoMa(String maKhachHang) throws IOException, SQLException {
         ArrayList<KhachHang> dsKhachHang = new ArrayList<>();
         ConnectDB.getInstance();
         java.sql.Connection con = ConnectDB.getConnection();
@@ -111,6 +111,51 @@ public class KhachHang_DAO {
             dsKhachHang.add(kh);
         }
         return dsKhachHang;
+    }
+
+    public KhachHang getKhachHangTheoMa(String maKhachHang) throws IOException, SQLException {
+        ConnectDB.getInstance();
+        java.sql.Connection con = ConnectDB.getConnection();
+        KhachHang kh = null;
+        PreparedStatement statement = null;
+
+        String sql = "SELECT * FROM KhachHang WHERE maKhachHang = ?";
+        statement = con.prepareStatement(sql);
+        statement.setString(1, maKhachHang);
+        ResultSet rs = statement.executeQuery();
+        while (rs.next()) {
+            String hoTenKhachHang = rs.getString("hoTenKhachHang");
+            boolean gioiTinh = rs.getBoolean("gioiTinh");
+            String CCCD = rs.getString("CCCD");
+            java.sql.Date ngaySinh = rs.getDate("ngaySinh");
+            LocalDate ngaySinhLocalDate = ngaySinh.toLocalDate();
+            boolean trangThaiKhachHang = rs.getBoolean("trangThaiKhachHang");
+            kh = new KhachHang(maKhachHang, hoTenKhachHang, gioiTinh, CCCD, ngaySinhLocalDate, trangThaiKhachHang);
+        }
+        return kh;
+    }
+    public KhachHang getKhachHangTheoTen(String ten) throws IOException, SQLException {
+        ConnectDB.getInstance();
+        java.sql.Connection con = ConnectDB.getConnection();
+        KhachHang kh = null;
+        PreparedStatement statement = null;
+
+        String sql = "SELECT * FROM KhachHang WHERE hoTenKhachHang = ?";
+        statement = con.prepareStatement(sql);
+        statement.setString(1, ten);
+        ResultSet rs = statement.executeQuery();
+        while (rs.next()) {
+            String maKhachHang = rs.getString("maKhachHang");
+            String hoTenKhachHang = rs.getString("hoTenKhachHang");
+            boolean gioiTinh = rs.getBoolean("gioiTinh");
+            String CCCD = rs.getString("CCCD");
+            java.sql.Date ngaySinh = rs.getDate("ngaySinh");
+            LocalDate ngaySinhLocalDate = ngaySinh.toLocalDate();
+            boolean trangThaiKhachHang = rs.getBoolean("trangThaiKhachHang");
+            
+            kh = new KhachHang(maKhachHang, hoTenKhachHang, gioiTinh, CCCD, ngaySinhLocalDate, trangThaiKhachHang);
+        }
+        return kh;
     }
     public boolean createKhachHang(KhachHang kh) throws SQLException {
         ConnectDB.getInstance();

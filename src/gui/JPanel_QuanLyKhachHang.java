@@ -576,7 +576,7 @@ public class JPanel_QuanLyKhachHang extends javax.swing.JPanel implements Action
                     list = kh_dao.getAllTableKhachHang();
                     delData();
                 } else {
-                    list = kh_dao.getKhachHangTheoMa(txt_maCanTim.getText());
+                    list = kh_dao.getDsKhachHangTheoMa(txt_maCanTim.getText());
                     delData();
                 }
                 System.out.println(list);
