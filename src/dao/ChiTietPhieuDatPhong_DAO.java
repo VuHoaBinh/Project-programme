@@ -89,7 +89,7 @@ public class ChiTietPhieuDatPhong_DAO {
         }
         return dsChiTietPhieuDatPhong;
     }
-    public boolean create(ChiTietPhieuDatPhong ctpdp) {
+   public boolean create(ChiTietPhieuDatPhong ctpdp) {
 		ConnectDB.getInstance();
 		java.sql.Connection con = ConnectDB.getConnection();
 		PreparedStatement stmt = null;

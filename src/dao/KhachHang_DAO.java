@@ -99,7 +99,6 @@ KhachHang kh = new KhachHang(maKhachHang, hoTenKhachHang, gioiTinh,
             LocalDate ngaySinhLocalDate = ngaySinh.toLocalDate();
             boolean trangThaiKhachHang = rs.getBoolean("trangThaiKhachHang");
             KhachHang kh = new KhachHang(maKhachHang, hoTenKhachHang, gioiTinh, CCCD, ngaySinhLocalDate, trangThaiKhachHang);
-=======
         String sql = "SELECT * FROM KhachHang WHERE maKhachHang = ?";
         statement = con.prepareStatement(sql);
         statement.setString(1, maKH);
@@ -107,15 +106,15 @@ KhachHang kh = new KhachHang(maKhachHang, hoTenKhachHang, gioiTinh,
         while (rs.next()) {
             String maKhachHang = rs.getString("maKhachHang");
             String hoTenKhachHang = rs.getString("hoTenKhachHang");
-            String gioiTinhStr = rs.getString("gioiTinh");
-            boolean gioiTinh = gioiTinhStr.equals("Nam");
+            boolean gioiTinh = rs.getBoolean("gioiTinh");
+
+
             String CCCD = rs.getString("CCCD");
             LocalDate ngaySinh = rs.getDate("ngaySinh").toLocalDate();
             boolean trangThaiKhachHang = rs.getInt("trangThaiKhachHang") == 1;
 
             KhachHang kh = new KhachHang(maKhachHang, hoTenKhachHang, gioiTinh,
                     CCCD, ngaySinh, trangThaiKhachHang);
->>>>>>> origin/verGanCuoi
             dsKhachHang.add(kh);
         }
         return dsKhachHang;
