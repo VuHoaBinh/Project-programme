@@ -45,12 +45,9 @@ public class Phong_DAO {
             String view_ = rs.getString("view_");
             boolean hutThuoc = rs.getBoolean("hutThuoc");
             String hinhAnhPhong = rs.getString("hinhAnhPhong");
-
-            // Assuming LoaiPhong and TrangThaiPhong are enums
-            LoaiPhong loai = LoaiPhong.valueOf(loaiPhong);
-            TrangThaiPhong trangThai = TrangThaiPhong.valueOf(trangThaiPhong);
-
-            Phong phong = new Phong(maPhong, tenPhong, dienTichPhong, soGiuong, giuongPhu, view_, hutThuoc, hinhAnhPhong, loai, trangThai);
+            LoaiPhong lp = LoaiPhong.valueOf(loaiPhong);
+            TrangThaiPhong ttp = TrangThaiPhong.valueOf(trangThaiPhong);
+            Phong phong = new Phong(maPhong, tenPhong, dienTichPhong, soGiuong, giuongPhu, view_, hutThuoc, hinhAnhPhong, lp, ttp);
             dsPhong.add(phong);
         }
         return dsPhong;
@@ -76,8 +73,8 @@ public class Phong_DAO {
         ResultSet rs = statement.executeQuery();
         while (rs.next()) {
             String tenPhong = rs.getString("tenPhong");
-            String loaiPhong = rs.getString("loaiPhong");
-            String trangThaiPhong = rs.getString("trangThaiPhong");
+            LoaiPhong loaiPhong = LoaiPhong.valueOf(rs.getString("loaiPhong"));
+            TrangThaiPhong trangThai = TrangThaiPhong.valueOf(rs.getString("trangThaiPhong"));
             double dienTichPhong = rs.getDouble("dienTichPhong");
             int soGiuong = rs.getInt("soGiuong");
             boolean giuongPhu = rs.getBoolean("giuongPhu");
@@ -85,11 +82,7 @@ public class Phong_DAO {
             boolean hutThuoc = rs.getBoolean("hutThuoc");
             String hinhAnhPhong = rs.getString("hinhAnhPhong");
 
-            // Assuming LoaiPhong and TrangThaiPhong are enums
-            LoaiPhong loai = LoaiPhong.valueOf(loaiPhong);
-            TrangThaiPhong trangThai = TrangThaiPhong.valueOf(trangThaiPhong);
-
-            Phong phong = new Phong(maPhong, tenPhong, dienTichPhong, soGiuong, giuongPhu, view_, hutThuoc, hinhAnhPhong, loai, trangThai);
+            Phong phong = new Phong(maPhong, tenPhong, dienTichPhong, soGiuong, giuongPhu, view_, hutThuoc, hinhAnhPhong, loaiPhong, trangThai);
             dsPhong.add(phong);
         }
         return dsPhong;
@@ -108,8 +101,8 @@ public class Phong_DAO {
         ResultSet rs = statement.executeQuery();
         while (rs.next()) {
             String maPhong = rs.getString("maPhong");
-            String loaiPhong = rs.getString("loaiPhong");
-            String trangThaiPhong = rs.getString("trangThaiPhong");
+            LoaiPhong loaiPhong = LoaiPhong.valueOf(rs.getString("loaiPhong"));
+            TrangThaiPhong trangThai = TrangThaiPhong.valueOf(rs.getString("trangThaiPhong"));
             double dienTichPhong = rs.getDouble("dienTichPhong");
             int soGiuong = rs.getInt("soGiuong");
             boolean giuongPhu = rs.getBoolean("giuongPhu");
@@ -117,11 +110,7 @@ public class Phong_DAO {
             boolean hutThuoc = rs.getBoolean("hutThuoc");
             String hinhAnhPhong = rs.getString("hinhAnhPhong");
 
-            // Assuming LoaiPhong and TrangThaiPhong are enums
-            LoaiPhong loai = LoaiPhong.valueOf(loaiPhong);
-            TrangThaiPhong trangThai = TrangThaiPhong.valueOf(trangThaiPhong);
-
-            Phong phong = new Phong(maPhong, tenPhong, dienTichPhong, soGiuong, giuongPhu, view_, hutThuoc, hinhAnhPhong, loai, trangThai);
+            Phong phong = new Phong(maPhong, tenPhong, dienTichPhong, soGiuong, giuongPhu, view_, hutThuoc, hinhAnhPhong, loaiPhong, trangThai);
             dsPhong.add(phong);
         }
         return dsPhong;

@@ -9,31 +9,57 @@ import dao.TaiKhoan_DAO;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.SQLException;
+import java.util.TimerTask;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import javax.swing.Timer;
+import java.util.TimerTask;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.TimeUnit;
 
 /**
  *
  * @author ASUS
  */
 public class JFrame_Login extends javax.swing.JFrame implements ActionListener {
-    
+
+    /**
+     * Creates new form JFrame_Login
+     *
+     * @throws java.lang.Exception
+     */
+    private TaiKhoan_DAO tk_dao = new TaiKhoan_DAO();
+    private JFrame_loading loadingScreen;
+
     /**
      * Creates new form JFrame_Login
      *
      * @throws java.lang.Exception
      */
     public JFrame_Login() throws Exception {
+        loadingScreen = new JFrame_loading();
+        loadingScreen.showLoadingScreen(); // Show the loading screen
+
+        // Create a scheduled executor service
+        ScheduledExecutorService executor = Executors.newSingleThreadScheduledExecutor();
+
+        // Schedule a task to hide the loading screen after a delay of 3 seconds (adjust as needed)
+        executor.schedule(() -> {
+            loadingScreen.hideLoadingScreen(); // Hide the loading screen
+            initComponents(); // Initialize components
+            setResizable(false);
+            addEvents();
+        }, 5, TimeUnit.SECONDS);
+
         try {
             ConnectDB.getInstance().connect();
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        initComponents();
-        setResizable(false);
-        addEvents();
     }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -140,11 +166,6 @@ public class JFrame_Login extends javax.swing.JFrame implements ActionListener {
      * @param args the command line arguments
      */
     public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
                 if ("Nimbus".equals(info.getName())) {
@@ -152,18 +173,10 @@ public class JFrame_Login extends javax.swing.JFrame implements ActionListener {
                     break;
                 }
             }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(JFrame_Login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(JFrame_Login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(JFrame_Login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(JFrame_Login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
-        //</editor-fold>
 
-        /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 try {
@@ -175,6 +188,7 @@ public class JFrame_Login extends javax.swing.JFrame implements ActionListener {
         });
     }
 
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel UI_login;
     private javax.swing.JButton btn_dangNhap;
@@ -185,13 +199,12 @@ public class JFrame_Login extends javax.swing.JFrame implements ActionListener {
     private javax.swing.JPasswordField txt_password;
     private javax.swing.JTextField txt_taiKhoan;
     // End of variables declaration//GEN-END:variables
-    private TaiKhoan_DAO tk_dao = new TaiKhoan_DAO();
 
     @Override
     public void actionPerformed(ActionEvent e) {
         Object o = e.getSource();
         if (o.equals(btn_dangNhap)) {
-            if (txt_taiKhoan.getText().equalsIgnoreCase("")||txt_password.getPassword().equals("")) {
+            if (txt_taiKhoan.getText().equalsIgnoreCase("") || txt_password.getPassword().equals("")) {
                 JOptionPane.showMessageDialog(this, "Tên tài khoản hoặc mật khẩu không được để trống");
                 txt_taiKhoan.requestFocus();
             } else {
@@ -203,8 +216,8 @@ public class JFrame_Login extends javax.swing.JFrame implements ActionListener {
             }
         }
     }
-    
-    public void addEvents(){
+
+    public void addEvents() {
         btn_dangNhap.addActionListener(this);
     }
 }

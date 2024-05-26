@@ -4,7 +4,6 @@
  */
 package gui;
 
-import com.toedter.calendar.JDateChooser;
 import dao.ChiTietHoaDon_DAO;
 import dao.DoAnUong_DAO;
 import dao.HoaDon_DAO;
@@ -17,27 +16,18 @@ import entity.HoaDon;
 import entity.KhachHang;
 import entity.NhanVien;
 import entity.Phong;
-import entity.TrangThaiPhong;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.ItemEvent;
-import java.awt.event.ItemListener;
-import java.awt.event.KeyAdapter;
-import java.awt.event.KeyEvent;
-import java.awt.event.WindowAdapter;
-import java.awt.event.WindowEvent;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
-import java.text.SimpleDateFormat;
 import java.time.Instant;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -47,7 +37,6 @@ import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
-import static org.apache.poi.hssf.usermodel.HeaderFooter.date;
 
 /**
  *
@@ -55,6 +44,7 @@ import static org.apache.poi.hssf.usermodel.HeaderFooter.date;
  */
 public class JPanel_loadThongTinThue extends javax.swing.JPanel implements ActionListener {
 
+    JPanel_QuanLyPhong Jqlp;
     private HoaDon_DAO hd_dao;
     private Phong_DAO p_dao;
     private DefaultTableModel modelDV;
@@ -70,22 +60,24 @@ public class JPanel_loadThongTinThue extends javax.swing.JPanel implements Actio
     private KhuyenMai_DAO km_dao;
     private final ChiTietHoaDon chiTietHoaDon;
     private KhachHang_DAO kh_dao;
+    private final HoaDon hoaDon;
 
     /**
      * Creates new form JPanel_thuePhong
      */
-    public JPanel_loadThongTinThue(String tenPhong, NhanVien nv, ChiTietHoaDon cthd) throws IOException, SQLException {
+    public JPanel_loadThongTinThue(JPanel_QuanLyPhong quanLyPhong, String tenPhong, NhanVien nv, ChiTietHoaDon cthd, HoaDon hd) throws IOException, SQLException {
         initComponents();
         this.setSize(WIDTH, HEIGHT);
         nhanVien = nv;
+        hoaDon = hd;
         chiTietHoaDon = cthd;
+        this.Jqlp = quanLyPhong;
         loadThongTin(tenPhong, cthd);
     }
 
     public void loadThongTin(String tenPhong, ChiTietHoaDon cthd) throws IOException, SQLException {
         rd_theoNgay.setSelected(true);
         p_dao = new Phong_DAO();
-        HoaDon hd;
         Phong phong = p_dao.getPhongTheoTenPhong(tenPhong).getFirst();
         txt_loaiPhong.setText(phong.getLoaiPhong().toString());
         txt_tenPhong.setText(tenPhong);
@@ -101,9 +93,8 @@ public class JPanel_loadThongTinThue extends javax.swing.JPanel implements Actio
         txt_ngayTra.setDate(tra);
         hd_dao = new HoaDon_DAO();
         kh_dao = new KhachHang_DAO();
-        hd = hd_dao.getHoaDonTheoMaHoaDon(cthd.getHoaDon().getMaHoaDon()).getLast();
-        load_DataDV(hd.getMaHoaDon());
-        KhachHang kh = kh_dao.getKHTheoMaKhachHang(hd.getKhachHang().getMaKhachHang()).getFirst();
+        load_DataDV(hoaDon.getMaHoaDon());
+        KhachHang kh = kh_dao.getKHTheoMaKhachHang(hoaDon.getKhachHang().getMaKhachHang()).getFirst();
         txt_SDT.setText(kh.getMaKhachHang());
         txt_HvT.setText(kh.getHoTenKhachHang());
         if (kh.isGioiTinh()) {
@@ -114,16 +105,20 @@ public class JPanel_loadThongTinThue extends javax.swing.JPanel implements Actio
         txt_CCCD.setText(kh.getCCCD());
         txt_ngaySinh.setText(kh.getNgaySinh().toString());
         txt_soLuongNguoiO.setText(String.valueOf(cthd.getSoLuongNguoiO()));
-        txt_thue.setText(String.valueOf(hd.getThue() * 100) + " %");
+        txt_thue.setText(String.valueOf(hoaDon.getThue() * 100) + " %");
         NumberFormat currencyFormat = NumberFormat.getCurrencyInstance();
         ((DecimalFormat) currencyFormat).applyPattern("###,### VNĐ");
-        txt_tienThuePhong.setText(currencyFormat.format(cthd.getTongTienThuePhong()));
-        txt_tienDV.setText(currencyFormat.format(hd_dao.tinhTongTienDichVu(hd.getMaHoaDon())));
-        txt_thanhTienBanDau.setText(currencyFormat.format(hd_dao.tinhthanhTienBanDau(hd.getMaHoaDon())));
-        hd.tinhTongThanhTienBanDau();
-        hd.getKhuyenMai().setGiaTri(1);
-        hd.tinhTongThanhTienPhaiTra();
-        txt_thanhTien.setText(currencyFormat.format(hd.getTongThanhTienPhaiTra()));
+        txt_tienDV.setText(currencyFormat.format(hd_dao.tinhTongTienDichVu(hoaDon.getMaHoaDon())));
+        txt_thanhTienBanDau.setText(currencyFormat.format(hd_dao.tinhthanhTienBanDau(hoaDon.getMaHoaDon())));
+        hoaDon.tinhTongThanhTienBanDau();
+        hoaDon.getKhuyenMai().setGiaTri(0);
+        hoaDon.tinhTongThanhTienPhaiTra();
+        txt_thanhTien.setText(currencyFormat.format(hoaDon.getTongThanhTienPhaiTra()));
+        ChiTietHoaDon ct = cthd_dao.getChiTietHoaDontheoMa(hoaDon.getMaHoaDon()).getFirst();
+        double tienThueDefault = ct.getTongTienThuePhong() - ct.getPhuPhi();
+        txt_tienThuePhong.setText(currencyFormat.format(tienThueDefault));
+        System.out.println(ct);
+        txt_phuPhi.setText(currencyFormat.format(ct.getPhuPhi()));
 
         txt_ngayTra.addPropertyChangeListener(new PropertyChangeListener() {
             @Override
@@ -153,6 +148,8 @@ public class JPanel_loadThongTinThue extends javax.swing.JPanel implements Actio
         btn_them.addActionListener(this);
         btn_Luu.addActionListener(this);
         btn_TraPhong.addActionListener(this);
+        btn_Huy.addActionListener(this);
+        btn_xoa.addActionListener(this);
     }
 
     public void load_DV() throws SQLException {
@@ -197,6 +194,12 @@ public class JPanel_loadThongTinThue extends javax.swing.JPanel implements Actio
 
     @Override
     public void actionPerformed(ActionEvent e) {
+        if (e.getSource().equals(btn_Huy)) {
+            JFrame parentFrame = (JFrame) SwingUtilities.getWindowAncestor(this);
+            if (parentFrame != null) {
+                parentFrame.dispose(); // Tắt JFrame chứa JPanel
+            }
+        }
         if (e.getSource().equals(btn_them)) {
             int row = tbl_DV.getSelectedRow();
             try {
@@ -244,10 +247,52 @@ public class JPanel_loadThongTinThue extends javax.swing.JPanel implements Actio
 
                 // Cập nhật số lượng và giá trị
                 modelDV.setValueAt(dau.getSoLuong(), row, 2);
+                capNhatGia();
             } catch (IOException ex) {
                 Logger.getLogger(JPanel_thuePhong.class.getName()).log(Level.SEVERE, null, ex);
             } catch (SQLException ex) {
                 Logger.getLogger(JPanel_thuePhong.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+
+        if (e.getSource().equals(btn_xoa)) {
+            int selectedRow = tbl_gioDichVu.getSelectedRow();
+            if (selectedRow != -1) {
+                int soLuong = (int) modelDichVu.getValueAt(selectedRow, 2);
+                // Giảm số lượng đi 1 nếu lớn hơn 1
+                modelDichVu.setValueAt(soLuong - 1, selectedRow, 2);
+                double giaBan = Double.parseDouble(modelDichVu.getValueAt(selectedRow, 3).toString().replace(" VNĐ", "").replace(",", ""));
+                double tongTien = (soLuong - 1) * giaBan;
+                NumberFormat currencyFormat = NumberFormat.getCurrencyInstance();
+                ((DecimalFormat) currencyFormat).applyPattern("###,### VNĐ");
+                modelDichVu.setValueAt(currencyFormat.format(tongTien), selectedRow, 4);
+
+                // Cập nhật lại số lượng trong modelDV
+                if (modelDV.getRowCount() > 0 && modelDichVu.getRowCount() > 0) {
+                    for (int i = 0; i < modelDV.getRowCount(); i++) {
+                        if (modelDV.getValueAt(i, 0).toString().equals(modelDichVu.getValueAt(selectedRow, 0))) {
+                            int soLuongDV = Integer.parseInt(modelDV.getValueAt(i, 2).toString());
+                            modelDV.setValueAt(soLuongDV + 1, i, 2);
+                            break;
+                        }
+                    }
+                }
+
+                // Xóa dòng khi số lượng giảm về 0
+                if (soLuong == 1) {
+                    modelDichVu.removeRow(selectedRow);
+                }
+
+                try {
+                    capNhatGia();
+                } catch (IOException ex) {
+                    Logger.getLogger(JPanel_thuePhong.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (SQLException ex) {
+                    Logger.getLogger(JPanel_thuePhong.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            } else {
+                // Hiển thị thông báo khi không có dòng nào được chọn
+                JOptionPane.showMessageDialog(null, "Vui lòng chọn dịch vụ cần xóa.", "Thông báo", JOptionPane.WARNING_MESSAGE);
             }
         }
 
@@ -308,6 +353,7 @@ public class JPanel_loadThongTinThue extends javax.swing.JPanel implements Actio
                 } catch (SQLException ex) {
                     Logger.getLogger(JPanel_thuePhong.class.getName()).log(Level.SEVERE, null, ex);
                 }
+                JOptionPane.showMessageDialog(this, "Cập nhật thông tin thành công!");
             }
             try {
                 Date tra = txt_ngayTra.getDate();
@@ -327,7 +373,7 @@ public class JPanel_loadThongTinThue extends javax.swing.JPanel implements Actio
             JPanel_traPhong thongTinThue;
 
             try {
-                thongTinThue = new JPanel_traPhong(txt_tenPhong.getText().toString(), nhanVien, chiTietHoaDon);
+                thongTinThue = new JPanel_traPhong(this.Jqlp, txt_tenPhong.getText().toString(), nhanVien, chiTietHoaDon);
                 JFrame thongTinThueJFrame = new JFrame("Thông tin thuê phòng");
                 thongTinThueJFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
                 thongTinThueJFrame.add(thongTinThue);
@@ -340,7 +386,36 @@ public class JPanel_loadThongTinThue extends javax.swing.JPanel implements Actio
             } catch (SQLException ex) {
                 Logger.getLogger(JPanel_loadThongTinThue.class.getName()).log(Level.SEVERE, null, ex);
             }
+            JFrame parentFrame = (JFrame) SwingUtilities.getWindowAncestor(this);
+            if (parentFrame != null) {
+                parentFrame.dispose(); // Tắt JFrame chứa JPanel
+            }
         }
+    }
+
+    public void capNhatGia() throws IOException, SQLException {
+        NumberFormat currencyFormat = NumberFormat.getCurrencyInstance();
+        ((DecimalFormat) currencyFormat).applyPattern("###,### VNĐ");
+
+        // Tính tổng tiền từ cột 4 của modelDichVu
+        double tongTienDV = tinhTongTienDV();
+
+        // Gán giá trị tổng tiền vào txt_tienDV
+        txt_tienDV.setText(currencyFormat.format(tongTienDV));
+
+        // Tính tổng tiền thuê phòng từ txt_tienThuePhong
+        double tienThuePhong = Double.parseDouble(txt_tienThuePhong.getText().replace(" VNĐ", "").replace(",", ""));
+
+        //tính tiền phụ phí
+        double phuPhi = Double.parseDouble(txt_phuPhi.getText().replace(" VNĐ", "").replace(",", ""));
+
+        // Tính tổng tiền ban đầu
+        double thanhTienBanDau = tienThuePhong + tongTienDV + phuPhi;
+        double thanhTien = thanhTienBanDau * (1 + new HoaDon().getThue());
+
+        // Gán giá trị tổng tiền ban đầu vào txt_thanhTienBanDau
+        txt_thanhTienBanDau.setText(currencyFormat.format(thanhTienBanDau));
+        txt_thanhTien.setText(currencyFormat.format(thanhTien));
     }
 
     public double tinhTongTienDV() {
@@ -353,7 +428,6 @@ public class JPanel_loadThongTinThue extends javax.swing.JPanel implements Actio
         }
         return tongTienDV;
     }
-
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -375,6 +449,7 @@ public class JPanel_loadThongTinThue extends javax.swing.JPanel implements Actio
         jScrollPane3 = new javax.swing.JScrollPane();
         tbl_DV1 = new javax.swing.JTable();
         jPanel1 = new javax.swing.JPanel();
+        btn_xoa = new javax.swing.JButton();
         btn_them = new javax.swing.JButton();
         pn_thuePhong = new javax.swing.JPanel();
         jPanel5 = new javax.swing.JPanel();
@@ -424,7 +499,7 @@ public class JPanel_loadThongTinThue extends javax.swing.JPanel implements Actio
         txt_thanhTienBanDau = new javax.swing.JTextField();
         jLabel19 = new javax.swing.JLabel();
         jPanel7 = new javax.swing.JPanel();
-        jButton4 = new javax.swing.JButton();
+        btn_Huy = new javax.swing.JButton();
         btn_TraPhong = new javax.swing.JButton();
         btn_Luu = new javax.swing.JButton();
 
@@ -467,6 +542,13 @@ public class JPanel_loadThongTinThue extends javax.swing.JPanel implements Actio
 
         jPanel1.setPreferredSize(new java.awt.Dimension(150, 60));
 
+        btn_xoa.setText("Xóa");
+        btn_xoa.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_xoaActionPerformed(evt);
+            }
+        });
+
         btn_them.setText("Thêm");
         btn_them.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -478,13 +560,20 @@ public class JPanel_loadThongTinThue extends javax.swing.JPanel implements Actio
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(btn_them, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 350, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(btn_them, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btn_xoa, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap(7, Short.MAX_VALUE)
-                .addComponent(btn_them, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btn_xoa, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btn_them, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
 
@@ -849,7 +938,7 @@ public class JPanel_loadThongTinThue extends javax.swing.JPanel implements Actio
 
         jPanel7.setPreferredSize(new java.awt.Dimension(728, 60));
 
-        jButton4.setText("Hủy");
+        btn_Huy.setText("Hủy");
 
         btn_TraPhong.setText("Trả Phòng");
 
@@ -865,7 +954,7 @@ public class JPanel_loadThongTinThue extends javax.swing.JPanel implements Actio
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btn_TraPhong, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btn_Huy, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
         jPanel7Layout.setVerticalGroup(
@@ -875,7 +964,7 @@ public class JPanel_loadThongTinThue extends javax.swing.JPanel implements Actio
                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addComponent(btn_Luu, javax.swing.GroupLayout.DEFAULT_SIZE, 48, Short.MAX_VALUE)
                     .addComponent(btn_TraPhong, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton4, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 48, Short.MAX_VALUE))
+                    .addComponent(btn_Huy, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 48, Short.MAX_VALUE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -891,10 +980,6 @@ public class JPanel_loadThongTinThue extends javax.swing.JPanel implements Actio
     private void txt_SDTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_SDTActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txt_SDTActionPerformed
-
-    private void btn_themActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_themActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btn_themActionPerformed
 
     private void txt_thanhTienActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_thanhTienActionPerformed
         // TODO add your handling code here:
@@ -936,12 +1021,21 @@ public class JPanel_loadThongTinThue extends javax.swing.JPanel implements Actio
         // TODO add your handling code here:
     }//GEN-LAST:event_txt_tenPhongActionPerformed
 
+    private void btn_xoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_xoaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btn_xoaActionPerformed
+
+    private void btn_themActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_themActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btn_themActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btn_Huy;
     private javax.swing.JButton btn_Luu;
     private javax.swing.JButton btn_TraPhong;
     private javax.swing.JButton btn_them;
-    private javax.swing.JButton jButton4;
+    private javax.swing.JButton btn_xoa;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel12;

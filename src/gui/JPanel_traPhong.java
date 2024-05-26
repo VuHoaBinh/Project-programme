@@ -4,7 +4,6 @@
  */
 package gui;
 
-import com.toedter.calendar.JDateChooser;
 import dao.ChiTietHoaDon_DAO;
 import dao.DoAnUong_DAO;
 import dao.HoaDon_DAO;
@@ -21,37 +20,22 @@ import entity.Phong;
 import entity.TrangThaiPhong;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.ItemEvent;
-import java.awt.event.ItemListener;
-import java.awt.event.KeyAdapter;
-import java.awt.event.KeyEvent;
-import java.awt.event.WindowAdapter;
-import java.awt.event.WindowEvent;
 import static java.awt.image.ImageObserver.HEIGHT;
 import static java.awt.image.ImageObserver.WIDTH;
-import java.beans.PropertyChangeEvent;
-import java.beans.PropertyChangeListener;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
-import java.text.SimpleDateFormat;
-import java.time.Instant;
 import java.time.LocalDate;
-import java.time.ZoneId;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
-import static org.apache.poi.hssf.usermodel.HeaderFooter.date;
 
 /**
  *
@@ -59,6 +43,7 @@ import static org.apache.poi.hssf.usermodel.HeaderFooter.date;
  */
 public class JPanel_traPhong extends javax.swing.JPanel implements ActionListener {
 
+    JPanel_QuanLyPhong Jqlp;
     private HoaDon_DAO hd_dao;
     private Phong_DAO p_dao;
     private DefaultTableModel modelDV;
@@ -79,11 +64,12 @@ public class JPanel_traPhong extends javax.swing.JPanel implements ActionListene
     /**
      * Creates new form JPanel_thuePhong
      */
-    public JPanel_traPhong(String tenPhong, NhanVien nv, ChiTietHoaDon cthd) throws IOException, SQLException {
+    public JPanel_traPhong(JPanel_QuanLyPhong quanLyPhong, String tenPhong, NhanVien nv, ChiTietHoaDon cthd) throws IOException, SQLException {
         initComponents();
         this.setSize(WIDTH, HEIGHT);
         nhanVien = nv;
         chiTietHoaDon = cthd;
+        this.Jqlp = quanLyPhong;
         loadThongTin(tenPhong, cthd);
     }
 
@@ -92,20 +78,25 @@ public class JPanel_traPhong extends javax.swing.JPanel implements ActionListene
         ArrayList<KhuyenMai> list = km_dao.getKhuyenMaiByDate(LocalDate.now());
         txt_maHD.setText("Mã Hóa Đơn:" + cthd.getHoaDon().getMaHoaDon());
         double max = 0;
-        int index = 0;
-        for (int i = 0; i < list.size(); i++) {
-            if (max < list.get(i).getGiaTri()) {
-                max = list.get(i).getGiaTri();
-                index = i;
+        int index = -1;
+        System.out.println(list);
+        if (!list.isEmpty()) {
+            for (int i = 0; i < list.size(); i++) {
+                if (max < list.get(i).getGiaTri() && list.get(i).isTrangThaiKhuyenMai() == true) {
+                    max = list.get(i).getGiaTri();
+                    index = i;
+                }
             }
+
+            txt_maKM.setText(list.get(index).getMaKhuyenMai());
+            km = km_dao.getPhongTheoMaKhuyenMai(txt_maKM.getText().toString()).getFirst();
+            txta_ND.setText(km.getNoiDung());
+            txt_ngayBD.setText(km.getNgayBatDau().toString());
+            txt_ngayKetThuc.setText(km.getNgayKetThuc().toString());
+        } else {
+            km = new KhuyenMai();
+            km.setGiaTri(0);
         }
-
-        txt_maKM.setText(list.get(index).getMaKhuyenMai());
-        km = km_dao.getPhongTheoMaKhuyenMai(txt_maKM.getText().toString()).getFirst();
-        txta_ND.setText(km.getNoiDung());
-        txt_ngayBD.setText(km.getNgayBatDau().toString());
-        txt_ngayKetThuc.setText(km.getNgayKetThuc().toString());
-
         rd_theoNgay.setSelected(true);
         p_dao = new Phong_DAO();
         HoaDon hd;
@@ -139,41 +130,20 @@ public class JPanel_traPhong extends javax.swing.JPanel implements ActionListene
         txt_thue.setText(String.valueOf(hd.getThue() * 100) + " %");
         NumberFormat currencyFormat = NumberFormat.getCurrencyInstance();
         ((DecimalFormat) currencyFormat).applyPattern("###,### VNĐ");
-        txt_tienThuePhong.setText(currencyFormat.format(cthd.getTongTienThuePhong()));
+        txt_tienThuePhong.setText(currencyFormat.format(cthd.getTongTienThuePhong() - cthd.getPhuPhi()));
         txt_tienDV.setText(currencyFormat.format(hd_dao.tinhTongTienDichVu(hd.getMaHoaDon())));
         txt_thanhTienBanDau.setText(currencyFormat.format(hd_dao.tinhthanhTienBanDau(hd.getMaHoaDon())));
         hd.tinhTongThanhTienBanDau();
         hd.getKhuyenMai().setGiaTri(km.getGiaTri());
         hd.tinhTongThanhTienPhaiTra();
         txt_thanhTien.setText(currencyFormat.format(hd.getTongThanhTienPhaiTra()));
-
-        txt_ngayTra.addPropertyChangeListener(new PropertyChangeListener() {
-            @Override
-            public void propertyChange(PropertyChangeEvent evt) {
-                if ("date".equals(evt.getPropertyName())) {
-                    LocalDate ngayThue = txt_ngayThue.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
-                    cthd.setNgayNhanPhong(ngayThue);
-                    if (txt_ngayTra.getDate() != null) {
-                        LocalDate ngayTra = txt_ngayTra.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
-                        cthd.setNgayTraPhong(ngayTra);
-                        cthd.setPhong(phong);
-                        cthd.tinhTienThuePhong();
-                        double tienThuePhong = cthd.getTongTienThuePhong();
-                        // Định dạng số tiền thành chuỗi tiền tệ
-                        NumberFormat currencyFormat = NumberFormat.getCurrencyInstance();
-                        ((DecimalFormat) currencyFormat).applyPattern("###,### VNĐ");
-                        String tienThuePhongFormatted = currencyFormat.format(tienThuePhong);
-                        txt_tienThuePhong.setText(tienThuePhongFormatted);
-                    }
-                }
-//                capNhatGia();
-            }
-        });
-
+        txt_phuPhi.setText(currencyFormat.format(cthd.getPhuPhi()));
+        System.out.println(cthd);
     }
 
     public void addEvents() {
         btn_XacNhan.addActionListener(this);
+        btn_Huy.addActionListener(this);
     }
 
     public void load_DataDV(String maHD) throws SQLException, IOException {
@@ -196,6 +166,12 @@ public class JPanel_traPhong extends javax.swing.JPanel implements ActionListene
 
     @Override
     public void actionPerformed(ActionEvent e) {
+        if (e.getSource().equals(btn_Huy)) {
+            JFrame parentFrame = (JFrame) SwingUtilities.getWindowAncestor(this);
+            if (parentFrame != null) {
+                parentFrame.dispose(); // Tắt JFrame chứa JPanel
+            }
+        }
         if (e.getSource().equals(btn_XacNhan)) {
             HoaDon hd;
             try {
@@ -213,7 +189,15 @@ public class JPanel_traPhong extends javax.swing.JPanel implements ActionListene
             } catch (SQLException ex) {
                 Logger.getLogger(JPanel_traPhong.class.getName()).log(Level.SEVERE, null, ex);
             }
-
+            JFrame parentFrame = (JFrame) SwingUtilities.getWindowAncestor(this);
+            if (parentFrame != null) {
+                parentFrame.dispose(); // Tắt JFrame chứa JPanel
+            }
+            try {
+                this.Jqlp.loadData();
+            } catch (SQLException ex) {
+                Logger.getLogger(JPanel_traPhong.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
     }
 

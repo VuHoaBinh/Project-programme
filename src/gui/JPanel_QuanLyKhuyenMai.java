@@ -727,9 +727,9 @@ public class JPanel_QuanLyKhuyenMai extends javax.swing.JPanel implements Action
             Boolean isTrangThaiKhuyenMai = km.isTrangThaiKhuyenMai();
             String trangThaiKhuyenMai;
             if (isTrangThaiKhuyenMai == true) {
-                trangThaiKhuyenMai = "Hết Hạn";
-            } else {
                 trangThaiKhuyenMai = "Còn Hạn";
+            } else {
+                trangThaiKhuyenMai = "Hết Hạn";
             }
             model.addRow(new Object[]{km.getMaKhuyenMai(), km.getGiaTri(), km.getNgayBatDau(), km.getNgayKetThuc(),
                 km.getNoiDung(), trangThaiKhuyenMai});

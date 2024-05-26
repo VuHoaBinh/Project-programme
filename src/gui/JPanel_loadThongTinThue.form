@@ -165,20 +165,37 @@
           <Layout>
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="btn_them" alignment="1" pref="350" max="32767" attributes="0"/>
+                  <Group type="102" alignment="1" attributes="0">
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="btn_them" min="-2" pref="162" max="-2" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Component id="btn_xoa" min="-2" pref="164" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                  </Group>
               </Group>
             </DimensionLayout>
             <DimensionLayout dim="1">
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="1" attributes="0">
                       <EmptySpace pref="7" max="32767" attributes="0"/>
-                      <Component id="btn_them" min="-2" pref="47" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="btn_xoa" alignment="3" min="-2" pref="47" max="-2" attributes="0"/>
+                          <Component id="btn_them" alignment="3" min="-2" pref="47" max="-2" attributes="0"/>
+                      </Group>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
           </Layout>
           <SubComponents>
+            <Component class="javax.swing.JButton" name="btn_xoa">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="X&#xf3;a"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_xoaActionPerformed"/>
+              </Events>
+            </Component>
             <Component class="javax.swing.JButton" name="btn_them">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Th&#xea;m"/>
@@ -765,7 +782,7 @@
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Component id="btn_TraPhong" min="-2" pref="160" max="-2" attributes="0"/>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Component id="jButton4" min="-2" pref="160" max="-2" attributes="0"/>
+                      <Component id="btn_Huy" min="-2" pref="160" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
               </Group>
@@ -777,7 +794,7 @@
                       <Group type="103" groupAlignment="1" max="-2" attributes="0">
                           <Component id="btn_Luu" pref="48" max="32767" attributes="0"/>
                           <Component id="btn_TraPhong" alignment="0" max="32767" attributes="0"/>
-                          <Component id="jButton4" alignment="0" pref="48" max="32767" attributes="0"/>
+                          <Component id="btn_Huy" alignment="0" pref="48" max="32767" attributes="0"/>
                       </Group>
                       <EmptySpace max="32767" attributes="0"/>
                   </Group>
@@ -785,7 +802,7 @@
             </DimensionLayout>
           </Layout>
           <SubComponents>
-            <Component class="javax.swing.JButton" name="jButton4">
+            <Component class="javax.swing.JButton" name="btn_Huy">
               <Properties>
                 <Property name="text" type="java.lang.String" value="H&#x1ee7;y"/>
               </Properties>

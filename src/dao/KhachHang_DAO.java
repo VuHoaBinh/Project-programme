@@ -68,11 +68,10 @@ public class KhachHang_DAO {
         while (rs.next()) {
             String maKhachHang = rs.getString("maKhachHang");
             String hoTenKhachHang = rs.getString("hoTenKhachHang");
-            String gioiTinhStr = rs.getString("gioiTinh");
-            boolean gioiTinh = gioiTinhStr.equals("Nam");
+            boolean gioiTinh = rs.getBoolean("gioiTinh");
             String CCCD = rs.getString("CCCD");
             LocalDate ngaySinh = rs.getDate("ngaySinh").toLocalDate();
-            boolean trangThaiKhachHang = rs.getInt("trangThaiKhachHang") == 1;
+            boolean trangThaiKhachHang = rs.getBoolean("trangThaiKhachHang");
             KhachHang kh = new KhachHang(maKhachHang, hoTenKhachHang, gioiTinh,
                     CCCD, ngaySinh, trangThaiKhachHang);
             dsKhachHang.add(kh);

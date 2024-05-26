@@ -118,6 +118,10 @@ public class ChiTietHoaDon {
         this.soLuongNguoiO = soLuongNguoiO;
     }
 
+    public void setPhuPhi(double phuPhi) {
+        this.phuPhi = phuPhi;
+    }
+    
     public void tinhTongTienDichVu() {
         if (doAnUong != null) {
             this.tongTienDichVu = soLuong * doAnUong.getGiaBan();
@@ -148,8 +152,8 @@ public class ChiTietHoaDon {
 
             // Tính tổng tiền thuê phòng dựa trên số ngày và giá thuê mỗi ngày
             double tongTienThue = soTien1n * soNgayThue;
-            System.out.println(soTien1n);
-            this.tongTienThuePhong = tongTienThue;
+            this.tongTienThuePhong = tongTienThue + this.phuPhi;
+            System.out.println("entity.ChiTietHoaDon.tinhTienThuePhong()" + phuPhi);
         } else {
             // Trả về 0 hoặc giá trị mặc định khi thông tin không hợp lệ
             this.tongTienThuePhong = 0;

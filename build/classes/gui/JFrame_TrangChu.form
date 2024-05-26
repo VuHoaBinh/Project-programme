@@ -1,11 +1,4 @@
-Tiến Đạtcái đồ ăn uống để Bình đc kh15:58/-strong/-heart:>:o:-((:-htui làm thống keee15:58/-strong/-heart:>:o:-((:-hBìnhPlan oke dố15:58/-strong/-heart:>:o:-((:-hCái thống kê chưa cần/-strong/-heart:>:o:-((:-h70% là chừa thống kê ra/-strong/-heart:>:o:-((:-hCòn 1,5 tháng code thống kê 15:58/-strong/-heart:>:o:-((:-hTiến ĐạtBình đợt đầu tìm hiểu đồ ăn uống thì cho Bình làm đi/-strong/-heart:>:o:-((:-hđể KM cho tui15:59/-strong/-heart:>:o:-((:-hỪ oke15:59/-heart1/-strong/-heart:>:o:-((:-hBìnhNghiệp vụ trước đã anh/-strong/-heart:>:o:-((:-hEm/-strong/-heart:>:o:-((:-hCòn đẹp Gui vs dash broad để sau16:00/-strong/-heart:>:o:-((:-hKo có sản phẩm sao nghiệp vụ đc:>/-heart2/-strong/-heart:>:o:-((:-hNhớ nhìn tài liệu code nhá16:00/-heart1/-strong/-heart:>:o:-((:-h16:31  03/04/2024BìnhKê16:31/-strong/-heart:>:o:-((:-h18:22  03/04/2024public void connect() throws SQLException {
-        String url = "jdbc:sqlserver://localhost:1433;databaseName=QuanLyKhachSan";
-        String user = "sa";
-        String password = "123";
-        con = DriverManager.getConnection(url, user, password);
-        System.out.println("connect database!!");
-
-    }18:22/-strong/-heart:>:o:-((:-hBìnhủa18:22/-strong/-heart:>:o:-((:-hcái connectDB mn setting lại như này nhá18:22/-strong1/-strong/-heart:>:o:-((:-hBìnhbình sửa rồi mà nhỉ/-strong/-heart:>:o:-((:-hTrả lời Phạm Hoàng Longcái connectDB mn setting lại như này nhá@Phạm Hoàng Long à à/-strong/-heart:>:o:-((:-hoke oke/-strong/-heart:>:o:-((:-hdao thiếu gì báo bình nha18:22/-strong/-heart:>:o:-((:-hoke18:22/-strong1/-strong/-heart:>:o:-((:-h  T5 04/04/2024Tiến Đạttui kh up lên được r02:31/-strong/-heart:>:o:-((:-hgửi prj qua Bình up hộ nhế02:31/-heart1/-strong/-heart:>:o:-((:-h07:48  04/04/2024BìnhOke/-strong/-heart:>:o:-((:-hOke07:48/-strong/-heart:>:o:-((:-h08:30  04/04/2024Bìnhtrước khi code pulll code mới về nhé/-strong/-heart:>:o:-((:-hbình mới merge xong rồi đó08:30/-strong/-heart:>:o:-((:-h10:28  04/04/2024Tiến ĐạtDùng file FrmTrangchu thoi nha/-strong/-heart:>:o:-((:-hMấy file kia k dùg tới10:28/-heart1/-strong/-heart:>:o:-((:-h15:47  04/04/2024Bình/-strong/-heart:>:o:-((:-hlịch demo 70% là 16/4 nha/-strong/-heart:>:o:-((:-hmình là cô hà vs thi rồi15:47/-strong/-heart:>:o:-((:-h22:12  04/04/2024dùng cái mới nhé =))/-heart1/-strong/-heart:>:o:-((:-h22:12BìnhPush lên đi long/-strong/-heart:>:o:-((:-hLong péo push lên đi22:16/-strong/-heart:>:o:-((:-hrồi á/-strong/-heart:>:o:-((:-hnhánh GUI_mới22:16/-heart1/-strong/-heart:>:o:-((:-hBìnhÀ long/-strong/-heart:>:o:-((:-hThêm 1 chức năng hướng dẫn sàu nx/-strong/-heart:>:o:-((:-hĐể ghép link web dô/-strong/-heart:>:o:-((:-hChỗ menu á22:26/-strong/-heart:>:o:-((:-hừ làm xong cái tui giao rồi tui thêm sau, thêm nhanh mà/-heart1/-strong/-heart:>:o:-((:-hcái hdsd đó chc làm sau cũng đc22:28/-heart1/-strong/-heart:>:o:-((:-hBình:v wtf/-strong/-heart:>:o:-((:-hnhánh mà sao để dấu thế long/-strong/-heart:>:o:-((:-h:))/-strong/-heart:>:o:-((:-hsao kéo về22:57/-strong/-heart:>:o:-((:-hgõ dấu vô =))23:03/-strong/-heart:>:o:-((:-hBìnhkhó nhau thế23:03/-strong/-heart:>:o:-((:-h:((23:04/-strong/-heart:>:o:-((:-hchịu khó đi đang làm cái kia lười mở git quá =)))23:06:-((1/-strong/-heart:>:o:-((:-hBìnhpull nhánh main nha ae/-strong/-heart:>:o:-((:-hpull mới về code plan long chia hen/-strong/-heart:>:o:-((:-hmới merge xong á/-strong/-heart:>:o:-((:-hcòn ai đang làm dỡ thì :v pushs nhánh nhá. Xong báo bình/-strong/-heart:>:o:-((:-hkhỏi pull về23:11/-strong/-heart:>:o:-((:-h  T6 05/04/2024Xem cập nhật trướcBình  đã ghim tin nhắn  lịch demo 70% là 16/4 nha .  Xem  T4 10/04/2024Bình@All tối CN 9h30 họp nhá mọi người09:45/-strong/-heart:>:o:-((:-hTrả lời19:47  10/04/2024tối nay bận quá mai nhiều việc =)) mình xin dời sang tối mai đc hông ạ19:47/-strong/-heart:>:o:-((:-hBìnhGì thế/-strong/-heart:>:o:-((:-hChủ nhật mà19:47/-strong/-heart:>:o:-((:-hủa19:47/-strong/-heart:>:o:-((:-hTiến Đạthọp về vấn đề gì ấy19:47/-strong/-heart:>:o:-((:-h=))19:47/-strong/-heart:>:o:-((:-hTiến Đạtà chủ nhật19:47/-strong/-heart:>:o:-((:-hBìnhTrả lời Tiến Đạthọp về vấn đề gì ấy@Tiến Đạt t3 mình demo rồi. Nên vô feeedback xúu19:48/-strong/-heart:>:o:-((:-hNhân với bình làm test case mấy cái quản lý vs tài liệu nhá19:50/-strong/-heart:>:o:-((:-hTiến ĐạtLong ơi Long làm tới khúc thanh toán chưa19:51/-strong/-heart:>:o:-((:-hchưa đang đặt phòng với gia hạn, chưa tới trả phòng/-strong/-heart:>:o:-((:-hvấn đề gì á19:52/-strong/-heart:>:o:-((:-hTiến Đạtcái đặt phòng của tui nó có cái thanh toán nữa/-strong/-heart:>:o:-((:-hhỏi coi làm rồi thì tui xin giao diện/-strong/-heart:>:o:-((:-hvậy tui vẽ gd luôn nhé19:52/-strong/-heart:>:o:-((:-hà vậy h ngược lại đi ông =)), ông vẽ tui xin19:52/-strong/-heart:>:o:-((:-hTiến Đạtokay/-strong/-heart:>:o:-((:-hà mà cái đặt phòng của tui là cái nút riêng á/-strong/-heart:>:o:-((:-hkh có trong popup đâu/-strong/-heart:>:o:-((:-htại phải nhập ngày tháng trước19:53/-strong/-heart:>:o:-((:-hBìnhỜ. Xíu bình ib riêng hỏi làm gì nhé19:53/-strong/-heart:>:o:-((:-hừ chuột phải vô có chức năng chọn phòng hay sao/-strong/-heart:>:o:-((:-hà chức năng đặt phòng hay sao/-strong/-heart:>:o:-((:-hhay là ông làm nó thành 1 cái chức năng trong menu19:54/-strong/-heart:>:o:-((:-hTiến Đạt/-strong/-heart:>:o:-((:-htui định làm cái nút sau Phòng có sẵn19:54/-strong/-heart:>:o:-((:-hsao không làm như cái xem chi tiết cho gọn19:55/-strong/-heart:>:o:-((:-hBìnhQuây mình 6 tầng lận19:56/-strong1/-strong/-strong/-heart:>:o:-((:-hoke xíu thêm/-strong/-heart:>:o:-((:-hthêm nhanh19:56/-heart1/-strong/-heart:>:o:-((:-hTiến Đạttại phải chọn ngày trước rồi mới lọc ra các phòng á/-strong/-heart:>:o:-((:-hcòn cái popup là chọn cái phòng trước rùi/-strong/-heart:>:o:-((:-hcòn kh thì cái bộ lọc ông thêm giúp tui số lượng người, số lượng giường phụ/-strong/-heart:>:o:-((:-hvới loại phòng19:58/-strong/-heart:>:o:-((:-hmình làm cả 2 thì nó mới đúng nhỉ, lọc thì mình thêm chức năng lọc thôi, tại ở trên tui chưa sửa19:58/-strong/-heart:>:o:-((:-hTiến Đạtok nếu đủ hết thì làm trong menu popup19:58/-strong1/-strong/-strong/-heart:>:o:-((:-hTrả lời Phạm Hoàng Longmình làm cả 2 thì nó mới đúng nhỉ, lọc thì mình thêm chức năng lọc thôi, tại ở trên tui chưa sửanó hơi khác cái table kiểu bán hàng, nên ngâm hơi lâu =))/-strong/-heart:>:o:-((:-hông cứ làm cái panel đi tầm t6 nếu lọc các thứ tui làm lâu quá thì mình bỏ, rồi theo cái của ông, đằng nào cái popup cũng là 1 panel mà pk19:59/-strong/-heart:>:o:-((:-hTiến Đạtok20:00/-strong/-heart:>:o:-((:-h20:38  10/04/2024Bìnhhiện tại có data ở trên nhánh main á nha mn/-strong/-heart:>:o:-((:-hđừng tạo lung tung khó ăn khớp nhau20:38/-strong/-heart:>:o:-((:-h  T7 13/04/2024Quang Nhânxxxxxxxxxx125('0107', 'P107', N'BASIC', 'BOOKED', 30.0, 2, 1, 'City view1CREATE DATABASE QuanLyKhachSan2USE QuanLyKhachSan3GO4​5CREATE TABLE Phong (6    maPhong VARCHAR(4) PRIMARY KEY,7    tenPhong VARCHAR(5),8    loaiPhong VARCHAR(30),9    trangThaiPhong VARCHAR(30),10    dienTichPhong FLOAT,11    soGiuong INT,12    giuongPhu BIT,13    view_ VARCHAR(255),14    hutThuoc BIT,15    hinhAnhPhong VARCHAR(255)16);17INSERT INTO Phong (maPhong, tenPhong, loaiPhong, trangThaiPhong, dienTichPhong, soGiuong, giuongPhu, view_, hutThuoc, hinhAnhPhong)18VALUES 19('0101', 'P101', N'BASIC', 'AVAILABLE', 25.5, 1, 0, 'City view', 0, null),20('0102', 'P102', N'STANDARD', 'BOOKED', 30.0, 2, 1, 'Beach view', 1, null),21('0103', 'P103', N'BUSINESS', 'AVAILABLE', 40.0, 3, 1, 'Mountain view', 0, null),22('0104', 'P104', N'VIP', 'AVAILABLE', 40.0, 3, 1, 'Mountain view', 0, null),23('0105', 'P105', N'DOUBLE', 'AVAILABLE', 35.0, 2, 1, 'Beach view', 0, null),24('0106', 'P106', N'DOUBLE', 'AVAILABLE', 35.0, 2, 1, 'Mountain view', 0, null),SQLQLKS.sql16.6 KB•Đã có trên máy•Nhấn để xem trước•Click để xem thư mục22:09/-strong/-heart:>:o:-((:-hBình:v/-strong/-heart:>:o:-((:-hvãi cu nhân/-strong/-heart:>:o:-((:-h@Phạm Hoàng Long @Tiến Đạt update data dô nghe anh em/-strong/-heart:>:o:-((:-hnhân mới update á22:31/-strong/-heart:>:o:-((:-hQuang NhânLàm chay nên có gì coi kỹ nha mn tại chatgpt nó ngu làm ko đúng ràng buộc22:32/-strong1/-strong/-heart:>:o:-((:-h  CN 14/04/2024Bình@All túi nay meeting nhé18:25/-strong/-heart:>:o:-((:-hĐừng quên18:25/-strong/-heart:>:o:-((:-h21:28  14/04/2024Bìnhhttps://meet.google.com/yoq-hcgr-psq/-strong/-heart:>:o:-((:-h@All21:28/-strong/-heart:>:o:-((:-hstatement.setString(4, p.getTrangThaiPhong().name());21:44/-strong/-heart:>:o:-((:-h  Hôm quaBình@Tiến Đạt cu đạt clone về phân quyền hộ vs16:48/-strong/-heart:>:o:-((:-hQuên/-strong/-heart:>:o:-((:-hMerge rồi á16:49/-strong/-heart:>:o:-((:-h18:10  Hôm quaQuang NhânMn gửi tui cái mssv với18:10/-strong/-heart:>:o:-((:-h2108286118:11/-strong/-heart:>:o:-((:-hTiến ĐạtTrả lời Bình@Tiến Đạt cu đạt clone về phân quyền hộ vs@Bình tui chưa có đủ hêta giao diện sao phân quyền18:16/-strong/-heart:>:o:-((:-hBìnhphân tạm đã/-strong/-heart:>:o:-((:-hsẵn trước đi18:16/-strong/-heart:>:o:-((:-h21:29  Hôm quaBình10h nha mn21:29/-strong/-heart:>:o:-((:-h22:00  Hôm quaBìnhhttps://meet.google.com/yoq-hcgr-psq/-strong/-heart:>:o:-((:-hdô thôi22:00/-strong/-heart:>:o:-((:-hJARjdatepicker-1.3.4.jar41.95 KB•Đã có trên máy•Nhấn để xem trước•Click để xem thư mục22:18/-strong/-heart:>:o:-((:-h22:48  Hôm quaTiến ĐạtTin nhắn đã được thu hồi/-strong/-heart:>:o:-((:-h22:5423:44  Hôm quaTiến Đạt/-strong/-heart:>:o:-((:-h23:44Project-programme189.96 MB•Đã có trên máy•Nhấn để xem trước•Click để xem thư mục23:51/-strong/-heart:>:o:-((:-h  Hôm nayBình<?xml version="1.0" encoding="UTF-8" ?>
+<?xml version="1.0" encoding="UTF-8" ?>
 
 <Form version="1.9" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JFrameFormInfo">
   <Properties>
@@ -40,7 +33,7 @@ Tiến Đạtcái đồ ăn uống để Bình đc kh15:58/-strong/-heart:>:o:-
     <AuxValue name="FormSettings_listenerGenerationStyle" type="java.lang.Integer" value="0"/>
     <AuxValue name="FormSettings_variablesLocal" type="java.lang.Boolean" value="false"/>
     <AuxValue name="FormSettings_variablesModifier" type="java.lang.Integer" value="2"/>
-    <AuxValue name="designerSize" type="java.awt.Dimension" value="-84,-19,0,5,115,114,0,18,106,97,118,97,46,97,119,116,46,68,105,109,101,110,115,105,111,110,65,-114,-39,-41,-84,95,68,20,2,0,2,73,0,6,104,101,105,103,104,116,73,0,5,119,105,100,116,104,120,112,0,0,5,120,0,0,1,47"/>
+    <AuxValue name="designerSize" type="java.awt.Dimension" value="-84,-19,0,5,115,114,0,18,106,97,118,97,46,97,119,116,46,68,105,109,101,110,115,105,111,110,65,-114,-39,-41,-84,95,68,20,2,0,2,73,0,6,104,101,105,103,104,116,73,0,5,119,105,100,116,104,120,112,0,0,2,-87,0,0,1,47"/>
   </AuxValues>
 
   <Layout class="org.netbeans.modules.form.compat2.layouts.DesignBorderLayout"/>
@@ -49,7 +42,8 @@ Tiến Đạtcái đồ ăn uống để Bình đc kh15:58/-strong/-heart:>:o:-
       <Properties>
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="fa" green="fa" red="fa" type="rgb"/>
-        </Property>00:41/-strong/-heart:>:o:-((:-h<Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+        </Property>
+        <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
           <Dimension value="[250, 1400]"/>
         </Property>
       </Properties>
@@ -102,7 +96,8 @@ Tiến Đạtcái đồ ăn uống để Bình đc kh15:58/-strong/-heart:>:o:-
                 </DimensionLayout>
                 <DimensionLayout dim="1">
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>/-strong/-heart:>:o:-((:-h</Group>
+                      <EmptySpace min="0" pref="79" max="32767" attributes="0"/>
+                  </Group>
                 </DimensionLayout>
               </Layout>
             </Container>
@@ -157,7 +152,8 @@ Tiến Đạtcái đồ ăn uống để Bình đc kh15:58/-strong/-heart:>:o:-
                     <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                       <Dimension value="[60, 0]"/>
                     </Property>
-                  </Properties>/-strong/-heart:>:o:-((:-h<Constraints>
+                  </Properties>
+                  <Constraints>
                     <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignBorderLayout" value="org.netbeans.modules.form.compat2.layouts.DesignBorderLayout$BorderConstraintsDescription">
                       <BorderConstraints direction="West"/>
                     </Constraint>
@@ -203,15 +199,12 @@ Tiến Đạtcái đồ ăn uống để Bình đc kh15:58/-strong/-heart:>:o:-
                   <SubComponents>
                     <Component class="javax.swing.JLabel" name="lbltenNhanVien">
                       <Properties>
-                        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">/-strong/-heart:>:o:-((:-h<Font name="Segoe UI" size="14" style="1"/>
+                        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                          <Font name="Segoe UI" size="14" style="1"/>
                         </Property>
                         <Property name="text" type="java.lang.String" value="Ch&#x1b0;a X&#xe1;c &#x110;&#x1ecb;nh"/>
                       </Properties>
-<<<<<<< HEAD
-<AuxValues>
-=======
                       <AuxValues>
->>>>>>> origin/dat_ver1
                         <AuxValue name="JavaCodeGenerator_SerializeTo" type="java.lang.String" value="JFrame_TrangChu_lbltenNhanVien"/>
                       </AuxValues>
                     </Component>
@@ -256,7 +249,8 @@ Tiến Đạtcái đồ ăn uống để Bình đc kh15:58/-strong/-heart:>:o:-
                 </Property>
                 <Property name="horizontalScrollBarPolicy" type="int" value="31"/>
               </Properties>
-              <Constraints>/-strong/-heart:>:o:-((:-h<Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignBorderLayout" value="org.netbeans.modules.form.compat2.layouts.DesignBorderLayout$BorderConstraintsDescription">
+              <Constraints>
+                <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignBorderLayout" value="org.netbeans.modules.form.compat2.layouts.DesignBorderLayout$BorderConstraintsDescription">
                   <BorderConstraints direction="Center"/>
                 </Constraint>
               </Constraints>
@@ -303,7 +297,8 @@ Tiến Đạtcái đồ ăn uống để Bình đc kh15:58/-strong/-heart:>:o:-
                               <Component id="btn_trangChu" alignment="1" pref="50" max="32767" attributes="0"/>
                           </Group>
                         </DimensionLayout>
-                      </Layout>/-strong/-heart:>:o:-((:-h<SubComponents>
+                      </Layout>
+                      <SubComponents>
                         <Component class="javax.swing.JButton" name="btn_trangChu">
                           <Properties>
                             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor" postCode="btn_trangChu.setIcon(new FlatSVGIcon(&quot;./icon/home.svg&quot;));">
@@ -338,7 +333,8 @@ Tiến Đạtcái đồ ăn uống để Bình đc kh15:58/-strong/-heart:>:o:-
 
                       <Layout>
                         <DimensionLayout dim="0">
-                          <Group type="103" groupAlignment="0" attributes="0">/-strong/-heart:>:o:-((:-h<Group type="102" alignment="0" attributes="0">
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Group type="102" alignment="0" attributes="0">
                                   <EmptySpace min="-2" pref="35" max="-2" attributes="0"/>
                                   <Component id="btn_quanLyPhong" min="-2" pref="229" max="-2" attributes="0"/>
                                   <EmptySpace pref="36" max="32767" attributes="0"/>
@@ -372,7 +368,8 @@ Tiến Đạtcái đồ ăn uống để Bình đc kh15:58/-strong/-heart:>:o:-
                       <Properties>
                         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                           <Color blue="ff" green="ff" red="ff" type="rgb"/>
-                        </Property>/-strong/-heart:>:o:-((:-h<Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                        </Property>
+                        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                           <Color blue="ff" green="ff" red="ff" type="rgb"/>
                         </Property>
                         <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
@@ -407,7 +404,8 @@ Tiến Đạtcái đồ ăn uống để Bình đc kh15:58/-strong/-heart:>:o:-
                               <Dimension value="[250, 23]"/>
                             </Property>
                           </Properties>
-                          <Events>/-strong/-heart:>:o:-((:-h<EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_quanLyNhanVienActionPerformed"/>
+                          <Events>
+                            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_quanLyNhanVienActionPerformed"/>
                           </Events>
                         </Component>
                       </SubComponents>
@@ -451,7 +449,8 @@ Tiến Đạtcái đồ ăn uống để Bình đc kh15:58/-strong/-heart:>:o:-
                             <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                               <Dimension value="[250, 23]"/>
                             </Property>
-                          </Properties>/-strong/-heart:>:o:-((:-h<Events>
+                          </Properties>
+                          <Events>
                             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_quanLyKhachHangActionPerformed"/>
                           </Events>
                           <AuxValues>
@@ -488,7 +487,8 @@ Tiến Đạtcái đồ ăn uống để Bình đc kh15:58/-strong/-heart:>:o:-
                               <Component id="btn_quanLyDoAnUong" alignment="1" pref="50" max="32767" attributes="0"/>
                           </Group>
                         </DimensionLayout>
-                      </Layout>/-strong/-heart:>:o:-((:-h<SubComponents>
+                      </Layout>
+                      <SubComponents>
                         <Component class="javax.swing.JButton" name="btn_quanLyDoAnUong">
                           <Properties>
                             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
@@ -522,7 +522,8 @@ Tiến Đạtcái đồ ăn uống để Bình đc kh15:58/-strong/-heart:>:o:-
                         <DimensionLayout dim="0">
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="102" alignment="0" attributes="0">
-                                  <EmptySpace min="-2" pref="35" max="-2" attributes="0"/>/-strong/-heart:>:o:-((:-h<Component id="btn_khuyenMai" min="-2" pref="229" max="-2" attributes="0"/>
+                                  <EmptySpace min="-2" pref="35" max="-2" attributes="0"/>
+                                  <Component id="btn_khuyenMai" min="-2" pref="229" max="-2" attributes="0"/>
                                   <EmptySpace pref="36" max="32767" attributes="0"/>
                               </Group>
                           </Group>
@@ -557,7 +558,8 @@ Tiến Đạtcái đồ ăn uống để Bình đc kh15:58/-strong/-heart:>:o:-
                         </Property>
                         <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                           <Color blue="ff" green="ff" red="ff" type="rgb"/>
-                        </Property>/-strong/-heart:>:o:-((:-h<Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+                        </Property>
+                        <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                           <Dimension value="[300, 50]"/>
                         </Property>
                       </Properties>
@@ -566,25 +568,15 @@ Tiến Đạtcái đồ ăn uống để Bình đc kh15:58/-strong/-heart:>:o:-
                         <DimensionLayout dim="0">
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="102" alignment="0" attributes="0">
-<<<<<<< HEAD
-                                  <EmptySpace min="-2" pref="36" max="-2" attributes="0"/>
-                                  <Component id="btn_datPhong" min="-2" pref="226" max="-2" attributes="0"/>
-                                  <EmptySpace pref="38" max="32767" attributes="0"/>
-=======
                                   <EmptySpace min="-2" pref="35" max="-2" attributes="0"/>
                                   <Component id="btn_datPhong" min="-2" pref="229" max="-2" attributes="0"/>
                                   <EmptySpace pref="36" max="32767" attributes="0"/>
->>>>>>> origin/dat_ver1
                               </Group>
                           </Group>
                         </DimensionLayout>
                         <DimensionLayout dim="1">
                           <Group type="103" groupAlignment="0" attributes="0">
-<<<<<<< HEAD
-                              <Component id="btn_datPhong" alignment="0" pref="50" max="32767" attributes="0"/>
-=======
                               <Component id="btn_datPhong" alignment="1" pref="50" max="32767" attributes="0"/>
->>>>>>> origin/dat_ver1
                           </Group>
                         </DimensionLayout>
                       </Layout>
@@ -594,11 +586,7 @@ Tiến Đạtcái đồ ăn uống để Bình đc kh15:58/-strong/-heart:>:o:-
                             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                               <Color blue="fa" green="fa" red="fa" type="rgb"/>
                             </Property>
-<<<<<<< HEAD
                             <Property name="text" type="java.lang.String" value="Qu&#x1ea3;n L&#xfd; &#x110;&#x1eb7;t Ph&#xf2;ng"/>
-=======
-                            <Property name="text" type="java.lang.String" value="&#x110;&#x1eb7;t Ph&#xf2;ng"/>
->>>>>>> origin/dat_ver1
                             <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                               <Dimension value="[250, 23]"/>
                             </Property>
@@ -606,8 +594,8 @@ Tiến Đạtcái đồ ăn uống để Bình đc kh15:58/-strong/-heart:>:o:-
                           <Events>
                             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_datPhongActionPerformed"/>
                           </Events>
-                        </Component>/-strong/-heart:>:o:-((:-h</SubComponents>
-<<<<<<< HEAD
+                        </Component>
+                      </SubComponents>
                     </Container>
                     <Container class="javax.swing.JPanel" name="Content13">
                       <Properties>
@@ -651,7 +639,8 @@ Tiến Đạtcái đồ ăn uống để Bình đc kh15:58/-strong/-heart:>:o:-
                           </Properties>
                           <Events>
                             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_hoaDonActionPerformed"/>
-                          </Events>/-strong/-heart:>:o:-((:-h</Component>
+                          </Events>
+                        </Component>
                       </SubComponents>
                     </Container>
                     <Container class="javax.swing.JPanel" name="Content14">
@@ -697,12 +686,11 @@ Tiến Đạtcái đồ ăn uống để Bình đc kh15:58/-strong/-heart:>:o:-
                           <Events>
                             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_thongKeActionPerformed"/>
                           </Events>
-<AuxValues>/-strong/-heart:>:o:-((:-h<AuxValue name="JavaCodeGenerator_SerializeTo" type="java.lang.String" value="JFrame_TrangChu_btn_trangChu"/>
+                          <AuxValues>
+                            <AuxValue name="JavaCodeGenerator_SerializeTo" type="java.lang.String" value="JFrame_TrangChu_btn_trangChu"/>
                           </AuxValues>
                         </Component>
                       </SubComponents>
-=======
->>>>>>> origin/dat_ver1
                     </Container>
                   </SubComponents>
                 </Container>
@@ -753,7 +741,8 @@ Tiến Đạtcái đồ ăn uống để Bình đc kh15:58/-strong/-heart:>:o:-
                   <Dimension value="[200, 30]"/>
                 </Property>
               </Properties>
-              <Constraints>/-strong/-heart:>:o:-((:-h<Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignBorderLayout" value="org.netbeans.modules.form.compat2.layouts.DesignBorderLayout$BorderConstraintsDescription">
+              <Constraints>
+                <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignBorderLayout" value="org.netbeans.modules.form.compat2.layouts.DesignBorderLayout$BorderConstraintsDescription">
                   <BorderConstraints direction="Center"/>
                 </Constraint>
               </Constraints>
@@ -794,7 +783,8 @@ Tiến Đạtcái đồ ăn uống để Bình đc kh15:58/-strong/-heart:>:o:-
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="db" green="d6" red="cc" type="rgb"/>
-                </Property>/-strong/-heart:>:o:-((:-h<Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+                </Property>
+                <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                   <Dimension value="[1, 1]"/>
                 </Property>
               </Properties>
@@ -804,34 +794,23 @@ Tiến Đạtcái đồ ăn uống để Bình đc kh15:58/-strong/-heart:>:o:-
                 </Constraint>
               </Constraints>
 
-              <Layout>
-                <DimensionLayout dim="0">
-                  <Group type="103" groupAlignment="0" attributes="0">
-                      <EmptySpace min="0" pref="1" max="32767" attributes="0"/>
-                  </Group>
-                </DimensionLayout>
-                <DimensionLayout dim="1">
-                  <Group type="103" groupAlignment="0" attributes="0">
-                       <Component id="btn_datPhong" alignment="1" pref="50" max="32767" attributes="0"/>
-                  </Group>
-                </DimensionLayout>
-              </Layout>
-<SubComponents>
-                        <Component class="javax.swing.JButton" name="btn_datPhong">
-                          <Properties>
-                            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                              <Color blue="fa" green="fa" red="fa" type="rgb"/>
-                            </Property>
-                            <Property name="text" type="java.lang.String" value="&#x110;&#x1eb7;t Ph&#xf2;ng"/>
-                            <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-                              <Dimension value="[250, 23]"/>
-                            </Property>
-                          </Properties>
-                          <Events>
-                            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_datPhongActionPerformed"/>
-                          </Events>
-                        </Component>
-                      </SubComponents>
+              <Layout class="org.netbeans.modules.form.compat2.layouts.DesignFlowLayout"/>
+              <SubComponents>
+                <Component class="javax.swing.JButton" name="btn_datPhong1">
+                  <Properties>
+                    <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                      <Color blue="fa" green="fa" red="fa" type="rgb"/>
+                    </Property>
+                    <Property name="text" type="java.lang.String" value="&#x110;&#x1eb7;t Ph&#xf2;ng"/>
+                    <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+                      <Dimension value="[250, 23]"/>
+                    </Property>
+                  </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_datPhongActionPerformed"/>
+                  </Events>
+                </Component>
+              </SubComponents>
             </Container>
           </SubComponents>
         </Container>
@@ -848,7 +827,8 @@ Tiến Đạtcái đồ ăn uống để Bình đc kh15:58/-strong/-heart:>:o:-
           </Border>
         </Property>
       </Properties>
-      <AuxValues>/-strong/-heart:>:o:-((:-h<AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="trangChu = new TrangChu();&#xa;MainContent.add(trangChu).setVisible(true);"/>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="trangChu = new TrangChu();&#xa;MainContent.add(trangChu).setVisible(true);"/>
         <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new javax.swing.JPanel()"/>
         <AuxValue name="JavaCodeGenerator_SerializeTo" type="java.lang.String" value="JFrame_TrangChu_MainContent"/>
       </AuxValues>
@@ -861,4 +841,4 @@ Tiến Đạtcái đồ ăn uống để Bình đc kh15:58/-strong/-heart:>:o:-
       <Layout class="org.netbeans.modules.form.compat2.layouts.DesignCardLayout"/>
     </Container>
   </SubComponents>
-</Form>00:41/-strong/-heart:>:o:-((:-hXem trước khi gửiThả Files vào đây để xem lại trước khi gửiF
+</Form>

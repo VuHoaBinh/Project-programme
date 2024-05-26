@@ -109,7 +109,12 @@ public class HoaDon_DAO {
         statement = con.prepareStatement("INSERT INTO HoaDon VALUES (?,?,?,?,?,?,?,?)");
         statement.setString(1, hd.getMaHoaDon());
         statement.setString(2, hd.getKhachHang().getMaKhachHang());
-        statement.setString(3, hd.getKhuyenMai().getMaKhuyenMai());
+        if(hd.getKhuyenMai()!=null){
+            statement.setString(3, hd.getKhuyenMai().getMaKhuyenMai());
+        }
+        else{
+            statement.setString(3, null);
+        }
         statement.setString(4, hd.getNhanVien().getMaNhanVien());
         statement.setDate(5, java.sql.Date.valueOf(hd.getNgayLapHoaDon()));
         statement.setDouble(6, hd.getThue());

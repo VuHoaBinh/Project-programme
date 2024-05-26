@@ -108,8 +108,8 @@ public class HoaDon {
     }
 
     public void tinhTongThanhTienPhaiTra() {
-        tongThanhTienPhaiTra = (tongThanhTienBanDau * (1.0 + thue)) - (tongThanhTienBanDau * this.khuyenMai.getGiaTri());
-
+        double tongThanhTienCoThue = (tongThanhTienBanDau * (1.0 + thue));
+        tongThanhTienPhaiTra = tongThanhTienCoThue * (1 - this.khuyenMai.getGiaTri());
     }
 
     @Override

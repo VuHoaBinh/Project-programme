@@ -14,13 +14,15 @@ public class ChiTietPhieuDatPhong {
 
     private PhieuDatPhong phieuDatPhong;
     private Phong phong;
+    private boolean TrangThai;
 
     public ChiTietPhieuDatPhong() {
     }
 
-    public ChiTietPhieuDatPhong(PhieuDatPhong phieuDatPhong, Phong phong) {
+    public ChiTietPhieuDatPhong(PhieuDatPhong phieuDatPhong, Phong phong, boolean TrangThai) {
         this.phieuDatPhong = phieuDatPhong;
         this.phong = phong;
+        this.TrangThai = TrangThai;
     }
 
     public PhieuDatPhong getPhieuDatPhong() {
@@ -31,6 +33,10 @@ public class ChiTietPhieuDatPhong {
         return phong;
     }
 
+    public boolean isTrangThai() {
+        return TrangThai;
+    }
+
     public void setPhieuDatPhong(PhieuDatPhong phieuDatPhong) {
         this.phieuDatPhong = phieuDatPhong;
     }
@@ -39,10 +45,16 @@ public class ChiTietPhieuDatPhong {
         this.phong = phong;
     }
 
+    public void setTrangThai(boolean TrangThai) {
+        this.TrangThai = TrangThai;
+    }
+
     @Override
     public String toString() {
-        return "ChiTietPhieuDatPhong{" + "phieuDatPhong=" + phieuDatPhong + ", phong=" + phong + '}';
+        return "ChiTietPhieuDatPhong{" + "phieuDatPhong=" + phieuDatPhong + ", phong=" + phong + ", TrangThai=" + TrangThai + '}';
     }
+    
+    
 
     @Override
     public int hashCode() {

@@ -32,7 +32,6 @@ public class JPanel_QuanLyHoaDon extends javax.swing.JPanel implements ActionLis
      */
     public JPanel_QuanLyHoaDon() throws SQLException {
         initComponents();
-        addEvents();
         AllListHoaDon();
     }
 
@@ -69,17 +68,6 @@ public class JPanel_QuanLyHoaDon extends javax.swing.JPanel implements ActionLis
         tbl_hoaDon = new javax.swing.JTable();
         jLabel11 = new javax.swing.JLabel();
         search_Engine = new javax.swing.JPanel();
-        jPanel6 = new javax.swing.JPanel();
-        txt_search = new javax.swing.JTextField();
-        jPanel7 = new javax.swing.JPanel();
-        cb_tt = new javax.swing.JComboBox<>();
-        jLabel4 = new javax.swing.JLabel();
-        jComboBox2 = new javax.swing.JComboBox<>();
-        jLabel5 = new javax.swing.JLabel();
-        jComboBox3 = new javax.swing.JComboBox<>();
-        jLabel3 = new javax.swing.JLabel();
-        jPanel8 = new javax.swing.JPanel();
-        btn_search = new javax.swing.JButton();
 
         setPreferredSize(new java.awt.Dimension(931, 800));
         setLayout(new java.awt.BorderLayout());
@@ -131,195 +119,12 @@ public class JPanel_QuanLyHoaDon extends javax.swing.JPanel implements ActionLis
 
         search_Engine.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         search_Engine.setLayout(new javax.swing.BoxLayout(search_Engine, javax.swing.BoxLayout.X_AXIS));
-
-        jPanel6.setPreferredSize(new java.awt.Dimension(386, 50));
-
-        txt_search.setText("Mã hóa đơn ....");
-        txt_search.putClientProperty(FlatClientProperties.PLACEHOLDER_TEXT, "Mã hóa đơn...");
-        txt_search.putClientProperty(FlatClientProperties.TEXT_FIELD_LEADING_ICON, new FlatSVGIcon("./icon/home.svg"));
-
-        javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
-        jPanel6.setLayout(jPanel6Layout);
-        jPanel6Layout.setHorizontalGroup(
-            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel6Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(txt_search, javax.swing.GroupLayout.PREFERRED_SIZE, 374, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(15, Short.MAX_VALUE))
-        );
-        jPanel6Layout.setVerticalGroup(
-            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel6Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(txt_search, javax.swing.GroupLayout.DEFAULT_SIZE, 38, Short.MAX_VALUE)
-                .addContainerGap())
-        );
-
-        search_Engine.add(jPanel6);
-
-        cb_tt.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        cb_tt.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cb_ttActionPerformed(evt);
-            }
-        });
-
-        jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabel4.setText("jLabel3");
-
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        jComboBox2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jComboBox2ActionPerformed(evt);
-            }
-        });
-
-        jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabel5.setText("jLabel3");
-
-        jComboBox3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        jComboBox3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jComboBox3ActionPerformed(evt);
-            }
-        });
-
-        jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabel3.setText("jLabel3");
-        jLabel3.setPreferredSize(new java.awt.Dimension(20, 16));
-
-        javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
-        jPanel7.setLayout(jPanel7Layout);
-        jPanel7Layout.setHorizontalGroup(
-            jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel7Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(cb_tt, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jLabel4)
-                .addGap(18, 18, 18)
-                .addComponent(jComboBox3, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jLabel5)
-                .addGap(18, 18, 18)
-                .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(15, Short.MAX_VALUE))
-        );
-        jPanel7Layout.setVerticalGroup(
-            jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel7Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel7Layout.createSequentialGroup()
-                        .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jComboBox3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 38, Short.MAX_VALUE)
-                            .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jComboBox2))
-                        .addGap(6, 6, 6))
-                    .addGroup(jPanel7Layout.createSequentialGroup()
-                        .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(cb_tt, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addContainerGap())))
-        );
-
-        search_Engine.add(jPanel7);
-
-        btn_search.setText("Lọc");
-       
-        btn_search.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btn_searchMouseClicked(evt);
-            }
-        });
-        btn_search.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_searchActionPerformed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
-        jPanel8.setLayout(jPanel8Layout);
-        jPanel8Layout.setHorizontalGroup(
-            jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel8Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(btn_search, javax.swing.GroupLayout.PREFERRED_SIZE, 263, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(15, Short.MAX_VALUE))
-        );
-        jPanel8Layout.setVerticalGroup(
-            jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel8Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(btn_search, javax.swing.GroupLayout.DEFAULT_SIZE, 38, Short.MAX_VALUE)
-                .addContainerGap())
-        );
-
-        search_Engine.add(jPanel8);
-
         add(search_Engine, java.awt.BorderLayout.NORTH);
     }// </editor-fold>//GEN-END:initComponents
-
-    private void jComboBox2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jComboBox2ActionPerformed
-
-    private void cb_ttActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cb_ttActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_cb_ttActionPerformed
-
-    private void jComboBox3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox3ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jComboBox3ActionPerformed
 
     private void tbl_hoaDonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbl_hoaDonMouseClicked
         // TODO add your handling code here:
     }//GEN-LAST:event_tbl_hoaDonMouseClicked
-
-    private void btn_searchMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_searchMouseClicked
-        // TODO add your handling code here:
-
-
-    }//GEN-LAST:event_btn_searchMouseClicked
-
-    private void btn_searchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_searchActionPerformed
-        // TODO add your handling code here:
-        // TODO add your handling code here:
-        if (txt_search.getText().equals("")) {
-            try {
-                AllListHoaDon();
-            } catch (SQLException ex) {
-                Logger.getLogger(JPanel_QuanLyDoAnUong.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        }
-        try {
-            ConnectDB.getInstance().connect();
-            String timkiem = txt_search.getText();
-
-            // Xóa toàn bộ dữ liệu trong tbl_QL_NhanVien
-            DefaultTableModel model = (DefaultTableModel) tbl_hoaDon.getModel();
-            model.setRowCount(0);
-
-            hd_DAO = new HoaDon_DAO();
-            ArrayList<HoaDon> listHD = hd_DAO.getHoaDonTheoMaHoaDon(timkiem);
-
-            if (model.getColumnCount() == 0) {
-                String[] arr = {"Mã hóa đơn", "Khách hàng", "Khuyến mãi", "Nhân viên", "Ngày lập hóa đơn", "Thuế", "Tổng số tiền ban đầu", "Tổng số tiền phải trả"};
-                model.setColumnIdentifiers(arr);
-            }
-
-            for (HoaDon hd : listHD) {
-
-                model.addRow(new Object[]{hd.getMaHoaDon(), hd.getKhachHang().getHoTenKhachHang(), hd.getKhuyenMai(), hd.getNhanVien().getHoTenNhanVien(),
-                    hd.getNgayLapHoaDon(), hd.getThue(), hd.getTongThanhTienBanDau(), hd.getTongThanhTienPhaiTra()});
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }//GEN-LAST:event_btn_searchActionPerformed
 
     private void AllListHoaDon() throws SQLException {
         tbl_hoaDon.removeAll();
@@ -343,41 +148,26 @@ public class JPanel_QuanLyHoaDon extends javax.swing.JPanel implements ActionLis
 
         for (HoaDon hd : listHD) {
             System.out.println("hd.getKhachHang().getHoTenKhachHang(): " + hd.getKhachHang().getHoTenKhachHang());
-            model.addRow(new Object[]{hd.getMaHoaDon(), hd.getKhachHang().getMaKhachHang(), hd.getKhuyenMai().getMaKhuyenMai(), hd.getNhanVien().getMaNhanVien(),
-                hd.getNgayLapHoaDon(), hd.getThue(), hd.getTongThanhTienBanDau(), hd.getTongThanhTienPhaiTra()});
+            if (hd.getTongThanhTienBanDau() != 0) {
+                model.addRow(new Object[]{hd.getMaHoaDon(), hd.getKhachHang().getMaKhachHang(), hd.getKhuyenMai().getMaKhuyenMai(), hd.getNhanVien().getMaNhanVien(),
+                    hd.getNgayLapHoaDon(), hd.getThue(), hd.getTongThanhTienBanDau(), hd.getTongThanhTienPhaiTra()});
+            }
         }
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    public javax.swing.JButton btn_search;
-    private javax.swing.JComboBox<String> cb_tt;
-    private javax.swing.JComboBox<String> jComboBox2;
-    private javax.swing.JComboBox<String> jComboBox3;
     private javax.swing.JLabel jLabel11;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel3;
-    private javax.swing.JPanel jPanel6;
-    private javax.swing.JPanel jPanel7;
-    private javax.swing.JPanel jPanel8;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JPanel search_Engine;
     private javax.swing.JTable tbl_hoaDon;
-    private javax.swing.JTextField txt_search;
     // End of variables declaration//GEN-END:variables
 
     @Override
     public void actionPerformed(ActionEvent e) {
         Object o = e.getSource();
-        if (o.equals(btn_search)) {
-            System.out.println("gui.JPanel_QuanLyNhanVien.actionPerformed()");
-        }
     }
 
-    public void addEvents() {
-        btn_search.addActionListener(this);
-    }
 
 }

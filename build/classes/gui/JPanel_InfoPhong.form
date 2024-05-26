@@ -81,11 +81,8 @@
                                       <Component id="rdCoGiuong" min="-2" max="-2" attributes="0"/>
                                       <EmptySpace type="separate" max="-2" attributes="0"/>
                                       <Component id="rdKhongGiuong" min="-2" max="-2" attributes="0"/>
-<<<<<<< HEAD
                                        <EmptySpace min="0" pref="114" max="32767" attributes="0"/>
-=======
-                                      <EmptySpace min="0" pref="114" max="32767" attributes="0"/>
->>>>>>> origin/dat_ver1
+
                                   </Group>
                                   <Component id="txtDienTich" max="32767" attributes="0"/>
                                   <Component id="txtTen" max="32767" attributes="0"/>
@@ -100,14 +97,11 @@
                               <Component id="txtTrangThai" max="32767" attributes="0"/>
                           </Group>
                           <Group type="102" attributes="0">
-<<<<<<< HEAD
+
                              <Component id="jLabel7" min="-2" pref="74" max="-2" attributes="0"/>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
 
-=======
-                              <Component id="jLabel7" min="-2" pref="74" max="-2" attributes="0"/>
-                              <EmptySpace type="separate" max="-2" attributes="0"/>
->>>>>>> origin/dat_ver1
+
                               <Component id="rdCoHut" min="-2" max="-2" attributes="0"/>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
                               <Component id="rdKhongHut" min="-2" max="-2" attributes="0"/>

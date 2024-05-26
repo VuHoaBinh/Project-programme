@@ -25,13 +25,18 @@ import javax.swing.JTextField;
  * @author M S I
  */
 public class TaiKhoan_DAO {
+
     private static String tenNhanVien;
     NhanVien_DAO nv_dao = new NhanVien_DAO();
+
     public TaiKhoan_DAO() {
-    };
-    public static TaiKhoan_DAO getInstance(){
+    }
+
+    ;
+    public static TaiKhoan_DAO getInstance() {
         return new TaiKhoan_DAO();
     }
+
     public void dNhap(JTextField txtTaiKhoan, JPasswordField txtMatKhau) throws Exception {
         PreparedStatement stmt = null;
         Connection con = ConnectDB.getConnection();
@@ -47,7 +52,6 @@ public class TaiKhoan_DAO {
             ResultSet rs = stmt.executeQuery();
             if (rs.next()) {
                 new JFrame_TrangChu(nv_dao.getNhanVienTheoMa(txtTaiKhoan.getText()).getFirst()).setVisible(true);
-                new JFrame_Login().setVisible(false);
                 tenNhanVien = nv_dao.getHoTenNhanVienTheoMa(txtTaiKhoan.getText());
             } else {
                 JOptionPane.showMessageDialog(null, "Tên tài khoản hoặc mật khẩu không đúng");
@@ -92,10 +96,11 @@ public class TaiKhoan_DAO {
         }
 
     }
-    public static String getTenNhanVien(){
+
+    public static String getTenNhanVien() {
         return tenNhanVien;
     }
-    
+
 //    public TaiKhoan selectById(String t) {
 //        TaiKhoan result = null;
 //        try {
@@ -115,4 +120,21 @@ public class TaiKhoan_DAO {
 //        }
 //        return result;
 //    }
+    public void taoTaiKhoan(String tenTaiKhoan, String matKhau) throws SQLException {
+        Connection con = null;
+        PreparedStatement stmt = null;
+
+        con = ConnectDB.getConnection();
+        String sql = "INSERT INTO TaiKhoan (nhanVien, matKhau) VALUES (?, ?)";
+        stmt = con.prepareStatement(sql);
+        stmt.setString(1, tenTaiKhoan);
+        stmt.setString(2, matKhau);
+
+        int rowsAffected = stmt.executeUpdate();
+        if (rowsAffected > 0) {
+            JOptionPane.showMessageDialog(null, "Tạo tài khoản thành công!");
+        } else {
+            JOptionPane.showMessageDialog(null, "Không thể tạo tài khoản.");
+        }
+    }
 }

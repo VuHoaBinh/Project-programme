@@ -77,21 +77,21 @@ CREATE TABLE NhanVien (
     hinhAnh VARCHAR(255)
 );
 INSERT INTO NhanVien (maNhanVien, hoTenNhanVien, chucVu, gioiTinh, trangThaiLamViec, diaChi, soDienThoai, hinhAnh)
-VALUES ('NV2411001', N'Vũ Hòa Bình', 1, 1, 1, '123 Phạm Văn Đồng', '0987654321', null),
-	   ('NV2412002', N'Nguyễn Tiến Đạt', 0, 1, 1, '78/12 Quang Trung', '0832432268', null),
-	   ('NV2412003', N'Phạm Hoàng Long', 0, 1, 1, '2A/32 Nguyễn Tri Phương', '0724897623', null),
-	   ('NV2412004', N'Trần Quang Nhân', 0, 1, 1, '745 Quang Trung', '0767323927', null),
-	   ('NV2412005', N'Vũ Nam Phương', 0, 1, 0, '18 Dương Quảng Hàm', '0988324131', null),
-	   ('NV2401001', N'Nguyễn Hà My', 1, 0, 0, '23 Võ Văn Tần', '0244984202', null),
-	   ('NV2412006', N'Huỳnh Văn Hải', 0, 1, 1, '67 Hai Bà Trưng', '0599883339', null),
-	   ('NV2402002', N'Cao Thị Mỹ Duyên', 0, 0, 1, '12 Lê Thánh Tôn', '0287832999', null),
-	   ('NV2412008', N'Ngô Anh Minh', 0, 1, 0, '34 Trần Hưng Đạo', '0394442174', null),
-	   ('NV2412009', N'Chung Hải Nam', 0, 1, 0, '21A Hai Bà Trưng', '0124832679', null),
-	   ('NV2402003', N'Phan Thị Anh Nhi', 0, 0, 1, '143 Lê Thánh Tôn', '0345539637', null),
-	   ('NV2412010', N'Đinh Văn Toàn', 0, 1, 1, '456 Hai Bà Trưng', '0963214578', null),
-	   ('NV2402004', N'Trần Thị Thu Hà', 0, 0, 1, '789 Sư Vạn Hạnh', '0829384765', null),
-	   ('NV2412011', N'Nguyễn Minh Hoàng', 0, 1, 1, '123/456 Phan Văn Trị', '0987234567', null),
-	   ('NV2402005', N'Phạm Thị Thu Trang', 0, 0, 1, '789/1011 Âu Cơ', '0846543210', null);
+VALUES ('NV2411001', N'Vũ Hòa Bình', 1, 1, 1, N'123 Phạm Văn Đồng', '0987654321', null),
+	   ('NV2412002', N'Nguyễn Tiến Đạt', 0, 1, 1, N'78/12 Quang Trung', '0832432268', null),
+	   ('NV2412003', N'Phạm Hoàng Long', 0, 1, 1, N'2A/32 Nguyễn Tri Phương', '0724897623', null),
+	   ('NV2412004', N'Trần Quang Nhân', 0, 1, 1, N'745 Quang Trung', '0767323927', null),
+	   ('NV2412005', N'Vũ Nam Phương', 0, 1, 0, N'18 Dương Quảng Hàm', '0988324131', null),
+	   ('NV2401001', N'Nguyễn Hà My', 1, 0, 0, N'23 Võ Văn Tần', '0244984202', null),
+	   ('NV2412006', N'Huỳnh Văn Hải', 0, 1, 1, N'67 Hai Bà Trưng', '0599883339', null),
+	   ('NV2402002', N'Cao Thị Mỹ Duyên', 0, 0, 1, N'12 Lê Thánh Tôn', '0287832999', null),
+	   ('NV2412008', N'Ngô Anh Minh', 0, 1, 0, N'34 Trần Hưng Đạo', '0394442174', null),
+	   ('NV2412009', N'Chung Hải Nam', 0, 1, 0, N'21A Hai Bà Trưng', '0124832679', null),
+	   ('NV2402003', N'Phan Thị Anh Nhi', 0, 0, 1, N'143 Lê Thánh Tôn', '0345539637', null),
+	   ('NV2412010', N'Đinh Văn Toàn', 0, 1, 1, N'456 Hai Bà Trưng', '0963214578', null),
+	   ('NV2402004', N'Trần Thị Thu Hà', 0, 0, 1, N'789 Sư Vạn Hạnh', '0829384765', null),
+	   ('NV2412011', N'Nguyễn Minh Hoàng', 0, 1, 1, N'123/456 Phan Văn Trị', '0987234567', null),
+	   ('NV2402005', N'Phạm Thị Thu Trang', 0, 0, 1, N'789/1011 Âu Cơ', '0846543210', null);
 
 CREATE TABLE TaiKhoan (
     nhanVien VARCHAR(9),
@@ -176,7 +176,7 @@ CREATE TABLE HoaDon(
     FOREIGN KEY (nhanVien) REFERENCES NhanVien(maNhanVien),
     FOREIGN KEY (khuyenMai) REFERENCES KhuyenMai(maKhuyenMai)
 );
-<<<<<<< HEAD
+
 
 INSERT INTO HoaDon (maHoaDon, khachHang, khuyenMai, nhanVien, ngayLapHoaDon, thue, tongThanhTienBanDau, tongThanhTienPhaiTra)
 VALUES ('MHD203002042024001', '0123456789', 'KM1504202401', 'NV2412002', '2024-04-02', 0.1, 18000000.0, 16500000.0),
@@ -198,8 +198,6 @@ VALUES ('MHD203002042024001', '0123456789', 'KM1504202401', 'NV2412002', '2024-0
 	   ('MHD120415032024001', '0123849232', 'KM1103202401', 'NV2412008', '2024-03-15', 0.1, 1500000.0, 1140000.0),
 	   ('MHD213302042024004', '0332567242', 'KM1504202401', 'NV2412002', '2024-04-02', 0.1, 2100000.0, 2100000.0);
 	   
-=======
->>>>>>> origin/verGanCuoi
 CREATE TABLE PhieuDatPhong (
     maPhieuDatPhong VARCHAR(19) PRIMARY KEY,
     khachHang VARCHAR(10),
@@ -223,6 +221,7 @@ VALUES ('MPDP073227032024001', '0123456789', 'NV2412002', 1, '2024-03-27', '2024
 CREATE TABLE ChiTietPhieuDatPhong (
     phieuDatPhong VARCHAR(19),
     phong VARCHAR(4),
+    trangThaiChiTietPhieuDatPhong BIT,
     FOREIGN KEY (phieuDatPhong) REFERENCES PhieuDatPhong(maPhieuDatPhong),
     FOREIGN KEY (phong) REFERENCES Phong(maPhong)
 );
@@ -251,34 +250,34 @@ CREATE TABLE ChiTietHoaDon(
     FOREIGN KEY (doAnUong) REFERENCES DoAnUong(maDoAnUong),
     FOREIGN KEY (phong) REFERENCES Phong(maPhong)
 );
-<<<<<<< HEAD
 
-INSERT INTO ChiTietHoaDon (hoaDon, doAnUong, phong, soLuong, ngayNhanPhong, ngayTraPhong, soLuongNguoiO, soLuongDoUongTraVe, tongTienThuePhong, tongTienDichVu, tongThanhTien, phuPhi)
-VALUES ('MHD203022042024001', 'DV0104202401', '0102', 2, '2024-04-10', '2024-04-14', 2, 0, 600000.0, 50000.0, 650000.0, 20000.0);
-=======
-INSERT INTO NhanVien (maNhanVien, hoTenNhanVien, chucVu, gioiTinh, trangThaiLamViec, diaChi, soDienThoai, hinhAnh)
-VALUES ('NV001', N'Nguyễn Văn A', 1, 1, 1, N'Hà Nội', '0123456789', 'anh_nv1.jpg');
 
-INSERT INTO NhanVien (maNhanVien, hoTenNhanVien, chucVu, gioiTinh, trangThaiLamViec, diaChi, soDienThoai, hinhAnh)
-VALUES ('NV002', N'Trần Thị B', 0, 0, 1, N'Hồ Chí Minh', '0987654321', 'anh_nv2.jpg');
+--INSERT INTO ChiTietHoaDon (hoaDon, doAnUong, phong, soLuong, ngayNhanPhong, ngayTraPhong, soLuongNguoiO, soLuongDoUongTraVe, tongTienThuePhong, tongTienDichVu, tongThanhTien, phuPhi)
+--VALUES ('MHD203022042024001', 'DV0104202401', '0102', 2, '2024-04-10', '2024-04-14', 2, 0, 600000.0, 50000.0, 650000.0, 20000.0);
 
-INSERT INTO NhanVien (maNhanVien, hoTenNhanVien, chucVu, gioiTinh, trangThaiLamViec, diaChi, soDienThoai, hinhAnh)
-VALUES ('NV003', N'Lê Văn C', 0, 1, 0, N'Đà Nẵng', '0369852147', 'anh_nv3.jpg');
+--INSERT INTO NhanVien (maNhanVien, hoTenNhanVien, chucVu, gioiTinh, trangThaiLamViec, diaChi, soDienThoai, hinhAnh)
+--VALUES ('NV001', N'Nguyễn Văn A', 1, 1, 1, N'Hà Nội', '0123456789', 'anh_nv1.jpg');
 
--- Thêm 5 phòng ngẫu nhiên vào bảng Phong
-INSERT INTO Phong (maPhong, tenPhong, loaiPhong, trangThaiPhong, dienTichPhong, soGiuong, giuongPhu, view_, hutThuoc, hinhAnhPhong)
-VALUES ('P001', '101', 'Phòng Đơn', 'Trống', 25.5, 1, 0, 'City View', 0, 'phong101.jpg');
+--INSERT INTO NhanVien (maNhanVien, hoTenNhanVien, chucVu, gioiTinh, trangThaiLamViec, diaChi, soDienThoai, hinhAnh)
+--VALUES ('NV002', N'Trần Thị B', 0, 0, 1, N'Hồ Chí Minh', '0987654321', 'anh_nv2.jpg');
 
-INSERT INTO Phong (maPhong, tenPhong, loaiPhong, trangThaiPhong, dienTichPhong, soGiuong, giuongPhu, view_, hutThuoc, hinhAnhPhong)
-VALUES ('P002', '102', 'Phòng Đôi', 'Đã Đặt', 35.0, 1, 1, 'Ocean View', 1, 'phong102.jpg');
+--INSERT INTO NhanVien (maNhanVien, hoTenNhanVien, chucVu, gioiTinh, trangThaiLamViec, diaChi, soDienThoai, hinhAnh)
+--VALUES ('NV003', N'Lê Văn C', 0, 1, 0, N'Đà Nẵng', '0369852147', 'anh_nv3.jpg');
 
-INSERT INTO Phong (maPhong, tenPhong, loaiPhong, trangThaiPhong, dienTichPhong, soGiuong, giuongPhu, view_, hutThuoc, hinhAnhPhong)
-VALUES ('P003', '103', 'Phòng Suite', 'Trống', 45.5, 2, 1, 'Mountain View', 0, 'phong103.jpg');
+---- Thêm 5 phòng ngẫu nhiên vào bảng Phong
+--INSERT INTO Phong (maPhong, tenPhong, loaiPhong, trangThaiPhong, dienTichPhong, soGiuong, giuongPhu, view_, hutThuoc, hinhAnhPhong)
+--VALUES ('P001', '101', 'Phòng Đơn', 'Trống', 25.5, 1, 0, 'City View', 0, 'phong101.jpg');
 
-INSERT INTO Phong (maPhong, tenPhong, loaiPhong, trangThaiPhong, dienTichPhong, soGiuong, giuongPhu, view_, hutThuoc, hinhAnhPhong)
-VALUES ('P004', '104', 'Phòng Đôi', 'Đã Đặt', 35.0, 1, 1, 'City View', 1, 'phong104.jpg');
+--INSERT INTO Phong (maPhong, tenPhong, loaiPhong, trangThaiPhong, dienTichPhong, soGiuong, giuongPhu, view_, hutThuoc, hinhAnhPhong)
+--VALUES ('P002', '102', 'Phòng Đôi', 'Đã Đặt', 35.0, 1, 1, 'Ocean View', 1, 'phong102.jpg');
 
-INSERT INTO Phong (maPhong, tenPhong, loaiPhong, trangThaiPhong, dienTichPhong, soGiuong, giuongPhu, view_, hutThuoc, hinhAnhPhong)
-VALUES ('P005', '105', 'Phòng Đơn', 'Trống', 25.5, 1, 0, 'City View', 0, 'phong105.jpg');
->>>>>>> origin/TrangChu_ver1
+--INSERT INTO Phong (maPhong, tenPhong, loaiPhong, trangThaiPhong, dienTichPhong, soGiuong, giuongPhu, view_, hutThuoc, hinhAnhPhong)
+--VALUES ('P003', '103', 'Phòng Suite', 'Trống', 45.5, 2, 1, 'Mountain View', 0, 'phong103.jpg');
+
+--INSERT INTO Phong (maPhong, tenPhong, loaiPhong, trangThaiPhong, dienTichPhong, soGiuong, giuongPhu, view_, hutThuoc, hinhAnhPhong)
+--VALUES ('P004', '104', 'Phòng Đôi', 'Đã Đặt', 35.0, 1, 1, 'City View', 1, 'phong104.jpg');
+
+--INSERT INTO Phong (maPhong, tenPhong, loaiPhong, trangThaiPhong, dienTichPhong, soGiuong, giuongPhu, view_, hutThuoc, hinhAnhPhong)
+--VALUES ('P005', '105', 'Phòng Đơn', 'Trống', 25.5, 1, 0, 'City View', 0, 'phong105.jpg');
+
 

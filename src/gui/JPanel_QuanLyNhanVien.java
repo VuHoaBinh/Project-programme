@@ -12,6 +12,7 @@ import com.formdev.flatlaf.FlatClientProperties;
 import com.formdev.flatlaf.extras.FlatSVGIcon;
 import connectDB.ConnectDB;
 import dao.NhanVien_DAO;
+import dao.TaiKhoan_DAO;
 import entity.NhanVien;
 import java.awt.Graphics2D;
 import java.awt.Image;
@@ -55,6 +56,7 @@ import javax.swing.table.DefaultTableModel;
 public class JPanel_QuanLyNhanVien extends javax.swing.JPanel implements ActionListener, MouseListener {
 
     private String id;
+    private TaiKhoan_DAO tk_dao;
 
     /**
      * Creates new form JPanel_QuanLyNhanVien
@@ -606,12 +608,19 @@ public class JPanel_QuanLyNhanVien extends javax.swing.JPanel implements ActionL
                 String cv = "";
                 genID(nv);
                 nv.setMaNhanVien(id);
+                tk_dao = new TaiKhoan_DAO();
+
                 modelNhanVien.addRow(new Object[]{nv.getMaNhanVien(), nv.getHoTenNhanVien(), gt = nv.isGioiTinh() ? "Nam" : "Nữ",
                     nv.getDiaChi(), tt = nv.isTrangThaiLamViec() ? "Đang làm" : "Đã nghỉ", nv.getSoDIenThoai(), cv = nv.isChucVu() ? "Quản lý" : "Lễ Tân"});
                 try {
                     String imagePath_relative = "/gui/emp_pic/" + nv.getMaNhanVien() + ".png";
                     nv.setHinhAnh("/gui/emp_pic/" + nv.getMaNhanVien() + ".png");
                     nv_dao.createNhanVien(nv);
+                    try {
+                        tk_dao.taoTaiKhoan(nv.getMaNhanVien(), nv.getSoDIenThoai());
+                    } catch (SQLException ex) {
+                        Logger.getLogger(JPanel_QuanLyNhanVien.class.getName()).log(Level.SEVERE, null, ex);
+                    }
                 } catch (SQLException ex) {
                     Logger.getLogger(JPanel_QuanLyNhanVien.class.getName()).log(Level.SEVERE, null, ex);
                 }
