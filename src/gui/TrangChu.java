@@ -9,100 +9,104 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
+import java.awt.Font;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-
+import javax.swing.ImageIcon;
+import java.awt.Image;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.awt.Paint;
+import java.awt.GradientPaint;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import javax.swing.Box;
+import javax.swing.BoxLayout;
+import javax.swing.SwingConstants;
+import javax.swing.Timer;
 /**
  *
  * @author Nguyễn Tiến Đạt
  */
 public class TrangChu extends JPanel{
-    JPanel top, center, bar1, bar2;
-    PanelShadow content[];
-    JPanel info[];
-    JLabel title, subTit, infoDetail[], objDetail[], objDetail1[], infoIcon[];
-        String[][] getSt = {
-        {"Tính chính xác", "tinhchinhxac_128px.svg", "<html>Mã IMEI là một số duy nhất được <br>gán cho từng thiết bị điện thoại,<br> do đó hệ thống quản lý điện thoại<br> theo mã IMEI sẽ đảm bảo tính <br>chính xác và độ tin cậy cao.</html>"},
-        {"Tính bảo mật", "tinhbaomat_128px.svg", "<html>Ngăn chặn việc sử dụng các thiết bị<br> điện thoại giả mạo hoặc bị đánh cắp.<br> Điều này giúp tăng tính bảo mật cho <br>các hoạt động quản lý điện thoại.</html>"},
-        {"Tính hiệu quả", "tinhhieuqua_128px.svg", "<html>Dễ dàng xác định được thông tin <br>về từng thiết bị điện thoại một cách <br>nhanh chóng và chính xác, giúp <br>cho việc quản lý điện thoại được <br>thực hiện một cách hiệu quả hơn.</html>"},
-    };
-    Color MainColor = new Color(255, 255, 255);
-    Color FontColor = new Color(96, 125, 139);
-    Color BackgroundColor = new Color(240, 247, 250);
-    Color HowerFontColor = new Color(225, 230, 232);
+    JPanel pnlMain;
+
+    JLabel lblTitle;
+
 
     private void initComponent() {
         this.setBackground(new Color(24, 24, 24));
         this.setBounds(0, 200, 300, 1200);
         this.setLayout(new BorderLayout(0, 0));
         this.setOpaque(true);
+        
+        pnlMain = new JPanel();
+        pnlMain.setLayout(new BorderLayout());
 
-        top = new JPanel();
-        top.setBackground(MainColor);
-        top.setPreferredSize(new Dimension(1100, 200));
-        top.setLayout(new FlowLayout(1, 0, 10));
-
-//        JLabel slogan = new JLabel();
-//        slogan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/icon_home.png")));
-//        top.add(slogan);
-
-        this.add(top, BorderLayout.NORTH);
-
-        center = new JPanel();
-        center.setBackground(BackgroundColor);
-        center.setPreferredSize(new Dimension(1100, 800));
-        center.setLayout(new FlowLayout(1, 50, 50));
-
-        content = new PanelShadow[getSt.length];
-        info = new JPanel[3];
-        infoDetail = new JLabel[3];
-        objDetail = new JLabel[3];
-        objDetail1 = new JLabel[3];
-
-        infoIcon = new JLabel[3];
-
-        for (int i = 0; i < getSt.length; i++) {
-              
-              content[i] = new PanelShadow(getSt[i][1], getSt[i][0], getSt[i][2]);
-              center.add(content[i]);
-//            content[i] = new PanelShadow();
-//            content[i].setPreferredSize(new Dimension(300, 450));
-//            content[i].setBackground(MainColor);
-//            content[i].setLayout(new FlowLayout(1, 0, 10));
+        // Tạo panel header luôn xuất hiện trong mọi giao diện
+        JPanel pnlHeader = new JPanel() {
+//                @Override
+//                protected void paintComponent(Graphics g) {
+//                        // TODO Auto-generated method stub
+//                        super.paintComponent(g);
+//                        Paint p = new GradientPaint(0.0f, 0.0f, new Color(255, 255, 255), getWidth(), getHeight(),
+//                                        new Color(0xffe53b), true);
+//                        Graphics2D g2d = (Graphics2D) g;
+//                        g2d.setPaint(p);
+//                        g2d.fillRect(0, 0, getWidth(), getHeight());
 //
-//            info[i] = new JPanel();
-//            info[i].setPreferredSize(new Dimension(250, 150));
-//            info[i].setBackground(BackgroundColor);
-//            info[i].setLayout(null);
-//
-//            infoIcon[i] = new JLabel();
-//            infoIcon[i].setBounds(60, 20, 120, 120);
-//            infoIcon[i].setIcon(new javax.swing.ImageIcon(getClass().getResource(iconArr[i])));
-//            info[i].add(infoIcon[i]);
-//
-//            content[i].add(info[i]);
-//
-//            infoDetail[i] = new JLabel(tkArr[i]);
-//            infoDetail[i].setPreferredSize(new Dimension(190, 60));
-//            infoDetail[i].setFont(new Font("Segoe UI", Font.BOLD, 16));
-//            content[i].add(infoDetail[i]);
-//
-//            objDetail[i] = new JLabel(obj1Arr[i]);
-//            objDetail[i].setPreferredSize(new Dimension(220, 20));
-//            objDetail[i].setFont(new Font("Segoe UI", Font.PLAIN, 15));
-//            content[i].add(objDetail[i]);
-//
-//            objDetail[i] = new JLabel(obj2Arr[i]);
-//            objDetail[i].setPreferredSize(new Dimension(220, 20));
-//            objDetail[i].setFont(new Font("Segoe UI", Font.PLAIN, 15));
-//            content[i].add(objDetail[i]);
-//
-//            center.add(content[i]);
+//                }
+        };
+        pnlHeader.setLayout(new BorderLayout());
+        pnlHeader.setBackground(Color.WHITE);
+        lblTitle = new JLabel("HỆ THỐNG QUẢN LÍ KHÁCH SẠN AN NHIÊN", SwingConstants.CENTER);
+        lblTitle.setForeground(new Color(89, 59, 23));
+        lblTitle.setFont(new Font("Time New Roman", Font.BOLD, 40));
+        JLabel lbLogo = new JLabel(getIcon("data/images/logo.png", 150, 100));
+        lbLogo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/logoHotel.png")));
+        JLabel lbltime = new JLabel("", SwingConstants.CENTER);
+        lbltime.setFont(new Font("Calibri", Font.BOLD, 30));
 
-        }
+        int delay = 100;
+        Timer timer = new Timer(delay, new ActionListener() {
 
-        this.add(center, BorderLayout.CENTER);
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                        // TODO Auto-generated method stub
+                        LocalDateTime now = LocalDateTime.now();
+                        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("hh:mm:ss a");
+                        String formattedDateTime = now.format(formatter);
+                        lbltime.setText(formattedDateTime);
+                }
+        });
 
+        timer.start();
+        lbltime.setForeground(new Color(89, 59, 23));
+        JPanel pnlSubEast = new JPanel();
+        pnlSubEast.setOpaque(false);
+        pnlSubEast.setLayout(new BoxLayout(pnlSubEast, BoxLayout.Y_AXIS));
+        Box b = Box.createVerticalBox();
+        Box b1 = Box.createHorizontalBox();
+        b1.add(Box.createHorizontalStrut(20));
+        b1.add(lbltime);
+        b1.add(Box.createHorizontalStrut(20));
+        b.add(b1);
+        pnlSubEast.add(b);
+
+        pnlHeader.add(lblTitle, BorderLayout.CENTER);
+        pnlHeader.add(lbLogo, BorderLayout.WEST);
+        pnlHeader.add(pnlSubEast, BorderLayout.EAST);
+        
+//        BackgroundPanel pnlBottom = new BackgroundPanel("/image/hotel.png");
+        JPanel pnlBottom = new JPanel();
+        JLabel hotel = new JLabel();
+        hotel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/hotel.png")));
+        pnlBottom.add(hotel);
+        pnlMain.add(pnlHeader, BorderLayout.NORTH);
+        pnlMain.add(pnlBottom, BorderLayout.CENTER);
+        this.add(pnlMain);
     }
 
     public TrangChu() {
@@ -110,5 +114,28 @@ public class TrangChu extends JPanel{
         FlatIntelliJLaf.registerCustomDefaultsSource("style");
         FlatIntelliJLaf.setup();
     }
-
+    private ImageIcon getIcon(String path, int width, int height) {
+		// TODO Auto-generated method stub
+		ImageIcon iconEmployee = new ImageIcon(path);
+		Image scaledImage = iconEmployee.getImage().getScaledInstance(width, height, Image.SCALE_SMOOTH);
+		ImageIcon scaledIcon = new ImageIcon(scaledImage);
+		return scaledIcon;
+    }
+    
+//    class BackgroundPanel extends JPanel {
+//        private Image backgroundImage;
+//
+//        // Constructor nhận đường dẫn tới hình ảnh
+//        public BackgroundPanel(String imagePath) {
+//            // Tải hình ảnh từ đường dẫn
+//            this.backgroundImage = new ImageIcon(imagePath).getImage();
+//        }
+//
+//        @Override
+//        protected void paintComponent(Graphics g) {
+//            super.paintComponent(g);
+//            // Vẽ hình ảnh nền
+//            g.drawImage(backgroundImage, 0, 0, getWidth(), getHeight(), this);
+//        }
+//    }
 }

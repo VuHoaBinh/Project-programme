@@ -45,17 +45,8 @@ public class DoAnUong_DAO {
             LocalDate ngaySanXuat = rs.getDate("ngaySanXuat").toLocalDate();
             LocalDate hanSuDung = rs.getDate("HanSuDung").toLocalDate();
             String moTa = rs.getString("moTa");
-            TrangThaiSuDung trangThaiSuDung;
-            String trangThaiSuDungString = rs.getString("trangThaiSuDung");
-
-            if (trangThaiSuDungString.equals("1")) {
-                trangThaiSuDung = TrangThaiSuDung.AVAILABLE;
-            } else if (trangThaiSuDungString.equals("2")) {
-                trangThaiSuDung = TrangThaiSuDung.UNAVAILABLE;
-            } else {
-                trangThaiSuDung = TrangThaiSuDung.EXPIRED;
-            }
-
+            TrangThaiSuDung trangThaiSuDung = TrangThaiSuDung.valueOf(rs.getString("trangThaiSuDung"));
+            
             DoAnUong doAnUong = new DoAnUong(maDoAnUong, tenDoAnUong, loai, giaNhap, giaBan, hoanTra, soLuong, ngaySanXuat, hanSuDung, moTa, trangThaiSuDung);
             dsDoAnUong.add(doAnUong);
         }
@@ -64,6 +55,7 @@ public class DoAnUong_DAO {
 
     /**
      *
+     * @param maDoAnUong
      * @param getPhongTheoMaDoAnUong
      * @return
      * @throws IOException

@@ -84,13 +84,16 @@ public class NhanVien_DAO {
         }
         return dsNhanVien;
     }
-    public NhanVien getNhanVienTheoTen(String ten) throws IOException, SQLException {
+
+    public ArrayList<NhanVien> getNhanVienTheoTen(String ten) throws IOException, SQLException {
+        ArrayList<NhanVien> dsNhanVien = new ArrayList<>();
         NhanVien nv = new NhanVien();
         ConnectDB.getInstance();
+        
         java.sql.Connection con = ConnectDB.getConnection();
         PreparedStatement statement = null;
 
-        String sql = "SELECT * FROM NhanVien WHERE hoTenNhanVien = ?";
+        String sql = "SELECT * FROM NhanVien WHERE hoTenNhanVien COLLATE SQL_Latin1_General_CP1_CI_AS LIKE '%' + ? + '%';";
         statement = con.prepareStatement(sql);
         statement.setString(1, ten);
         ResultSet rs = statement.executeQuery();
@@ -104,10 +107,11 @@ public class NhanVien_DAO {
             String hinhAnh = rs.getString("hinhAnh");
             boolean chucVu = rs.getBoolean("chucVu");
             nv = new NhanVien(maNhanVien, hoTenNhanVien, gioiTinh, diaChi, trangThaiLamViec, soDienThoai, hinhAnh, chucVu);
-            
+            dsNhanVien.add(nv);
         }
-        return nv;
+        return dsNhanVien;
     }
+
     public String getHoTenNhanVienTheoMa(String maNhanVien) throws IOException, SQLException {
         String hoTenNhanVien = null;
         ConnectDB.getInstance();
@@ -120,16 +124,17 @@ public class NhanVien_DAO {
         ResultSet rs = statement.executeQuery();
         while (rs.next()) {
             hoTenNhanVien = rs.getString("hoTenNhanVien");
-            
+
         }
         return hoTenNhanVien;
     }
-    
-    public String getNhanVienDangNhap(){
+
+    public String getNhanVienDangNhap() {
         String tenNhanVien = TaiKhoan_DAO.getTenNhanVien();
-        
+
         return tenNhanVien;
     }
+
     public boolean createNhanVien(NhanVien nv) throws SQLException {
         ConnectDB.getInstance();
         java.sql.Connection con = ConnectDB.getConnection();
@@ -176,19 +181,19 @@ public class NhanVien_DAO {
         }
     }
 
-     public void updateTrangThaiLamViec(String ma) {
+    public void updateTrangThaiLamViec(String ma) {
         ConnectDB.getInstance();
         java.sql.Connection con = ConnectDB.getConnection();
         String sql = "UPDATE NhanVien SET trangThaiLamViec = ? WHERE maNhanVien=?";
         try (PreparedStatement statement = con.prepareStatement(sql)) {
-            statement.setBoolean(1,false);
-            statement.setString(2,ma);
+            statement.setBoolean(1, false);
+            statement.setString(2, ma);
             statement.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
         }
     }
-    
+
     public void deleteNhanVien(String ma) {
         ConnectDB.getInstance();
         java.sql.Connection con = ConnectDB.getConnection();
@@ -214,12 +219,12 @@ public class NhanVien_DAO {
         ConnectDB.getInstance();
         java.sql.Connection con = ConnectDB.getConnection();
         PreparedStatement statement = null;
-        String year = String.format("%02d", nam%100);
+        String year = String.format("%02d", nam % 100);
         String mau = "NV" + year + "%";
         System.out.println(year);
         String sql = "SELECT COUNT(*) AS soLuong FROM NhanVien WHERE maNhanVien LIKE ?";
         try {
-            statement = con.prepareStatement (sql);
+            statement = con.prepareStatement(sql);
             statement.setString(1, mau);
             ResultSet rs = statement.executeQuery();
             if (rs.next()) {

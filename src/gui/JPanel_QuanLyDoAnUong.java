@@ -13,6 +13,7 @@ import com.formdev.flatlaf.extras.FlatSVGIcon;
 import connectDB.ConnectDB;
 import dao.DoAnUong_DAO;
 import entity.DoAnUong;
+import entity.NhanVien;
 import entity.TrangThaiSuDung;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -33,32 +34,22 @@ import javax.swing.table.DefaultTableModel;
 public class JPanel_QuanLyDoAnUong extends javax.swing.JPanel implements ActionListener {
 
     private DoAnUong_DAO sp_DAO;
+    private NhanVien nv;
 
     /**
      * Creates new form JPanel_QuanLyNhanVien
      */
-    public JPanel_QuanLyDoAnUong() throws SQLException {
+    public JPanel_QuanLyDoAnUong(NhanVien nv) throws SQLException {
         initComponents();
         addEvents();
+        this.nv = nv;
+        if (!nv.isChucVu()) {
+            btnCapNhat.setVisible(false);
+            btnThem.setVisible(false);
+            btnXoa.setVisible(false);
+            btnHuy.setVisible(false);
+        }
         AllListDoAnUong();
-    }
-
-    public static void main(String[] args) {
-        SwingUtilities.invokeLater(new Runnable() {
-            public void run() {
-                JFrame frame = new JFrame("Quản Lý Đồ Ăn Uống");
-                frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-                JPanel_QuanLyDoAnUong panel = null;
-                try {
-                    panel = new JPanel_QuanLyDoAnUong();
-                } catch (SQLException ex) {
-                    Logger.getLogger(JPanel_QuanLyDoAnUong.class.getName()).log(Level.SEVERE, null, ex);
-                }
-                frame.add(panel);
-                frame.pack();
-                frame.setVisible(true);
-            }
-        });
     }
 
     /**
@@ -113,12 +104,6 @@ public class JPanel_QuanLyDoAnUong extends javax.swing.JPanel implements ActionL
         jPanel6 = new javax.swing.JPanel();
         txt_timKiem = new javax.swing.JTextField();
         jPanel7 = new javax.swing.JPanel();
-        jComboBox1 = new javax.swing.JComboBox<>();
-        jLabel4 = new javax.swing.JLabel();
-        jComboBox2 = new javax.swing.JComboBox<>();
-        jLabel5 = new javax.swing.JLabel();
-        jComboBox3 = new javax.swing.JComboBox<>();
-        jLabel3 = new javax.swing.JLabel();
         jPanel8 = new javax.swing.JPanel();
         btn_search = new javax.swing.JButton();
 
@@ -499,7 +484,7 @@ public class JPanel_QuanLyDoAnUong extends javax.swing.JPanel implements ActionL
 
         txt_timKiem.setText("Tên đồ ăn/ đồ uống ....");
         txt_timKiem.putClientProperty(FlatClientProperties.PLACEHOLDER_TEXT, "Mã nhân viên...");
-        txt_timKiem.putClientProperty(FlatClientProperties.TEXT_FIELD_LEADING_ICON, new FlatSVGIcon("./icon/home.svg"));
+        txt_timKiem.putClientProperty(FlatClientProperties.TEXT_FIELD_LEADING_ICON, new FlatSVGIcon(getClass().getResource("/icon/search_1.svg")));
 
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
         jPanel6.setLayout(jPanel6Layout);
@@ -520,83 +505,20 @@ public class JPanel_QuanLyDoAnUong extends javax.swing.JPanel implements ActionL
 
         search_Engine.add(jPanel6);
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        jComboBox1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jComboBox1ActionPerformed(evt);
-            }
-        });
-
-        jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabel4.setText("jLabel3");
-
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        jComboBox2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jComboBox2ActionPerformed(evt);
-            }
-        });
-
-        jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabel5.setText("jLabel3");
-
-        jComboBox3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        jComboBox3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jComboBox3ActionPerformed(evt);
-            }
-        });
-
-        jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabel3.setText("jLabel3");
-        jLabel3.setPreferredSize(new java.awt.Dimension(20, 16));
-
         javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
         jPanel7.setLayout(jPanel7Layout);
         jPanel7Layout.setHorizontalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel7Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(39, 39, 39)
-                .addComponent(jLabel4)
-                .addGap(18, 18, 18)
-                .addComponent(jComboBox3, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jLabel5)
-                .addGap(18, 18, 18)
-                .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGap(0, 463, Short.MAX_VALUE)
         );
         jPanel7Layout.setVerticalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel7Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel7Layout.createSequentialGroup()
-                        .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jComboBox3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 38, Short.MAX_VALUE)
-                            .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jComboBox2))
-                        .addGap(6, 6, 6))
-                    .addGroup(jPanel7Layout.createSequentialGroup()
-                        .addGap(2, 2, 2)
-                        .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel7Layout.createSequentialGroup()
-                                .addGap(2, 2, 2)
-                                .addComponent(jComboBox1))
-                            .addGroup(jPanel7Layout.createSequentialGroup()
-                                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 9, Short.MAX_VALUE)))
-                        .addContainerGap())))
+            .addGap(0, 50, Short.MAX_VALUE)
         );
 
         search_Engine.add(jPanel7);
 
-        btn_search.setText("Lọc");
+        btn_search.setText("Tìm kiếm ");
         btnThem.setBackground(new Color(0,0,255));
         btnThem.setForeground(Color.WHITE);
         btnThem.setFont(new Font("Roboto Mono Medium", Font.PLAIN, 16));
@@ -633,21 +555,10 @@ public class JPanel_QuanLyDoAnUong extends javax.swing.JPanel implements ActionL
         add(search_Engine, java.awt.BorderLayout.NORTH);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jComboBox2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jComboBox2ActionPerformed
-
-    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jComboBox1ActionPerformed
-
-    private void jComboBox3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox3ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jComboBox3ActionPerformed
-
     private void rad_hoanTraKhongActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rad_hoanTraKhongActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_rad_hoanTraKhongActionPerformed
+
     public void DeleteForm() {
         txt_maDoAn.setText("");
         txt_maDoAn.setEnabled(true);
@@ -685,7 +596,6 @@ public class JPanel_QuanLyDoAnUong extends javax.swing.JPanel implements ActionL
         sp_DAO = new DoAnUong_DAO();
         ArrayList<DoAnUong> listSP = sp_DAO.getAllTableDoAnUong();
 
-        
         if (tbl_DoAnUong.getModel() == null) {
             String[] arr = {"Mã đồ ăn uống", "Tên đồ ăn uống", "Loại đồ ăn uống", "Giá nhập", "Giá Bán", "Hoàn trả", "Số lượng", "Ngày sản xuất",
                 "Hạn sử dụng", "Mô tả", "Trạng thái sử dụng"};
@@ -696,28 +606,31 @@ public class JPanel_QuanLyDoAnUong extends javax.swing.JPanel implements ActionL
         model.setRowCount(0);
 
         for (DoAnUong sp : listSP) {
-            Boolean isLoai = sp.isLoai();
-            Boolean isHoanTra = sp.isHoanTra();
-            String loaiDoAn = null;
-            String hoaiTraDoAn = null;
+            if (!sp.getTenDoAnUong().equals("XXX")) {
+                Boolean isLoai = sp.isLoai();
+                Boolean isHoanTra = sp.isHoanTra();
+                String loaiDoAn = null;
+                String hoaiTraDoAn = null;
 
-            if (isLoai) {
-                loaiDoAn = "Đồ ăn liền";
-            } else {
-                loaiDoAn = "Đồ uống";
+                if (isLoai) {
+                    loaiDoAn = "Đồ ăn liền";
+                } else {
+                    loaiDoAn = "Đồ uống";
+                }
+
+                if (isHoanTra) {
+                    hoaiTraDoAn = "Cho phép";
+                } else {
+                    hoaiTraDoAn = "Không";
+                }
+
+                model.addRow(new Object[]{sp.getMaDoAnUong(), sp.getTenDoAnUong(), loaiDoAn, sp.getGiaNhap(),
+                    sp.getGiaBan(), hoaiTraDoAn, sp.getSoLuong(), sp.getNgaySanXuat(), sp.getHanSuDung(), sp.getMoTa(),
+                    sp.getTrangThaiSuDung()});
             }
-
-            if (isHoanTra) {
-                hoaiTraDoAn = "Cho phép";
-            } else {
-                hoaiTraDoAn = "Không";
-            }
-
-            model.addRow(new Object[]{sp.getMaDoAnUong(), sp.getTenDoAnUong(), loaiDoAn, sp.getGiaNhap(),
-                sp.getGiaBan(), hoaiTraDoAn, sp.getSoLuong(), sp.getNgaySanXuat(), sp.getHanSuDung(), sp.getMoTa(),
-                sp.getTrangThaiSuDung()});
         }
     }
+
     private void btnHuyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHuyActionPerformed
         // TODO add your handling code here:
         DeleteForm();
@@ -725,7 +638,6 @@ public class JPanel_QuanLyDoAnUong extends javax.swing.JPanel implements ActionL
 
     private void rad_loaiDoUongActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rad_loaiDoUongActionPerformed
         // TODO add your handling code here:
-
 
     }//GEN-LAST:event_rad_loaiDoUongActionPerformed
 
@@ -1053,7 +965,6 @@ public class JPanel_QuanLyDoAnUong extends javax.swing.JPanel implements ActionL
 
         DeleteForm();
 
-
     }//GEN-LAST:event_btnThemActionPerformed
 
     private void btn_searchMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_searchMouseClicked
@@ -1112,9 +1023,7 @@ public class JPanel_QuanLyDoAnUong extends javax.swing.JPanel implements ActionL
             e.printStackTrace();
         }
 
-
     }//GEN-LAST:event_btn_searchActionPerformed
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCapNhat;
@@ -1123,9 +1032,6 @@ public class JPanel_QuanLyDoAnUong extends javax.swing.JPanel implements ActionL
     private javax.swing.JButton btnXoa;
     public javax.swing.JButton btn_search;
     private javax.swing.JPanel frm_ThongTin;
-    private javax.swing.JComboBox<String> jComboBox1;
-    private javax.swing.JComboBox<String> jComboBox2;
-    private javax.swing.JComboBox<String> jComboBox3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -1134,9 +1040,6 @@ public class JPanel_QuanLyDoAnUong extends javax.swing.JPanel implements ActionL
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;

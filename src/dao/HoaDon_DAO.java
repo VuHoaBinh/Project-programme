@@ -18,6 +18,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.lang.System.Logger.Level;
+import java.util.Date;
 
 /**
  *
@@ -109,7 +110,12 @@ public class HoaDon_DAO {
         statement = con.prepareStatement("INSERT INTO HoaDon VALUES (?,?,?,?,?,?,?,?)");
         statement.setString(1, hd.getMaHoaDon());
         statement.setString(2, hd.getKhachHang().getMaKhachHang());
-        statement.setString(3, hd.getKhuyenMai().getMaKhuyenMai());
+        if(hd.getKhuyenMai()!=null){
+            statement.setString(3, hd.getKhuyenMai().getMaKhuyenMai());
+        }
+        else{
+            statement.setString(3, null);
+        }
         statement.setString(4, hd.getNhanVien().getMaNhanVien());
         statement.setDate(5, java.sql.Date.valueOf(hd.getNgayLapHoaDon()));
         statement.setDouble(6, hd.getThue());
@@ -191,12 +197,12 @@ public class HoaDon_DAO {
         ConnectDB.getInstance();
         java.sql.Connection con = ConnectDB.getConnection();
         PreparedStatement statement = null;
-        String mau = "MHD" + time + "%";
+        String mau = time;
         System.out.println(time);
         String sql = "SELECT COUNT(*) AS soLuong FROM HoaDon WHERE maHoaDon LIKE ?";
         try {
             statement = con.prepareStatement(sql);
-            statement.setString(1, mau);
+            statement.setString(1, "%"+mau+"%");
             ResultSet rs = statement.executeQuery();
             if (rs.next()) {
                 soLuong = rs.getInt("soLuong");
@@ -255,4 +261,365 @@ public class HoaDon_DAO {
         double tongTien = tongTienDichVu + tongTienThuePhong;
         return tongTien;
     }
+    
+    public String[] getAllThangLapHD() {
+		String[] list = new String[12 * getAllNamLapHD().length];
+		ConnectDB.getInstance();
+		java.sql.Connection con = ConnectDB.getConnection();
+		PreparedStatement statement = null;
+
+		try {
+			String sql = "SELECT DISTINCT \r\n"
+					+ "CONCAT(MONTH(ngayLapHoaDon), '/', YEAR(ngayLapHoaDon)) AS ThangNam , MONTH(ngayLapHoaDon), YEAR(ngayLapHoaDon)\r\n"
+					+ "FROM HoaDon \r\n" + "ORDER BY YEAR(ngayLapHoaDon) DESC, MONTH(ngayLapHoaDon) ASC";
+			statement = con.prepareStatement(sql);
+			// Thực hiện câu lệnh sql trả về đối tượng ResultSet
+			ResultSet rs = statement.executeQuery();
+			// Duyệt kết quả trả về
+			int i = 0;
+			while (rs.next()) {// Di chuyển con trỏ xuống bản ghi kế tiếp
+				list[i] = rs.getString("ThangNam");
+				i++;
+			}
+		} catch (SQLException e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}
+		return list;
+	}
+    
+    public int[] getAllNamLapHD() {
+		int[] list = new int[5]; // Khoảng 5 năm
+		ConnectDB.getInstance();
+		java.sql.Connection con = ConnectDB.getConnection();
+		PreparedStatement statement = null;
+
+		try {
+			String sql = "SELECT DISTINCT\r\n" + "    YEAR(ngayLapHoaDon) AS Thang\r\n" + "FROM\r\n" + "    HoaDon\r\n"
+					+ "ORDER BY\r\n" + "    Thang;";
+			statement = con.prepareStatement(sql);
+			// Thực hiện câu lệnh sql trả về đối tượng ResultSet
+			ResultSet rs = statement.executeQuery();
+			// Duyệt kết quả trả về
+			int i = 0;
+			while (rs.next()) {// Di chuyển con trỏ xuống bản ghi kế tiếp
+				list[i] = rs.getInt(1);
+				i++;
+			}
+		} catch (SQLException e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}
+		return list;
+	}
+    public class HoaDonThongKe {
+		private HoaDon hoaDon;
+		private double tongTienPhong;
+		private double tongTienDV;
+
+		public double getTongTienPhong() {
+			return tongTienPhong;
+		}
+
+		public double getTongTienDV() {
+			return tongTienDV;
+		}
+
+		public HoaDon getHoaDon() {
+			return hoaDon;
+		}
+
+		public HoaDonThongKe(HoaDon hoaDon, double tongTienPhong, double tongTienDV) {
+			super();
+			this.hoaDon = hoaDon;
+			this.tongTienPhong = tongTienPhong;
+			this.tongTienDV = tongTienDV;
+		}
+	}
+
+	public ArrayList<HoaDonThongKe> thongKeDoanhThuTheoNgay(Date ngay) {
+		ConnectDB.getInstance();
+		java.sql.Connection con = ConnectDB.getConnection();
+		ArrayList<HoaDonThongKe> dsHDTK = new ArrayList<HoaDonThongKe>();
+		PreparedStatement statement = null;
+		ResultSet rs;
+
+		try {
+			String sql = "SELECT \r\n"
+					+ "    HD.maHoaDon, HD.khachHang, HD.nhanVien, HD.NgayLapHoaDon, HD.tongThanhTienPhaiTra,\r\n"
+					+ "    SUM(CTHD.tongTienDichVu) AS TongTienDV,\r\n"
+					+ "    SUM(CTHD.tongTienThuePhong) AS TongTienSDPhong\r\n"
+					+ "FROM \r\n" + "    HoaDon HD\r\n" + "LEFT JOIN \r\n"
+					+ "    ChiTietHoaDon CTHD ON HD.maHoaDon = CTHD.hoaDon\r\n" + "WHERE\r\n"
+					+ "    ngayLapHoaDon = ?\r\n" + "GROUP BY \r\n"
+					+ "    HD.maHoaDon, HD.khachHang, HD.nhanVien, HD.ngayLapHoaDon, HD.tongThanhTienPhaiTra;";
+			statement = con.prepareStatement(sql);
+			statement.setDate(1, new java.sql.Date(ngay.getTime()));
+			// Thực hiện câu lệnh sql trả về đối tượng ResultSet
+			rs = statement.executeQuery();
+			// Duyệt kết quả trả về
+			while (rs.next()) {// Di chuyển con trỏ xuống bản ghi kế tiếp
+				String maHD = rs.getString(1);
+                                KhachHang kh = new KhachHang(rs.getString(2));
+				NhanVien nv = new NhanVien(rs.getString(3));
+                                LocalDate ngayLapHoaDon = rs.getDate(4).toLocalDate();
+                                double tongThanhTienPhaiTra = rs.getDouble(5);
+				double tongTienDV = rs.getDouble(6);
+				double tongTienPhong = rs.getDouble(7);
+
+				HoaDon hoaDon = new HoaDon(maHD, kh, nv, ngayLapHoaDon, tongThanhTienPhaiTra);
+				HoaDonThongKe hdtk = new HoaDonThongKe(hoaDon, tongTienDV, tongTienPhong);
+				dsHDTK.add(hdtk);
+			}
+		} catch (SQLException e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		} finally {
+			// Đóng connection, statement và resultSet ở đây
+		}
+		return dsHDTK;
+	}
+
+	public ArrayList<HoaDonThongKe> thongKeDoanhThuTheoThang(int thang, int nam) {
+		ConnectDB.getInstance();
+		java.sql.Connection con = ConnectDB.getConnection();
+		ArrayList<HoaDonThongKe> dsHDTK = new ArrayList<HoaDonThongKe>();
+		PreparedStatement statement = null;
+		ResultSet rs;
+
+		try {
+			String sql = "SELECT \r\n"
+					+ "    HD.maHoaDon, HD.khachHang, HD.nhanVien, HD.NgayLapHoaDon, HD.tongThanhTienPhaiTra,\r\n"
+					+ "    SUM(CTHD.tongTienDichVu) AS TongTienDV,\r\n"
+					+ "    SUM(CTHD.tongTienThuePhong) AS TongTienSDPhong\r\n"
+					+ "FROM \r\n" + "    HoaDon HD\r\n" + "LEFT JOIN \r\n"
+					+ "    ChiTietHoaDon CTHD ON HD.maHoaDon = CTHD.hoaDon\r\n" + "WHERE\r\n"
+					+ "    MONTH(ngayLapHoaDon) = ? AND YEAR(ngayLapHoaDon) = ?\r\n" + "GROUP BY \r\n"
+					+ "    HD.maHoaDon, HD.khachHang, HD.nhanVien, HD.ngayLapHoaDon, HD.tongThanhTienPhaiTra;";
+                        
+			statement = con.prepareStatement(sql);
+			statement.setInt(1, thang);
+			statement.setInt(2, nam);
+			// Thực hiện câu lệnh sql trả về đối tượng ResultSet
+			rs = statement.executeQuery();
+			// Duyệt kết quả trả về
+			while (rs.next()) {// Di chuyển con trỏ xuống bản ghi kế tiếp
+				String maHD = rs.getString(1);
+                                KhachHang kh = new KhachHang(rs.getString(2));
+				NhanVien nv = new NhanVien(rs.getString(3));
+                                LocalDate ngayLapHoaDon = rs.getDate(4).toLocalDate();
+                                double tongThanhTienPhaiTra = rs.getDouble(5);
+				double tongTienDV = rs.getDouble(6);
+				double tongTienPhong = rs.getDouble(7);
+
+				HoaDon hoaDon = new HoaDon(maHD, kh, nv, ngayLapHoaDon, tongThanhTienPhaiTra);
+				HoaDonThongKe hdtk = new HoaDonThongKe(hoaDon, tongTienDV, tongTienPhong);
+				dsHDTK.add(hdtk);
+
+			}
+		} catch (SQLException e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		} finally {
+			// Đóng connection, statement và resultSet ở đây
+		}
+		return dsHDTK;
+	}
+
+	public ArrayList<HoaDonThongKe> thongKeDoanhThuTheoNam(int nam) {
+		ConnectDB.getInstance();
+		java.sql.Connection con = ConnectDB.getConnection();
+		ArrayList<HoaDonThongKe> dsHDTK = new ArrayList<HoaDonThongKe>();
+		PreparedStatement statement = null;
+		ResultSet rs;
+
+		try {
+                        String sql = "SELECT \r\n"
+					+ "    HD.maHoaDon, HD.khachHang, HD.nhanVien, HD.ngayLapHoaDon, HD.tongThanhTienPhaiTra,\r\n"
+					+ "    SUM(CTHD.tongTienDichVu) AS TongTienDV,\r\n"
+					+ "    SUM(CTHD.tongTienThuePhong) AS TongTienSDPhong\r\n"
+					+ "FROM \r\n" + "    HoaDon HD\r\n" + "LEFT JOIN \r\n"
+					+ "    ChiTietHoaDon CTHD ON HD.maHoaDon = CTHD.hoaDon\r\n" + "WHERE\r\n"
+					+ "    YEAR(ngayLapHoaDon) = ?\r\n" + "GROUP BY \r\n"
+					+ "    HD.maHoaDon, HD.khachHang, HD.nhanVien, HD.ngayLapHoaDon, HD.tongThanhTienPhaiTra;";
+                        
+			statement = con.prepareStatement(sql);
+			statement.setInt(1, nam);
+			// Thực hiện câu lệnh sql trả về đối tượng ResultSet
+			rs = statement.executeQuery();
+			// Duyệt kết quả trả về
+			while (rs.next()) {// Di chuyển con trỏ xuống bản ghi kế tiếp
+				String maHD = rs.getString(1);
+                                KhachHang kh = new KhachHang(rs.getString(2));
+				NhanVien nv = new NhanVien(rs.getString(3));
+                                LocalDate ngayLapHoaDon = rs.getDate(4).toLocalDate();
+                                double tongThanhTienPhaiTra = rs.getDouble(5);
+				double tongTienDV = rs.getDouble(6);
+				double tongTienPhong = rs.getDouble(7);
+
+				HoaDon hoaDon = new HoaDon(maHD, kh, nv, ngayLapHoaDon, tongThanhTienPhaiTra);
+				HoaDonThongKe hdtk = new HoaDonThongKe(hoaDon, tongTienDV, tongTienPhong);
+				dsHDTK.add(hdtk);
+			}
+		} catch (SQLException e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		} finally {
+			// Đóng connection, statement và resultSet ở đây
+		}
+		return dsHDTK;
+	}
+
+	public Double[] thongKeBieuDoLineTongDoanhThu(int namTK) {
+		Double[] thongKeList = new Double[12];
+		for (int i = 0; i < thongKeList.length; i++) {
+			thongKeList[i] = (double) 0;
+		}
+		ConnectDB.getInstance();
+		java.sql.Connection con = ConnectDB.getConnection();
+		PreparedStatement statement = null;
+		ResultSet rs;
+		try {
+//			String sql = "SELECT \r\n" + "	MONTH(ngayLapHoaDon) as Thang, YEAR(ngayLapHoaDon) as Nam,\r\n"
+//					+ "    SUM(CTHD.tongTienDichVu) AS TongTienDV,\r\n"
+//					+ "    SUM(CTHD.tongTienThuePhong) AS TongTienSDPhong\r\n"
+//					+ "FROM \r\n" + "    HoaDon HD\r\n" + "LEFT JOIN \r\n"
+//					+ "    ChiTietHoaDon CTHD ON HD.maHoaDon = CTHD.hoaDon\r\n" + "WHERE\r\n"
+//					+ "   YEAR(ngayLapHoaDon) = ?\r\n" + "Group by\r\n" + "	MONTH(ngayLapHoaDon), YEAR(ngayLapHoaDon)\r\n"
+//					+ "Order by\r\n" + "	YEAR(ngayLapHoaDon) DESC, MONTH(ngayLapHoaDon) DESC";
+                        String sql = "SELECT \r\n" + "	MONTH(ngayLapHoaDon) as Thang, YEAR(ngayLapHoaDon) as Nam,\r\n"
+					+ "    SUM(HD.tongThanhTienPhaiTra) AS TongTienDV,\r\n"
+					+ "    SUM(HD.tongThanhTienPhaiTra) AS TongTienSDPhong\r\n"
+					+ "FROM \r\n" + "    HoaDon HD\r\n" + "LEFT JOIN \r\n"
+					+ "    ChiTietHoaDon CTHD ON HD.maHoaDon = CTHD.hoaDon\r\n" + "WHERE\r\n"
+					+ "   YEAR(ngayLapHoaDon) = ?\r\n" + "Group by\r\n" + "	MONTH(ngayLapHoaDon), YEAR(ngayLapHoaDon)\r\n"
+					+ "Order by\r\n" + "	YEAR(ngayLapHoaDon) DESC, MONTH(ngayLapHoaDon) DESC";
+                        
+                        
+			statement = con.prepareStatement(sql);
+			statement.setInt(1, namTK);
+			// Thực hiện câu lệnh sql trả về đối tượng ResultSet
+			rs = statement.executeQuery();
+			// Duyệt kết quả trả về
+			while (rs.next()) {// Di chuyển con trỏ xuống bản ghi kế tiếp
+				thongKeList[rs.getInt(1) - 1] = rs.getDouble(3) + rs.getDouble(4);
+			}
+		} catch (SQLException e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}
+		return thongKeList;
+	}
+
+	public int[] thongKeBieuDoLineTongHoaDon(int namTK) {
+		int[] thongKeList = new int[12];
+		for (int i = 0; i < thongKeList.length; i++) {
+			thongKeList[i] = 0;
+		}
+		ConnectDB.getInstance();
+		java.sql.Connection con = ConnectDB.getConnection();
+		PreparedStatement statement = null;
+		ResultSet rs;
+		try {
+			String sql = "SELECT \r\n" + "    MONTH(ngayLapHoaDon) as Thang, \r\n" + "    YEAR(ngayLapHoaDon) as Nam,\r\n"
+					+ "    SUM(CTHD.tongTienDichVu) AS TongTienDV,\r\n"
+					+ "    SUM(CTHD.tongTienThuePhong) AS TongTienSDPhong,\r\n"
+					+ "    COUNT(HD.maHoaDon) as SoHoaDon\r\n" + "FROM \r\n" + "    HoaDon HD\r\n" + "LEFT JOIN \r\n"
+					+ "    ChiTietHoaDon CTHD ON HD.maHoaDon = CTHD.hoaDon\r\n" + "WHERE\r\n"
+					+ "    YEAR(ngayLapHoaDon) = ?\r\n" + "GROUP BY\r\n" + "    MONTH(ngayLapHoaDon), YEAR(ngayLapHoaDon)\r\n"
+					+ "ORDER BY\r\n" + "    YEAR(ngayLapHoaDon) DESC, MONTH(ngayLapHoaDon) DESC;";
+                        
+                        
+			statement = con.prepareStatement(sql);
+			statement.setInt(1, namTK);
+			// Thực hiện câu lệnh sql trả về đối tượng ResultSet
+			rs = statement.executeQuery();
+			// Duyệt kết quả trả về
+			while (rs.next()) {// Di chuyển con trỏ xuống bản ghi kế tiếp
+				thongKeList[rs.getInt(1) - 1] = rs.getInt(5);
+			}
+		} catch (SQLException e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}
+		return thongKeList;
+	}
+
+	public Double[] thongKeBieuDoLineDoanhThuCaoNhatMoiThang(int namTK) {
+		Double[] thongKeList = new Double[12];
+		for (int i = 0; i < thongKeList.length; i++) {
+			thongKeList[i] = (double) 0;
+		}
+		ConnectDB.getInstance();
+		java.sql.Connection con = ConnectDB.getConnection();
+		PreparedStatement statement = null;
+		ResultSet rs;
+		try {
+			String sql = "WITH RankedRevenue AS (\r\n" + "    SELECT \r\n" + "        HD.maHoaDon,\r\n"
+					+ "        MONTH(HD.ngayLapHoaDon) as Thang, \r\n" + "        YEAR(HD.ngayLapHoaDon) as Nam,\r\n"
+					+ "        COALESCE(SUM(CTHD.tongTienDichVu), 0) AS TongTienDV,\r\n"
+					+ "        COALESCE(SUM(CTHD.tongTienThuePhong), 0) AS TongTienSDPhong,\r\n"
+					+ "        COALESCE(SUM(CTHD.tongTienDichVu), 0) + COALESCE(SUM(CTHD.tongTienThuePhong), 0) AS TongDoanhThu\r\n"
+					+ "    FROM \r\n" + "        HoaDon HD\r\n" + "    LEFT JOIN \r\n"
+					+ "    ChiTietHoaDon CTHD ON HD.maHoaDon = CTHD.hoaDon\r\n" + "WHERE\r\n"
+					+ "        YEAR(HD.ngayLapHoaDon) = ? -- @Nam là biến bạn truyền vào\r\n" + "    GROUP BY\r\n"
+					+ "        HD.maHoaDon, MONTH(HD.ngayLapHoaDon), YEAR(HD.ngayLapHoaDon)\r\n" + ")\r\n" + "SELECT \r\n"
+					+ "    Thang, \r\n" + "    Nam,\r\n" + "    MAX(TongDoanhThu) AS DoanhThuCaoNhatTrongThang\r\n"
+					+ "FROM \r\n" + "    RankedRevenue\r\n" + "GROUP BY\r\n" + "    Thang, Nam;";
+			statement = con.prepareStatement(sql);
+			statement.setInt(1, namTK);
+			// Thực hiện câu lệnh sql trả về đối tượng ResultSet
+			rs = statement.executeQuery();
+			// Duyệt kết quả trả về
+			while (rs.next()) {// Di chuyển con trỏ xuống bản ghi kế tiếp
+				thongKeList[rs.getInt(1) - 1] = rs.getDouble(3);
+			}
+		} catch (SQLException e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}
+		return thongKeList;
+	}
+
+	public Double[] thongKeBieuDoLineDoanhThuThapNhatMoiThang(int namTK) {
+		Double[] thongKeList = new Double[12];
+		for (int i = 0; i < thongKeList.length; i++) {
+			thongKeList[i] = (double) 0;
+		}
+		ConnectDB.getInstance();
+		java.sql.Connection con = ConnectDB.getConnection();
+		PreparedStatement statement = null;
+		ResultSet rs;
+		try {
+			String sql = "WITH RankedRevenue AS (\r\n" + "    SELECT \r\n" + "        HD.maHoaDon,\r\n"
+					+ "        MONTH(HD.ngayLapHoaDon) as Thang, \r\n" + "        YEAR(HD.ngayLapHoaDon) as Nam,\r\n"
+					+ "        COALESCE(SUM(CTHD.tongTienDichVu),0) AS TongTienDV,\r\n"
+					+ "        COALESCE(SUM(CTHD.tongTienThuePhong),0) AS TongTienSDPhong,\r\n"
+					+ "        COALESCE(SUM(CTHD.tongTienDichVu), 0) + COALESCE(SUM(CTHD.tongTienThuePhong), 0) AS TongDoanhThu,\r\n"
+					+ "        ROW_NUMBER() OVER (PARTITION BY MONTH(HD.ngayLapHoaDon), YEAR(HD.ngayLapHoaDon) ORDER BY (COALESCE(SUM(CTHD.tongTienDichVu), 0) + COALESCE(SUM(CTHD.tongTienThuePhong), 0)) ASC) as RowNum\r\n"
+					+ "    FROM \r\n" + "        HoaDon HD\r\n" + "    LEFT JOIN \r\n"
+					+ "    ChiTietHoaDon CTHD ON HD.maHoaDon = CTHD.hoaDon\r\n" + "WHERE\r\n"
+					+ "        YEAR(HD.ngayLapHoaDon) = ? -- @Nam là biến bạn truyền vào\r\n" + "    GROUP BY\r\n"
+					+ "        HD.maHoaDon, MONTH(HD.ngayLapHoaDon), YEAR(HD.ngayLapHoaDon)\r\n" + ")\r\n" + "SELECT \r\n"
+					+ "    Thang, \r\n" + "    Nam,\r\n" + "    MIN(TongDoanhThu) AS DoanhThuThapNhatTrongThang\r\n"
+					+ "FROM \r\n" + "    RankedRevenue\r\n" + "WHERE \r\n" + "    RowNum = 1\r\n" + "GROUP BY\r\n"
+					+ "    Thang, Nam;";
+			statement = con.prepareStatement(sql);
+			statement.setInt(1, namTK);
+			// Thực hiện câu lệnh sql trả về đối tượng ResultSet
+			rs = statement.executeQuery();
+			// Duyệt kết quả trả về
+			while (rs.next()) {// Di chuyển con trỏ xuống bản ghi kế tiếp
+				thongKeList[rs.getInt(1) - 1] = rs.getDouble(3);
+			}
+		} catch (SQLException e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}
+		return thongKeList;
+	}
+    
+    
+    
+    
 }

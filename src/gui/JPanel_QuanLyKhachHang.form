@@ -16,11 +16,7 @@
     <AuxValue name="FormSettings_listenerGenerationStyle" type="java.lang.Integer" value="0"/>
     <AuxValue name="FormSettings_variablesLocal" type="java.lang.Boolean" value="false"/>
     <AuxValue name="FormSettings_variablesModifier" type="java.lang.Integer" value="2"/>
-<<<<<<< HEAD
-    <AuxValue name="designerSize" type="java.awt.Dimension" value="-84,-19,0,5,115,114,0,18,106,97,118,97,46,97,119,116,46,68,105,109,101,110,115,105,111,110,65,-114,-39,-41,-84,95,68,20,2,0,2,73,0,6,104,101,105,103,104,116,73,0,5,119,105,100,116,104,120,112,0,0,3,32,0,0,4,-109"/>
-=======
-    <AuxValue name="designerSize" type="java.awt.Dimension" value="-84,-19,0,5,115,114,0,18,106,97,118,97,46,97,119,116,46,68,105,109,101,110,115,105,111,110,65,-114,-39,-41,-84,95,68,20,2,0,2,73,0,6,104,101,105,103,104,116,73,0,5,119,105,100,116,104,120,112,0,0,3,32,0,0,3,-7"/>
->>>>>>> origin/dat_ver1
+    <AuxValue name="designerSize" type="java.awt.Dimension" value="-84,-19,0,5,115,114,0,18,106,97,118,97,46,97,119,116,46,68,105,109,101,110,115,105,111,110,65,-114,-39,-41,-84,95,68,20,2,0,2,73,0,6,104,101,105,103,104,116,73,0,5,119,105,100,116,104,120,112,0,0,3,32,0,0,4,43"/>
   </AuxValues>
 
   <Layout class="org.netbeans.modules.form.compat2.layouts.DesignBorderLayout"/>
@@ -73,7 +69,7 @@
                     </Property>
                   </Properties>
                   <AuxValues>
-                    <AuxValue name="JavaCodeGenerator_InitCodePre" type="java.lang.String" value="String[] colHeader = {&quot;M&#xe3; kh&#xe1;ch h&#xe0;ng&quot;, &quot;H&#x1ecd; v&#xe0; T&#xea;n&quot;, &quot;Gi&#x1edb;i t&#xed;nh&quot;, &quot;CCCD&quot;, &quot;Ng&#xe0;y sinh&quot;, &quot;Tr&#x1ea1;ng th&#xe1;i kh&#xe1;ch h&#xe0;ng&quot;};&#xa;modelKhachHang = new DefaultTableModel(colHeader, 0);"/>
+                    <AuxValue name="JavaCodeGenerator_InitCodePre" type="java.lang.String" value="String[] colHeader = {&quot;M&#xe3; kh&#xe1;ch h&#xe0;ng&quot;, &quot;H&#x1ecd; v&#xe0; T&#xea;n&quot;,&quot;Email&quot;, &quot;Gi&#x1edb;i t&#xed;nh&quot;, &quot;CCCD&quot;, &quot;Ng&#xe0;y sinh&quot;, &quot;Tr&#x1ea1;ng th&#xe1;i kh&#xe1;ch h&#xe0;ng&quot;};&#xa;modelKhachHang = new DefaultTableModel(colHeader, 0);"/>
                   </AuxValues>
                 </Component>
               </SubComponents>
@@ -143,47 +139,57 @@
                 <DimensionLayout dim="0">
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" attributes="0">
-                          <EmptySpace pref="18" max="32767" attributes="0"/>
-                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                              <Group type="102" attributes="0">
-                                  <Group type="103" groupAlignment="1" attributes="0">
-                                      <Component id="jLabel6" alignment="0" min="-2" pref="48" max="-2" attributes="0"/>
-                                      <Component id="jLabel2" min="-2" pref="48" max="-2" attributes="0"/>
-                                  </Group>
-                                  <EmptySpace type="separate" max="32767" attributes="0"/>
-                                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                      <Group type="102" attributes="0">
-                                          <Component id="rd_nam" min="-2" pref="109" max="-2" attributes="0"/>
-                                          <EmptySpace type="separate" max="-2" attributes="0"/>
-                                          <Component id="rd_nu" min="-2" pref="108" max="-2" attributes="0"/>
-                                      </Group>
-                                      <Component id="txt_Ten" alignment="0" max="32767" attributes="0"/>
-                                      <Component id="txt_MaKH" alignment="0" max="32767" attributes="0"/>
-                                  </Group>
-                              </Group>
-                              <Component id="jLabel1" min="-2" pref="48" max="-2" attributes="0"/>
-                              <Group type="102" alignment="1" attributes="0">
-                                  <Component id="jLabel7" min="-2" pref="48" max="-2" attributes="0"/>
-                                  <EmptySpace max="32767" attributes="0"/>
-                                  <Component id="txt_CCCD" min="-2" pref="235" max="-2" attributes="0"/>
-                              </Group>
+                          <EmptySpace max="32767" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="102" alignment="0" attributes="0">
                                   <Group type="103" groupAlignment="0" attributes="0">
                                       <Component id="jLabel9" min="-2" max="-2" attributes="0"/>
+                                      <Component id="jLabel7" alignment="0" min="-2" pref="48" max="-2" attributes="0"/>
+                                      <Component id="jLabel10" alignment="0" min="-2" pref="76" max="-2" attributes="0"/>
                                       <Component id="jLabel8" alignment="0" min="-2" pref="76" max="-2" attributes="0"/>
                                   </Group>
-                                  <EmptySpace max="-2" attributes="0"/>
-                                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                  <Group type="103" groupAlignment="0" attributes="0">
                                       <Group type="102" attributes="0">
+                                          <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
                                           <Component id="rd_bt" min="-2" pref="108" max="-2" attributes="0"/>
-                                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                                          <EmptySpace max="-2" attributes="0"/>
                                           <Component id="rd_dsd" min="-2" pref="108" max="-2" attributes="0"/>
+                                          <EmptySpace max="-2" attributes="0"/>
                                       </Group>
-                                      <Component id="btn_ngaySinh" max="32767" attributes="0"/>
+                                      <Group type="102" alignment="1" attributes="0">
+                                          <EmptySpace min="-2" max="-2" attributes="0"/>
+                                          <Group type="103" groupAlignment="0" attributes="0">
+                                              <Group type="102" attributes="0">
+                                                  <EmptySpace min="6" pref="6" max="-2" attributes="0"/>
+                                                  <Component id="rd_nam" min="-2" pref="109" max="-2" attributes="0"/>
+                                                  <EmptySpace max="-2" attributes="0"/>
+                                                  <Component id="rd_nu" min="-2" pref="108" max="-2" attributes="0"/>
+                                              </Group>
+                                              <Group type="103" groupAlignment="1" attributes="0">
+                                                  <Component id="txt_Ten" min="-2" pref="235" max="-2" attributes="0"/>
+                                                  <Group type="103" groupAlignment="0" attributes="0">
+                                                      <Component id="btn_ngaySinh" min="-2" pref="235" max="-2" attributes="0"/>
+                                                      <Component id="txt_email" min="-2" pref="235" max="-2" attributes="0"/>
+                                                      <Component id="txt_CCCD" alignment="0" min="-2" pref="235" max="-2" attributes="0"/>
+                                                  </Group>
+                                                  <Component id="txt_MaKH" alignment="1" min="-2" pref="235" max="-2" attributes="0"/>
+                                              </Group>
+                                          </Group>
+                                          <EmptySpace min="-2" pref="38" max="-2" attributes="0"/>
+                                      </Group>
                                   </Group>
                               </Group>
+                              <Group type="102" attributes="0">
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Group type="103" groupAlignment="1" attributes="0">
+                                          <Component id="jLabel6" alignment="0" min="-2" pref="48" max="-2" attributes="0"/>
+                                          <Component id="jLabel2" min="-2" pref="48" max="-2" attributes="0"/>
+                                      </Group>
+                                      <Component id="jLabel1" min="-2" pref="48" max="-2" attributes="0"/>
+                                  </Group>
+                                  <EmptySpace min="-2" pref="270" max="-2" attributes="0"/>
+                              </Group>
                           </Group>
-                          <EmptySpace min="-2" pref="16" max="-2" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -206,23 +212,28 @@
                               <Component id="jLabel2" alignment="3" min="-2" pref="36" max="-2" attributes="0"/>
                               <Component id="rd_nam" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                              <Component id="jLabel7" pref="36" max="32767" attributes="0"/>
-                              <Component id="txt_CCCD" max="32767" attributes="0"/>
+                          <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="txt_CCCD" alignment="3" min="-2" pref="35" max="-2" attributes="0"/>
+                              <Component id="jLabel7" alignment="3" min="-2" pref="36" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="rd_dsd" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="rd_bt" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="jLabel9" alignment="3" min="-2" pref="36" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace min="-2" pref="14" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                              <Component id="jLabel8" pref="36" max="32767" attributes="0"/>
-                              <Component id="btn_ngaySinh" max="32767" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="btn_ngaySinh" min="-2" pref="36" max="-2" attributes="0"/>
+                              <Component id="jLabel10" alignment="0" min="-2" pref="37" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace pref="252" max="32767" attributes="0"/>
+                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="txt_email" alignment="3" min="-2" pref="36" max="-2" attributes="0"/>
+                              <Component id="jLabel8" alignment="3" min="-2" pref="36" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace pref="205" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -250,7 +261,7 @@
                 </Component>
                 <Component class="javax.swing.JLabel" name="jLabel8">
                   <Properties>
-                    <Property name="text" type="java.lang.String" value="Ng&#xe0;y sinh:"/>
+                    <Property name="text" type="java.lang.String" value="Email:"/>
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JLabel" name="jLabel9">
@@ -298,6 +309,13 @@
                     <Property name="dateFormatString" type="java.lang.String" value="dd-MM-yyyy"/>
                   </Properties>
                 </Component>
+                <Component class="javax.swing.JLabel" name="jLabel10">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="Ng&#xe0;y sinh:"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JTextField" name="txt_email">
+                </Component>
               </SubComponents>
             </Container>
             <Container class="javax.swing.JPanel" name="jPanel2">
@@ -333,11 +351,7 @@
                 <DimensionLayout dim="1">
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" attributes="0">
-<<<<<<< HEAD
-                          <EmptySpace pref="30" max="32767" attributes="0"/>
-=======
                           <EmptySpace pref="33" max="32767" attributes="0"/>
->>>>>>> origin/dat_ver1
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="btn_Xoa" alignment="3" min="-2" pref="50" max="-2" attributes="0"/>
                               <Component id="btnThem" alignment="3" min="-2" pref="50" max="-2" attributes="0"/>
@@ -456,11 +470,7 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="1" attributes="0">
                       <Component id="txt_maCanTim" min="-2" pref="374" max="-2" attributes="0"/>
-<<<<<<< HEAD
-                      <EmptySpace min="0" pref="12" max="32767" attributes="0"/>
-=======
-                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
->>>>>>> origin/dat_ver1
+                      <EmptySpace min="0" pref="75" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -486,7 +496,7 @@
               </Events>
               <AuxValues>
                 <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new javax.swing.JTextField()"/>
-                <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="txt_maCanTim.putClientProperty(FlatClientProperties.PLACEHOLDER_TEXT, &quot;M&#xe3; kh&#xe1;ch h&#xe0;ng...&quot;);&#xa;txt_maCanTim.putClientProperty(FlatClientProperties.TEXT_FIELD_LEADING_ICON, new FlatSVGIcon(&quot;./icon/search_1.svg&quot;));"/>
+                <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="txt_maCanTim.putClientProperty(FlatClientProperties.PLACEHOLDER_TEXT, &quot;M&#xe3; kh&#xe1;ch h&#xe0;ng...&quot;);&#xa;txt_maCanTim.putClientProperty(FlatClientProperties.TEXT_FIELD_LEADING_ICON, new FlatSVGIcon(getClass().getResource(&quot;/icon/search_1.svg&quot;)));"/>
               </AuxValues>
             </Component>
           </SubComponents>
@@ -505,12 +515,8 @@
                       <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Component id="cb_tt" min="-2" pref="76" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="175" max="-2" attributes="0"/>
-<<<<<<< HEAD
-                      <Component id="btn_Loc" pref="214" max="32767" attributes="0"/>
-=======
-                      <Component id="btn_Loc" max="32767" attributes="0"/>
->>>>>>> origin/dat_ver1
+                      <EmptySpace pref="70" max="32767" attributes="0"/>
+                      <Component id="btn_Loc" min="-2" pref="151" max="-2" attributes="0"/>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Component id="btn_refresh" min="-2" pref="58" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
@@ -591,7 +597,7 @@
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_refreshActionPerformed"/>
               </Events>
               <AuxValues>
-                <AuxValue name="JavaCodeGenerator_InitCodePre" type="java.lang.String" value="btn_refresh.setIcon(new FlatSVGIcon(&quot;./icon/reload.svg&quot;));"/>
+                <AuxValue name="JavaCodeGenerator_InitCodePre" type="java.lang.String" value="btn_refresh.setIcon(new FlatSVGIcon(getClass().getResource(&quot;/icon/reload.svg&quot;)));"/>
                 <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
               </AuxValues>
             </Component>

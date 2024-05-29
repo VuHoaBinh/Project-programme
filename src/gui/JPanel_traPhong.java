@@ -4,7 +4,6 @@
  */
 package gui;
 
-import com.toedter.calendar.JDateChooser;
 import dao.ChiTietHoaDon_DAO;
 import dao.DoAnUong_DAO;
 import dao.HoaDon_DAO;
@@ -19,39 +18,26 @@ import entity.KhuyenMai;
 import entity.NhanVien;
 import entity.Phong;
 import entity.TrangThaiPhong;
+import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.ItemEvent;
-import java.awt.event.ItemListener;
-import java.awt.event.KeyAdapter;
-import java.awt.event.KeyEvent;
-import java.awt.event.WindowAdapter;
-import java.awt.event.WindowEvent;
 import static java.awt.image.ImageObserver.HEIGHT;
 import static java.awt.image.ImageObserver.WIDTH;
-import java.beans.PropertyChangeEvent;
-import java.beans.PropertyChangeListener;
 import java.io.IOException;
+import java.lang.reflect.Array;
 import java.sql.SQLException;
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
-import java.text.SimpleDateFormat;
-import java.time.Instant;
 import java.time.LocalDate;
-import java.time.ZoneId;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
-import static org.apache.poi.hssf.usermodel.HeaderFooter.date;
 
 /**
  *
@@ -59,6 +45,7 @@ import static org.apache.poi.hssf.usermodel.HeaderFooter.date;
  */
 public class JPanel_traPhong extends javax.swing.JPanel implements ActionListener {
 
+    JPanel_QuanLyPhong Jqlp;
     private HoaDon_DAO hd_dao;
     private Phong_DAO p_dao;
     private DefaultTableModel modelDV;
@@ -79,34 +66,64 @@ public class JPanel_traPhong extends javax.swing.JPanel implements ActionListene
     /**
      * Creates new form JPanel_thuePhong
      */
-    public JPanel_traPhong(String tenPhong, NhanVien nv, ChiTietHoaDon cthd) throws IOException, SQLException {
+    public JPanel_traPhong(JPanel_QuanLyPhong quanLyPhong, String tenPhong, NhanVien nv, ChiTietHoaDon cthd) throws IOException, SQLException {
         initComponents();
+        rd_nam.setEnabled(false);
+        rd_nu.setEnabled(false);
+        txt_ngayThue.setEnabled(false);
+        txt_ngayThue.setBackground(Color.WHITE);
+        txt_ngayTra.setEnabled(false);
+        txt_ngayTra.setBackground(Color.WHITE);
         this.setSize(WIDTH, HEIGHT);
         nhanVien = nv;
         chiTietHoaDon = cthd;
+        this.Jqlp = quanLyPhong;
         loadThongTin(tenPhong, cthd);
     }
 
     public void loadThongTin(String tenPhong, ChiTietHoaDon cthd) throws IOException, SQLException {
         km_dao = new KhuyenMai_DAO();
+        ChiTietHoaDon_DAO cthd_dao = new ChiTietHoaDon_DAO();
+        ChiTietHoaDon cthdd = cthd_dao.getChiTietHoaDontheoMa(cthd.getHoaDon().getMaHoaDon()).get(0);
+        System.out.println("gui.JPanel_loadThongTinThue.loadThongTin()" + cthdd.getSoGio());
+        if (cthdd.getSoGio() != 0) {
+            rd_theoNgay.setSelected(false);
+            rd_theoGio.setSelected(true);
+            sp_time.setValue(cthdd.getSoGio());
+            txt_ngayTra.setEnabled(false);
+            sp_time.setEnabled(false);
+            rd_theoNgay.setEnabled(false);
+        } else {
+            rd_theoNgay.setSelected(true);
+            rd_theoGio.setSelected(false);
+            sp_time.setValue(0);
+            sp_time.setEnabled(false);
+
+        }
+        sp_time.setEnabled(false);
+        rd_theoNgay.setEnabled(false);
         ArrayList<KhuyenMai> list = km_dao.getKhuyenMaiByDate(LocalDate.now());
         txt_maHD.setText("Mã Hóa Đơn:" + cthd.getHoaDon().getMaHoaDon());
         double max = 0;
-        int index = 0;
-        for (int i = 0; i < list.size(); i++) {
-            if (max < list.get(i).getGiaTri()) {
-                max = list.get(i).getGiaTri();
-                index = i;
+        int index = -1;
+        System.out.println(list);
+        if (!list.isEmpty()) {
+            for (int i = 0; i < list.size(); i++) {
+                if (max < list.get(i).getGiaTri() && list.get(i).isTrangThaiKhuyenMai() == true) {
+                    max = list.get(i).getGiaTri();
+                    index = i;
+                }
             }
+
+            txt_maKM.setText(list.get(index).getMaKhuyenMai());
+            km = km_dao.getPhongTheoMaKhuyenMai(txt_maKM.getText().toString()).getFirst();
+            txta_ND.setText(km.getNoiDung());
+            txt_ngayBD.setText(km.getNgayBatDau().toString());
+            txt_ngayKetThuc.setText(km.getNgayKetThuc().toString());
+        } else {
+            km = new KhuyenMai();
+            km.setGiaTri(0);
         }
-
-        txt_maKM.setText(list.get(index).getMaKhuyenMai());
-        km = km_dao.getPhongTheoMaKhuyenMai(txt_maKM.getText().toString()).getFirst();
-        txta_ND.setText(km.getNoiDung());
-        txt_ngayBD.setText(km.getNgayBatDau().toString());
-        txt_ngayKetThuc.setText(km.getNgayKetThuc().toString());
-
-        rd_theoNgay.setSelected(true);
         p_dao = new Phong_DAO();
         HoaDon hd;
         Phong phong = p_dao.getPhongTheoTenPhong(tenPhong).getFirst();
@@ -139,41 +156,20 @@ public class JPanel_traPhong extends javax.swing.JPanel implements ActionListene
         txt_thue.setText(String.valueOf(hd.getThue() * 100) + " %");
         NumberFormat currencyFormat = NumberFormat.getCurrencyInstance();
         ((DecimalFormat) currencyFormat).applyPattern("###,### VNĐ");
-        txt_tienThuePhong.setText(currencyFormat.format(cthd.getTongTienThuePhong()));
+        txt_tienThuePhong.setText(currencyFormat.format(cthd.getTongTienThuePhong() - cthd.getPhuPhi()));
         txt_tienDV.setText(currencyFormat.format(hd_dao.tinhTongTienDichVu(hd.getMaHoaDon())));
         txt_thanhTienBanDau.setText(currencyFormat.format(hd_dao.tinhthanhTienBanDau(hd.getMaHoaDon())));
         hd.tinhTongThanhTienBanDau();
         hd.getKhuyenMai().setGiaTri(km.getGiaTri());
         hd.tinhTongThanhTienPhaiTra();
         txt_thanhTien.setText(currencyFormat.format(hd.getTongThanhTienPhaiTra()));
-
-        txt_ngayTra.addPropertyChangeListener(new PropertyChangeListener() {
-            @Override
-            public void propertyChange(PropertyChangeEvent evt) {
-                if ("date".equals(evt.getPropertyName())) {
-                    LocalDate ngayThue = txt_ngayThue.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
-                    cthd.setNgayNhanPhong(ngayThue);
-                    if (txt_ngayTra.getDate() != null) {
-                        LocalDate ngayTra = txt_ngayTra.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
-                        cthd.setNgayTraPhong(ngayTra);
-                        cthd.setPhong(phong);
-                        cthd.tinhTienThuePhong();
-                        double tienThuePhong = cthd.getTongTienThuePhong();
-                        // Định dạng số tiền thành chuỗi tiền tệ
-                        NumberFormat currencyFormat = NumberFormat.getCurrencyInstance();
-                        ((DecimalFormat) currencyFormat).applyPattern("###,### VNĐ");
-                        String tienThuePhongFormatted = currencyFormat.format(tienThuePhong);
-                        txt_tienThuePhong.setText(tienThuePhongFormatted);
-                    }
-                }
-//                capNhatGia();
-            }
-        });
-
+        txt_phuPhi.setText(currencyFormat.format(cthd.getPhuPhi()));
+        System.out.println(cthd);
     }
 
     public void addEvents() {
         btn_XacNhan.addActionListener(this);
+        btn_Huy.addActionListener(this);
     }
 
     public void load_DataDV(String maHD) throws SQLException, IOException {
@@ -186,6 +182,7 @@ public class JPanel_traPhong extends javax.swing.JPanel implements ActionListene
 
         for (ChiTietHoaDon cthd : list_temp) {
             DoAnUong dau = dau_dao.getDAUTheoMaDoAnUong(cthd.getDoAnUong().getMaDoAnUong()).getFirst();
+            dau.setGiaBan();
             if (!"XXX".equals(dau.getMaDoAnUong())) {
                 modelDichVu.addRow(new Object[]{dau.getMaDoAnUong(), dau.getTenDoAnUong(), cthd.getSoLuong(), currencyFormat.format(dau.getGiaBan()), currencyFormat.format(cthd.getTongTienDichVu())});
             }
@@ -196,13 +193,25 @@ public class JPanel_traPhong extends javax.swing.JPanel implements ActionListene
 
     @Override
     public void actionPerformed(ActionEvent e) {
+        if (e.getSource().equals(btn_Huy)) {
+            JFrame parentFrame = (JFrame) SwingUtilities.getWindowAncestor(this);
+            if (parentFrame != null) {
+                parentFrame.dispose(); // Tắt JFrame chứa JPanel
+            }
+        }
         if (e.getSource().equals(btn_XacNhan)) {
-            HoaDon hd;
             try {
+                HoaDon hd = null;
                 hd = hd_dao.getHoaDonTheoMaHoaDon(chiTietHoaDon.getHoaDon().getMaHoaDon()).getFirst();
+                ArrayList<ChiTietHoaDon> lcthd = cthd_dao.getChiTietHoaDontheoMa(chiTietHoaDon.getHoaDon().getMaHoaDon());
+
+                for (ChiTietHoaDon ct : lcthd) {
+                    cthd_dao.updateTongThanhTienByMaHoaDonAndMaDoAnUong(hd.getMaHoaDon(), 1.0);
+                }
                 hd.tinhTongThanhTienBanDau();
                 hd.setKhuyenMai(km);
                 hd.tinhTongThanhTienPhaiTra();
+                hd.setNgayLapHoaDon(LocalDate.now());
                 hd_dao.updateHoaDon(hd);
                 p_dao = new Phong_DAO();
                 Phong p = p_dao.getPhongTheoMaPhong(chiTietHoaDon.getPhong().getMaPhong()).getFirst();
@@ -213,7 +222,15 @@ public class JPanel_traPhong extends javax.swing.JPanel implements ActionListene
             } catch (SQLException ex) {
                 Logger.getLogger(JPanel_traPhong.class.getName()).log(Level.SEVERE, null, ex);
             }
-
+            JFrame parentFrame = (JFrame) SwingUtilities.getWindowAncestor(this);
+            if (parentFrame != null) {
+                parentFrame.dispose(); // Tắt JFrame chứa JPanel
+            }
+            try {
+                this.Jqlp.loadData();
+            } catch (SQLException ex) {
+                Logger.getLogger(JPanel_traPhong.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
     }
 
@@ -319,6 +336,7 @@ public class JPanel_traPhong extends javax.swing.JPanel implements ActionListene
         jLabel4.setText("Loại Phòng:");
 
         txt_tenPhong.setEditable(false);
+        txt_tenPhong.setBackground(new java.awt.Color(255, 255, 255));
         txt_tenPhong.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txt_tenPhongActionPerformed(evt);
@@ -326,6 +344,7 @@ public class JPanel_traPhong extends javax.swing.JPanel implements ActionListene
         });
 
         txt_loaiPhong.setEditable(false);
+        txt_loaiPhong.setBackground(new java.awt.Color(255, 255, 255));
         txt_loaiPhong.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txt_loaiPhongActionPerformed(evt);
@@ -334,7 +353,11 @@ public class JPanel_traPhong extends javax.swing.JPanel implements ActionListene
 
         jLabel7.setText("Ngày Thuê:");
 
+        txt_ngayThue.setBackground(new java.awt.Color(255, 255, 255));
+
         jLabel15.setText("Ngày Trả:");
+
+        txt_ngayTra.setBackground(new java.awt.Color(255, 255, 255));
 
         jLabel16.setText("Thuê Theo:");
 
@@ -347,6 +370,7 @@ public class JPanel_traPhong extends javax.swing.JPanel implements ActionListene
         jLabel20.setText("Số người:");
 
         txt_soLuongNguoiO.setEditable(false);
+        txt_soLuongNguoiO.setBackground(new java.awt.Color(255, 255, 255));
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -423,6 +447,7 @@ public class JPanel_traPhong extends javax.swing.JPanel implements ActionListene
         jLabel6.setText("Họ và Tên:");
 
         txt_SDT.setEditable(false);
+        txt_SDT.setBackground(new java.awt.Color(255, 255, 255));
         txt_SDT.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txt_SDTActionPerformed(evt);
@@ -430,6 +455,7 @@ public class JPanel_traPhong extends javax.swing.JPanel implements ActionListene
         });
 
         txt_HvT.setEditable(false);
+        txt_HvT.setBackground(new java.awt.Color(255, 255, 255));
         txt_HvT.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txt_HvTActionPerformed(evt);
@@ -443,6 +469,7 @@ public class JPanel_traPhong extends javax.swing.JPanel implements ActionListene
         jLabel17.setText("CCCD:");
 
         txt_CCCD.setEditable(false);
+        txt_CCCD.setBackground(new java.awt.Color(255, 255, 255));
         txt_CCCD.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txt_CCCDActionPerformed(evt);
@@ -452,6 +479,7 @@ public class JPanel_traPhong extends javax.swing.JPanel implements ActionListene
         jLabel18.setText("Ngày Sinh:");
 
         txt_ngaySinh.setEditable(false);
+        txt_ngaySinh.setBackground(new java.awt.Color(255, 255, 255));
         txt_ngaySinh.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txt_ngaySinhActionPerformed(evt);
@@ -553,6 +581,8 @@ public class JPanel_traPhong extends javax.swing.JPanel implements ActionListene
 
         jLabel12.setText("Tiền Dịch Vụ:");
 
+        txt_tienThuePhong.setEditable(false);
+        txt_tienThuePhong.setBackground(new java.awt.Color(255, 255, 255));
         txt_tienThuePhong.setText("0 VNĐ");
         txt_tienThuePhong.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -562,6 +592,8 @@ public class JPanel_traPhong extends javax.swing.JPanel implements ActionListene
 
         jLabel14.setText("Thành Tiền:");
 
+        txt_thanhTien.setEditable(false);
+        txt_thanhTien.setBackground(new java.awt.Color(255, 255, 255));
         txt_thanhTien.setText("0 VNĐ");
         txt_thanhTien.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -571,6 +603,8 @@ public class JPanel_traPhong extends javax.swing.JPanel implements ActionListene
 
         jLabel9.setText("Phụ Phí:");
 
+        txt_phuPhi.setEditable(false);
+        txt_phuPhi.setBackground(new java.awt.Color(255, 255, 255));
         txt_phuPhi.setText("0 VNĐ");
         txt_phuPhi.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -580,6 +614,8 @@ public class JPanel_traPhong extends javax.swing.JPanel implements ActionListene
 
         jLabel10.setText("Thuế(VAT):");
 
+        txt_thue.setEditable(false);
+        txt_thue.setBackground(new java.awt.Color(255, 255, 255));
         txt_thue.setText("0 VNĐ");
         txt_thue.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -589,6 +625,8 @@ public class JPanel_traPhong extends javax.swing.JPanel implements ActionListene
 
         jLabel13.setText("Thành Tiền Ban Đầu:");
 
+        txt_thanhTienBanDau.setEditable(false);
+        txt_thanhTienBanDau.setBackground(new java.awt.Color(255, 255, 255));
         txt_thanhTienBanDau.setText("0 VNĐ");
         txt_thanhTienBanDau.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -598,6 +636,8 @@ public class JPanel_traPhong extends javax.swing.JPanel implements ActionListene
 
         jLabel19.setText("Tiền Phòng:");
 
+        txt_tienDV.setEditable(false);
+        txt_tienDV.setBackground(new java.awt.Color(255, 255, 255));
         txt_tienDV.setText("0 VNĐ");
         txt_tienDV.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -671,6 +711,7 @@ public class JPanel_traPhong extends javax.swing.JPanel implements ActionListene
         jLabel23.setText("Ngày Bắt Đầu:");
 
         txt_maKM.setEditable(false);
+        txt_maKM.setBackground(new java.awt.Color(255, 255, 255));
         txt_maKM.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txt_maKMActionPerformed(evt);
@@ -678,6 +719,7 @@ public class JPanel_traPhong extends javax.swing.JPanel implements ActionListene
         });
 
         txt_ngayBD.setEditable(false);
+        txt_ngayBD.setBackground(new java.awt.Color(255, 255, 255));
         txt_ngayBD.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txt_ngayBDActionPerformed(evt);
@@ -685,6 +727,7 @@ public class JPanel_traPhong extends javax.swing.JPanel implements ActionListene
         });
 
         txt_ngayKetThuc.setEditable(false);
+        txt_ngayKetThuc.setBackground(new java.awt.Color(255, 255, 255));
         txt_ngayKetThuc.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txt_ngayKetThucActionPerformed(evt);
@@ -694,6 +737,7 @@ public class JPanel_traPhong extends javax.swing.JPanel implements ActionListene
         jLabel24.setText("Nội Dung Khuyến Mãi:");
 
         txta_ND.setEditable(false);
+        txta_ND.setBackground(new java.awt.Color(255, 255, 255));
         txta_ND.setColumns(20);
         txta_ND.setRows(5);
         jScrollPane2.setViewportView(txta_ND);

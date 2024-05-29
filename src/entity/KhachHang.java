@@ -12,20 +12,40 @@ import java.util.Objects;
  * @author M S I
  */
 public class KhachHang {
+
     private String maKhachHang;
     private String hoTenKhachHang;
+    private String emai;
     private boolean gioiTinh;
     private String CCCD;
     private LocalDate ngaySinh;
     private boolean trangThaiKhachHang;
+
+    public KhachHang(String maKhachHang, String hoTenKhachHang, String emai, boolean gioiTinh, String CCCD, LocalDate ngaySinh, boolean trangThaiKhachHang) {
+        this.maKhachHang = maKhachHang;
+        this.hoTenKhachHang = hoTenKhachHang;
+        this.emai = emai;
+        this.gioiTinh = gioiTinh;
+        this.CCCD = CCCD;
+        this.ngaySinh = ngaySinh;
+        this.trangThaiKhachHang = trangThaiKhachHang;
+    }
     
-    public KhachHang(String maKhachHang, String hoTenKhachHang, boolean gioiTinh, String CCCD, LocalDate ngaySinh, boolean trangThaiKhachHang) {
+    public KhachHang(String maKhachHang, String hoTenKhachHang, boolean gioiTinh, String CCCD, LocalDate ngaySinh) {
         this.maKhachHang = maKhachHang;
         this.hoTenKhachHang = hoTenKhachHang;
         this.gioiTinh = gioiTinh;
         this.CCCD = CCCD;
         this.ngaySinh = ngaySinh;
-        this.trangThaiKhachHang = trangThaiKhachHang;
+    }
+    
+    
+    public String getEmai() {
+        return emai;
+    }
+
+    public void setEmai(String emai) {
+        this.emai = emai;
     }
 
     public KhachHang() {
@@ -85,7 +105,7 @@ public class KhachHang {
 
     @Override
     public String toString() {
-        return "KhachHang{" + "maKhachHang=" + maKhachHang + ", hoTenKhachHang=" + hoTenKhachHang + ", gioiTinh=" + gioiTinh + ", CCCD=" + CCCD + ", ngaySinh=" + ngaySinh + ", trangThaiKhachHang=" + trangThaiKhachHang + '}';
+        return "KhachHang{" + "maKhachHang=" + maKhachHang + ", hoTenKhachHang=" + hoTenKhachHang + ", emai=" + emai + ", gioiTinh=" + gioiTinh + ", CCCD=" + CCCD + ", ngaySinh=" + ngaySinh + ", trangThaiKhachHang=" + trangThaiKhachHang + '}';
     }
 
     @Override
@@ -106,5 +126,5 @@ public class KhachHang {
         final KhachHang other = (KhachHang) obj;
         return Objects.equals(this.maKhachHang, other.maKhachHang);
     }
-    
+
 }

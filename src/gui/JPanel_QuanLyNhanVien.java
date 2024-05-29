@@ -12,7 +12,9 @@ import com.formdev.flatlaf.FlatClientProperties;
 import com.formdev.flatlaf.extras.FlatSVGIcon;
 import connectDB.ConnectDB;
 import dao.NhanVien_DAO;
+import dao.TaiKhoan_DAO;
 import entity.NhanVien;
+import entity.TaiKhoan;
 import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.RenderingHints;
@@ -55,6 +57,7 @@ import javax.swing.table.DefaultTableModel;
 public class JPanel_QuanLyNhanVien extends javax.swing.JPanel implements ActionListener, MouseListener {
 
     private String id;
+    private TaiKhoan_DAO tk_dao;
 
     /**
      * Creates new form JPanel_QuanLyNhanVien
@@ -67,6 +70,7 @@ public class JPanel_QuanLyNhanVien extends javax.swing.JPanel implements ActionL
         initComponents();
         addEvents();
         loadData();
+
     }
 
     /**
@@ -107,6 +111,7 @@ public class JPanel_QuanLyNhanVien extends javax.swing.JPanel implements ActionL
         btn_Xoa = new javax.swing.JButton();
         btn_Sua = new javax.swing.JButton();
         btn_Rong = new javax.swing.JButton();
+        btn_doiMatKhau = new javax.swing.JButton();
         jPanel5 = new javax.swing.JPanel();
         jPanel9 = new javax.swing.JPanel();
         search_Engine = new javax.swing.JPanel();
@@ -225,7 +230,7 @@ public class JPanel_QuanLyNhanVien extends javax.swing.JPanel implements ActionL
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, frm_ThongTinLayout.createSequentialGroup()
                 .addContainerGap(24, Short.MAX_VALUE)
                 .addGroup(frm_ThongTinLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(frm_ThongTinLayout.createSequentialGroup()
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, frm_ThongTinLayout.createSequentialGroup()
                         .addGroup(frm_ThongTinLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jLabel6, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -311,7 +316,7 @@ public class JPanel_QuanLyNhanVien extends javax.swing.JPanel implements ActionL
         btnThem.setForeground(Color.WHITE);
         btnThem.setFont(new Font("Roboto Mono Medium", Font.PLAIN, 16));
 
-        btn_Xoa.setText("Danh Sách Đen");
+        btn_Xoa.setText("Thôi Việc");
         btn_Xoa.setBackground(new Color(0, 102, 102));
         btn_Xoa.setForeground(Color.WHITE);
         btn_Xoa.setFont(new Font("Roboto Mono Medium", Font.PLAIN, 16));
@@ -331,33 +336,43 @@ public class JPanel_QuanLyNhanVien extends javax.swing.JPanel implements ActionL
             }
         });
 
+        btn_doiMatKhau.setText("Đổi Mật Khẩu");
+        btn_doiMatKhau.setBackground(new Color(0, 102, 102));
+        btn_doiMatKhau.setForeground(Color.WHITE);
+        btn_doiMatKhau.setFont(new Font("Roboto Mono Medium", Font.PLAIN, 16));
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+            .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(btnThem, javax.swing.GroupLayout.DEFAULT_SIZE, 145, Short.MAX_VALUE)
-                    .addComponent(btn_Sua, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(30, 30, 30)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btn_Rong, javax.swing.GroupLayout.DEFAULT_SIZE, 163, Short.MAX_VALUE)
-                    .addComponent(btn_Xoa, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(btn_doiMatKhau, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(btnThem, javax.swing.GroupLayout.DEFAULT_SIZE, 145, Short.MAX_VALUE)
+                            .addComponent(btn_Sua, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(30, 30, 30)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(btn_Rong, javax.swing.GroupLayout.DEFAULT_SIZE, 163, Short.MAX_VALUE)
+                            .addComponent(btn_Xoa, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap(30, Short.MAX_VALUE)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btn_Xoa, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnThem, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addContainerGap()
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnThem, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btn_Xoa, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btn_Sua, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btn_Rong, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btn_doiMatKhau, javax.swing.GroupLayout.DEFAULT_SIZE, 36, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         jPanel4.add(jPanel2, java.awt.BorderLayout.SOUTH);
@@ -378,8 +393,8 @@ public class JPanel_QuanLyNhanVien extends javax.swing.JPanel implements ActionL
         jPanel6.setPreferredSize(new java.awt.Dimension(386, 50));
 
         txt_maCanTim.setText("");
-        txt_maCanTim.putClientProperty(FlatClientProperties.PLACEHOLDER_TEXT, "Mã nhân viên...");
-        txt_maCanTim.putClientProperty(FlatClientProperties.TEXT_FIELD_LEADING_ICON, new FlatSVGIcon("./icon/search_1.svg"));
+        txt_maCanTim.putClientProperty(FlatClientProperties.PLACEHOLDER_TEXT, "Tên nhân viên...");
+        txt_maCanTim.putClientProperty(FlatClientProperties.TEXT_FIELD_LEADING_ICON, new FlatSVGIcon(getClass().getResource("/icon/search_1.svg")));
 
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
         jPanel6.setLayout(jPanel6Layout);
@@ -432,7 +447,7 @@ public class JPanel_QuanLyNhanVien extends javax.swing.JPanel implements ActionL
 
         btn_Loc.setText("Lọc");
 
-        btn_refresh.setIcon(new FlatSVGIcon("./icon/reload.svg"));
+        btn_refresh.setIcon(new FlatSVGIcon(getClass().getResource("/icon/reload.svg")));
         btn_refresh.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_refreshActionPerformed(evt);
@@ -528,6 +543,7 @@ public class JPanel_QuanLyNhanVien extends javax.swing.JPanel implements ActionL
     private javax.swing.JButton btn_Rong;
     private javax.swing.JButton btn_Sua;
     private javax.swing.JButton btn_Xoa;
+    private javax.swing.JButton btn_doiMatKhau;
     public javax.swing.JButton btn_refresh;
     private javax.swing.JComboBox<String> cb_cv;
     private javax.swing.JComboBox<String> cb_gt;
@@ -606,12 +622,19 @@ public class JPanel_QuanLyNhanVien extends javax.swing.JPanel implements ActionL
                 String cv = "";
                 genID(nv);
                 nv.setMaNhanVien(id);
+                tk_dao = new TaiKhoan_DAO();
+
                 modelNhanVien.addRow(new Object[]{nv.getMaNhanVien(), nv.getHoTenNhanVien(), gt = nv.isGioiTinh() ? "Nam" : "Nữ",
                     nv.getDiaChi(), tt = nv.isTrangThaiLamViec() ? "Đang làm" : "Đã nghỉ", nv.getSoDIenThoai(), cv = nv.isChucVu() ? "Quản lý" : "Lễ Tân"});
                 try {
                     String imagePath_relative = "/gui/emp_pic/" + nv.getMaNhanVien() + ".png";
                     nv.setHinhAnh("/gui/emp_pic/" + nv.getMaNhanVien() + ".png");
                     nv_dao.createNhanVien(nv);
+                    try {
+                        tk_dao.taoTaiKhoan(nv.getMaNhanVien(), nv.getSoDIenThoai());
+                    } catch (SQLException ex) {
+                        Logger.getLogger(JPanel_QuanLyNhanVien.class.getName()).log(Level.SEVERE, null, ex);
+                    }
                 } catch (SQLException ex) {
                     Logger.getLogger(JPanel_QuanLyNhanVien.class.getName()).log(Level.SEVERE, null, ex);
                 }
@@ -624,7 +647,7 @@ public class JPanel_QuanLyNhanVien extends javax.swing.JPanel implements ActionL
                     list = nv_dao.getAllTableNhanVien();
                     delData();
                 } else {
-                    list = nv_dao.getNhanVienTheoMa(txt_maCanTim.getText());
+                    list = nv_dao.getNhanVienTheoTen(txt_maCanTim.getText());
                     delData();
                 }
                 System.out.println(list);
@@ -718,6 +741,31 @@ public class JPanel_QuanLyNhanVien extends javax.swing.JPanel implements ActionL
                 Logger.getLogger(JPanel_QuanLyNhanVien.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
+
+        if (o.equals(btn_doiMatKhau)) {
+            try {
+                NhanVien nv;
+                int selectedRow = tbl_NhanVien.getSelectedRow();
+                if (selectedRow == -1) {
+                    JOptionPane.showMessageDialog(this, "Vui lòng chọn một nhân viên để cập nhật mật khẩu.", "Thông báo", JOptionPane.INFORMATION_MESSAGE);
+                    return;
+                }
+                TaiKhoan_DAO tk_dao = new TaiKhoan_DAO();
+                TaiKhoan tk = tk_dao.selectById(tbl_NhanVien.getValueAt(selectedRow, 0).toString());
+                System.out.println(tk);
+                nv = nv_dao.getNhanVienTheoMa(tbl_NhanVien.getValueAt(selectedRow, 0).toString()).get(0);
+                tk_dao.dMatKhau(tk.getNhanVien().getMaNhanVien(), tk.getMatKhau(), nv.getSoDIenThoai());
+                JOptionPane.showMessageDialog(null, "Đã đổi mật khẩu thành số điện thoại của nhân viên!");
+            } catch (IOException ex) {
+                Logger.getLogger(JPanel_QuanLyNhanVien.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (SQLException ex) {
+                Logger.getLogger(JPanel_QuanLyNhanVien.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (Exception ex) {
+                Logger.getLogger(JPanel_QuanLyNhanVien.class.getName()).log(Level.SEVERE, null, ex);
+            }
+
+        }
+
         if (o.equals(btn_Sua)) {
             int selectedRow = tbl_NhanVien.getSelectedRow();
             if (selectedRow == -1) {
@@ -762,6 +810,7 @@ public class JPanel_QuanLyNhanVien extends javax.swing.JPanel implements ActionL
         btn_Rong.addActionListener(this);
         btn_Sua.addActionListener(this);
         btn_Loc.addActionListener(this);
+        btn_doiMatKhau.addActionListener(this);
     }
 
     public void loadData() throws SQLException {

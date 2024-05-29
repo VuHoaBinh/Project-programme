@@ -40,7 +40,15 @@ public class HoaDon {
         this.tongThanhTienBanDau = tongThanhTienBanDau;
         this.tongThanhTienPhaiTra = tongThanhTienPhaiTra;
     }
-
+    
+    public HoaDon(String maHoaDon, KhachHang khachHang, NhanVien nhanVien, LocalDate ngayLapHoaDon, double tongThanhTienPhaiTra) {
+        this.maHoaDon = maHoaDon;
+        this.khachHang = khachHang;
+        this.nhanVien = nhanVien;
+        this.ngayLapHoaDon = ngayLapHoaDon;
+        this.tongThanhTienPhaiTra = tongThanhTienPhaiTra;
+    }
+    
     public HoaDon(String maHoaDon) {
         this.maHoaDon = maHoaDon;
 
@@ -108,8 +116,8 @@ public class HoaDon {
     }
 
     public void tinhTongThanhTienPhaiTra() {
-        tongThanhTienPhaiTra = (tongThanhTienBanDau * (1.0 + thue)) - (tongThanhTienBanDau * this.khuyenMai.getGiaTri());
-
+        double tongThanhTienCoThue = (tongThanhTienBanDau * (1.0 + thue));
+        tongThanhTienPhaiTra = tongThanhTienCoThue * (1 - this.khuyenMai.getGiaTri());
     }
 
     @Override

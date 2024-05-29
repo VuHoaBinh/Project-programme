@@ -9,31 +9,57 @@ import dao.TaiKhoan_DAO;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.SQLException;
+import java.util.TimerTask;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import javax.swing.Timer;
+import java.util.TimerTask;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.TimeUnit;
 
 /**
  *
  * @author ASUS
  */
 public class JFrame_Login extends javax.swing.JFrame implements ActionListener {
-    
+
+    /**
+     * Creates new form JFrame_Login
+     *
+     * @throws java.lang.Exception
+     */
+    private TaiKhoan_DAO tk_dao = new TaiKhoan_DAO();
+    private JFrame_loading loadingScreen;
+
     /**
      * Creates new form JFrame_Login
      *
      * @throws java.lang.Exception
      */
     public JFrame_Login() throws Exception {
+        loadingScreen = new JFrame_loading();
+        loadingScreen.showLoadingScreen(); // Show the loading screen
+
+        // Create a scheduled executor service
+        ScheduledExecutorService executor = Executors.newSingleThreadScheduledExecutor();
+
+        // Schedule a task to hide the loading screen after a delay of 3 seconds (adjust as needed)
+        executor.schedule(() -> {
+            loadingScreen.hideLoadingScreen(); // Hide the loading screen
+            initComponents(); // Initialize components
+            setResizable(false);
+            addEvents();
+        }, 4, TimeUnit.SECONDS);
+
         try {
             ConnectDB.getInstance().connect();
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        initComponents();
-        setResizable(false);
-        addEvents();
     }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -44,6 +70,7 @@ public class JFrame_Login extends javax.swing.JFrame implements ActionListener {
     private void initComponents() {
 
         pn_DangNhap = new javax.swing.JPanel();
+        btn_doiMatKhau = new javax.swing.JButton();
         txt_dangNhap = new javax.swing.JLabel();
         btn_dangNhap = new javax.swing.JButton();
         lb_matKhau = new javax.swing.JLabel();
@@ -55,6 +82,12 @@ public class JFrame_Login extends javax.swing.JFrame implements ActionListener {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         pn_DangNhap.setLayout(null);
+
+        btn_doiMatKhau.setBackground(new java.awt.Color(0, 102, 102));
+        btn_doiMatKhau.setForeground(new java.awt.Color(204, 255, 255));
+        btn_doiMatKhau.setText("Đổi Mật Khẩu");
+        pn_DangNhap.add(btn_doiMatKhau);
+        btn_doiMatKhau.setBounds(150, 580, 300, 30);
 
         txt_dangNhap.setFont(new java.awt.Font("Segoe UI Black", 1, 48)); // NOI18N
         txt_dangNhap.setForeground(new java.awt.Color(255, 255, 255));
@@ -73,7 +106,7 @@ public class JFrame_Login extends javax.swing.JFrame implements ActionListener {
             }
         });
         pn_DangNhap.add(btn_dangNhap);
-        btn_dangNhap.setBounds(140, 530, 300, 50);
+        btn_dangNhap.setBounds(150, 520, 300, 50);
 
         lb_matKhau.setFont(new java.awt.Font("Segoe UI Black", 1, 18)); // NOI18N
         lb_matKhau.setForeground(new java.awt.Color(255, 255, 255));
@@ -101,9 +134,9 @@ public class JFrame_Login extends javax.swing.JFrame implements ActionListener {
 
         lb_tenNhanVien.setFont(new java.awt.Font("Segoe UI Black", 1, 18)); // NOI18N
         lb_tenNhanVien.setForeground(new java.awt.Color(255, 255, 255));
-        lb_tenNhanVien.setText("Tên nhân viên:");
+        lb_tenNhanVien.setText("Tài Khoản:");
         pn_DangNhap.add(lb_tenNhanVien);
-        lb_tenNhanVien.setBounds(80, 380, 160, 40);
+        lb_tenNhanVien.setBounds(120, 380, 110, 40);
 
         UI_login.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/screen_Login.png"))); // NOI18N
         pn_DangNhap.add(UI_login);
@@ -140,11 +173,6 @@ public class JFrame_Login extends javax.swing.JFrame implements ActionListener {
      * @param args the command line arguments
      */
     public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
                 if ("Nimbus".equals(info.getName())) {
@@ -152,18 +180,10 @@ public class JFrame_Login extends javax.swing.JFrame implements ActionListener {
                     break;
                 }
             }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(JFrame_Login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(JFrame_Login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(JFrame_Login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(JFrame_Login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
-        //</editor-fold>
 
-        /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 try {
@@ -175,9 +195,11 @@ public class JFrame_Login extends javax.swing.JFrame implements ActionListener {
         });
     }
 
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel UI_login;
     private javax.swing.JButton btn_dangNhap;
+    private javax.swing.JButton btn_doiMatKhau;
     private javax.swing.JLabel lb_matKhau;
     private javax.swing.JLabel lb_tenNhanVien;
     private javax.swing.JPanel pn_DangNhap;
@@ -185,13 +207,12 @@ public class JFrame_Login extends javax.swing.JFrame implements ActionListener {
     private javax.swing.JPasswordField txt_password;
     private javax.swing.JTextField txt_taiKhoan;
     // End of variables declaration//GEN-END:variables
-    private TaiKhoan_DAO tk_dao = new TaiKhoan_DAO();
 
     @Override
     public void actionPerformed(ActionEvent e) {
         Object o = e.getSource();
         if (o.equals(btn_dangNhap)) {
-            if (txt_taiKhoan.getText().equalsIgnoreCase("")||txt_password.getPassword().equals("")) {
+            if (txt_taiKhoan.getText().equalsIgnoreCase("") || txt_password.getPassword().equals("")) {
                 JOptionPane.showMessageDialog(this, "Tên tài khoản hoặc mật khẩu không được để trống");
                 txt_taiKhoan.requestFocus();
             } else {
@@ -202,9 +223,21 @@ public class JFrame_Login extends javax.swing.JFrame implements ActionListener {
                 }
             }
         }
+        if (o.equals(btn_doiMatKhau)) {
+            JFrame_doiMatKhau new_Log;
+            try {
+                new_Log = new JFrame_doiMatKhau();
+                new_Log.setVisible(true);
+                this.setVisible(false);
+            } catch (Exception ex) {
+                Logger.getLogger(JFrame_doiMatKhau.class.getName()).log(Level.SEVERE, null, ex);
+            }
+
+        }
     }
-    
-    public void addEvents(){
+
+    public void addEvents() {
         btn_dangNhap.addActionListener(this);
+        btn_doiMatKhau.addActionListener(this);
     }
 }

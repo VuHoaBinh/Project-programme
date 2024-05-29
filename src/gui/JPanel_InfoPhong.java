@@ -28,22 +28,35 @@ public class JPanel_InfoPhong extends javax.swing.JPanel {
     public void loadData(String maPhong) throws IOException, SQLException {
         p_dao = new Phong_DAO();
         Phong phong = p_dao.getPhongTheoTenPhong(maPhong).getFirst();
+        jLabel1.setText(maPhong);
+        jLabel1.setBackground(new java.awt.Color(255, 255, 255));
         txtTen.setText(phong.getTenPhong());
+        txtTen.setBackground(new java.awt.Color(255, 255, 255));
         String dienTich = String.format("%.0f" + " m^2", phong.getDienTich());
         txtDienTich.setText(dienTich);
+        txtDienTich.setBackground(new java.awt.Color(255, 255, 255));
         txtSoGiuong.setText(String.valueOf(phong.getSoGiuong()));
+        txtSoGiuong.setBackground(new java.awt.Color(255, 255, 255));
         txtView.setText(phong.getView());
+        txtView.setBackground(new java.awt.Color(255, 255, 255));
         txtLoaiPhong.setText(phong.getLoaiPhong().toString());
-        txtTrangThai.setText(phong.getTrangThaiPhong().toString());
+        txtLoaiPhong.setBackground(new java.awt.Color(255, 255, 255));
+        String tt = "";
+        if(phong.getTrangThaiPhong().getTenTrangThai()==1) tt = "Đã đặt";         
+        if(phong.getTrangThaiPhong().getTenTrangThai()==2) tt = "Đã thuê";
+        if(phong.getTrangThaiPhong().getTenTrangThai()==3) tt = "Có sẵn";
+        if(phong.getTrangThaiPhong().getTenTrangThai()==4) tt = "Khóa";
+        txtTrangThai.setText(tt);
+        txtTrangThai.setBackground(new java.awt.Color(255, 255, 255));
         if (phong.isGiuongPhu()) {
             rdCoGiuong.setSelected(true);
         } else {
-            rdCoGiuong.setSelected(false);
+            rdKhongGiuong.setSelected(true);
         }
         if (phong.isHutThuoc()) {
             rdCoHut.setSelected(true);
         } else {
-            rdKhongHut.setSelected(false);
+            rdKhongHut.setSelected(true);
         }
     }
 

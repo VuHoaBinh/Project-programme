@@ -8,9 +8,19 @@ import com.formdev.flatlaf.FlatIntelliJLaf;
 import entity.NhanVien;
 import java.awt.CardLayout;
 import com.formdev.flatlaf.extras.FlatSVGIcon;
+import java.awt.Desktop;
+import java.awt.PopupMenu;
 import java.awt.event.ActionListener;
 import java.sql.SQLException;
 import java.awt.event.ActionEvent;
+import java.io.IOException;
+import java.net.URI;
+import java.net.URISyntaxException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
+import javax.swing.JPopupMenu;
 
 /**
  *
@@ -21,17 +31,29 @@ public class JFrame_TrangChu extends javax.swing.JFrame implements ActionListene
     /**
      * Creates new form JFrame_TrangChu
      */
-    private TrangChu trangChu;
     private JPanel_QuanLyNhanVien qlnv;
     private JPanel_QuanLyPhong qlp;
     private JPanel_QuanLyDoAnUong qlsp;
     private JPanel_QuanLyKhuyenMai qlkm;
     private JPanel_QuanLyKhachHang qlkh;
-//    private JPanel_DatPhong datPhong;
     private JPanel_QuanLyHoaDon qlhd;
+    private JPanel_QuanLyPhongO qlpo;
+    private TrangChu trangChu;
+    private NhanVien nv;
+    private JPopupMenu menuThongKe, menuTrangChu;
+    private JMenuItem thongKeDoanhThu, thongKeKhachHang, trangMain, help;
+    private JPanel_GiaoDienThongKeDoanhThu tkdt;
+    private JPanel_GiaoDienThongKeKhachHang tkkh;
 
     public JFrame_TrangChu(NhanVien nv) throws SQLException {
         initComponents();
+        this.nv = nv;
+        fix_ui();
+        if (!nv.isChucVu()) {
+            btn_quanLyNhanVien.setEnabled(false);
+            btn_datPhong.setEnabled(false);
+        }
+
         addEvents();
         lbltenNhanVien.setText(nv.getHoTenNhanVien());
 
@@ -40,23 +62,78 @@ public class JFrame_TrangChu extends javax.swing.JFrame implements ActionListene
         } else {
             lblChucVu.setText("Lễ Tân");
         }
+        trangChu = new TrangChu();
         qlnv = new JPanel_QuanLyNhanVien();
         qlp = new JPanel_QuanLyPhong(nv);
-        qlsp = new JPanel_QuanLyDoAnUong();
+        qlsp = new JPanel_QuanLyDoAnUong(nv);
         qlkh = new JPanel_QuanLyKhachHang();
-        qlkm = new JPanel_QuanLyKhuyenMai();
-        qlhd = new JPanel_QuanLyHoaDon();
+        qlkm = new JPanel_QuanLyKhuyenMai(nv);
+        qlhd = new JPanel_QuanLyHoaDon(nv);
+        qlpo = new JPanel_QuanLyPhongO();
+        tkdt = new JPanel_GiaoDienThongKeDoanhThu();
+        tkkh = new JPanel_GiaoDienThongKeKhachHang();
 
         CardLayout cardLayout = (CardLayout) MainContent.getLayout();
+        MainContent.add(trangChu,"trangChu");
         MainContent.add(qlnv, "qlnv");
         MainContent.add(qlp, "qlp");
         MainContent.add(qlsp, "qlsp");
         MainContent.add(qlkh, "qlkh");
         MainContent.add(qlkm, "qlkm");
         MainContent.add(qlhd, "qlhd");
+        MainContent.add(qlpo, "qlpo");
+        MainContent.add(tkdt, "tkdt");
+        MainContent.add(tkkh, "tkkh");
 
         FlatIntelliJLaf.registerCustomDefaultsSource("style");
         FlatIntelliJLaf.setup();
+    }
+
+    private void fix_ui() {
+        btn_quanLyPhong.setText("Quản lý Thuê Phòng");
+        btn_datPhong.setText("Quản Lý Phòng");
+        btn_trangChu.setText("Hệ Thống");
+        btn_datPhong.setIcon(new FlatSVGIcon(getClass().getResource("/icon/customer_1.svg")));
+        // Đặt căn lề trái cho icon
+        btn_datPhong.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        btn_datPhong.setIconTextGap(10); // Khoảng cách giữa icon và văn bản
+
+        // Đặt căn lề phải cho văn bản
+        btn_datPhong.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        btn_datPhong.setVerticalAlignment(javax.swing.SwingConstants.CENTER);
+        btn_datPhong.setPreferredSize(new java.awt.Dimension(250, 23));
+
+        btn_hoaDon.setIcon(new FlatSVGIcon(getClass().getResource("/icon/export.svg")));
+        // Đặt căn lề trái cho icon
+        btn_hoaDon.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        btn_hoaDon.setIconTextGap(10); // Khoảng cách giữa icon và văn bản
+
+        // Đặt căn lề phải cho văn bản
+        btn_hoaDon.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        btn_hoaDon.setVerticalAlignment(javax.swing.SwingConstants.CENTER);
+        btn_hoaDon.setPreferredSize(new java.awt.Dimension(250, 23));
+
+        btn_thongKe.setIcon(new FlatSVGIcon(getClass().getResource("/icon/statistical.svg")));
+        // Đặt căn lề trái cho icon
+        btn_thongKe.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        btn_thongKe.setIconTextGap(10); // Khoảng cách giữa icon và văn bản
+
+        // Đặt căn lề phải cho văn bản
+        btn_thongKe.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        btn_thongKe.setVerticalAlignment(javax.swing.SwingConstants.CENTER);
+        btn_thongKe.setPreferredSize(new java.awt.Dimension(250, 23));
+        menuThongKe = new JPopupMenu();
+        thongKeDoanhThu = new JMenuItem("Thống Kê Doanh Thu");
+        thongKeKhachHang= new JMenuItem("Thống Kê Khách Hàng");
+        menuThongKe.add(thongKeDoanhThu);
+        menuThongKe.add(thongKeKhachHang);
+
+        
+        menuTrangChu = new JPopupMenu();
+        trangMain = new JMenuItem("Trang Chủ");
+        help = new JMenuItem("Trợ Giúp");
+        menuTrangChu.add(trangMain);
+        menuTrangChu.add(help);
     }
 
     private void loadQuanLyNhanVien() {
@@ -73,7 +150,7 @@ public class JFrame_TrangChu extends javax.swing.JFrame implements ActionListene
         MainContent.repaint();
     }
 
-    private void loadQuanLyPhong() {
+    public void loadQuanLyPhong() {
         MainContent.removeAll();
         MainContent.add(qlp, "qlp");
         MainContent.revalidate();
@@ -137,17 +214,16 @@ public class JFrame_TrangChu extends javax.swing.JFrame implements ActionListene
         btn_khuyenMai = new javax.swing.JButton();
         Content12 = new javax.swing.JPanel();
         btn_datPhong = new javax.swing.JButton();
-
         Content13 = new javax.swing.JPanel();
         btn_hoaDon = new javax.swing.JButton();
         Content14 = new javax.swing.JPanel();
         btn_thongKe = new javax.swing.JButton();
-
         bar3 = new javax.swing.JPanel();
         pnlBottom = new javax.swing.JPanel();
         DangXuat = new javax.swing.JPanel();
         btn_dangXuat = new javax.swing.JButton();
         bar4 = new javax.swing.JPanel();
+        btn_datPhong1 = new javax.swing.JButton();
         MainContent = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -207,7 +283,7 @@ public class JFrame_TrangChu extends javax.swing.JFrame implements ActionListene
         pnlIcon.setOpaque(false);
         pnlIcon.setPreferredSize(new java.awt.Dimension(60, 0));
 
-        lblIcon.setIcon(new FlatSVGIcon("./icon/man.svg"));
+        lblIcon.setIcon(new FlatSVGIcon(getClass().getResource("/icon/man.svg")));
         lblIcon.setPreferredSize(new java.awt.Dimension(50, 70));
         pnlIcon.add(lblIcon);
 
@@ -247,7 +323,7 @@ public class JFrame_TrangChu extends javax.swing.JFrame implements ActionListene
         Content10.setPreferredSize(new java.awt.Dimension(300, 50));
 
         btn_trangChu.setBackground(new java.awt.Color(250, 250, 250));
-        btn_trangChu.setIcon(new FlatSVGIcon("./icon/home.svg"));
+        btn_trangChu.setIcon(new FlatSVGIcon(getClass().getResource("/icon/home.svg")));
         btn_trangChu.setText("Trang Chủ");
         // Đặt căn lề trái cho icon
         btn_trangChu.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
@@ -284,7 +360,7 @@ public class JFrame_TrangChu extends javax.swing.JFrame implements ActionListene
         Content2.setPreferredSize(new java.awt.Dimension(300, 50));
 
         btn_quanLyPhong.setBackground(new java.awt.Color(250, 250, 250));
-        btn_quanLyPhong.setIcon(new FlatSVGIcon("./icon/ticket.svg"));
+        btn_quanLyPhong.setIcon(new FlatSVGIcon(getClass().getResource("/icon/ticket.svg")));
         btn_quanLyPhong.setText("Quản Lý Phòng");
         // Đặt căn lề trái cho icon
         btn_quanLyPhong.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
@@ -322,7 +398,7 @@ public class JFrame_TrangChu extends javax.swing.JFrame implements ActionListene
 
         btn_quanLyNhanVien.setBackground(new java.awt.Color(250, 250, 250));
         btn_quanLyNhanVien.setText("Quản Lý Nhân Viên");
-        btn_quanLyNhanVien.setIcon(new FlatSVGIcon("./icon/employee.svg"));
+        btn_quanLyNhanVien.setIcon(new FlatSVGIcon(getClass().getResource("/icon/employee.svg")));
         // Đặt căn lề trái cho icon
         btn_quanLyNhanVien.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
         btn_quanLyNhanVien.setIconTextGap(10); // Khoảng cách giữa icon và văn bản
@@ -360,7 +436,7 @@ public class JFrame_TrangChu extends javax.swing.JFrame implements ActionListene
         btn_quanLyKhachHang.setBackground(new java.awt.Color(250, 250, 250));
         btn_quanLyKhachHang.setText("Quản Lý Khách Hàng");
         btn_quanLyKhachHang.setPreferredSize(new java.awt.Dimension(250, 23));
-        btn_quanLyKhachHang.setIcon(new FlatSVGIcon("./icon/customer_1.svg"));
+        btn_quanLyKhachHang.setIcon(new FlatSVGIcon(getClass().getResource("/icon/customer_1.svg")));
         // Đặt căn lề trái cho icon
         btn_quanLyKhachHang.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
         btn_quanLyKhachHang.setIconTextGap(10); // Khoảng cách giữa icon và văn bản
@@ -396,7 +472,7 @@ public class JFrame_TrangChu extends javax.swing.JFrame implements ActionListene
 
         btn_quanLyDoAnUong.setBackground(new java.awt.Color(250, 250, 250));
         btn_quanLyDoAnUong.setText("Quản Lý Đồ Ăn Uống");
-        btn_quanLyDoAnUong.setIcon(new FlatSVGIcon("./icon/bill.svg"));
+        btn_quanLyDoAnUong.setIcon(new FlatSVGIcon(getClass().getResource("/icon/bill.svg")));
         // Đặt căn lề trái cho icon
         btn_quanLyDoAnUong.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
         btn_quanLyDoAnUong.setIconTextGap(10); // Khoảng cách giữa icon và văn bản
@@ -432,7 +508,7 @@ public class JFrame_TrangChu extends javax.swing.JFrame implements ActionListene
         Content11.setPreferredSize(new java.awt.Dimension(300, 50));
 
         btn_khuyenMai.setBackground(new java.awt.Color(250, 250, 250));
-        btn_khuyenMai.setIcon(new FlatSVGIcon("./icon/statistics.svg"));
+        btn_khuyenMai.setIcon(new FlatSVGIcon(getClass().getResource("/icon/statistics.svg")));
         btn_khuyenMai.setText("Quản Lý Khuyến Mãi");
         // Đặt căn lề trái cho icon
         btn_khuyenMai.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
@@ -469,11 +545,7 @@ public class JFrame_TrangChu extends javax.swing.JFrame implements ActionListene
         Content12.setPreferredSize(new java.awt.Dimension(300, 50));
 
         btn_datPhong.setBackground(new java.awt.Color(250, 250, 250));
-
         btn_datPhong.setText("Quản Lý Đặt Phòng");
-
-        btn_datPhong.setText("Đặt Phòng");
-
         btn_datPhong.setPreferredSize(new java.awt.Dimension(250, 23));
         btn_datPhong.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -486,23 +558,13 @@ public class JFrame_TrangChu extends javax.swing.JFrame implements ActionListene
         Content12Layout.setHorizontalGroup(
             Content12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(Content12Layout.createSequentialGroup()
-
-                .addGap(36, 36, 36)
-                .addComponent(btn_datPhong, javax.swing.GroupLayout.PREFERRED_SIZE, 226, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(38, Short.MAX_VALUE))
-        );
-        Content12Layout.setVerticalGroup(
-            Content12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(btn_datPhong, javax.swing.GroupLayout.DEFAULT_SIZE, 50, Short.MAX_VALUE)
-
                 .addGap(35, 35, 35)
                 .addComponent(btn_datPhong, javax.swing.GroupLayout.PREFERRED_SIZE, 229, javax.swing.GroupLayout.PREFERRED_SIZE)
-               
+                .addContainerGap(36, Short.MAX_VALUE))
         );
         Content12Layout.setVerticalGroup(
             Content12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(btn_datPhong, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 50, Short.MAX_VALUE)
-
         );
 
         jPanel1.add(Content12);
@@ -584,7 +646,7 @@ public class JFrame_TrangChu extends javax.swing.JFrame implements ActionListene
         DangXuat.setPreferredSize(new java.awt.Dimension(200, 30));
 
         btn_dangXuat.setBackground(new java.awt.Color(250, 250, 250));
-        btn_dangXuat.setIcon(new FlatSVGIcon("./icon/logout.svg"));
+        btn_dangXuat.setIcon(new FlatSVGIcon(getClass().getResource("/icon/logout.svg")));
         btn_dangXuat.setText("Đăng xuất");
         // Đặt căn lề trái cho icon
         btn_dangXuat.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
@@ -613,16 +675,15 @@ public class JFrame_TrangChu extends javax.swing.JFrame implements ActionListene
         bar4.setBackground(new java.awt.Color(204, 214, 219));
         bar4.setPreferredSize(new java.awt.Dimension(1, 1));
 
-        javax.swing.GroupLayout bar4Layout = new javax.swing.GroupLayout(bar4);
-        bar4.setLayout(bar4Layout);
-        bar4Layout.setHorizontalGroup(
-            bar4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1, Short.MAX_VALUE)
-        );
-        bar4Layout.setVerticalGroup(
-            bar4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 50, Short.MAX_VALUE)
-        );
+        btn_datPhong1.setBackground(new java.awt.Color(250, 250, 250));
+        btn_datPhong1.setText("Đặt Phòng");
+        btn_datPhong1.setPreferredSize(new java.awt.Dimension(250, 23));
+        btn_datPhong1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_datPhongActionPerformed(evt);
+            }
+        });
+        bar4.add(btn_datPhong1);
 
         pnlBottom.add(bar4, java.awt.BorderLayout.EAST);
 
@@ -734,10 +795,9 @@ public class JFrame_TrangChu extends javax.swing.JFrame implements ActionListene
     private javax.swing.JPanel bar4;
     private javax.swing.JButton btn_dangXuat;
     private javax.swing.JButton btn_datPhong;
-
+    private javax.swing.JButton btn_datPhong1;
     private javax.swing.JButton btn_hoaDon;
     private javax.swing.JButton btn_khuyenMai;
-
     private javax.swing.JButton btn_quanLyDoAnUong;
     private javax.swing.JButton btn_quanLyKhachHang;
     private javax.swing.JButton btn_quanLyNhanVien;
@@ -757,20 +817,53 @@ public class JFrame_TrangChu extends javax.swing.JFrame implements ActionListene
     private javax.swing.JPanel pnlTop;
     // End of variables declaration//GEN-END:variables
     public void addEvents() {
+        btn_trangChu.addActionListener(this);
         btn_quanLyNhanVien.addActionListener(this);
         btn_quanLyPhong.addActionListener(this);
         btn_quanLyKhachHang.addActionListener(this);
-
         btn_datPhong.addActionListener(this);
-
         btn_dangXuat.addActionListener(this);
         btn_quanLyDoAnUong.addActionListener(this);
         btn_khuyenMai.addActionListener(this);
         btn_hoaDon.addActionListener(this);
+        btn_thongKe.addActionListener(this);
+        thongKeDoanhThu.addActionListener(this);
+        thongKeKhachHang.addActionListener(this);
+        trangMain.addActionListener(this);
+        help.addActionListener(this);
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
+        if (e.getSource() == btn_trangChu) {
+            menuTrangChu.show(btn_trangChu, 7, 48);
+        }
+        if (e.getSource() == trangMain) {
+            // Xóa bỏ tất cả các component hiện tại trong MainContent (nếu cần)
+            MainContent.removeAll();
+            // Thêm JPanel mới vào MainContent
+            MainContent.add(trangChu,"trangChu");
+            // Cập nhật giao diện
+            MainContent.revalidate();
+            MainContent.repaint();
+
+        }
+        if (e.getSource() == help) {
+            try {
+                    // Đường link bạn muốn mở
+                    URI helpURI = new URI("https://web-guide-an-nhien-hotel.vercel.app/home");
+
+                    // Mở trình duyệt mặc định với đường link
+                    if (Desktop.isDesktopSupported()) {
+                        Desktop.getDesktop().browse(helpURI);
+                    } else {
+                        JOptionPane.showMessageDialog(MainContent, "Desktop không được hỗ trợ, không thể mở link.", "Lỗi", JOptionPane.ERROR_MESSAGE);
+                    }
+                } catch (IOException | URISyntaxException ex) {
+                    ex.printStackTrace();
+                    JOptionPane.showMessageDialog(MainContent, "Có lỗi xảy ra khi mở link: " + ex.getMessage(), "Lỗi", JOptionPane.ERROR_MESSAGE);
+                }
+        }
         if (e.getSource() == btn_quanLyNhanVien) {
             // Xóa bỏ tất cả các component hiện tại trong MainContent (nếu cần)
             MainContent.removeAll();
@@ -786,13 +879,6 @@ public class JFrame_TrangChu extends javax.swing.JFrame implements ActionListene
             // Thêm JPanel mới vào MainContent
             MainContent.add(qlp);
             // Cập nhật giao diện
-            MainContent.revalidate();
-            MainContent.repaint();
-        }
-
-        if (e.getSource() == btn_quanLyKhachHang) {
-            MainContent.removeAll();
-            MainContent.add(qlkh, "qlkh");
             MainContent.revalidate();
             MainContent.repaint();
         }
@@ -813,26 +899,52 @@ public class JFrame_TrangChu extends javax.swing.JFrame implements ActionListene
 
         if (e.getSource() == btn_hoaDon) {
             MainContent.removeAll();
-            MainContent.add(qlhd, "qlhd");
-            MainContent.revalidate();
-            MainContent.repaint();
+            try {
+                qlhd = new JPanel_QuanLyHoaDon(nv);
+                MainContent.add(qlhd, "qlhd");
+                MainContent.revalidate();
+                MainContent.repaint();
+            } catch (SQLException ex) {
+                Logger.getLogger(JFrame_TrangChu.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
 
         if (e.getSource() == btn_quanLyKhachHang) {
             MainContent.removeAll();
-            MainContent.add(qlkh);
-            MainContent.revalidate();
-            MainContent.repaint();
+            try {
+                qlkh = new JPanel_QuanLyKhachHang();
+                MainContent.add(qlkh);
+                MainContent.revalidate();
+                MainContent.repaint();
+            } catch (SQLException ex) {
+                Logger.getLogger(JFrame_TrangChu.class.getName()).log(Level.SEVERE, null, ex);
+            }
+
         }
         if (e.getSource() == btn_datPhong) {
             MainContent.removeAll();
-//            MainContent.add(datPhong);
+            MainContent.add(qlpo,"qlpo");
             MainContent.revalidate();
             MainContent.repaint();
         }
-
+        if (e.getSource() == btn_thongKe) {
+            menuThongKe.show(btn_thongKe, 7, 48);
+        }
+        if (e.getSource() == thongKeDoanhThu){
+            MainContent.removeAll();
+            MainContent.add(tkdt,"tkdt");
+            MainContent.revalidate();
+            MainContent.repaint();
+        }
+        if (e.getSource() == thongKeKhachHang){
+            MainContent.removeAll();
+            MainContent.add(tkkh,"tkkh");
+            MainContent.revalidate();
+            MainContent.repaint();
+        }
+        
         if (e.getSource() == btn_dangXuat) {
-
+            this.setVisible(false);
         }
     }
 

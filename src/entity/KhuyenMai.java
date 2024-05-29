@@ -81,7 +81,7 @@ public class KhuyenMai {
     }
 
     public boolean isHetHan() {
-        return this.ngayBatDau.isBefore(ngayKetThuc);
+        return LocalDate.now().isBefore(ngayKetThuc);
     }
 
     @Override

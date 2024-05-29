@@ -19,6 +19,7 @@ public class ChiTietHoaDon {
     private DoAnUong doAnUong;
     private int soLuong;
     private Phong phong;
+    private int soGio;
     private LocalDate ngayNhanPhong;
     private LocalDate ngayTraPhong;
     private int soLuongNguoiO;
@@ -39,6 +40,7 @@ public class ChiTietHoaDon {
         this.phong = phong;
         this.ngayNhanPhong = ngayNhanPhong;
         this.ngayTraPhong = ngayTraPhong;
+        this.soGio = 0;
         this.soLuongNguoiO = soLuongNguoiO;
         this.soLuongDoUongTraVe = soLuongDoUongTraVe;
         this.tongTienThuePhong = tongTienThuePhong;
@@ -46,6 +48,24 @@ public class ChiTietHoaDon {
         this.phuPhi = phuPhi;
     }
 
+    public ChiTietHoaDon(HoaDon hoaDon, DoAnUong doAnUong, int soLuong, Phong phong, int soGio, LocalDate ngayNhanPhong, LocalDate ngayTraPhong, int soLuongNguoiO, int soLuongDoUongTraVe, double tongTienThuePhong, double tongTienDichVu, double phuPhi) {
+        this.hoaDon = hoaDon;
+        this.doAnUong = doAnUong;
+        this.soLuong = soLuong;
+        this.phong = phong;
+        this.soGio = soGio;
+        this.ngayNhanPhong = ngayNhanPhong;
+        this.ngayTraPhong = ngayTraPhong;
+        this.soLuongNguoiO = soLuongNguoiO;
+        this.soLuongDoUongTraVe = soLuongDoUongTraVe;
+        this.tongTienThuePhong = tongTienThuePhong;
+        this.tongTienDichVu = tongTienDichVu;
+        this.phuPhi = phuPhi;
+    }
+
+    
+    
+    
     public HoaDon getHoaDon() {
         return hoaDon;
     }
@@ -118,51 +138,95 @@ public class ChiTietHoaDon {
         this.soLuongNguoiO = soLuongNguoiO;
     }
 
+    public void setPhuPhi(double phuPhi) {
+        this.phuPhi = phuPhi;
+    }
+
     public void tinhTongTienDichVu() {
         if (doAnUong != null) {
-            this.tongTienDichVu = soLuong * doAnUong.getGiaBan();
+            this.tongTienDichVu = this.soLuong * doAnUong.getGiaBan();
         } else {
             this.tongTienDichVu = 0;
         }
 
     }
 
-    public void tinhTienThuePhong() {
-        int soTien1n = 0;
-        if (phong.getLoaiPhong().getTenLoai() == 1) {
-            soTien1n = 500000;
-        } else if (phong.getLoaiPhong().getTenLoai() == 2) {
-            soTien1n = 600000;
-        } else if (phong.getLoaiPhong().getTenLoai() == 3) {
-            soTien1n = 750000;
-        } else if (phong.getLoaiPhong().getTenLoai() == 4) {
-            soTien1n = 900000;
-        } else if (phong.getLoaiPhong().getTenLoai() == 5) {
-            soTien1n = 420000;
-        }
+    public int getSoGio() {
+        return soGio;
+    }
 
-        // Kiểm tra nếu ngày nhận và trả không null và ngày trả phải sau ngày nhận
-        if (ngayNhanPhong != null && ngayTraPhong != null && ngayTraPhong.isAfter(ngayNhanPhong)) {
-            // Tính số ngày giữa ngày nhận và ngày trả phòng
-            long soNgayThue = ChronoUnit.DAYS.between(ngayNhanPhong, ngayTraPhong);
+    public void setSoGio(int soGio) {
+        this.soGio = soGio;
+    }
 
-            // Tính tổng tiền thuê phòng dựa trên số ngày và giá thuê mỗi ngày
-            double tongTienThue = soTien1n * soNgayThue;
-            System.out.println(soTien1n);
-            this.tongTienThuePhong = tongTienThue;
+    
+    
+    
+    public void tinhTienThuePhong(Phong phong, boolean isTheoNgay) {
+        if (isTheoNgay) {
+            int soTien1n = 0;
+            if (phong.getLoaiPhong().getTenLoai() == 1) {
+                soTien1n = 500000;
+            } else if (phong.getLoaiPhong().getTenLoai() == 2) {
+                soTien1n = 600000;
+            } else if (phong.getLoaiPhong().getTenLoai() == 3) {
+                soTien1n = 750000;
+            } else if (phong.getLoaiPhong().getTenLoai() == 4) {
+                soTien1n = 900000;
+            } else if (phong.getLoaiPhong().getTenLoai() == 5) {
+                soTien1n = 420000;
+            }
+
+            // Kiểm tra nếu ngày nhận và trả không null và ngày trả phải sau ngày nhận
+            if (ngayNhanPhong != null && ngayTraPhong != null && ngayTraPhong.isAfter(ngayNhanPhong)) {
+                // Tính số ngày giữa ngày nhận và ngày trả phòng
+                long soNgayThue = ChronoUnit.DAYS.between(ngayNhanPhong, ngayTraPhong);
+
+                // Tính tổng tiền thuê phòng dựa trên số ngày và giá thuê mỗi ngày
+                double tongTienThue = soTien1n*soNgayThue*24*0.5;
+                this.tongTienThuePhong = tongTienThue + this.phuPhi;
+                System.out.println("entity.ChiTietHoaDon.tinhTienThuePhong()" + phuPhi);
+            } else {
+                // Trả về 0 hoặc giá trị mặc định khi thông tin không hợp lệ
+                this.tongTienThuePhong = 0;
+            }
         } else {
-            // Trả về 0 hoặc giá trị mặc định khi thông tin không hợp lệ
-            this.tongTienThuePhong = 0;
+            if (phong.getLoaiPhong().getTenLoai() == 1) {
+                if(soGio == 1) this.tongTienThuePhong = 500000;
+                if(soGio == 2) this.tongTienThuePhong = 800000;
+                if(soGio == 3) this.tongTienThuePhong = 1050000;
+                if(soGio >= 4) this.tongTienThuePhong = 3600000;
+            } else if (phong.getLoaiPhong().getTenLoai() == 2) {
+                if(soGio == 1) this.tongTienThuePhong = 600000;
+                if(soGio == 2) this.tongTienThuePhong = 960000;
+                if(soGio == 3) this.tongTienThuePhong = 1260000;
+                if(soGio >= 4) this.tongTienThuePhong = 4320000;
+            } else if (phong.getLoaiPhong().getTenLoai() == 3) {
+                if(soGio == 1) this.tongTienThuePhong = 750000;
+                if(soGio == 2) this.tongTienThuePhong = 1200000;
+                if(soGio == 3) this.tongTienThuePhong = 1575000;
+                if(soGio >= 4) this.tongTienThuePhong = 5400000;
+            } else if (phong.getLoaiPhong().getTenLoai() == 4) {
+                if(soGio == 1) this.tongTienThuePhong = 900000;
+                if(soGio == 2) this.tongTienThuePhong = 1440000;
+                if(soGio == 3) this.tongTienThuePhong = 1890000;
+                if(soGio >= 4) this.tongTienThuePhong = 6480000;
+            } else if (phong.getLoaiPhong().getTenLoai() == 5) {
+                if(soGio == 1) this.tongTienThuePhong = 420000;
+                if(soGio == 2) this.tongTienThuePhong = 672000;
+                if(soGio == 3) this.tongTienThuePhong = 882000;
+                if(soGio >= 4) this.tongTienThuePhong = 3024000;
+            }
         }
-
     }
 
     //tinhTongPhuPhi (tl4 thiếu cái này)
+
     @Override
     public String toString() {
-        return "ChiTietHoaDon{" + "hoaDon=" + hoaDon + ", doAnUong=" + doAnUong + ", soLuong=" + soLuong + ", phong=" + phong + ", ngayNhanPhong=" + ngayNhanPhong + ", ngayTraPhong=" + ngayTraPhong + ", soLuongNguoiO=" + soLuongNguoiO + ", soLuongDoUongTraVe=" + soLuongDoUongTraVe + ", tongTienThuePhong=" + tongTienThuePhong + ", tongTienDichVu=" + tongTienDichVu + ", phuPhi=" + phuPhi + '}';
-
+        return "ChiTietHoaDon{" + "hoaDon=" + hoaDon + ", doAnUong=" + doAnUong + ", soLuong=" + soLuong + ", phong=" + phong + ", soGio=" + soGio + ", ngayNhanPhong=" + ngayNhanPhong + ", ngayTraPhong=" + ngayTraPhong + ", soLuongNguoiO=" + soLuongNguoiO + ", soLuongDoUongTraVe=" + soLuongDoUongTraVe + ", tongTienThuePhong=" + tongTienThuePhong + ", tongTienDichVu=" + tongTienDichVu + ", phuPhi=" + phuPhi + '}';
     }
+    
 
     @Override
     public int hashCode() {
