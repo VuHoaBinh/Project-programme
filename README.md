@@ -66,7 +66,7 @@ Nothing
 ### 3.6 Màn hình hóa đơn điện tử:
 ### 3.7 Màn hình phiếu thanh toán;
 ### 3.8 Màn hình hướng dẫn sử dụng (web): 
-link: https://vercel.com/vuhoabinhs-projects/web-guide
+link: https://web-guide-an-nhien-hotel.vercel.app/home
 
 ### 3.9 Màn hình xem thông tin cá nhân:
 ### 3.10 Màn hình quản lý khuyến mãi:
