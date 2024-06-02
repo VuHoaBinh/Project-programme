@@ -1,6 +1,6 @@
 # Booking An Nhien Hotel 
 
-Members: 04  (Vũ Hòa Bình(Leader)- Phạm Hoàng Long - Trần Quang Nhân - Nguyễn Tiến Đạt)
+Members: 04  (Vũ Hòa Bình - Phạm Hoàng Long - Trần Quang Nhân - Nguyễn Tiến Đạt)
 
 ## 1. Tổng quan chức năng hệ thống:
 
