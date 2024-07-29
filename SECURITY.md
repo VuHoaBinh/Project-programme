@@ -4,9 +4,9 @@
 
 Use this section to tell people about which versions of your project are currently being supported with security updates.
 
-| Version | Supported          |
-| ------- | ------------------ |
-|         |                    |
+| Version   | Supported                                       |
+| --------- | ----------------------------------------------- |
+|   1.1.0   | QR Code and ticket sent Email                   |
 
 ## Reporting a Vulnerability
 
